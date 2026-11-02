@@ -1,0 +1,6 @@
+{
+  "repo": "Qwen/Qwen3.5-0.8B",
+  "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+  "weights_included": false,
+  "initialization": "Start full training from pretrained base with fresh LoRA/queries/head; smoke overfit checkpoints are verification artifacts."
+}

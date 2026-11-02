@@ -1,0 +1,130 @@
+schema_version: 2
+train_seed: 42
+smoke: false
+device: cuda:0
+bf16: true
+cpu_threads: 4
+output: outputs/fast_only/preflight_v2_deterministic
+loss: l1_xy_sum_point_batch_mean
+model:
+  path: models/Qwen3.5-0.8B
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  ego_dim: 3
+  num_commands: 7
+  planning_queries: 6
+  freeze_visual_merger: true
+  lora_target_suffixes:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+  token_order:
+  - native_temporal_images_and_text
+  - ego
+  - command
+  - target
+  - planning_queries
+  lora_parameter_dtype: float32
+processor:
+  policy: original_pad
+  min_pixels: null
+  max_pixels: null
+  pad_multiple: 32
+  pad_fill:
+  - 0
+  - 0
+  - 0
+  prompt_template: temporal_task_v1
+data:
+  root: data/multiroute_v2
+  manifest_dir: outputs/fast_only/data_v2
+  train_manifest: outputs/fast_only/data_v2/train.jsonl
+  val_manifest: outputs/fast_only/data_v2/val.jsonl
+  test_manifest: outputs/fast_only/data_v2/test.jsonl
+  stats: outputs/fast_only/data_v2/stats.json
+  navigation_mode: annotation_near_route_target
+  navigation_origin: ego_center_from_gnss_extrinsic
+  gnss_mount_xy_m:
+  - -1.4
+  - 0
+  target_lookahead_policy: as_recorded_official_near_route
+  target_fallback: error
+  timing_policy: nominal_simulation_time_10hz
+  nominal_hz: 10
+  source_audit: outputs/fast_only/audit_v2/source_audit.json
+  require_official_label_pose: true
+  split_seed: 42
+  geographic_group_policy: town_holdout
+  val_towns:
+  - Town12
+  test_towns:
+  - Town06
+  train_stride: 1
+  eval_stride: 5
+  history_offsets:
+  - -3
+  - -2
+  - -1
+  - 0
+  future_offsets:
+  - 5
+  - 10
+  - 15
+  - 20
+  - 25
+  - 30
+  ego_source: speed_sensor_backward_differences
+  coordinate_convention: carla_world_to_forward_left
+  command_policy:
+    vocabulary:
+      UNKNOWN: 0
+      LEFT: 1
+      RIGHT: 2
+      STRAIGHT: 3
+      LANEFOLLOW: 4
+      CHANGELANELEFT: 5
+      CHANGELANERIGHT: 6
+    missing_index: 0
+    invalid: reject
+loader:
+  workers: 2
+  prefetch: 2
+  pin_memory: true
+  sampler: counter_v1
+train:
+  optimizer: adamw
+  steps: 8000
+  microbatch: 2
+  gradient_accumulation: 8
+  effective_batch: 16
+  lora_lr: 0.0001
+  new_lr: 0.0005
+  weight_decay: 0.01
+  warmup_fraction: 0.03
+  grad_clip: 1.0
+  brightness: 0.1
+  eval_every: 1
+  checkpoint_every: 1
+benchmark:
+  enabled: true
+  warmup: 10
+  repeats: 100
+  modes:
+  - model_only
+  - streaming_e2e
+  - disk_e2e
+execution:
+  stage: preflight
+  stop_after: 4
+reproducibility:
+  deterministic_algorithms: true
+  warn_only: false
+  cublas_workspace_config: :4096:8
+  cudnn_deterministic: true
+  cudnn_benchmark: false
+  allow_tf32: false

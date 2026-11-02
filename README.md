@@ -1,0 +1,134 @@
+# NAVSIM Fast-only：原生 Qwen3.5 轨迹规划基线
+
+使用 **Qwen3.5-0.8B 原生多模态骨干**，输入 NAVSIM/OpenScene 的四帧前视图像、当前 Ego 动态状态和官方导航命令，单次 forward 输出未来 **4 秒、8 个 `(x, y, heading)` pose**。
+
+**当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
+
+> **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。
+
+## 已验证到什么程度
+
+以下是 **2026-11-02 在单张 NVIDIA H800 上记录的结果**，不是在读者环境或 GitHub Actions 上重新运行的成绩。
+
+| 项目 | 结果 |
+| --- | --- |
+| 数据 | 3 段独立 log；TRAIN 12 / VAL 4 窗口；没有用于选择的 TEST |
+| 输入 | 2Hz，四帧 CAM_F0：`[-1.5,-1.0,-0.5,0]s` |
+| 图像 | 原图 1920×1080，仅补边到 1920×1088；不缩放、不重新压缩 |
+| Native 布局 | 2,040 visual tokens/帧；完整序列长度 8,247 |
+| 输出 | `[B,8,3]`，未来 `[0.5,1.0,…,4.0]s` 的局部后轴 SE(2) pose |
+| 梯度 | Vision+Merger 冻结；LoRA、Ego、command、queries、head 梯度非零且有限 |
+| 配置 smoke | MB2×累积8，有效 batch16；保留 8,000 步日程/240 步 warmup，只执行前4步 |
+| 移动单样本过拟合 | 300步；ADE **0.00369m**，heading MAE **0.000673rad** |
+| 实际恢复 | 恢复 update2→3，与不中断执行的参数、Adam 状态和 pose 差异均为0 |
+| 独立进程重载 | 重新构造基座+checkpoint，两份模型的预测差异均为0 |
+| 回归测试 | 历史记录 **402 passed**；包括真实 Processor 的未来隔离测试 |
+| 显存 | MB2 训练峰值 allocated **39.23GiB**；MB1 深过拟合 **20.76GiB** |
+
+原图 batch1 延迟各预热10次、测量100次：Model-only P95 **166ms**，Streaming E2E P95 **454ms**，Disk E2E P95 **490ms**。Disk 有 **3/100** 次超过500ms，P99约516ms，不能保证严格实时2Hz。该延迟不作为离线训练迁移的阻塞条件。
+
+详细口径见[验证记录](docs/VALIDATION.md)和[结构化证据](evidence/smoke_summary.json)。小样本过拟合与通道敏感度不代表泛化能力、导航语义已学好或官方 PDMS/EPDMS 成绩。
+
+## 代码如何工作
+
+```mermaid
+flowchart TD
+    A[四帧原始 CAM_F0] --> B[补边与原生 Processor：不 resize]
+    B --> C[原生 Vision Encoder + Merger：冻结]
+    C --> D[Native 图像占位符替换与 mRoPE]
+    E[当前 vx vy ax ay] --> F[Ego MLP token]
+    G[官方四类 driving command] --> H[Command embedding token]
+    D --> I[原生语言骨干 + LoRA]
+    F --> I
+    H --> I
+    Q[8 个可学习 Planning Queries] --> I
+    I --> J[最后8个 hidden states → 共享轨迹 Head]
+    J --> K[8个 x y heading pose]
+    K --> L[官方 baseline mean L1]
+    T[仅作为监督的未来 pose GT] --> L
+```
+
+- Navigation 使用官方四维 one-hot 的原生类别索引，**没有连续 Target Point 分支**；不补零、不用未来轨迹伪造目标。
+- Ego 使用当前官方 `ego_dynamic_state=[vx,vy,ax,ay]`，只用 TRAIN 统计量标准化。
+- 坐标原点是当前后轴，x 前/y 左，采用 NAVSIM SE(2)，不使用 CARLA 的 y 翻转或 GNSS 修正。
+- Vision+Merger 和语言基座冻结；语言 Attention/FFN 使用 LoRA，新增输入模块、queries、head 可训练。没有 Slow、CoC、Cross-Attention 或附加规划 Loss。
+- Loss 对齐官方 MLP baseline：所有 batch/pose/x-y-heading 分量的平均绝对误差。位置单位 m、heading 单位 rad，因此 pose loss 不标作米；XY ADE/FDE 与 wrapped heading MAE 分开报告。
+
+实现细节及文件映射见[代码逻辑](docs/ARCHITECTURE.md)。
+
+## 目录
+
+```text
+fast_navsim/       当前 NAVSIM 数据、模型、训练、验证与 checkpoint
+fast_only/         被复用的原生 Qwen/LoRA、预取、调度器等共享实现；保留旧 B2D 协议
+configs/navsim*.yaml
+tools/            NAVSIM 小样本准备/预检/独立重载；另含历史 B2D 辅助工具
+tests_navsim/     NAVSIM 协议、模型、配置、隔离与恢复测试
+tests/            共享/历史 B2D 回归；NAVSIM tiny-model 测试也复用其中的 fixture
+docs/             架构、验收口径和目标集群接入说明
+evidence/         不含原始数据/权重/本机路径的精选历史验证记录
+```
+
+`fast_only/` 是实际运行依赖，不能只复制 `fast_navsim/`。NAVSIM 与 B2D 的命令、坐标、采样频率和输出维度不同，不要交叉套用。
+
+## 环境和权重
+
+已执行的环境记录在 [environment.json](evidence/environment.json)。`requirements.txt` 和 `requirements-hopper.txt` 是安装清单，[已安装版本清单](evidence/observed-installed-versions.txt)是源服务器有效环境的记录，**不是经过干净环境验证的通用 lockfile**。
+
+在目标机器创建独立 Python 3.12 环境，选择与驱动兼容的 PyTorch/CUDA。原验证栈为 torch2.8.0+cu128、transformers5.10.2、PEFT0.18.1、FLA0.5.1、causal-conv1d1.6.1、TileLang0.1.15、Triton3.6.0。例如原 CUDA12.8 栈：
+
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128
+python -m pip install -r requirements.txt
+```
+
+CUDA 扩展必须匹配目标 torch/CUDA/toolkit。原 Hopper+FLA+Triton 栈触发过上游反向核保护，验证时使用 TileLang 后端；不要通过删除上游保护来跑训练。原有兼容环境可参考：
+
+```bash
+python -m pip install flash-linear-attention==0.5.1
+python -m pip install causal-conv1d==1.6.1 --no-build-isolation
+# 在已经匹配的 torch/CUDA/FLA 环境中补充 Hopper 依赖：
+python -m pip install --no-deps -r requirements-hopper.txt
+export CUDA_HOME=/path/to/your/cuda-toolkit
+export PATH="$CUDA_HOME/bin:$PATH"
+export FLA_TILELANG=1
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+```
+
+这是一份已测栈的重建参考，不保证其它 GPU/CUDA 组合直接兼容。`CUBLAS_WORKSPACE_CONFIG` 要在 Python/CUDA 初始化前设置。
+
+基座固定为 `Qwen/Qwen3.5-0.8B` revision `2fc06364715b967f1860aea9cf38778875588b17`。仓库不分发权重，放在 `models/Qwen3.5-0.8B`；标识和资产 SHA 见 [model_identity.json](evidence/model_identity.json)、[model_asset_sha256.json](evidence/model_asset_sha256.json)。加载启用 `local_files_only=True`。
+
+## 小规模验证入口
+
+以下供**目标服务器**复现协议和环境，原服务器不再追加 Smoke。仓库没有数据、基座权重或历史 `outputs/`，必须先按上述固定版本准备权重。
+
+```bash
+# 有上限的公开 mini 数据获取；默认预算1GB，不下载整套 mini。
+python -m tools.prepare_navsim_smoke --config configs/navsim_preflight.yaml --acquire
+
+# 保留正式模型/原图/batch/8000步日程，实际只运行4步，再做独立300步诊断。
+python -m tools.run_navsim_preflight
+
+# 另一个 Python 进程，从基座与 checkpoint 重建并比较预测。
+python -m tools.verify_navsim_reload
+
+# 需要依赖与本地 Processor/权重资产；历史402项是此前执行的证据。
+PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests tests_navsim -q
+```
+
+已有数据时去掉 `--acquire`，只从保留文件构建。已有训练输出时入口拒绝覆盖；不要在训练/续训过程中重建清单、统计量或来源审计。源机器的绝对路径和旧 checkpoint 不会自动重定位。
+
+## 转移后全量训练
+
+1. 用官方 `navtrain` Scene Filter 准备实际训练场景，保存 scene token/log 分组、缺失文件与 timestamp 拒绝统计；从训练来源建立独立 VAL，不用 `navtest`/`navhard_two_stage` 选型。
+2. 生成完整 Manifest 和 **完整 TRAIN-only** Stats，接入正式配置 Schema/路径与安全检查。当前 mini 构建器不是完整 `navtrain` pipeline。
+3. 按实际 TRAIN 数量确定 epoch、无放回 shuffle 采样与完整 LR 日程，保留确定性恢复。8,000步只是参考预算，不应在训练不足时才发现 cosine 已归零。
+4. 单卡先确认目标 GPU 原图前反向/显存/吞吐；多卡需接入 DDP、rank-aware sampler/RNG、全局 batch、指标聚合和 rank0 checkpoint。**不能直接给当前入口套 `torchrun`。**
+5. 正式训练从预训练 Qwen 初始化新的 LoRA/queries/head；不以单样本过拟合 checkpoint 初始化。按 VAL ADE 选择模型，报告 FDE、各时域 L2 和 heading MAE；训练后再接官方 Agent/EPDMS。
+
+具体需要改哪些文件、如何处理路径/恢复与数据吞吐，以及集群首次短训练的验收清单，见 **[FULL_DATA_TRAINING.md](docs/FULL_DATA_TRAINING.md)**。
+
+官方参考：[NAVSIM 输入/输出](https://github.com/autonomousvision/navsim/blob/0a380a9063d7162ec93d0f51e9990ebac585f720/docs/agents.md)、[数据划分](https://github.com/autonomousvision/navsim/blob/0a380a9063d7162ec93d0f51e9990ebac585f720/docs/splits.md)、[官方 baseline](https://github.com/autonomousvision/navsim/blob/0a380a9063d7162ec93d0f51e9990ebac585f720/navsim/agents/ego_status_mlp_agent.py)。数据、模型和第三方依赖的获取与使用按各自上游说明执行。

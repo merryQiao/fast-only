@@ -1,0 +1,285 @@
+{
+  "recorded_at_utc": "2026-11-02",
+  "scope": "Historical single-GPU smoke evidence; not a fresh run in the GitHub checkout.",
+  "dataset": "OpenScene mini, NAVSIM protocol",
+  "counts": {
+    "train": 12,
+    "val": 4,
+    "test": 0,
+    "deep_train": 1
+  },
+  "train_logs": 2,
+  "val_logs": 1,
+  "original_resolution": [
+    1920,
+    1080
+  ],
+  "padded_resolution": [
+    1920,
+    1088
+  ],
+  "visual_tokens_per_frame": 2040,
+  "sequence_length": 8247,
+  "tests": {
+    "tests": 402,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "full_training_started": false,
+  "full_archive_hash_verified": false,
+  "network_response_body_bytes_charged": 207756564,
+  "configuration_smoke": {
+    "steps": 4,
+    "schedule_steps": 8000,
+    "effective_batch": 16,
+    "val": {
+      "ADE": 8.28093147277832,
+      "FDE": 14.610278129577637,
+      "loss_l1_pose": 2.823972702026367,
+      "loss_l1_xy": 8.353449821472168,
+      "heading_mae_rad": 0.11846855282783508,
+      "heading_final_mae_rad": 0.14546790719032288,
+      "samples": 4,
+      "L2@0.5s": 2.0729715824127197,
+      "L2@1s": 3.73690128326416,
+      "L2@1.5s": 5.538611888885498,
+      "L2@2s": 7.303158283233643,
+      "L2@2.5s": 9.242613792419434,
+      "L2@3s": 10.884642601013184,
+      "L2@3.5s": 12.858274459838867,
+      "L2@4s": 14.610278129577637
+    },
+    "resume": {
+      "passed": true,
+      "restored_step": 2,
+      "replayed_step": 3,
+      "max_parameter_difference": 0.0,
+      "max_optimizer_moment_difference": 0.0,
+      "max_prediction_difference": 0.0,
+      "replayed_loss": 1.2489581666886806,
+      "uninterrupted_loss": 1.2489581666886806,
+      "replayed_grad_norm": 21.669639587402344,
+      "uninterrupted_grad_norm": 21.669639587402344,
+      "input_hashes_equal": true,
+      "scheduler_state_equal": true,
+      "learning_rates_equal": true,
+      "sampler_state": {
+        "sampler_version": "counter_v1",
+        "seed": 42,
+        "next_batch": 24,
+        "microbatch": 2,
+        "dataset_size": 12
+      },
+      "prediction_check_indices": [
+        0,
+        6,
+        11
+      ],
+      "deterministic_algorithms": true,
+      "warn_only": false,
+      "method": "actual dropout/prefetch optimizer update2->3 against uninterrupted checkpoint; exact gates"
+    },
+    "reload": {
+      "passed": true,
+      "step": 4,
+      "samples": 12,
+      "max_pose_difference": 0.0,
+      "metrics": {
+        "ADE": 4.652740001678467,
+        "FDE": 8.741128921508789,
+        "loss_l1_pose": 1.670275330543518,
+        "loss_l1_xy": 4.871969699859619,
+        "heading_mae_rad": 0.1388566493988037,
+        "heading_final_mae_rad": 0.1453554779291153,
+        "samples": 12,
+        "L2@0.5s": 1.0106500387191772,
+        "L2@1s": 1.9008373022079468,
+        "L2@1.5s": 2.9301528930664062,
+        "L2@2s": 3.9261531829833984,
+        "L2@2.5s": 5.0657219886779785,
+        "L2@3s": 6.2177863121032715,
+        "L2@3.5s": 7.429489612579346,
+        "L2@4s": 8.741128921508789
+      }
+    }
+  },
+  "deep_overfit": {
+    "passed": true,
+    "initial": {
+      "ADE": 2.451181650161743,
+      "FDE": 4.276309490203857,
+      "loss_l1_pose": 0.8853693008422852,
+      "loss_l1_xy": 2.5706400871276855,
+      "heading_mae_rad": 0.08546774089336395,
+      "heading_final_mae_rad": 0.026095367968082428,
+      "samples": 1,
+      "L2@0.5s": 0.4711679220199585,
+      "L2@1s": 1.0572593212127686,
+      "L2@1.5s": 1.4428728818893433,
+      "L2@2s": 2.277372121810913,
+      "L2@2.5s": 2.9156296253204346,
+      "L2@3s": 3.4803287982940674,
+      "L2@3.5s": 3.6885123252868652,
+      "L2@4s": 4.276309490203857
+    },
+    "final": {
+      "ADE": 0.0036895712837576866,
+      "FDE": 0.003654506290331483,
+      "loss_l1_pose": 0.001669307705014944,
+      "loss_l1_xy": 0.004334875848144293,
+      "heading_mae_rad": 0.0006730477325618267,
+      "heading_final_mae_rad": 0.00013360381126403809,
+      "samples": 1,
+      "L2@0.5s": 0.0004904099041596055,
+      "L2@1s": 0.0032085946295410395,
+      "L2@1.5s": 0.008895622566342354,
+      "L2@2s": 0.003145485883578658,
+      "L2@2.5s": 0.0007230955525301397,
+      "L2@3s": 0.001376267638988793,
+      "L2@3.5s": 0.00802258774638176,
+      "L2@4s": 0.003654506290331483,
+      "optimizer_step": 300,
+      "windows_seen": 300,
+      "epoch_equivalent": 300.0,
+      "peak_training_allocated_mib": 21261.673828125,
+      "peak_training_reserved_mib": 22796.0
+    },
+    "loss_reduction_percent": 99.81145633766306,
+    "reload": {
+      "passed": true,
+      "step": 300,
+      "samples": 1,
+      "max_pose_difference": 0.0,
+      "metrics": {
+        "ADE": 0.0036895712837576866,
+        "FDE": 0.003654506290331483,
+        "loss_l1_pose": 0.001669307705014944,
+        "loss_l1_xy": 0.004334875848144293,
+        "heading_mae_rad": 0.0006730477325618267,
+        "heading_final_mae_rad": 0.00013360381126403809,
+        "samples": 1,
+        "L2@0.5s": 0.0004904099041596055,
+        "L2@1s": 0.0032085946295410395,
+        "L2@1.5s": 0.008895622566342354,
+        "L2@2s": 0.003145485883578658,
+        "L2@2.5s": 0.0007230955525301397,
+        "L2@3s": 0.001376267638988793,
+        "L2@3.5s": 0.00802258774638176,
+        "L2@4s": 0.003654506290331483
+      }
+    },
+    "protocol_differences": "single TRAIN row, microbatch1/accumulation1/brightness0, separate300-step diagnostic schedule; same full-TRAIN stats/native images/ego/command/model/pose loss"
+  },
+  "channel_sensitivity": {
+    "cohort": "val",
+    "image_swap": {
+      "status": "measured",
+      "samples": 4,
+      "selected_samples": 4,
+      "logs": 1,
+      "method": "fixed_cycle_derangement_all_four_images_only",
+      "mean_point_change_m": 0.07430914510041475,
+      "mean_heading_change_rad": 0.04798788297921419,
+      "ground_truth_used_for_prediction": false,
+      "cross_log_pairs": 0,
+      "same_log_pairs": 4
+    },
+    "command_intervention": {
+      "status": "measured",
+      "samples": 4,
+      "selected_samples": 4,
+      "logs": 1,
+      "method": "command_plus_one_modulo_four",
+      "mean_point_change_m": 0.2365846075117588,
+      "mean_heading_change_rad": 0.12304095551371574,
+      "ground_truth_used_for_prediction": false
+    },
+    "limitation": "Descriptive channel sensitivity only; no semantic performance or official NAVSIM/PDM score claim."
+  },
+  "benchmark": {
+    "model_only_ms": {
+      "p50": 165.31297797337174,
+      "p95": 166.20073042577133,
+      "p99": 166.60130521049723,
+      "mean": 165.25744433747604,
+      "count": 100,
+      "fraction_over_budget": 0.0
+    },
+    "streaming_e2e_ms": {
+      "p50": 433.20264702197164,
+      "p95": 453.7145044421777,
+      "p99": 464.7242427384482,
+      "mean": 433.8273700652644,
+      "count": 100,
+      "fraction_over_budget": 0.0
+    },
+    "disk_e2e_ms": {
+      "p50": 466.6909580118954,
+      "p95": 490.2202851488255,
+      "p99": 515.5581988254562,
+      "mean": 468.529444350861,
+      "count": 100,
+      "fraction_over_budget": 0.03
+    }
+  },
+  "independent_reload": {
+    "passed": true,
+    "method": "new Python process, native local base weights plus checkpoint; original-resolution inputs",
+    "reports": {
+      "configuration_smoke": {
+        "passed": true,
+        "step": 4,
+        "samples": 12,
+        "max_pose_difference": 0.0,
+        "metrics": {
+          "ADE": 4.652740001678467,
+          "FDE": 8.741128921508789,
+          "loss_l1_pose": 1.670275330543518,
+          "loss_l1_xy": 4.871969699859619,
+          "heading_mae_rad": 0.1388566493988037,
+          "heading_final_mae_rad": 0.1453554779291153,
+          "samples": 12,
+          "L2@0.5s": 1.0106500387191772,
+          "L2@1s": 1.9008373022079468,
+          "L2@1.5s": 2.9301528930664062,
+          "L2@2s": 3.9261531829833984,
+          "L2@2.5s": 5.0657219886779785,
+          "L2@3s": 6.2177863121032715,
+          "L2@3.5s": 7.429489612579346,
+          "L2@4s": 8.741128921508789
+        }
+      },
+      "deep_overfit": {
+        "passed": true,
+        "step": 300,
+        "samples": 1,
+        "max_pose_difference": 0.0,
+        "metrics": {
+          "ADE": 0.0036895712837576866,
+          "FDE": 0.003654506290331483,
+          "loss_l1_pose": 0.001669307705014944,
+          "loss_l1_xy": 0.004334875848144293,
+          "heading_mae_rad": 0.0006730477325618267,
+          "heading_final_mae_rad": 0.00013360381126403809,
+          "samples": 1,
+          "L2@0.5s": 0.0004904099041596055,
+          "L2@1s": 0.0032085946295410395,
+          "L2@1.5s": 0.008895622566342354,
+          "L2@2s": 0.003145485883578658,
+          "L2@2.5s": 0.0007230955525301397,
+          "L2@3s": 0.001376267638988793,
+          "L2@3.5s": 0.00802258774638176,
+          "L2@4s": 0.003654506290331483
+        }
+      }
+    }
+  },
+  "limitations": [
+    "Bounded OpenScene mini logs, not official navtrain/navtest coverage.",
+    "No official EPDMS/PDMS simulation score or leaderboard evaluation.",
+    "Small independent VAL; channel response is not semantic quality or generalization.",
+    "Raw-resolution500ms budget measured separately; no silent resize.",
+    "No full dataset or8000-step training."
+  ]
+}

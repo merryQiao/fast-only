@@ -1,0 +1,28 @@
+{
+  "versions": {
+    "dataset": "OpenDriveLab/OpenScene",
+    "torch": "2.8.0+cu128",
+    "cuda_runtime": "12.8",
+    "python": "3.12.13",
+    "transformers": "5.10.2",
+    "peft": "0.18.1",
+    "flash-linear-attention": "0.5.1",
+    "causal-conv1d": "1.6.1",
+    "tilelang": "0.1.15",
+    "triton": "3.6.0",
+    "Pillow": "12.2.0",
+    "numpy": "2.4.4",
+    "tokenizers": "0.22.2",
+    "FLA_TILELANG": "1",
+    "CUBLAS_WORKSPACE_CONFIG": ":4096:8"
+  },
+  "gpu": "NVIDIA H800",
+  "gpu_total_mib": 80994.8125,
+  "deterministic_algorithms": true,
+  "warn_only": false,
+  "cudnn_deterministic": true,
+  "cudnn_benchmark": false,
+  "allow_tf32_matmul": false,
+  "allow_tf32_cudnn": false,
+  "model_revision": "2fc06364715b967f1860aea9cf38778875588b17"
+}

@@ -1,0 +1,16 @@
+# Install CUDA torch appropriate for your host first; executed stack: torch2.8/cu128.
+torch==2.8.0
+transformers==5.10.2
+peft==0.18.1
+accelerate==1.12.0
+numpy==2.4.4
+Pillow==12.2.0
+matplotlib==3.10.9
+PyYAML==6.0.3
+pytest==8.4.2
+requests>=2.32
+# Optional CUDA speedups used in the measured run (install matching torch/CUDA):
+# flash-linear-attention==0.5.1
+# causal-conv1d==1.6.1
+# Required alongside FLA on Hopper with Triton>=3.4 (upstream #640):
+# tilelang==0.1.15

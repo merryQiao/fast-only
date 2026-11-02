@@ -1,0 +1,22 @@
+# Local environments, downloaded assets and experiment outputs.
+.venv*/
+.wheels/
+models/
+data/
+outputs/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+*.pt
+*.pth
+*.safetensors
+*.pkl
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+.env
+.env.*
+*.pem
+*.key
+install*.log

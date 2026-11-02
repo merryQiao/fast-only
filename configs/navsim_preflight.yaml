@@ -1,0 +1,115 @@
+schema_version: navsim_v1
+train_seed: 42
+split_seed: 42
+device: cuda:0
+bf16: true
+cpu_threads: 4
+output: outputs/navsim/preflight
+loss: navsim_l1_pose_mean
+model:
+  path: models/Qwen3.5-0.8B
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  lora_parameter_dtype: float32
+  ego_dim: 4
+  num_commands: 4
+  planning_queries: 8
+  output_dim: 3
+  continuous_target: false
+  freeze_visual_merger: true
+  lora_target_suffixes:
+  - q_proj
+  - k_proj
+  - v_proj
+  - o_proj
+  - gate_proj
+  - up_proj
+  - down_proj
+  token_order:
+  - native_temporal_images_and_text
+  - ego
+  - command
+  - planning_queries
+processor:
+  policy: original_pad
+  pad_multiple: 32
+  pad_fill:
+  - 0
+  - 0
+  - 0
+  history_times_s:
+  - -1.5
+  - -1.0
+  - -0.5
+  - 0.0
+  prompt_template: navsim_temporal_v1
+data:
+  root: data/navsim_smoke
+  train_manifest: outputs/navsim/data/train.jsonl
+  val_manifest: outputs/navsim/data/val.jsonl
+  test_manifest: outputs/navsim/data/test.jsonl
+  stats: outputs/navsim/data/stats.json
+  source_audit: outputs/navsim/audit/source_audit.json
+  frequency_hz: 2
+  camera: CAM_F0
+  history_offsets:
+  - -3
+  - -2
+  - -1
+  - 0
+  future_offsets:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
+  - 7
+  - 8
+  coordinate_convention: rear_axle_forward_left_se2
+  navigation: route_command_only
+  ego_fields:
+  - vx
+  - vy
+  - ax
+  - ay
+  cohort: bounded_mini_preflight
+train:
+  optimizer: adamw
+  steps: 8000
+  microbatch: 2
+  gradient_accumulation: 8
+  effective_batch: 16
+  lora_lr: 0.0001
+  new_lr: 0.0005
+  weight_decay: 0.01
+  warmup_fraction: 0.03
+  grad_clip: 1.0
+  brightness: 0.1
+  eval_every: 1
+  checkpoint_every: 1
+loader:
+  workers: 2
+  prefetch: 2
+  pin_memory: true
+  sampler: counter_v1
+benchmark:
+  enabled: true
+  warmup: 10
+  repeats: 100
+  modes:
+  - model_only
+  - streaming_e2e
+  - disk_e2e
+  p95_budget_ms: 500
+execution:
+  stage: preflight
+  stop_after: 4
+reproducibility:
+  deterministic_algorithms: true
+  warn_only: false
+  cublas_workspace_config: :4096:8
+  cudnn_deterministic: true
+  cudnn_benchmark: false
+  allow_tf32: false

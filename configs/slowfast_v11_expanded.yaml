@@ -1,0 +1,56 @@
+schema_version: slowfast_v11_expanded
+train_seed: 42
+split_seed: 42
+init_policy: pretrained
+fast: {model_path: models/Qwen3.5-0.8B, device: 'cuda:0'}
+slow: {model_path: models/Qwen3.5-2B, device: 'cuda:0'}
+allow_single_gpu: true
+model:
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.0
+  lora_parameter_dtype: float32
+  position_offset: 4096
+data:
+  train_manifest: outputs/slowfast_v11_expanded/data/train.jsonl
+  val_manifest: outputs/slowfast_v11_expanded/data/val.jsonl
+  stats: outputs/slowfast_v11_expanded/data/stats.json
+  sensor_root: data/navsim_expanded/sensors/openscene-v1.1/sensor_blobs/mini
+  ages_s: [0.0]
+  max_train_rows: 256
+  max_val_rows: 68
+  max_source_observations: 324
+  moving_speed_mps: 1.0
+processor:
+  policy: original_pad
+  pad_multiple: 32
+  brightness: 0.0
+stages:
+  fast_warmup: 512
+  slow_adapt: 512
+  fast_consumer: 800
+arms: [no_kv, joint]
+loss: {slow_weight: 1.0}
+optimizer:
+  lora_lr: 0.0001
+  new_lr: 0.0005
+  weight_decay: 0.01
+  grad_clip: 1.0
+  schedule: warmup_cosine
+  clip_per_model: true
+  warmup_steps: 32
+  min_lr_ratio: 0.1
+missing_fraction: 0.3
+feedback_policy: shared_frozen_fast_warmup
+gradient_probe_count: 4
+train_curve_steps: [200, 400, 800]
+train_diagnostic_count: 32
+eval_cache_capacity: 2
+reproducibility:
+  deterministic_algorithms: true
+  warn_only: false
+  cublas_workspace_config: ':4096:8'
+  cudnn_deterministic: true
+  cudnn_benchmark: false
+  allow_tf32: false
+output: outputs/slowfast_v11_expanded/run_01

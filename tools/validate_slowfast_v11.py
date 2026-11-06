@@ -26,7 +26,8 @@ from tools.slowfast_v11_audit import prepare_memory_measurement
 
 
 class Experiment:
-    def __init__(self,c,*,config_validator=validate_config,plan_factory=None):
+    def __init__(self,c,*,config_validator=validate_config,plan_factory=None,
+                 mismatch_factory=deterministic_mismatches):
         config_validator(c);self.c=c;self.started=time.monotonic()
         seed=c['train_seed'] if 'train_seed' in c else c['seed']
         seed_all(seed);torch.set_num_threads(4)
@@ -40,7 +41,7 @@ class Experiment:
         self.stats=json.loads(Path(c['data']['stats']).read_text())
         self.frames=load_frames_by_log(self.rows)
         self.pairs,self.coverage=build_pairs(self.rows,self.frames,c['data']['sensor_root'],c['data']['ages_s'])
-        self.mismatches,self.mismatch_report=deterministic_mismatches(self.rows)
+        self.mismatches,self.mismatch_report=mismatch_factory(self.rows)
         self.fresh={p.target_token:p for p in self.pairs if p.age_s==0}
         if set(self.fresh)!=set(self.by_token):raise ValueError('Fresh raw history must exist for every manifest row')
         stale=[asdict(p) for p in self.pairs if p.split=='train' and p.age_s>0]

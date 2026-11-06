@@ -1,0 +1,36 @@
+# Expanded bounded NAVSIM training implementation plan
+
+> **For agentic workers:** Execute with task-level tests and independent plan/code review. The user authorized more-data training after the original mini diagnostic; preserve the agreed architecture and original images. Routine experiment choices below implement that authorization without another permission loop.
+
+**Goal:** Train the existing Fast/Slow system on substantially more independent observations, then evaluate both a matched no-KV arm and live-KV arm on new log-disjoint validation and the original report-only VAL4.
+
+**Architecture:** Keep complete Qwen3.5-0.8B/2B, frozen vision/merger and base language weights, rank16 LoRA, six external-KV attention layers,8 planning queries and the sole Fast trajectory head. Fresh KV only; no Future, refresh or closed-loop additions. Extend data preparation, polynomial mismatch assignment, bounded evaluation cache and schedules under a new schema.
+
+**Tech stack:** Existing verified Torch/PEFT/FLA runtime and one H800, original1920×1080 CAM_F0 JPEGs,2Hz and4s8×3 targets.
+
+## Predeclared data/experiment protocol
+
+- Preserve old data/results. Worktree `navsim-slowfast-expanded`, branch `feature/slowfast-v11-expanded`, base45aabc8. Dataset pinned to OpenScene a76f840b65e972bc45e56c2adced897498e9a026; describe this as expanded mini diagnostic, not official navtrain.
+- Retain the old two TRAIN logs as TRAIN. Original VAL log remains excluded from all TRAIN and new VAL; keep its four original target tokens as a separate `legacy_val` report cohort. Never pool legacy4 and new64 metrics.
+- Extend the existing48MB metadata prefix to120MB (absolute contingency cap200MB), never the full534MB archive. Among complete records, use first-in-camera-shard logs only; require at least64 structurally valid stride5 windows. Take first four new eligible logs in archive order, then deterministic split_seed42 assigns two to TRAIN and two to new VAL. Split before inspecting image availability or model performance. Log identities/tokens and all planned paths must be saved before camera acquisition.
+- Target **256 TRAIN** (4logs×64) and **64 new VAL** (2logs×32), plus legacy4. TRAIN selection uses only current raw speed: bins<1,1–10,>=10m/s, desired per-log quotas16/24/24, deterministic redistribution if a bin is unavailable, explicitly reported. New VAL is uniformly spaced over each log's structurally valid stride5 candidates, without speed/error-based selection. No replacement of missing planned images/windows.
+- Total new response-body budget2GB, each camera gzip prefix cap225MB. Stream and retain only required CAM_F0 JPEG members; stop when all predeclared files exist, never fetch complete camera archives. Exact member hashes, request bytes, parent archive identities and exclusions are recorded. If structural counts or coverage cannot be achieved under caps, report the blocker and revise the experiment explicitly; do not silently shrink or substitute.
+- Recompute normalization from TRAIN256 only. Four-view history means four chronological CAM_F0 frames. Legacy4 uses the same new TRAIN stats for both experimental arms. Fix model/data/selection identities before training.
+- Initialize new modules and LoRA from pinned pretrained assets/seed42; do not inherit mini-trained weights. This changes initialization, budget and LR schedule as well as cohort, so old/new results are descriptive, not a pure data-size ablation.
+- **Fast warmup512 updates**, then create detached numerical feedback from that fixed teacher for all source observations. **Slow adaptation512 updates** with its own trajectory loss. Fixed feedback remains a documented limitation; no expert labels as feedback.
+- Restore identical shared Fast/Slow states and reset optimizers for **two arms×800 paired updates**: `no_kv` always absent; `joint`240absent/560fresh conditions independently shuffled over the same800 TRAIN targets. Every arm supervises Slow with LS on every step. ObjectiveLF+LS, existing meanL1pose, separate per-modelclip1 and AdamW. Both forwards/losses before either update.
+- Sample each phase by deterministic epoch shuffle without replacement within epochs; seed42. Report exposures and completed/partial epochs, mode counts by speed bin and actual LRs. Each final model has512+800=1312 exposures (~5.125×256); new total2624 iterations/4224optimizer.step calls. These are bounded budgets, not a claim of convergence.
+- Peak LR remains LoRA1e-4/newmodules5e-4, WD.01. Each phase has32-step linear warmup followed by cosine to10% peak. Paired arms use identical schedules/reset. Record/snapshot scheduler position and restore it during actual replay.
+- Predetermine32 TRAIN diagnostic rows from speed/log strata. Evaluate three cache conditions (none/fresh/shuffled) at paired steps200/400/800 on that subset only. NewVAL64 and legacyVAL4 are evaluated only after each complete800-step arm; no VAL selection/earlystop/extension. No TEST.
+- Use deterministic polynomial split/cohort-local donor matching instead of the old exponential DP. Keep evaluation snapshots on device in LRU capacity2, not an all-source CPU export. Report matching coverage and never substitute a donor from TRAIN for VAL.
+- Probe LF-only gradients on four predeclared fresh-step quantiles. Save shared initialization, full arm finals, feedback/model/data hashes, RNG, target/mode plan, optimizer/scheduler states. Save immediately before/after the final predeclared fresh joint probe; verify actual independent-process one-step replay and complete final VAL prediction reload under the same runtime.
+- Report newVAL and legacyVAL ADE/FDE/heading, per-horizon and speed/log strata, same-checkpoint KV effects and shuffled sensitivity, CV, training curves, clipping and gradient routes. Retain negative results. No multiGPU/async/closed-loop claim.
+
+## Tasks
+
+- [x] Review the protocol before image acquisition and GPU updates; run the existing regression baseline.
+- [x] Data TDD: fixed split/token/path planning before bytes, training-only speed quotas, uniformVAL, exact required images, byte caps/no full archive, TRAIN-only stats, legacy exclusion and identity retention.
+- [x] Protocol TDD: strict new bounded schema, stable epoch orders, independently shuffled240/560 modes, deterministic polynomial cohort-local mismatch bijection, scheduler endpoints/restoration and fixed TRAIN subset/probes.
+- [x] Runner: optional mismatch-factory injection preserves old harness defaults; pretrained512/512 warmups; common feedback; two800-step arms; bounded snapshot streaming and separate VAL cohorts; exposure/LR logs and immediate checkpoints.
+- [ ] Verify tests and independent review, execute bounded acquisitions and training, preserve all logs and hashes.
+- [ ] Independent reload and actual scheduled-step replay; export portable evidence/figures, document observations/limitations, commit separate branch. GitHub publication remains dependent on working credentials; do not claim a successful push without remote verification.

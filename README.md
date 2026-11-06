@@ -10,6 +10,8 @@
 
 [加强 Slow 与持续 live-KV 联合训练](docs/SLOWFAST_V11_JOINT.md)新增三路受控诊断：相同初始化和 TRAIN 目标，Slow 都接受自身监督，比较无 KV、断梯度 KV 与 Fast-loss→Slow 联合训练。入口仍是固定小样本实验，不能代替全量或异步闭环训练。
 
+[256窗口扩数据实验](docs/SLOWFAST_V11_EXPANDED.md)固定4条TRAIN日志、2条新VAL日志，并单独保留原VAL4；采用预训练重新初始化、epoch采样和warmup/cosine日程，比较无KV与live-KV两组。该入口仍是有界mini诊断。
+
 **当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 
 > **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。

@@ -1,0 +1,312 @@
+{
+  "scope": "TRAIN-only read-only decomposition at joint step239; not a training-trajectory conflict estimate",
+  "checkpoint_sha256": "2eeffafa2b28ca974885db8f6e4c0d0cba7f676a469b53dcbd86a4648b09a192",
+  "training_updates": 0,
+  "val_used": false,
+  "test_used": false,
+  "rows": [
+    {
+      "token": "5382e9b824785a99",
+      "stratum": "moving",
+      "loss_fast": 0.5103999972343445,
+      "loss_slow": 0.39916595816612244,
+      "fast_loss_grad_norm": 0.906197749884157,
+      "slow_loss_grad_norm": 27.47956070889537,
+      "fast_to_slow_norm_ratio": 0.032977155620643274,
+      "shared_grad_cosine": 7.860331263163423e-06,
+      "shared_grad_dot": 3.190371571849266e-05,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 27.494499721466337,
+      "lora_only": {
+        "fast_loss_grad_norm": 0.9061904404513801,
+        "slow_loss_grad_norm": 3.185280380215008,
+        "fast_to_slow_norm_ratio": 0.2844931473160337,
+        "shared_grad_cosine": -0.00015813732476893804,
+        "shared_grad_dot": -0.00042349052964823987,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 3.3115472562484385
+      }
+    },
+    {
+      "token": "5ab3d8df544f530f",
+      "stratum": "moving",
+      "loss_fast": 0.47567641735076904,
+      "loss_slow": 0.37476205825805664,
+      "fast_loss_grad_norm": 0.6513191127250184,
+      "slow_loss_grad_norm": 28.738273359065786,
+      "fast_to_slow_norm_ratio": 0.022663822025325436,
+      "shared_grad_cosine": 0.0013195892714321672,
+      "shared_grad_dot": 0.003782854125676056,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 28.745784698831706,
+      "lora_only": {
+        "fast_loss_grad_norm": 0.6513130370937235,
+        "slow_loss_grad_norm": 3.5659287472771974,
+        "fast_to_slow_norm_ratio": 0.18264892073097097,
+        "shared_grad_cosine": 0.002024018534062268,
+        "shared_grad_dot": 0.004378083694537689,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 3.626129156285487
+      }
+    },
+    {
+      "token": "6a7f75486d3a5027",
+      "stratum": "moving",
+      "loss_fast": 0.3286155164241791,
+      "loss_slow": 0.46886539459228516,
+      "fast_loss_grad_norm": 1.3366801067489658,
+      "slow_loss_grad_norm": 12.996839967503785,
+      "fast_to_slow_norm_ratio": 0.10284654655216878,
+      "shared_grad_cosine": 0.005126996079921441,
+      "shared_grad_dot": 0.01931759720621741,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 13.066874073007357,
+      "lora_only": {
+        "fast_loss_grad_norm": 1.3366755773513896,
+        "slow_loss_grad_norm": 2.0962834303925075,
+        "fast_to_slow_norm_ratio": 0.6376406729986465,
+        "shared_grad_cosine": 0.007093067307004282,
+        "shared_grad_dot": 0.019134765441694627,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 2.493867548457398
+      }
+    },
+    {
+      "token": "c71790198a4c5b31",
+      "stratum": "moving",
+      "loss_fast": 0.13864675164222717,
+      "loss_slow": 0.21527515351772308,
+      "fast_loss_grad_norm": 0.93995844490838,
+      "slow_loss_grad_norm": 5.185793732183885,
+      "fast_to_slow_norm_ratio": 0.1812564273574639,
+      "shared_grad_cosine": 0.0023522696287571272,
+      "shared_grad_dot": 0.0026718865769967052,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 5.270799017619739,
+      "lora_only": {
+        "fast_loss_grad_norm": 0.9398177135815559,
+        "slow_loss_grad_norm": 0.8663815611160065,
+        "fast_to_slow_norm_ratio": 1.0847619060255098,
+        "shared_grad_cosine": 0.0035590654139027816,
+        "shared_grad_dot": 0.002760830636498323,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 1.2803890054467044
+      }
+    },
+    {
+      "token": "1a2d0925c2da56c3",
+      "stratum": "low_speed",
+      "loss_fast": 0.04575343430042267,
+      "loss_slow": 0.0004090241272933781,
+      "fast_loss_grad_norm": 0.6401292171113907,
+      "slow_loss_grad_norm": 0.478784023101515,
+      "fast_to_slow_norm_ratio": 1.3369895113974306,
+      "shared_grad_cosine": -9.076487908398993e-05,
+      "shared_grad_dot": -1.233445013285128e-07,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 0.799374323000879,
+      "lora_only": {
+        "fast_loss_grad_norm": 0.6401102449432868,
+        "slow_loss_grad_norm": 0.0018897568824819979,
+        "fast_to_slow_norm_ratio": 338.7262408604482,
+        "shared_grad_cosine": -0.00023137970332689044,
+        "shared_grad_dot": -2.3282306162825077e-07,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 0.6401126703960097
+      }
+    },
+    {
+      "token": "25617daba4165023",
+      "stratum": "low_speed",
+      "loss_fast": 0.03654851019382477,
+      "loss_slow": 0.00033949106000363827,
+      "fast_loss_grad_norm": 0.11342963161613681,
+      "slow_loss_grad_norm": 0.577358702467367,
+      "fast_to_slow_norm_ratio": 0.19646301533412497,
+      "shared_grad_cosine": -0.006156116277510923,
+      "shared_grad_dot": -4.350261867448655e-07,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 0.5883948356261347,
+      "lora_only": {
+        "fast_loss_grad_norm": 0.11342624666322738,
+        "slow_loss_grad_norm": 0.0005618304694418201,
+        "fast_to_slow_norm_ratio": 201.88696205087743,
+        "shared_grad_cosine": -0.008326568063797226,
+        "shared_grad_dot": -4.334999447686698e-07,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 0.11342381622128424
+      }
+    },
+    {
+      "token": "50d4d9015d495505",
+      "stratum": "low_speed",
+      "loss_fast": 0.14766108989715576,
+      "loss_slow": 0.06415127217769623,
+      "fast_loss_grad_norm": 1.0992287781378192,
+      "slow_loss_grad_norm": 2.403943149957525,
+      "fast_to_slow_norm_ratio": 0.4572607210604133,
+      "shared_grad_cosine": 0.0061552234881246245,
+      "shared_grad_dot": 0.0045901663894053965,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 2.6450759739529284,
+      "lora_only": {
+        "fast_loss_grad_norm": 1.0990898659699713,
+        "slow_loss_grad_norm": 0.5269587332246052,
+        "fast_to_slow_norm_ratio": 2.0857228406564943,
+        "shared_grad_cosine": 0.008219725310859826,
+        "shared_grad_dot": 0.004610891646058318,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 1.2226634138300367
+      }
+    },
+    {
+      "token": "6a1e62591db951ab",
+      "stratum": "low_speed",
+      "loss_fast": 0.04321616142988205,
+      "loss_slow": 0.0003456633712630719,
+      "fast_loss_grad_norm": 0.11864728661767443,
+      "slow_loss_grad_norm": 0.47146323152929975,
+      "fast_to_slow_norm_ratio": 0.2516575602996963,
+      "shared_grad_cosine": 0.008262474298573165,
+      "shared_grad_dot": 1.8370765956766077e-06,
+      "shared_parameter_tensors": 193,
+      "combined_grad_norm": 0.4861670818389827,
+      "lora_only": {
+        "fast_loss_grad_norm": 0.11864531821756753,
+        "slow_loss_grad_norm": 0.0016671672268651003,
+        "fast_to_slow_norm_ratio": 71.16581726517336,
+        "shared_grad_cosine": 0.011288489319922334,
+        "shared_grad_dot": 1.8513785542048396e-06,
+        "shared_parameter_tensors": 182,
+        "combined_grad_norm": 0.11867263266429037
+      }
+    }
+  ],
+  "training_summary": {
+    "no_kv": {
+      "loss_fast": {
+        "finite": true,
+        "first60_mean": 1.1011627111583948,
+        "last60_mean": 0.4912521608173847,
+        "median": 0.35556748509407043,
+        "maximum": 4.689923286437988
+      },
+      "loss_slow": {
+        "finite": true,
+        "first60_mean": 0.649312246106759,
+        "last60_mean": 0.3259631357480733,
+        "median": 0.2125931903719902,
+        "maximum": 4.345190048217773
+      },
+      "loss_total": {
+        "finite": true,
+        "first60_mean": 1.7504749632130066,
+        "last60_mean": 0.8172152965484808,
+        "median": 0.6182111203670502,
+        "maximum": 8.492786407470703
+      },
+      "fast_grad_norm": {
+        "finite": true,
+        "first60_mean": 39.37126199801763,
+        "last60_mean": 11.95850884069999,
+        "median": 11.194676876068115,
+        "maximum": 571.8922729492188,
+        "clip_threshold": 1.0,
+        "clip_fraction": 0.9083333333333333
+      },
+      "slow_grad_norm": {
+        "finite": true,
+        "first60_mean": 14.006306493530671,
+        "last60_mean": 10.091018898288409,
+        "median": 5.335755825042725,
+        "maximum": 147.8441162109375,
+        "clip_threshold": 1.0,
+        "clip_fraction": 0.625
+      }
+    },
+    "detached": {
+      "loss_fast": {
+        "finite": true,
+        "first60_mean": 1.1416127681732178,
+        "last60_mean": 0.5187733619163434,
+        "median": 0.3845546841621399,
+        "maximum": 4.492852687835693
+      },
+      "loss_slow": {
+        "finite": true,
+        "first60_mean": 0.649312246106759,
+        "last60_mean": 0.3259631357480733,
+        "median": 0.2125931903719902,
+        "maximum": 4.345190048217773
+      },
+      "loss_total": {
+        "finite": true,
+        "first60_mean": 1.79092499067386,
+        "last60_mean": 0.8447364966540287,
+        "median": 0.5907605290412903,
+        "maximum": 8.562370300292969
+      },
+      "fast_grad_norm": {
+        "finite": true,
+        "first60_mean": 45.58650282621384,
+        "last60_mean": 12.980772085984547,
+        "median": 12.233980655670166,
+        "maximum": 482.3924255371094,
+        "clip_threshold": 1.0,
+        "clip_fraction": 0.9625
+      },
+      "slow_grad_norm": {
+        "finite": true,
+        "first60_mean": 14.006306493530671,
+        "last60_mean": 10.091018898288409,
+        "median": 5.335755825042725,
+        "maximum": 147.8441162109375,
+        "clip_threshold": 1.0,
+        "clip_fraction": 0.625
+      }
+    },
+    "joint": {
+      "loss_fast": {
+        "finite": true,
+        "first60_mean": 1.2540108322476347,
+        "last60_mean": 0.48215784147226565,
+        "median": 0.3939526081085205,
+        "maximum": 4.644234657287598
+      },
+      "loss_slow": {
+        "finite": true,
+        "first60_mean": 0.7167042838787893,
+        "last60_mean": 0.34643229053593433,
+        "median": 0.20982204377651215,
+        "maximum": 4.30816650390625
+      },
+      "loss_total": {
+        "finite": true,
+        "first60_mean": 1.9707151303067802,
+        "last60_mean": 0.8285901373640324,
+        "median": 0.6192423701286316,
+        "maximum": 8.480947494506836
+      },
+      "fast_grad_norm": {
+        "finite": true,
+        "first60_mean": 57.53743272225062,
+        "last60_mean": 15.791072894384463,
+        "median": 12.031834125518799,
+        "maximum": 507.1138000488281,
+        "clip_threshold": 1.0,
+        "clip_fraction": 0.8416666666666667
+      },
+      "slow_grad_norm": {
+        "finite": true,
+        "first60_mean": 11.86684328019619,
+        "last60_mean": 10.832796131571135,
+        "median": 5.102829217910767,
+        "maximum": 82.22439575195312,
+        "clip_threshold": 1.0,
+        "clip_fraction": 0.6333333333333333
+      }
+    }
+  },
+  "method": "Gradients of LF and LS independently on the same pre-update Slow trainable parameters; no optimizer steps; shared cosine includes only parameters touched by both losses. Fast/Slow train mode with dropout0. Four moving and first four sorted low-speed TRAIN tokens. One step239 checkpoint only.",
+  "diagnostic_script_sha256": "5c1dfa7a402696307482e7b697d5dbf68879c1d169ccf464e458325a7ad48fc6"
+}

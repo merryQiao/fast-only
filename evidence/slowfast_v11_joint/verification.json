@@ -1,0 +1,2569 @@
+{
+  "tests": {
+    "tests": 567,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "test_xml_sha256": "49173ec15db806deeb7c3993a592cba9c57daca37b0d1dbdbf4b329edd47c621",
+  "reload_passed": true,
+  "no_kv_detached_slow_exactly_equal": true,
+  "joint_slow_differs": true,
+  "gradient_probes": [
+    {
+      "stage": "no_kv",
+      "step": 57,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "no_kv",
+      "step": 120,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "no_kv",
+      "step": 172,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "no_kv",
+      "step": 240,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "detached",
+      "step": 57,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "detached",
+      "step": 120,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "detached",
+      "step": 172,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "detached",
+      "step": 240,
+      "probe": {
+        "expected_live": false,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 0,
+              "finite": true,
+              "nonzero": false,
+              "max_abs": 0.0
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 0,
+          "finite": true,
+          "nonzero": false,
+          "max_abs": 0.0
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 0,
+            "finite": true,
+            "nonzero": false,
+            "max_abs": 0.0
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "joint",
+      "step": 57,
+      "probe": {
+        "expected_live": true,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 0.00020503997802734375
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 0.00023651123046875
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 8.487701416015625e-05
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 6.198883056640625e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 0.000209808349609375
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 0.00016117095947265625
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 0.0007476806640625
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 0.0004825592041015625
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 5.1021575927734375e-05
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 2.4437904357910156e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 0.000514984130859375
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 9.298324584960938e-05
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 12,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 0.06424755603075027
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.019235534593462944
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.04270976409316063
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.012450587004423141
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.024718666449189186
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.011691242456436157
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.008975833654403687
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.06424755603075027
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.035981059074401855
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.02464458905160427
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.014153989031910896
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.030080493539571762
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.004777417052537203
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "joint",
+      "step": 120,
+      "probe": {
+        "expected_live": true,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 4.976987838745117e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 4.9114227294921875e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.5273690223693848e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 9.909272193908691e-07
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.055002212524414e-05
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 5.27501106262207e-06
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 3.5762786865234375e-05
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 4.696846008300781e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.1682510375976562e-05
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 5.245208740234375e-06
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.4454126358032227e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 6.370246410369873e-07
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 12,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 0.0016851413529366255
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0003245062835048884
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0011829357827082276
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0001587287406437099
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00031203895923681557
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00034862454049289227
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0003178399638272822
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0003328150778543204
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0009164382936432958
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0005470331525430083
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0007875419687479734
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0016851413529366255
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0003551160916686058
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "joint",
+      "step": 172,
+      "probe": {
+        "expected_live": true,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.7061829566955566e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 3.528594970703125e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 3.688037395477295e-07
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 4.377216100692749e-07
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.5273690223693848e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.8253922462463379e-06
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 3.471970558166504e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 7.927417755126953e-06
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 5.036592483520508e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 6.198883056640625e-06
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.1324882507324219e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 5.774199962615967e-07
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 12,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 0.0008270688122138381
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00013521156506612897
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0005643012700602412
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 6.375249358825386e-05
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0001653813960729167
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00013927320833317935
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 8.589201024733484e-05
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00012624156079255044
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00034444028278812766
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0008270688122138381
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00048710766714066267
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0004786956124007702
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0002880609827116132
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    },
+    {
+      "stage": "joint",
+      "step": 240,
+      "probe": {
+        "expected_live": true,
+        "kv": [
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 8.344650268554688e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 3.24249267578125e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 3.457069396972656e-05
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 2.9325485229492188e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 6.884336471557617e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 4.708766937255859e-06
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.9311904907226562e-05
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.055002212524414e-05
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 3.069639205932617e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 2.3692846298217773e-06
+            }
+          },
+          {
+            "key": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 1.8700957298278809e-06
+            },
+            "value": {
+              "count": 1,
+              "with_gradient": 1,
+              "finite": true,
+              "nonzero": true,
+              "max_abs": 7.301568984985352e-07
+            }
+          }
+        ],
+        "lora_b": {
+          "count": 12,
+          "with_gradient": 12,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 0.00283917342312634
+        },
+        "lora_b_parameters": [
+          {
+            "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00031812096131034195
+          },
+          {
+            "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0016329484060406685
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0002713397843763232
+          },
+          {
+            "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0008356833131983876
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0005136472755111754
+          },
+          {
+            "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0007647309103049338
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0005682274349965155
+          },
+          {
+            "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00283917342312634
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0017057063523679972
+          },
+          {
+            "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00229082815349102
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.00260749040171504
+          },
+          {
+            "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 0.0007386788493022323
+          }
+        ],
+        "vision_frozen": true,
+        "vision_has_gradient": false
+      }
+    }
+  ],
+  "python": "3.12.13",
+  "packages": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.10.2",
+    "peft": "0.18.1",
+    "flash-linear-attention": "0.5.1",
+    "tilelang": "0.1.15"
+  },
+  "test_used": false,
+  "val_used_for_selection": false,
+  "scope": "same-runtime single-H800 mini training; not full training, async delivery or closed loop"
+}

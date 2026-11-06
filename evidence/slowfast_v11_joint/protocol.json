@@ -1,0 +1,2611 @@
+{
+  "config": {
+    "schema_version": "slowfast_v11_joint",
+    "train_seed": 42,
+    "fast": {
+      "model_path": "models/Qwen3.5-0.8B",
+      "device": "cuda:0"
+    },
+    "slow": {
+      "model_path": "models/Qwen3.5-2B",
+      "device": "cuda:0"
+    },
+    "allow_single_gpu": true,
+    "model": {
+      "lora_rank": 16,
+      "lora_alpha": 32,
+      "lora_dropout": 0.0,
+      "lora_parameter_dtype": "float32",
+      "position_offset": 4096
+    },
+    "data": {
+      "train_manifest": "<local>/train.jsonl",
+      "val_manifest": "<local>/val.jsonl",
+      "stats": "<local>/stats.json",
+      "sensor_root": "<local>/mini",
+      "ages_s": [
+        0.0,
+        0.5,
+        1.0,
+        1.5
+      ],
+      "max_train_rows": 12,
+      "max_val_rows": 4,
+      "max_source_observations": 64,
+      "moving_speed_mps": 1.0,
+      "moving_fraction": 0.5
+    },
+    "processor": {
+      "policy": "original_pad",
+      "pad_multiple": 32,
+      "brightness": 0.0
+    },
+    "stages": {
+      "slow_adapt": 240,
+      "fast_consumer": 240
+    },
+    "arms": [
+      "no_kv",
+      "detached",
+      "joint"
+    ],
+    "loss": {
+      "slow_weight": 1.0
+    },
+    "optimizer": {
+      "lora_lr": 0.0001,
+      "new_lr": 0.0005,
+      "weight_decay": 0.01,
+      "grad_clip": 1.0,
+      "schedule": "constant",
+      "clip_per_model": true
+    },
+    "missing_fraction": 0.3,
+    "feedback_policy": "shared_frozen_fast_warmup",
+    "gradient_probe_count": 4,
+    "train_curve_steps": [
+      60,
+      120,
+      240
+    ],
+    "initial_checkpoint": "<local>/final.pt",
+    "reproducibility": {
+      "deterministic_algorithms": true,
+      "warn_only": false,
+      "cublas_workspace_config": ":4096:8",
+      "cudnn_deterministic": true,
+      "cudnn_benchmark": false,
+      "allow_tf32": false
+    },
+    "output": "outputs/slowfast_v11_joint/run_01"
+  },
+  "plan": [
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "fresh",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "split": "train",
+      "stratum": "moving",
+      "mode": "none",
+      "age_s": 0.0
+    },
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "split": "train",
+      "stratum": "low_speed",
+      "mode": "fresh",
+      "age_s": 0.0
+    }
+  ],
+  "probe_steps": [
+    57,
+    120,
+    172,
+    240
+  ],
+  "replay_step": 240,
+  "coverage": {
+    "by_age": {
+      "0.0": {
+        "eligible": 16,
+        "excluded": {},
+        "eligible_tokens": [
+          "6a1e62591db951ab",
+          "adbea285e53d5e45",
+          "848628a81dcd5a87",
+          "1a2d0925c2da56c3",
+          "fef7a23239f95fba",
+          "25617daba4165023",
+          "c71790198a4c5b31",
+          "6a7f75486d3a5027",
+          "50d4d9015d495505",
+          "ef85546377dc563a",
+          "5ab3d8df544f530f",
+          "5382e9b824785a99",
+          "155525ae60545bdf",
+          "5d70a401a64c5bc0",
+          "d9c99833398b59ac",
+          "7689cdf5ce10515a"
+        ]
+      },
+      "0.5": {
+        "eligible": 6,
+        "excluded": {
+          "missing_image": 10
+        },
+        "eligible_tokens": [
+          "adbea285e53d5e45",
+          "848628a81dcd5a87",
+          "1a2d0925c2da56c3",
+          "ef85546377dc563a",
+          "5382e9b824785a99",
+          "d9c99833398b59ac"
+        ]
+      },
+      "1.0": {
+        "eligible": 2,
+        "excluded": {
+          "missing_image": 14
+        },
+        "eligible_tokens": [
+          "848628a81dcd5a87",
+          "1a2d0925c2da56c3"
+        ]
+      },
+      "1.5": {
+        "eligible": 1,
+        "excluded": {
+          "missing_image": 15
+        },
+        "eligible_tokens": [
+          "1a2d0925c2da56c3"
+        ]
+      }
+    },
+    "rows": 16,
+    "timestamp_tolerance_us": 1000
+  },
+  "mismatches": {
+    "train": {
+      "available": true,
+      "count": 12,
+      "cross_log_count": 12
+    },
+    "val": {
+      "available": true,
+      "count": 4,
+      "cross_log_count": 0
+    }
+  },
+  "pairs": [
+    {
+      "target_token": "6a1e62591db951ab",
+      "source_token": "6a1e62591db951ab",
+      "source_index": 279,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.0,
+      "source_pose": [
+        664434.9527446745,
+        3996286.327205157,
+        0.07022851861335512
+      ],
+      "current_pose": [
+        664434.9527446745,
+        3996286.327205157,
+        0.07022851861335512
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623267395200935,
+      "current_timestamp_us": 1623267395200935
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "adbea285e53d5e45",
+      "source_index": 280,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.0,
+      "source_pose": [
+        664434.9526649545,
+        3996286.3272200194,
+        0.07023866529548538
+      ],
+      "current_pose": [
+        664434.9526649545,
+        3996286.3272200194,
+        0.07023866529548538
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623267395701128,
+      "current_timestamp_us": 1623267395701128
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "848628a81dcd5a87",
+      "source_index": 281,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.0,
+      "source_pose": [
+        664434.9526848183,
+        3996286.327258633,
+        0.07021312751861956
+      ],
+      "current_pose": [
+        664434.9526848183,
+        3996286.327258633,
+        0.07021312751861956
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623267396201398,
+      "current_timestamp_us": 1623267396201398
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "1a2d0925c2da56c3",
+      "source_index": 282,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.0,
+      "source_pose": [
+        664434.9526337679,
+        3996286.3271957305,
+        0.07019579713372627
+      ],
+      "current_pose": [
+        664434.9526337679,
+        3996286.3271957305,
+        0.07019579713372627
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623267396701358,
+      "current_timestamp_us": 1623267396701358
+    },
+    {
+      "target_token": "fef7a23239f95fba",
+      "source_token": "fef7a23239f95fba",
+      "source_index": 405,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.0,
+      "source_pose": [
+        664434.9529407914,
+        3996286.327293697,
+        0.07020598359036838
+      ],
+      "current_pose": [
+        664434.9529407914,
+        3996286.327293697,
+        0.07020598359036838
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623267458200402,
+      "current_timestamp_us": 1623267458200402
+    },
+    {
+      "target_token": "25617daba4165023",
+      "source_token": "25617daba4165023",
+      "source_index": 643,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.0,
+      "source_pose": [
+        664480.6166295864,
+        3996656.175075578,
+        1.5943650876643536
+      ],
+      "current_pose": [
+        664480.6166295864,
+        3996656.175075578,
+        1.5943650876643536
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623267577199810,
+      "current_timestamp_us": 1623267577199810
+    },
+    {
+      "target_token": "c71790198a4c5b31",
+      "source_token": "c71790198a4c5b31",
+      "source_index": 44,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.0,
+      "source_pose": [
+        664591.6456073459,
+        3997857.862234923,
+        1.0078885591730642
+      ],
+      "current_pose": [
+        664591.6456073459,
+        3997857.862234923,
+        1.0078885591730642
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623264584000157,
+      "current_timestamp_us": 1623264584000157
+    },
+    {
+      "target_token": "6a7f75486d3a5027",
+      "source_token": "6a7f75486d3a5027",
+      "source_index": 64,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.0,
+      "source_pose": [
+        664596.5874255915,
+        3997874.5222206363,
+        1.623754150182782
+      ],
+      "current_pose": [
+        664596.5874255915,
+        3997874.5222206363,
+        1.623754150182782
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623264593999697,
+      "current_timestamp_us": 1623264593999697
+    },
+    {
+      "target_token": "50d4d9015d495505",
+      "source_token": "50d4d9015d495505",
+      "source_index": 407,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.0,
+      "source_pose": [
+        664471.3030330458,
+        3997876.890495424,
+        -3.1104523582119965
+      ],
+      "current_pose": [
+        664471.3030330458,
+        3997876.890495424,
+        -3.1104523582119965
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623264765499568,
+      "current_timestamp_us": 1623264765499568
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "ef85546377dc563a",
+      "source_index": 408,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.0,
+      "source_pose": [
+        664471.3036145242,
+        3997876.8905674685,
+        -3.11032781253078
+      ],
+      "current_pose": [
+        664471.3036145242,
+        3997876.8905674685,
+        -3.11032781253078
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623264765999697,
+      "current_timestamp_us": 1623264765999697
+    },
+    {
+      "target_token": "5ab3d8df544f530f",
+      "source_token": "5ab3d8df544f530f",
+      "source_index": 462,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.0,
+      "source_pose": [
+        664431.1929648087,
+        3997801.458278957,
+        -1.5713186363399967
+      ],
+      "current_pose": [
+        664431.1929648087,
+        3997801.458278957,
+        -1.5713186363399967
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623264792999839,
+      "current_timestamp_us": 1623264792999839
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5382e9b824785a99",
+      "source_index": 463,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.0,
+      "source_pose": [
+        664431.1984589851,
+        3997797.1499139196,
+        -1.5752801687922504
+      ],
+      "current_pose": [
+        664431.1984589851,
+        3997797.1499139196,
+        -1.5752801687922504
+      ],
+      "split": "train",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1623264793499662,
+      "current_timestamp_us": 1623264793499662
+    },
+    {
+      "target_token": "155525ae60545bdf",
+      "source_token": "155525ae60545bdf",
+      "source_index": 487,
+      "source_route": "2021.06.28.16.57.59_veh-26_00016_00484",
+      "age_s": 0.0,
+      "source_pose": [
+        664754.0146220991,
+        3999465.8251350466,
+        -2.0287800803272273
+      ],
+      "current_pose": [
+        664754.0146220991,
+        3999465.8251350466,
+        -2.0287800803272273
+      ],
+      "split": "val",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1624899834498797,
+      "current_timestamp_us": 1624899834498797
+    },
+    {
+      "target_token": "5d70a401a64c5bc0",
+      "source_token": "5d70a401a64c5bc0",
+      "source_index": 493,
+      "source_route": "2021.06.28.16.57.59_veh-26_00016_00484",
+      "age_s": 0.0,
+      "source_pose": [
+        664754.0146646281,
+        3999465.825091707,
+        -2.0287669680217855
+      ],
+      "current_pose": [
+        664754.0146646281,
+        3999465.825091707,
+        -2.0287669680217855
+      ],
+      "split": "val",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1624899837497637,
+      "current_timestamp_us": 1624899837497637
+    },
+    {
+      "target_token": "d9c99833398b59ac",
+      "source_token": "d9c99833398b59ac",
+      "source_index": 494,
+      "source_route": "2021.06.28.16.57.59_veh-26_00016_00484",
+      "age_s": 0.0,
+      "source_pose": [
+        664754.0146676953,
+        3999465.8251682003,
+        -2.028762882386586
+      ],
+      "current_pose": [
+        664754.0146676953,
+        3999465.8251682003,
+        -2.028762882386586
+      ],
+      "split": "val",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1624899837997304,
+      "current_timestamp_us": 1624899837997304
+    },
+    {
+      "target_token": "7689cdf5ce10515a",
+      "source_token": "7689cdf5ce10515a",
+      "source_index": 618,
+      "source_route": "2021.06.28.16.57.59_veh-26_00016_00484",
+      "age_s": 0.0,
+      "source_pose": [
+        664494.5903718419,
+        3998931.3201526813,
+        -1.8511649394202803
+      ],
+      "current_pose": [
+        664494.5903718419,
+        3998931.3201526813,
+        -1.8511649394202803
+      ],
+      "split": "val",
+      "actual_age_s": 0.0,
+      "source_timestamp_us": 1624899899996740,
+      "current_timestamp_us": 1624899899996740
+    },
+    {
+      "target_token": "adbea285e53d5e45",
+      "source_token": "6a1e62591db951ab",
+      "source_index": 279,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.5,
+      "source_pose": [
+        664434.9527446745,
+        3996286.327205157,
+        0.07022851861335512
+      ],
+      "current_pose": [
+        664434.9526649545,
+        3996286.3272200194,
+        0.07023866529548538
+      ],
+      "split": "train",
+      "actual_age_s": 0.500193,
+      "source_timestamp_us": 1623267395200935,
+      "current_timestamp_us": 1623267395701128
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "adbea285e53d5e45",
+      "source_index": 280,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.5,
+      "source_pose": [
+        664434.9526649545,
+        3996286.3272200194,
+        0.07023866529548538
+      ],
+      "current_pose": [
+        664434.9526848183,
+        3996286.327258633,
+        0.07021312751861956
+      ],
+      "split": "train",
+      "actual_age_s": 0.50027,
+      "source_timestamp_us": 1623267395701128,
+      "current_timestamp_us": 1623267396201398
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "848628a81dcd5a87",
+      "source_index": 281,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 0.5,
+      "source_pose": [
+        664434.9526848183,
+        3996286.327258633,
+        0.07021312751861956
+      ],
+      "current_pose": [
+        664434.9526337679,
+        3996286.3271957305,
+        0.07019579713372627
+      ],
+      "split": "train",
+      "actual_age_s": 0.49996,
+      "source_timestamp_us": 1623267396201398,
+      "current_timestamp_us": 1623267396701358
+    },
+    {
+      "target_token": "ef85546377dc563a",
+      "source_token": "50d4d9015d495505",
+      "source_index": 407,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.5,
+      "source_pose": [
+        664471.3030330458,
+        3997876.890495424,
+        -3.1104523582119965
+      ],
+      "current_pose": [
+        664471.3036145242,
+        3997876.8905674685,
+        -3.11032781253078
+      ],
+      "split": "train",
+      "actual_age_s": 0.500129,
+      "source_timestamp_us": 1623264765499568,
+      "current_timestamp_us": 1623264765999697
+    },
+    {
+      "target_token": "5382e9b824785a99",
+      "source_token": "5ab3d8df544f530f",
+      "source_index": 462,
+      "source_route": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "age_s": 0.5,
+      "source_pose": [
+        664431.1929648087,
+        3997801.458278957,
+        -1.5713186363399967
+      ],
+      "current_pose": [
+        664431.1984589851,
+        3997797.1499139196,
+        -1.5752801687922504
+      ],
+      "split": "train",
+      "actual_age_s": 0.499823,
+      "source_timestamp_us": 1623264792999839,
+      "current_timestamp_us": 1623264793499662
+    },
+    {
+      "target_token": "d9c99833398b59ac",
+      "source_token": "5d70a401a64c5bc0",
+      "source_index": 493,
+      "source_route": "2021.06.28.16.57.59_veh-26_00016_00484",
+      "age_s": 0.5,
+      "source_pose": [
+        664754.0146646281,
+        3999465.825091707,
+        -2.0287669680217855
+      ],
+      "current_pose": [
+        664754.0146676953,
+        3999465.8251682003,
+        -2.028762882386586
+      ],
+      "split": "val",
+      "actual_age_s": 0.499667,
+      "source_timestamp_us": 1624899837497637,
+      "current_timestamp_us": 1624899837997304
+    },
+    {
+      "target_token": "848628a81dcd5a87",
+      "source_token": "6a1e62591db951ab",
+      "source_index": 279,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 1.0,
+      "source_pose": [
+        664434.9527446745,
+        3996286.327205157,
+        0.07022851861335512
+      ],
+      "current_pose": [
+        664434.9526848183,
+        3996286.327258633,
+        0.07021312751861956
+      ],
+      "split": "train",
+      "actual_age_s": 1.000463,
+      "source_timestamp_us": 1623267395200935,
+      "current_timestamp_us": 1623267396201398
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "adbea285e53d5e45",
+      "source_index": 280,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 1.0,
+      "source_pose": [
+        664434.9526649545,
+        3996286.3272200194,
+        0.07023866529548538
+      ],
+      "current_pose": [
+        664434.9526337679,
+        3996286.3271957305,
+        0.07019579713372627
+      ],
+      "split": "train",
+      "actual_age_s": 1.00023,
+      "source_timestamp_us": 1623267395701128,
+      "current_timestamp_us": 1623267396701358
+    },
+    {
+      "target_token": "1a2d0925c2da56c3",
+      "source_token": "6a1e62591db951ab",
+      "source_index": 279,
+      "source_route": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "age_s": 1.5,
+      "source_pose": [
+        664434.9527446745,
+        3996286.327205157,
+        0.07022851861335512
+      ],
+      "current_pose": [
+        664434.9526337679,
+        3996286.3271957305,
+        0.07019579713372627
+      ],
+      "split": "train",
+      "actual_age_s": 1.500423,
+      "source_timestamp_us": 1623267395200935,
+      "current_timestamp_us": 1623267396701358
+    }
+  ]
+}

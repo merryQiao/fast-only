@@ -26,9 +26,10 @@ from tools.slowfast_v11_audit import prepare_memory_measurement
 
 
 class Experiment:
-    def __init__(self,c):
-        validate_config(c);self.c=c;self.started=time.monotonic()
-        seed_all(c['seed']);torch.set_num_threads(4)
+    def __init__(self,c,*,config_validator=validate_config,plan_factory=None):
+        config_validator(c);self.c=c;self.started=time.monotonic()
+        seed=c['train_seed'] if 'train_seed' in c else c['seed']
+        seed_all(seed);torch.set_num_threads(4)
         self.rows=[]
         for split in ['train','val']:
             dataset=NavsimDataset(c['data'][split+'_manifest'],c['data']['stats'])
@@ -43,7 +44,8 @@ class Experiment:
         self.fresh={p.target_token:p for p in self.pairs if p.age_s==0}
         if set(self.fresh)!=set(self.by_token):raise ValueError('Fresh raw history must exist for every manifest row')
         stale=[asdict(p) for p in self.pairs if p.split=='train' and p.age_s>0]
-        self.plan=sampling_plan(self.train,stale,c['stages']['fast_consumer'],c['seed'],c['consumer_modes'])
+        self.plan=(plan_factory(self.train,stale,c) if plan_factory is not None else
+                   sampling_plan(self.train,stale,c['stages']['fast_consumer'],seed,c['consumer_modes']))
         self.sources={p.source_token:(p.source_route,p.source_index) for p in self.pairs}
         if len(self.sources)>c['data']['max_source_observations']:raise ValueError('Source-observation cap exceeded')
         self.data_identities={key:fingerprint(c['data'][key]) for key in ['train_manifest','val_manifest','stats']}

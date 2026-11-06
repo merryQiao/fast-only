@@ -1,0 +1,182 @@
+{
+  "audited_at_utc": "2026-11-06T12:35:24.400031+00:00",
+  "scope": "read-only static primary-code and training-recipe audit; no peer result reproduction",
+  "references": [
+    {
+      "repository": "https://github.com/Physical-Intelligence/openpi",
+      "commit": "215abfb217dbac7d5f1273282331b9b1866c0479",
+      "interface": "native_KV_concat",
+      "files": [
+        {
+          "path": "src/openpi/models/gemma.py",
+          "bytes": 17146,
+          "sha256": "7e42ada4ae7e9995f0ef3e33a0c224758323c2015e2d9d72ec15726a8a001d2a",
+          "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/src/openpi/models/gemma.py"
+        },
+        {
+          "path": "src/openpi/models/pi0.py",
+          "bytes": 12887,
+          "sha256": "24b32d7c6ed5e409459afa8ca5af96a4dae09c2dcdf48e828907e411f4f12342",
+          "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/src/openpi/models/pi0.py"
+        },
+        {
+          "path": "src/openpi/models/pi0_config.py",
+          "bytes": 4435,
+          "sha256": "d321858c30b398126035ea2b6da09e1c422eeeebb5ebf8df631daf9dc77647fa",
+          "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/src/openpi/models/pi0_config.py"
+        },
+        {
+          "path": "src/openpi/training/config.py",
+          "bytes": 44594,
+          "sha256": "c34231f888dba5dc981d808765b3d98775ab845b04313bf53fcecd567c520b0d",
+          "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/src/openpi/training/config.py"
+        },
+        {
+          "path": "scripts/train.py",
+          "bytes": 10488,
+          "sha256": "22f98a06aaa6e68e0f725d727ab95398238d1cae8a46bb94e829f330758a9baf",
+          "url": "https://github.com/Physical-Intelligence/openpi/blob/215abfb217dbac7d5f1273282331b9b1866c0479/scripts/train.py"
+        }
+      ],
+      "external_training_executed": false,
+      "third_party_code_executed": false
+    },
+    {
+      "repository": "https://github.com/BraveGroup/DriveVLA-W0",
+      "commit": "a55766ce46ee55d9035b93816e57b8d933166482",
+      "interface": "native_KV_concat_partial_training_release",
+      "files": [
+        {
+          "path": "reference/Emu3/emu3/mllm/modeling_emu3.py",
+          "bytes": 177613,
+          "sha256": "3086183aa310a653b7f41d05359a08d93ba3b61abbdc9963e3c2401c04d08b76",
+          "url": "https://github.com/BraveGroup/DriveVLA-W0/blob/a55766ce46ee55d9035b93816e57b8d933166482/reference/Emu3/emu3/mllm/modeling_emu3.py"
+        },
+        {
+          "path": "reference/Emu3/emu3/mllm/configuration_emu3.py",
+          "bytes": 28547,
+          "sha256": "88a5c1369af22cb7667a7c3e08c79599bb04ab19fd2af8574b6547860d0d1a0a",
+          "url": "https://github.com/BraveGroup/DriveVLA-W0/blob/a55766ce46ee55d9035b93816e57b8d933166482/reference/Emu3/emu3/mllm/configuration_emu3.py"
+        },
+        {
+          "path": "Training.md",
+          "bytes": 1256,
+          "sha256": "a08402de041cf9a2ea0f121727cf0c26ea2e27f7203962dcbde8bae1ac7687de",
+          "url": "https://github.com/BraveGroup/DriveVLA-W0/blob/a55766ce46ee55d9035b93816e57b8d933166482/Training.md"
+        },
+        {
+          "path": "scripts/scripts_train/train_navsim_flow_matching.sh",
+          "bytes": 2513,
+          "sha256": "8dff58ee0e31ccce073c201cb9bf32bb6663f767c543f42d03d4f845291b262a",
+          "url": "https://github.com/BraveGroup/DriveVLA-W0/blob/a55766ce46ee55d9035b93816e57b8d933166482/scripts/scripts_train/train_navsim_flow_matching.sh"
+        }
+      ],
+      "external_training_executed": false,
+      "third_party_code_executed": false
+    },
+    {
+      "repository": "https://github.com/CHEN-H01/Fast-in-Slow",
+      "commit": "14f73b3e6ebe5e44464e7958b4d086e7dda21941",
+      "interface": "shared_backbone_hidden_sequence",
+      "files": [
+        {
+          "path": "models/vlms/prismatic.py",
+          "bytes": 69097,
+          "sha256": "1a651251b48115cb743f8f77e4811cccc99d1ac443385952d4251bee27dc0d56",
+          "url": "https://github.com/CHEN-H01/Fast-in-Slow/blob/14f73b3e6ebe5e44464e7958b4d086e7dda21941/models/vlms/prismatic.py"
+        },
+        {
+          "path": "training/strategies/base_strategy.py",
+          "bytes": 16315,
+          "sha256": "bc52e208b6d7b104177e8a3b8a73ed2241a52a5e22683ffa4152ed5a7148e2ea",
+          "url": "https://github.com/CHEN-H01/Fast-in-Slow/blob/14f73b3e6ebe5e44464e7958b4d086e7dda21941/training/strategies/base_strategy.py"
+        },
+        {
+          "path": "train.sh",
+          "bytes": 3158,
+          "sha256": "6f73219f771ce3c139b38c2ad78b0461054479b95c428345fd0ba7325abcade6",
+          "url": "https://github.com/CHEN-H01/Fast-in-Slow/blob/14f73b3e6ebe5e44464e7958b4d086e7dda21941/train.sh"
+        },
+        {
+          "path": "models/vlas/fisvla.py",
+          "bytes": 51251,
+          "sha256": "5295c3078e82a2f59098d93030ce34311002818fd3614993e7f3a96f78cd4e31",
+          "url": "https://github.com/CHEN-H01/Fast-in-Slow/blob/14f73b3e6ebe5e44464e7958b4d086e7dda21941/models/vlas/fisvla.py"
+        }
+      ],
+      "external_training_executed": false,
+      "third_party_code_executed": false
+    },
+    {
+      "repository": "https://github.com/NHirose/AsyncVLA",
+      "commit": "b593ac5143287a62893159a42c88a471bf444f10",
+      "interface": "projected_action_hidden_features",
+      "files": [
+        {
+          "path": "vla-scripts/train_asyncvla.py",
+          "bytes": 59510,
+          "sha256": "223bad861e01c8c3783dc76a265a56f40ba427d89ae7e91ac113a23b88bd5fd3",
+          "url": "https://github.com/NHirose/AsyncVLA/blob/b593ac5143287a62893159a42c88a471bf444f10/vla-scripts/train_asyncvla.py"
+        },
+        {
+          "path": "prismatic/models/small_head.py",
+          "bytes": 10826,
+          "sha256": "c8442b7ec15d31d7e5ad6ec7d2091af243fb9677ee9724e6e8d63f28f7ca5a35",
+          "url": "https://github.com/NHirose/AsyncVLA/blob/b593ac5143287a62893159a42c88a471bf444f10/prismatic/models/small_head.py"
+        },
+        {
+          "path": "prismatic/vla/datasets/gnm_dataset.py",
+          "bytes": 37699,
+          "sha256": "5112e0deb046f74cf424de16333779aba926ad472a6f3904b3f41770b6b42089",
+          "url": "https://github.com/NHirose/AsyncVLA/blob/b593ac5143287a62893159a42c88a471bf444f10/prismatic/vla/datasets/gnm_dataset.py"
+        },
+        {
+          "path": "README.md",
+          "bytes": 4445,
+          "sha256": "7243cff117c751662c519288a20998bf0d6c64e761448eb290b8571eb0e24cbc",
+          "url": "https://github.com/NHirose/AsyncVLA/blob/b593ac5143287a62893159a42c88a471bf444f10/README.md"
+        }
+      ],
+      "external_training_executed": false,
+      "third_party_code_executed": false
+    }
+  ],
+  "local_findings": {
+    "own_commit": "f0a86cb4547c5c193a6804917f12f914c1f1eb60",
+    "slow_new_module_updates": 60,
+    "slow_lora_updates": 40,
+    "fast_cache_consumer_updates": 120,
+    "fast_consumer_slow_frozen": true,
+    "sustained_joint_stage_d_executed": false,
+    "p0_live_joint_optimizer_updates": 1,
+    "unintended_detach_found_in_inspected_paths": false,
+    "slow_val_ADE": 5.631771564483643,
+    "fast_val_none_ADE": 3.155325174331665,
+    "fresh_vs_shuffled_mean_plan_xy_change_val_m": 0.011346383020281792,
+    "absent_vs_fresh_mean_plan_xy_change_val_m": 0.23761658370494843,
+    "interpretation": "Training gaps are confirmed; exclusive cause and eventual KV utility are not established."
+  },
+  "gpu_used": false,
+  "weights_downloaded": false,
+  "datasets_downloaded": false,
+  "unavailable_in_pinned_drivevla_release": [
+    "train/train_pi0.py",
+    "configs/pi0_fast_video.json"
+  ],
+  "paper_only_reference": {
+    "url": "https://arxiv.org/html/2607.15621v1",
+    "implementation_audited": false
+  },
+  "architecture_modified": false,
+  "new_training_started": false,
+  "review": {
+    "local_training_audit": "passed; no blocking finding",
+    "reference_classification_audit": "passed after two wording corrections",
+    "corrections": [
+      "Reactive sampling does not establish moving/static cohort proportions",
+      "Paper-only expert/head comparison has privileged teacher-forced input confound"
+    ],
+    "source_hashes_reverified": 17,
+    "training_implementation_changed": false
+  }
+}

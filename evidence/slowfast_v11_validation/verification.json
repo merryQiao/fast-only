@@ -18,7 +18,7 @@
     "configs/slowfast_v11_validation.yaml": "58bde8302d83d9c0147781a63c9cb937c73d3e7a091bc68544a3cb9ec206d37d"
   },
   "execution_passed": true,
-  "conclusion": "No positive inference-time XY planning value from correct KV established in this bounded diagnostic; not a rejection of sufficiently trained Slow-Fast.",
+  "conclusion": "Engineering trainability smoke passed. Unconverged tiny-data diagnostics do not evaluate architecture ranking or performance ceiling. At this checkpoint, correct inference-time KV did not improve XY error over its own no-KV path.",
   "main_optimizer_updates": 260,
   "additional_matched_control_updates": 120,
   "combined_operational_updates": 380,
@@ -70,5 +70,8 @@
     "One training seed; no actual async delivery or closed-loop measurements",
     "Learning-model errors remain above the constant-velocity reference"
   ],
-  "inference_time_kv_position_benefit_established": false
+  "inference_time_kv_position_benefit_established": false,
+  "architecture_ceiling_evaluated": false,
+  "independent_training_comparison_vs_same_checkpoint_switch": "Separate questions: equal Fast updates do not establish equal adaptation/convergence of the direct and Slow-to-Fast paths.",
+  "convergence_verified": false
 }

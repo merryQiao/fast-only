@@ -4,7 +4,7 @@
 
 本分支新增 [Slow-Fast V1.1 P0 接口原型](docs/SLOWFAST_V11_P0.md)：真实 2B→0.8B 六层 KV、Planning Queries 可见性和联合梯度审计。它使用独立目录 `slowfast_v11/`；以下 Fast-only 验收记录仍对应原基线。异步调度、Future 检验和闭环收益尚未完成。
 
-后续的[小规模适配与 KV 验证](docs/SLOWFAST_V11_VALIDATION.md)包含真实训练、同检查点对照和独立重载。当前小预算结果尚未显示 KV 的位置规划增益；请连同样本覆盖和无 KV 对照阅读。
+后续的[小规模适配与 KV 验证](docs/SLOWFAST_V11_VALIDATION.md)包含真实训练、同检查点对照和独立重载。本轮验收工程可训练性，尚未验证充分收敛，不用于判断架构优劣或性能上限；请区分独立训练路径对照与同检查点 KV 开关诊断。
 
 **当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 

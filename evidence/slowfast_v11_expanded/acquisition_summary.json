@@ -1,0 +1,184 @@
+{
+  "schema": "slowfast_expanded_source_audit_v1",
+  "plan_sha256": "bc8e88ae7c885cc13ee625d659892e958ecb9494fe0539d7d119b03ef473d5bc",
+  "openscene_revision": "a76f840b65e972bc45e56c2adced897498e9a026",
+  "network_response_body_bytes": 1708332171,
+  "full_archives_verified": false,
+  "completed_archive_response_body_bytes": 952499735,
+  "other_charged_response_body_bytes": 755832436,
+  "provenance_coverage": {
+    "camera_archives": 6,
+    "legacy_images": 13,
+    "verified_images": 1293
+  },
+  "source_count": 1300,
+  "reports": [
+    {
+      "archive_identity": {
+        "lfs": {
+          "oid": "74df953723507a8dcd778c6d1feb2ef2a3e57b799a6e3b35f1728cb72384a595",
+          "pointerSize": 135,
+          "size": 1767757511
+        },
+        "oid": "80aafab1440c286310ca8203e4486a7201809ed8",
+        "path": "openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_5.tgz",
+        "size": 1767757511,
+        "type": "file",
+        "xetHash": "4e33d3fedd8294cfd8072c7414beba05d2cf9ee8924702ce661db32155bc97ef"
+      },
+      "complete": true,
+      "full_archive_verified": false,
+      "log": "2021.06.09.14.58.55_veh-35_01894_02311",
+      "requests": 82,
+      "response_body_bytes": 164000000,
+      "response_prefix_sha256": "019007cf5ba9060f0238a0fd5fbfaaff6028e317152a5ed0e6e1612ca831bde3",
+      "shard": 5,
+      "url": "https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/a76f840b65e972bc45e56c2adced897498e9a026/openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_5.tgz"
+    },
+    {
+      "archive_identity": {
+        "lfs": {
+          "oid": "ac4d3b9ea7d0e3c2584f716a841b867ce45e76699e5aefaa61016c1a083c3f7b",
+          "pointerSize": 135,
+          "size": 1928421301
+        },
+        "oid": "5514cfb1e20ed935f06303606e7812c53f343912",
+        "path": "openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_6.tgz",
+        "size": 1928421301,
+        "type": "file",
+        "xetHash": "91148bea610467ae705e66bbe64851e70c169c43ee3ed766f5cfc73d08774bdd"
+      },
+      "attempt_id": "3b8d60b42fc64ed3ae0d642985ab81b8",
+      "chunk_size_bytes": 8000000,
+      "complete": true,
+      "error": null,
+      "full_archive_verified": false,
+      "log": "2021.10.11.02.57.41_veh-50_00352_00535",
+      "pre_response_failures": 0,
+      "request_attempts": 9,
+      "requests": 9,
+      "reserved_cap_bytes": 225000000,
+      "response_body_bytes": 72000000,
+      "response_prefix_sha256": "69d026d75f1cc780ef7afd35a585e7592ff186c9c6e62fa48164c498ccaddc93",
+      "shard": 6,
+      "successful_responses": 9,
+      "url": "https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/a76f840b65e972bc45e56c2adced897498e9a026/openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_6.tgz"
+    },
+    {
+      "archive_identity": {
+        "lfs": {
+          "oid": "4e0c91f486cdfec91a946d04a10416e0a8bdc84d7a5afa95da25ae2d1b257342",
+          "pointerSize": 135,
+          "size": 3488226528
+        },
+        "oid": "d49580e06b7ce2796bbbe19a430c64550ce8c127",
+        "path": "openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_7.tgz",
+        "size": 3488226528,
+        "type": "file",
+        "xetHash": "f41a0ec5bfa3a56a753610896210e34eb1a3dba5b893053457e8f6c2a5550ade"
+      },
+      "attempt_id": "2822914bfdf749aa9ad4c468a4153938",
+      "chunk_size_bytes": 8000000,
+      "complete": true,
+      "error": null,
+      "full_archive_verified": false,
+      "log": "2021.06.08.12.54.54_veh-26_04262_04732",
+      "pre_response_failures": 0,
+      "request_attempts": 29,
+      "requests": 29,
+      "reserved_cap_bytes": 256000000,
+      "response_body_bytes": 232000000,
+      "response_prefix_sha256": "f230d0ee029d515ac48d43bd6743028d792eeb045fc8cb4e6b82d86b9f910346",
+      "shard": 7,
+      "successful_responses": 29,
+      "url": "https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/a76f840b65e972bc45e56c2adced897498e9a026/openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_7.tgz"
+    },
+    {
+      "archive_identity": {
+        "lfs": {
+          "oid": "61ed0f01e853dacab146b409d60329b0b39c47b641640754a57bce581c2e9ff0",
+          "pointerSize": 135,
+          "size": 2702053511
+        },
+        "oid": "8542dcec5232b1e29be8fee405e96f9947a88095",
+        "path": "openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_11.tgz",
+        "size": 2702053511,
+        "type": "file",
+        "xetHash": "0a4fdd226c89834a762e9272fafe4df725ff830f5f2b4d74a628b6503426b836"
+      },
+      "attempt_id": "62caf4eee04a49ffac844a36a1725dba",
+      "chunk_size_bytes": 8000000,
+      "complete": true,
+      "error": null,
+      "full_archive_verified": false,
+      "log": "2021.06.09.14.03.17_veh-12_02584_02970",
+      "pre_response_failures": 0,
+      "request_attempts": 60,
+      "requests": 60,
+      "reserved_cap_bytes": 225000000,
+      "response_body_bytes": 187105510,
+      "response_prefix_sha256": "5510180444b19cf548d4ed1b579192c1ca71cf27686f0289f1c2819752aad8d3",
+      "shard": 11,
+      "successful_responses": 60,
+      "url": "https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/a76f840b65e972bc45e56c2adced897498e9a026/openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_11.tgz"
+    },
+    {
+      "archive_identity": {
+        "lfs": {
+          "oid": "456de3b8196613a8dc19b871bd9205f6b844f826ebeb111fbcc33c6aa0fe863d",
+          "pointerSize": 135,
+          "size": 2520164386
+        },
+        "oid": "e3468fbe167d4c6bf80f01a5b1d794c8cd6612db",
+        "path": "openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_15.tgz",
+        "size": 2520164386,
+        "type": "file",
+        "xetHash": "38bb1a9601f82d723a02fc4b793ad410251082c9507dc222c80a6e080d7cb177"
+      },
+      "attempt_id": "33ab15b491a34133a2c7f293441438f7",
+      "chunk_size_bytes": 8000000,
+      "complete": true,
+      "error": null,
+      "full_archive_verified": false,
+      "log": "2021.05.12.23.36.44_veh-35_02035_02387",
+      "pre_response_failures": 0,
+      "request_attempts": 18,
+      "requests": 18,
+      "reserved_cap_bytes": 225000000,
+      "response_body_bytes": 144000000,
+      "response_prefix_sha256": "81ac17a863f3e9084fe15d9476a45d83e8da7f219c26b38d79f45247e9f5830e",
+      "shard": 15,
+      "successful_responses": 18,
+      "url": "https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/a76f840b65e972bc45e56c2adced897498e9a026/openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_15.tgz"
+    },
+    {
+      "archive_identity": {
+        "lfs": {
+          "oid": "f1168aadf5aa5ba422cc5188ab598af8af4b411fa06b3dcd2636cd8c1266c56e",
+          "pointerSize": 135,
+          "size": 2915941730
+        },
+        "oid": "edc448e5a0c72068000edf7014d6a4c44237f220",
+        "path": "openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_26.tgz",
+        "size": 2915941730,
+        "type": "file",
+        "xetHash": "d037389cbd3782731bb205fb69462cbf238fee7214c00a9098578ea3f02be82e"
+      },
+      "attempt_id": "f175387052924486a195c35a69b36f7e",
+      "chunk_size_bytes": 8000000,
+      "complete": true,
+      "error": null,
+      "full_archive_verified": false,
+      "log": "2021.08.17.16.57.11_veh-08_01200_01636",
+      "pre_response_failures": 1,
+      "request_attempts": 53,
+      "requests": 53,
+      "reserved_cap_bytes": 225000000,
+      "response_body_bytes": 153394225,
+      "response_prefix_sha256": "bf200ee2df669d551de2b2d382a9e00e50c64ce58b34ed0a41956a844cbe8bd7",
+      "shard": 26,
+      "successful_responses": 52,
+      "url": "https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/a76f840b65e972bc45e56c2adced897498e9a026/openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_26.tgz"
+    }
+  ]
+}

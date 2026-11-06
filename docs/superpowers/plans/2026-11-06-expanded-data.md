@@ -34,5 +34,5 @@ Operational amendment,2026-11-06: shard7 reached225MB while retaining252/256 pre
 - [x] Data TDD: fixed split/token/path planning before bytes, training-only speed quotas, uniformVAL, exact required images, byte caps/no full archive, TRAIN-only stats, legacy exclusion and identity retention.
 - [x] Protocol TDD: strict new bounded schema, stable epoch orders, independently shuffled240/560 modes, deterministic polynomial cohort-local mismatch bijection, scheduler endpoints/restoration and fixed TRAIN subset/probes.
 - [x] Runner: optional mismatch-factory injection preserves old harness defaults; pretrained512/512 warmups; common feedback; two800-step arms; bounded snapshot streaming and separate VAL cohorts; exposure/LR logs and immediate checkpoints.
-- [ ] Verify tests and independent review, execute bounded acquisitions and training, preserve all logs and hashes.
-- [ ] Independent reload and actual scheduled-step replay; export portable evidence/figures, document observations/limitations, commit separate branch. GitHub publication remains dependent on working credentials; do not claim a successful push without remote verification.
+- [x] Verify tests and independent review, execute bounded acquisitions and training, preserve all logs and hashes.
+- [x] Independent reload and actual scheduled-step replay; export portable evidence/figures, document observations/limitations, commit separate branch. GitHub publication remains dependent on working credentials; do not claim a successful push without remote verification.

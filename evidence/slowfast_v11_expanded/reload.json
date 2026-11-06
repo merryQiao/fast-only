@@ -1,0 +1,386 @@
+{
+  "schema": "slowfast_expanded_reload_v1",
+  "passed": true,
+  "comparisons": {
+    "no_kv": {
+      "new_val": {
+        "passed": true,
+        "count": 192,
+        "atol": 0.0,
+        "max_abs_difference": 0.0,
+        "by_mode": {
+          "none": {
+            "count": 64,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "fresh": {
+            "count": 64,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "shuffled": {
+            "count": 64,
+            "max_abs_difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      "legacy_val": {
+        "passed": true,
+        "count": 12,
+        "atol": 0.0,
+        "max_abs_difference": 0.0,
+        "by_mode": {
+          "none": {
+            "count": 4,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "fresh": {
+            "count": 4,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "shuffled": {
+            "count": 4,
+            "max_abs_difference": 0.0,
+            "passed": true
+          }
+        }
+      }
+    },
+    "joint": {
+      "new_val": {
+        "passed": true,
+        "count": 192,
+        "atol": 0.0,
+        "max_abs_difference": 0.0,
+        "by_mode": {
+          "none": {
+            "count": 64,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "fresh": {
+            "count": 64,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "shuffled": {
+            "count": 64,
+            "max_abs_difference": 0.0,
+            "passed": true
+          }
+        }
+      },
+      "legacy_val": {
+        "passed": true,
+        "count": 12,
+        "atol": 0.0,
+        "max_abs_difference": 0.0,
+        "by_mode": {
+          "none": {
+            "count": 4,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "fresh": {
+            "count": 4,
+            "max_abs_difference": 0.0,
+            "passed": true
+          },
+          "shuffled": {
+            "count": 4,
+            "max_abs_difference": 0.0,
+            "passed": true
+          }
+        }
+      }
+    }
+  },
+  "replay": {
+    "fast": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 209,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "slow": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 210,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "optimizer_fast": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 627,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "optimizer_slow": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 627,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "scheduler_fast": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "scheduler_slow": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "rng": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 2,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "replay_prediction": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 1,
+      "differing_fields": 0,
+      "first_differences": []
+    }
+  },
+  "replayed_step": 799,
+  "replayed_token": "cccf4e31bc5e5dd8",
+  "replayed_update": {
+    "arm": "joint",
+    "mode": "fresh",
+    "loss_fast": 0.0016726430039852858,
+    "loss_slow": 0.0004661085258703679,
+    "loss_total": 0.002138751558959484,
+    "fast_grad_norm": 0.8356733322143555,
+    "slow_grad_norm": 2.0732176303863525,
+    "probe": {
+      "expected_live": true,
+      "kv": [
+        {
+          "key": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 6.146728992462158e-07
+          },
+          "value": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 4.991888999938965e-07
+          }
+        },
+        {
+          "key": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 3.4831464290618896e-07
+          },
+          "value": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 8.270144462585449e-07
+          }
+        },
+        {
+          "key": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 3.7997961044311523e-07
+          },
+          "value": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 6.258487701416016e-07
+          }
+        },
+        {
+          "key": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 3.248453140258789e-06
+          },
+          "value": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 1.8328428268432617e-06
+          }
+        },
+        {
+          "key": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 1.4901161193847656e-06
+          },
+          "value": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 5.699694156646729e-07
+          }
+        },
+        {
+          "key": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 7.59027898311615e-08
+          },
+          "value": {
+            "count": 1,
+            "with_gradient": 1,
+            "finite": true,
+            "nonzero": true,
+            "max_abs": 6.658956408500671e-08
+          }
+        }
+      ],
+      "lora_b": {
+        "count": 12,
+        "with_gradient": 12,
+        "finite": true,
+        "nonzero": true,
+        "max_abs": 8.286746015073732e-05
+      },
+      "lora_b_parameters": [
+        {
+          "name": "backbone.language_model.layers.3.self_attn.k_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 7.475541497115046e-05
+        },
+        {
+          "name": "backbone.language_model.layers.3.self_attn.v_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 6.0571652284124866e-05
+        },
+        {
+          "name": "backbone.language_model.layers.7.self_attn.k_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 1.5852961951168254e-05
+        },
+        {
+          "name": "backbone.language_model.layers.7.self_attn.v_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 8.286746015073732e-05
+        },
+        {
+          "name": "backbone.language_model.layers.11.self_attn.k_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 1.8911641745944507e-05
+        },
+        {
+          "name": "backbone.language_model.layers.11.self_attn.v_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 6.488323560915887e-05
+        },
+        {
+          "name": "backbone.language_model.layers.15.self_attn.k_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 3.640934301074594e-05
+        },
+        {
+          "name": "backbone.language_model.layers.15.self_attn.v_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 2.716498238442e-05
+        },
+        {
+          "name": "backbone.language_model.layers.19.self_attn.k_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 1.3660108379554003e-05
+        },
+        {
+          "name": "backbone.language_model.layers.19.self_attn.v_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 6.115643373050261e-06
+        },
+        {
+          "name": "backbone.language_model.layers.23.self_attn.k_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 6.191199645400047e-05
+        },
+        {
+          "name": "backbone.language_model.layers.23.self_attn.v_proj.lora_B.default.weight",
+          "count": 1,
+          "with_gradient": 1,
+          "finite": true,
+          "nonzero": true,
+          "max_abs": 7.876149538788013e-06
+        }
+      ],
+      "vision_frozen": true,
+      "vision_has_gradient": false
+    }
+  },
+  "assets_verified": true,
+  "data_identities_verified": true,
+  "teacher_verified": true,
+  "checkpoint_sha256_verified": true,
+  "training_updates": 1,
+  "test_used": false,
+  "scope": "same-GPU/runtime exact reload and one actual scheduled step; not cross-GPU or full DDP resume"
+}

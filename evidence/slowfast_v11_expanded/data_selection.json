@@ -1,0 +1,683 @@
+{
+  "cohort_counts": {
+    "legacy_val": 4,
+    "new_val": 64,
+    "train": 256
+  },
+  "logs": {
+    "2021.05.12.23.36.44_veh-35_02035_02387": {
+      "candidate_count": 139,
+      "candidate_speed_bins": {
+        "high_speed": 48,
+        "low_speed": 48,
+        "mid_speed": 43
+      },
+      "cohort": "new_val",
+      "excluded": {},
+      "metadata_path": "<local>/2021.05.12.23.36.44_veh-35_02035_02387.pkl",
+      "metadata_sha256": "1a8661dedea257e2b65d329761930e13b5b118dcf190224f6d8b6cb5ef554720",
+      "selected_command_counts": {
+        "1": 31,
+        "3": 1
+      },
+      "selected_indices": [
+        3,
+        23,
+        48,
+        68,
+        93,
+        113,
+        138,
+        158,
+        183,
+        203,
+        228,
+        248,
+        268,
+        293,
+        313,
+        338,
+        358,
+        383,
+        403,
+        428,
+        448,
+        468,
+        493,
+        513,
+        538,
+        558,
+        583,
+        603,
+        628,
+        648,
+        673,
+        693
+      ],
+      "selected_speed_min_max": [
+        0.00027153911159306243,
+        13.515282087135965
+      ],
+      "selection": {
+        "count": 32,
+        "policy": "uniform temporal candidate positions"
+      },
+      "shard": 15
+    },
+    "2021.06.08.12.54.54_veh-26_04262_04732": {
+      "candidate_count": 139,
+      "candidate_speed_bins": {
+        "high_speed": 2,
+        "low_speed": 72,
+        "mid_speed": 65
+      },
+      "cohort": "train",
+      "excluded": {
+        "navigation_mismatch": 1,
+        "timestamp_gap": 46
+      },
+      "metadata_path": "<local>/2021.06.08.12.54.54_veh-26_04262_04732.pkl",
+      "metadata_sha256": "51c94f42a7c7b823563e2e356fccf1d155932e5a6c8f09a3780f18ffc06aa8a0",
+      "selected_command_counts": {
+        "1": 60,
+        "2": 4
+      },
+      "selected_indices": [
+        23,
+        43,
+        83,
+        93,
+        113,
+        128,
+        158,
+        163,
+        168,
+        173,
+        178,
+        183,
+        188,
+        193,
+        198,
+        203,
+        208,
+        223,
+        258,
+        263,
+        268,
+        283,
+        288,
+        293,
+        298,
+        308,
+        313,
+        318,
+        323,
+        328,
+        333,
+        338,
+        343,
+        358,
+        368,
+        383,
+        388,
+        458,
+        498,
+        508,
+        513,
+        538,
+        598,
+        613,
+        618,
+        628,
+        633,
+        638,
+        663,
+        668,
+        673,
+        678,
+        713,
+        753,
+        788,
+        798,
+        808,
+        813,
+        818,
+        823,
+        833,
+        843,
+        848,
+        903
+      ],
+      "selected_speed_min_max": [
+        1.5706918051946965e-05,
+        10.246611082105623
+      ],
+      "selection": {
+        "available": {
+          "high_speed": 2,
+          "low_speed": 72,
+          "mid_speed": 65
+        },
+        "desired": {
+          "high_speed": 24,
+          "low_speed": 16,
+          "mid_speed": 24
+        },
+        "redistributed": {
+          "high_speed": -22,
+          "low_speed": 0,
+          "mid_speed": 22
+        },
+        "redistribution_order": [
+          "mid_speed",
+          "low_speed",
+          "high_speed"
+        ],
+        "selected": {
+          "high_speed": 2,
+          "low_speed": 16,
+          "mid_speed": 46
+        },
+        "selected_speed_min_max": [
+          1.5706918051946965e-05,
+          10.246611082105623
+        ]
+      },
+      "shard": 7
+    },
+    "2021.06.09.14.03.17_veh-12_02584_02970": {
+      "candidate_count": 153,
+      "candidate_speed_bins": {
+        "high_speed": 21,
+        "low_speed": 54,
+        "mid_speed": 78
+      },
+      "cohort": "train",
+      "excluded": {},
+      "metadata_path": "<local>/2021.06.09.14.03.17_veh-12_02584_02970.pkl",
+      "metadata_sha256": "58a49e1ccb1414af4f07243a64d4e95d42ce4470e87bf5e272fe251711d7ec9e",
+      "selected_command_counts": {
+        "1": 41,
+        "3": 23
+      },
+      "selected_indices": [
+        23,
+        48,
+        53,
+        63,
+        78,
+        93,
+        103,
+        123,
+        128,
+        153,
+        173,
+        178,
+        188,
+        198,
+        218,
+        228,
+        238,
+        253,
+        303,
+        313,
+        323,
+        328,
+        363,
+        443,
+        448,
+        458,
+        463,
+        468,
+        473,
+        478,
+        483,
+        503,
+        508,
+        518,
+        523,
+        538,
+        548,
+        583,
+        598,
+        603,
+        608,
+        613,
+        618,
+        623,
+        628,
+        633,
+        638,
+        643,
+        648,
+        653,
+        658,
+        663,
+        668,
+        673,
+        678,
+        688,
+        698,
+        718,
+        723,
+        728,
+        733,
+        753,
+        758,
+        763
+      ],
+      "selected_speed_min_max": [
+        0.00012022386107013665,
+        13.15914344993484
+      ],
+      "selection": {
+        "available": {
+          "high_speed": 21,
+          "low_speed": 54,
+          "mid_speed": 78
+        },
+        "desired": {
+          "high_speed": 24,
+          "low_speed": 16,
+          "mid_speed": 24
+        },
+        "redistributed": {
+          "high_speed": -3,
+          "low_speed": 0,
+          "mid_speed": 3
+        },
+        "redistribution_order": [
+          "mid_speed",
+          "low_speed",
+          "high_speed"
+        ],
+        "selected": {
+          "high_speed": 21,
+          "low_speed": 16,
+          "mid_speed": 27
+        },
+        "selected_speed_min_max": [
+          0.00012022386107013665,
+          13.15914344993484
+        ]
+      },
+      "shard": 11
+    },
+    "2021.06.09.14.58.55_veh-35_01894_02311": {
+      "candidate_count": 161,
+      "candidate_speed_bins": {
+        "high_speed": 32,
+        "low_speed": 98,
+        "mid_speed": 31
+      },
+      "cohort": "train",
+      "excluded": {
+        "navigation_mismatch": 4
+      },
+      "metadata_path": "<local>/2021.06.09.14.58.55_veh-35_01894_02311.pkl",
+      "metadata_sha256": "ef4e0d925fe8d23662931b3f24aafd14e3cdfe90761e1e4dca5ac32f45621220",
+      "selected_command_counts": {
+        "0": 4,
+        "1": 58,
+        "2": 2
+      },
+      "selected_indices": [
+        8,
+        68,
+        73,
+        78,
+        83,
+        98,
+        103,
+        133,
+        138,
+        153,
+        158,
+        163,
+        168,
+        173,
+        183,
+        188,
+        203,
+        253,
+        263,
+        293,
+        303,
+        308,
+        313,
+        343,
+        348,
+        358,
+        378,
+        418,
+        428,
+        448,
+        478,
+        488,
+        493,
+        508,
+        513,
+        518,
+        523,
+        528,
+        533,
+        538,
+        543,
+        548,
+        553,
+        558,
+        573,
+        658,
+        708,
+        713,
+        718,
+        728,
+        733,
+        738,
+        743,
+        748,
+        753,
+        758,
+        768,
+        773,
+        778,
+        788,
+        793,
+        798,
+        803,
+        818
+      ],
+      "selected_speed_min_max": [
+        0.00015032098884701096,
+        13.580631066334185
+      ],
+      "selection": {
+        "available": {
+          "high_speed": 32,
+          "low_speed": 98,
+          "mid_speed": 31
+        },
+        "desired": {
+          "high_speed": 24,
+          "low_speed": 16,
+          "mid_speed": 24
+        },
+        "redistributed": {
+          "high_speed": 0,
+          "low_speed": 0,
+          "mid_speed": 0
+        },
+        "redistribution_order": [
+          "mid_speed",
+          "low_speed",
+          "high_speed"
+        ],
+        "selected": {
+          "high_speed": 24,
+          "low_speed": 16,
+          "mid_speed": 24
+        },
+        "selected_speed_min_max": [
+          0.00015032098884701096,
+          13.580631066334185
+        ]
+      },
+      "shard": 5
+    },
+    "2021.08.17.16.57.11_veh-08_01200_01636": {
+      "candidate_count": 159,
+      "candidate_speed_bins": {
+        "high_speed": 4,
+        "low_speed": 62,
+        "mid_speed": 93
+      },
+      "cohort": "train",
+      "excluded": {
+        "navigation_mismatch": 14
+      },
+      "metadata_path": "<local>/2021.08.17.16.57.11_veh-08_01200_01636.pkl",
+      "metadata_sha256": "fe90ceb1eff62d5497ed57f3e752a41bb0138b7960a83eb0578d31d3d632ba57",
+      "selected_command_counts": {
+        "0": 27,
+        "1": 33,
+        "2": 3,
+        "3": 1
+      },
+      "selected_indices": [
+        13,
+        38,
+        53,
+        58,
+        73,
+        88,
+        108,
+        123,
+        163,
+        208,
+        218,
+        223,
+        233,
+        238,
+        243,
+        248,
+        253,
+        268,
+        273,
+        278,
+        288,
+        298,
+        338,
+        358,
+        373,
+        388,
+        393,
+        413,
+        418,
+        428,
+        448,
+        463,
+        473,
+        498,
+        503,
+        513,
+        523,
+        533,
+        543,
+        553,
+        568,
+        588,
+        598,
+        608,
+        623,
+        628,
+        648,
+        658,
+        663,
+        673,
+        708,
+        723,
+        733,
+        748,
+        758,
+        763,
+        778,
+        798,
+        808,
+        813,
+        828,
+        833,
+        838,
+        858
+      ],
+      "selected_speed_min_max": [
+        0.00013454544327594535,
+        12.4723038571623
+      ],
+      "selection": {
+        "available": {
+          "high_speed": 4,
+          "low_speed": 62,
+          "mid_speed": 93
+        },
+        "desired": {
+          "high_speed": 24,
+          "low_speed": 16,
+          "mid_speed": 24
+        },
+        "redistributed": {
+          "high_speed": -20,
+          "low_speed": 0,
+          "mid_speed": 20
+        },
+        "redistribution_order": [
+          "mid_speed",
+          "low_speed",
+          "high_speed"
+        ],
+        "selected": {
+          "high_speed": 4,
+          "low_speed": 16,
+          "mid_speed": 44
+        },
+        "selected_speed_min_max": [
+          0.00013454544327594535,
+          12.4723038571623
+        ]
+      },
+      "shard": 26
+    },
+    "2021.10.11.02.57.41_veh-50_00352_00535": {
+      "candidate_count": 64,
+      "candidate_speed_bins": {
+        "low_speed": 32,
+        "mid_speed": 32
+      },
+      "cohort": "new_val",
+      "excluded": {
+        "navigation_mismatch": 7
+      },
+      "metadata_path": "<local>/2021.10.11.02.57.41_veh-50_00352_00535.pkl",
+      "metadata_sha256": "bf5aea2919d8ebccf2e8a0509833be3f63d3c9a4323b6d15b25f4b9a69d1b9a6",
+      "selected_command_counts": {
+        "0": 22,
+        "1": 5,
+        "2": 4,
+        "3": 1
+      },
+      "selected_indices": [
+        3,
+        18,
+        28,
+        43,
+        53,
+        63,
+        73,
+        83,
+        93,
+        103,
+        113,
+        123,
+        133,
+        153,
+        163,
+        173,
+        188,
+        208,
+        218,
+        228,
+        238,
+        248,
+        258,
+        268,
+        278,
+        288,
+        298,
+        313,
+        323,
+        333,
+        343,
+        353
+      ],
+      "selected_speed_min_max": [
+        0.0014651925642243768,
+        7.873010615396324
+      ],
+      "selection": {
+        "count": 32,
+        "policy": "uniform temporal candidate positions"
+      },
+      "shard": 6
+    }
+  },
+  "metadata_records": [
+    {
+      "bytes": 18049937,
+      "member": "openscene-v1.1/meta_datas/mini/2021.06.09.14.58.55_veh-35_01894_02311.pkl",
+      "path": "<local>/2021.06.09.14.58.55_veh-35_01894_02311.pkl",
+      "sha256": "ef4e0d925fe8d23662931b3f24aafd14e3cdfe90761e1e4dca5ac32f45621220"
+    },
+    {
+      "bytes": 22545723,
+      "member": "openscene-v1.1/meta_datas/mini/2021.06.09.14.03.17_veh-12_02584_02970.pkl",
+      "path": "<local>/2021.06.09.14.03.17_veh-12_02584_02970.pkl",
+      "sha256": "58a49e1ccb1414af4f07243a64d4e95d42ce4470e87bf5e272fe251711d7ec9e"
+    },
+    {
+      "bytes": 5572301,
+      "member": "openscene-v1.1/meta_datas/mini/2021.08.17.16.57.11_veh-08_01200_01636.pkl",
+      "path": "<local>/2021.08.17.16.57.11_veh-08_01200_01636.pkl",
+      "sha256": "fe90ceb1eff62d5497ed57f3e752a41bb0138b7960a83eb0578d31d3d632ba57"
+    },
+    {
+      "bytes": 24334391,
+      "member": "openscene-v1.1/meta_datas/mini/2021.06.08.12.54.54_veh-26_04262_04732.pkl",
+      "path": "<local>/2021.06.08.12.54.54_veh-26_04262_04732.pkl",
+      "sha256": "51c94f42a7c7b823563e2e356fccf1d155932e5a6c8f09a3780f18ffc06aa8a0"
+    },
+    {
+      "bytes": 2150730,
+      "member": "openscene-v1.1/meta_datas/mini/2021.10.11.02.57.41_veh-50_00352_00535.pkl",
+      "path": "<local>/2021.10.11.02.57.41_veh-50_00352_00535.pkl",
+      "sha256": "bf5aea2919d8ebccf2e8a0509833be3f63d3c9a4323b6d15b25f4b9a69d1b9a6"
+    },
+    {
+      "bytes": 19054799,
+      "member": "openscene-v1.1/meta_datas/mini/2021.05.12.23.36.44_veh-35_02035_02387.pkl",
+      "path": "<local>/2021.05.12.23.36.44_veh-35_02035_02387.pkl",
+      "sha256": "1a8661dedea257e2b65d329761930e13b5b118dcf190224f6d8b6cb5ef554720"
+    },
+    {
+      "bytes": 19562611,
+      "member": "openscene-v1.1/meta_datas/mini/2021.06.28.16.57.59_veh-26_00016_00484.pkl",
+      "path": "<local>/2021.06.28.16.57.59_veh-26_00016_00484.pkl",
+      "sha256": "2b49ece58d1628129e4b423e5766e678c968fe69a89f09420f06b6b8f907b03c"
+    }
+  ],
+  "openscene_revision": "a76f840b65e972bc45e56c2adced897498e9a026",
+  "plan_sha256": "bc8e88ae7c885cc13ee625d659892e958ecb9494fe0539d7d119b03ef473d5bc",
+  "schema": "slowfast_expanded_data_plan_v1",
+  "selected_new_logs_archive_order": [
+    "2021.05.12.23.36.44_veh-35_02035_02387",
+    "2021.06.08.12.54.54_veh-26_04262_04732",
+    "2021.10.11.02.57.41_veh-50_00352_00535",
+    "2021.08.17.16.57.11_veh-08_01200_01636"
+  ],
+  "selection_before_image_availability": true,
+  "sensor_root": "<local>/mini",
+  "split_seed": 42,
+  "splits": {
+    "legacy_val": [
+      "2021.06.28.16.57.59_veh-26_00016_00484"
+    ],
+    "new_val": [
+      "2021.10.11.02.57.41_veh-50_00352_00535",
+      "2021.05.12.23.36.44_veh-35_02035_02387"
+    ],
+    "train": [
+      "2021.06.09.14.58.55_veh-35_01894_02311",
+      "2021.06.09.14.03.17_veh-12_02584_02970",
+      "2021.08.17.16.57.11_veh-08_01200_01636",
+      "2021.06.08.12.54.54_veh-26_04262_04732"
+    ]
+  }
+}

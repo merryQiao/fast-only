@@ -1,0 +1,44 @@
+{
+  "cohorts_pooled_for_metrics": false,
+  "counts": {
+    "legacy_val": 4,
+    "new_val": 64,
+    "train": 256
+  },
+  "deep_selection": {
+    "current_speed_mps": 1.027660250795099,
+    "index": 1,
+    "log": "2021.06.09.14.58.55_veh-35_01894_02311",
+    "min_speed_mps": 1.0,
+    "policy": "first TRAIN row with current hypot(vx,vy) >= min_speed_mps; inputs only",
+    "row_index": 1,
+    "token": "2f6cc40e43ba5521",
+    "uses_future_targets": false
+  },
+  "original_image_size_wh": [
+    1920,
+    1080
+  ],
+  "plan_sha256": "bc8e88ae7c885cc13ee625d659892e958ecb9494fe0539d7d119b03ef473d5bc",
+  "protocol": "bounded mini smoke; not an official navtrain/navtest score",
+  "provenance": {
+    "expanded_mini": true,
+    "openscene_revision": "a76f840b65e972bc45e56c2adced897498e9a026",
+    "plan_sha256": "bc8e88ae7c885cc13ee625d659892e958ecb9494fe0539d7d119b03ef473d5bc"
+  },
+  "splits": {
+    "test": [],
+    "train": [
+      "2021.06.08.12.54.54_veh-26_04262_04732",
+      "2021.06.09.14.03.17_veh-12_02584_02970",
+      "2021.06.09.14.58.55_veh-35_01894_02311",
+      "2021.08.17.16.57.11_veh-08_01200_01636"
+    ],
+    "val": [
+      "2021.05.12.23.36.44_veh-35_02035_02387",
+      "2021.06.28.16.57.59_veh-26_00016_00484",
+      "2021.10.11.02.57.41_veh-50_00352_00535"
+    ]
+  },
+  "test_used": false
+}

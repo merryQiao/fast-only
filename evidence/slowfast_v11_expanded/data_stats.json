@@ -1,0 +1,24 @@
+{
+  "ego_mean": [
+    5.527953305435227,
+    -0.09779754516473965,
+    0.05662872678026899,
+    0.06497661703624798
+  ],
+  "ego_std": [
+    4.418896359967515,
+    0.08416720497282812,
+    0.5478635105623529,
+    0.509804073000676
+  ],
+  "source_split": "train",
+  "count": 256,
+  "features": [
+    "vx",
+    "vy",
+    "ax",
+    "ay"
+  ],
+  "normalization_policy": "population_std; unit std for constant dimensions",
+  "unitstd_for_constant": true
+}

@@ -73,11 +73,15 @@ def run(root,output,test_xml):
         ax.set(title=f'Fixed TRAIN32: {mode}',xlabel='Paired iteration',ylabel='XY ADE (m)');ax.grid(alpha=.2);ax.legend()
     fig.savefig(output/'train_curves.png',dpi=160);plt.close(fig)
     fig,axes=plt.subplots(1,2,figsize=(11,3.7),layout='constrained')
-    arms=result['config']['arms'];modes=['none','fresh','shuffled'];x=np.arange(len(arms))
+    arms=result['config']['arms']
+    cases=[('no_kv','none'),('joint','none'),('joint','fresh'),('joint','shuffled')]
+    labels=['No-KV control','Joint: absent','Joint: fresh','Joint: shuffled']
     for ax,cohort,title in zip(axes,['new_val','legacy_val'],['New VAL64 (two logs)','Legacy VAL4 (one log)']):
-        for i,mode in enumerate(modes):
-            ax.bar(x+(i-1)*.24,[result['summary'][f'{a}_final'][cohort][mode]['ADE'] for a in arms],.24,label=mode)
-        ax.set(xticks=x,xticklabels=arms,ylabel='XY ADE (m)',title=title)
+        values=[result['summary'][f'{arm}_final'][cohort][mode]['ADE'] for arm,mode in cases]
+        ax.bar(np.arange(4),values,color=['C0','C1','C2','C3'])
+        ax.axhline(result['constant_velocity'][cohort]['ADE'],color='grey',ls='--',label='CV reference')
+        ax.set(xticks=np.arange(4),xticklabels=labels,ylabel='XY ADE (m)',title=title)
+        ax.tick_params(axis='x',labelrotation=18)
         ax.set_ylim(top=ax.get_ylim()[1]*1.25);ax.grid(axis='y',alpha=.2);ax.legend()
     fig.savefig(output/'paired_ade.png',dpi=160);plt.close(fig)
     fig,axes=plt.subplots(1,2,figsize=(11,3.7),layout='constrained')
@@ -96,6 +100,25 @@ def run(root,output,test_xml):
         ax.plot(range(1,len(rows)+1),rates,label=stage)
     ax.set(xlabel='Phase update',ylabel='LoRA learning rate',title='Actual update learning rates');ax.legend();ax.grid(alpha=.2)
     fig.savefig(output/'learning_rates.png',dpi=160);plt.close(fig)
+    legacy=[r for r in records if r['stage']=='joint_final' and r['split']=='legacy_val' and r['mode']=='fresh' and r['speed_mps']>=1.]
+    if len(legacy)!=1:raise ValueError('Expected the one fixed legacy moving diagnostic')
+    token=legacy[0]['token'];times=np.arange(1,9)*.5
+    fig,ax=plt.subplots(figsize=(8,4),layout='constrained')
+    ax.plot(times,np.array(legacy[0]['target'])[:,0],'ko-',label='GT')
+    for arm,mode,label in [('no_kv','none','Expanded no-KV'),('joint','none','Expanded joint: absent'),('joint','fresh','Expanded joint: fresh')]:
+        row=next(r for r in records if r['stage']==arm+'_final' and r['token']==token and r['mode']==mode)
+        ax.plot(times,np.array(row['prediction'])[:,0],marker='.',label=label)
+    previous=Path('evidence/slowfast_v11_joint/predictions.json')
+    if previous.exists():
+        old=next(r for r in json.loads(previous.read_text()) if r['stage']=='joint_final' and r['token']==token and r['mode']=='fresh')
+        if old['target']!=legacy[0]['target']:raise ValueError('Legacy target changed across experiments')
+        ax.plot(times,np.array(old['prediction'])[:,0],ls=':',label='Previous mini joint: fresh')
+    manifest=[json.loads(s) for s in Path(result['config']['data']['val_manifest']).read_text().splitlines()]
+    ego=next(r['ego'] for r in manifest if r['token']==token)
+    ax.plot(times,times*ego[0],ls='--',color='grey',label='CV reference')
+    ax.set(title='Fixed legacy moving case (15.08 m/s)',xlabel='Prediction horizon (s)',ylabel='Forward displacement (m)')
+    ax.grid(alpha=.2);ax.legend(fontsize=8)
+    fig.savefig(output/'legacy_forward.png',dpi=160);plt.close(fig)
     write_json(output/'SHA256.json',{p.name:fingerprint(p) for p in output.iterdir() if p.is_file() and p.name!='SHA256.json'})
 
 

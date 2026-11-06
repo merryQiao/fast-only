@@ -20,7 +20,7 @@ TRAIN按当前速度分层选取；只用当前速度，不按未来轨迹或模
 | 新VAL32 | 15 | 2021.05.12.23.36.44_veh-35_02035_02387 |
 | legacy VAL4 | 2 | 2021.06.28.16.57.59_veh-26_00016_00484 |
 
-原始1920×1080 JPEG保持字节内容，只在Processor中补边，不额外resize或重编码。获取所需的1293张JPEG，并保留成员SHA；不下载完整相机归档。网络响应体总预算2GB，包含元数据扩展、无关压缩成员、失败读取和重试；每个相机前缀最多225MB。元数据只扩展到120MB前缀，完整元数据归档约534MB。父归档LFS身份用于来源记录，不声称部分前缀验证了完整归档hash。
+原始1920×1080 JPEG保持字节内容，只在Processor中补边，不额外resize或重编码。获取所需的1293张JPEG，并保留成员SHA；不下载完整相机归档。网络响应体总预算2GB，包含元数据扩展、无关压缩成员、失败读取和重试；默认每个相机前缀最多225MB。分片7在225MB时只取全252/256张预定图片，因此明确修订为仅该分片允许256MB前缀，总预算与所有样本保持不变。元数据只扩展到120MB前缀，完整元数据归档约534MB。父归档LFS身份用于来源记录，不声称部分前缀验证了完整归档hash。
 
 Ego `[vx,vy,ax,ay]` 的均值/标准差只从本轮TRAIN256重算。原生四维one-hot command的类别索引、后轴SE(2)坐标、真实2Hz时间戳和未来4秒8×3标签保持。legacy VAL也使用新的TRAIN统计量，不能把新旧检查点的结果差直接归因为数据量。
 
@@ -65,7 +65,7 @@ python -m tools.prepare_slowfast_expanded --plan-only \
   --legacy-sensor-root /path/to/original/sensor_blobs/mini \
   --upstream-audit /path/to/original/source_audit.json
 
-python -m tools.prepare_slowfast_expanded --acquire \
+python -m tools.prepare_slowfast_expanded --acquire --archive-cap-override 7:256000000 \
   --legacy-manifest /path/to/original/val.jsonl \
   --legacy-sensor-root /path/to/original/sensor_blobs/mini \
   --upstream-audit /path/to/original/source_audit.json

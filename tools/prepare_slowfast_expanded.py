@@ -57,10 +57,13 @@ def main():
     parser.add_argument('--source-dir',default='outputs/slowfast_v11_expanded/source')
     parser.add_argument('--budget',default='outputs/slowfast_v11_expanded/network_budget.json')
     parser.add_argument('--workers',type=int,choices=(1,2,3),default=3,help='Independent bounded camera streams (default3)')
+    parser.add_argument('--archive-cap-override',action='append',choices=('7:256000000',),default=[],
+        help='Explicit operational amendment: shard 7 only may use a 256 MB prefix; aggregate remains 2 GB')
     parser.add_argument('--legacy-manifest',default=str(BASE/'outputs/navsim/data/val.jsonl'))
     parser.add_argument('--legacy-sensor-root',default=str(BASE/'data/navsim_smoke/sensors/openscene-v1.1/sensor_blobs/mini'))
     parser.add_argument('--upstream-audit',default=str(BASE/'outputs/navsim/audit/source_audit.json'))
     args=parser.parse_args()
+    cap_overrides={int(shard):int(cap) for shard,cap in (value.split(':') for value in args.archive_cap_override)}
     root=Path(args.data_root).resolve();output=Path(args.output).resolve();source=Path(args.source_dir)
     retained=json.loads(Path(args.metadata).read_text())['files']
     index=json.loads((source/'mini_camera_index.json').read_text())
@@ -83,10 +86,12 @@ def main():
     if not args.acquire:return
     prior=json.loads(Path(args.budget).read_text())
     if prior['limit']!=2_000_000_000:raise ValueError('Expanded aggregate response-body budget is fixed at2GB')
+    prior=dict(prior,archive_prefix_cap_policy=dict(default=225_000_000,
+        overrides={str(shard):cap for shard,cap in cap_overrides.items()}))
     budget=ByteBudget(prior['limit'],prior['used'])
     expected={info['shard'] for info in plan['logs'].values()}
     import_attempt_history(output,aggregate_used=budget.used,selected_shards=expected)
-    reports={report['shard']:report for report in load_completed_reports(output,plan,tree)}
+    reports={report['shard']:report for report in load_completed_reports(output,plan,tree,archive_cap_overrides=cap_overrides)}
     verified_logs={report['log'] for report in reports.values()}
     force_reverify=set(plan['splits']['train']+plan['splits']['new_val'])-verified_logs
     def record(report):
@@ -94,7 +99,7 @@ def main():
         write_json(args.budget,dict(prior,phase='cameras',used=budget.used))
     try:
         acquire_plan(plan,tree,sensor_dest=root/'sensors',budget=budget,on_report=record,workers=args.workers,
-            force_reverify_logs=force_reverify)
+            force_reverify_logs=force_reverify,archive_cap_overrides=cap_overrides)
         if set(reports)!=expected or any(not report['complete'] for report in reports.values()):
             raise ValueError('Every selected camera archive requires completed acquisition provenance before manifests')
         coverage=verify_provenance_coverage(plan,list(reports.values()))

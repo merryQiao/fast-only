@@ -405,3 +405,54 @@ def test_final_provenance_requires_exact_camera_and_legacy_union(tmp_path):
     assert result['verified_images']==1
     reports[0]['files']=[]
     with pytest.raises(ValueError,match='coverage'):verify_provenance_coverage(plan,reports)
+
+
+def shard_seven_fixture(tmp_path,count=1):
+    plan,tree,blobs=parallel_fixture(tmp_path,count)
+    name=plan['splits']['train'][0];plan['logs'][name]['shard']=7
+    tree[0]={'path':'openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_7.tgz','size':1_000_000_000}
+    if count>1:tree[1]['size']=1_000_000_000
+    return plan,tree,blobs
+
+
+def test_explicit_shard7_cap_override_has_bounded_child_and_restart_validation(tmp_path):
+    from slowfast_v11.expanded_data import load_completed_reports
+    plan,tree,blobs=shard_seven_fixture(tmp_path);ranges=[]
+    def opener(request,timeout):
+        start,end=map(int,request.headers['Range'].split('=')[1].split('-'));ranges.append((start,end))
+        return Response(blobs[0],start,end,1_000_000_000)
+    budget=ByteBudget(256_000_123,123)
+    report=acquire_plan(plan,tree,sensor_dest=tmp_path/'sensors',budget=budget,
+        opener=opener,archive_cap_overrides={7:256_000_000})[0]
+    assert report['reserved_cap_bytes']==256_000_000
+    assert budget.used==123+len(blobs[0])
+    assert all(end<256_000_000 for start,end in ranges)
+    output=tmp_path/'out';output.mkdir();(output/'camera_7_acquisition.json').write_text(json.dumps(report))
+    with pytest.raises(ValueError):load_completed_reports(output,plan,tree)
+    assert load_completed_reports(output,plan,tree,archive_cap_overrides={7:256_000_000})==[report]
+
+
+@pytest.mark.parametrize('overrides', [{6:256_000_000},{7:256_000_001},{7:225_000_000},
+    {'7':256_000_000},{7:True},{True:256_000_000},{7.:256_000_000}])
+def test_unsupported_archive_cap_overrides_are_rejected(tmp_path,overrides):
+    plan,tree,blobs=shard_seven_fixture(tmp_path)
+    with pytest.raises(ValueError,match='override'):
+        acquire_plan(plan,tree,sensor_dest=tmp_path/'sensors',budget=ByteBudget(1_000_000_000),
+            archive_cap_overrides=overrides)
+
+
+def test_override_reservation_sums_each_pending_shard_cap_before_network(tmp_path):
+    plan,tree,blobs=shard_seven_fixture(tmp_path,2);calls=[]
+    def forbidden(*args,**kwargs):calls.append(True);raise AssertionError('Reserve first')
+    budget=ByteBudget(481_000_000,1)
+    with pytest.raises(ValueError,match='reserv'):
+        acquire_plan(plan,tree,sensor_dest=tmp_path/'sensors',budget=budget,opener=forbidden,
+            archive_cap_overrides={7:256_000_000})
+    assert not calls and budget.used==1
+
+
+def test_shard7_override_still_cannot_request_a_complete_archive(tmp_path):
+    plan,tree,blobs=shard_seven_fixture(tmp_path);tree[0]['size']=256_000_000
+    with pytest.raises(ValueError,match='complete'):
+        acquire_plan(plan,tree,sensor_dest=tmp_path/'sensors',budget=ByteBudget(1_000_000_000),
+            archive_cap_overrides={7:256_000_000})

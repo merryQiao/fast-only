@@ -190,9 +190,19 @@ def _retrying_opener(opener,max_attempts,backoff_seconds):
     return open_request,stats
 
 
+def _checked_cap_overrides(plan,overrides):
+    if overrides is None:return {}
+    selected={plan['logs'][name]['shard'] for name in plan['splits']['train']+plan['splits']['new_val']}
+    if (not isinstance(overrides,dict)
+            or any(type(shard) is not int or type(cap) is not int or shard!=7 or cap!=256_000_000
+                   or shard not in selected for shard,cap in overrides.items())):
+        raise ValueError('Only the declared shard7:256000000 archive cap override is supported')
+    return dict(overrides)
+
+
 def acquire_plan(plan,camera_tree,*,sensor_dest,budget,revision=REVISION,archive_limit=225_000_000,
                  opener=urllib.request.urlopen,on_report=None,workers=3,force_reverify_logs=None,
-                 max_request_attempts=3,retry_backoff_seconds=.5,chunk_size=8_000_000):
+                 max_request_attempts=3,retry_backoff_seconds=.5,chunk_size=8_000_000,archive_cap_overrides=None):
     """Fetch frozen paths in parallel under separately reserved archive caps.
 
     Workers never mutate the parent budget or call on_report. The calling thread
@@ -206,6 +216,7 @@ def acquire_plan(plan,camera_tree,*,sensor_dest,budget,revision=REVISION,archive
             or not math.isfinite(retry_backoff_seconds) or retry_backoff_seconds<0):
         raise ValueError('Unsupported bounded request retry/chunk policy')
     if revision!=REVISION or not 0<archive_limit<=225_000_000:raise ValueError('Unsupported archive revision/prefix cap')
+    cap_overrides=_checked_cap_overrides(plan,archive_cap_overrides)
     if 'plan_sha256' in plan and _plan_digest(plan)!=plan['plan_sha256']:raise ValueError('Frozen plan identity differs')
     sensor_root=Path(plan['sensor_root']).resolve();sensor_dest=Path(sensor_dest).resolve()
     if sensor_root!=sensor_dest/'openscene-v1.1/sensor_blobs/mini':raise ValueError('Sensor destination differs from frozen plan')
@@ -221,22 +232,23 @@ def acquire_plan(plan,camera_tree,*,sensor_dest,budget,revision=REVISION,archive
         shard=plan['logs'][name]['shard']
         archive_path=f'openscene-v1.1/openscene_sensor_mini_camera/openscene_sensor_mini_camera_{shard}.tgz'
         identity=next(item for item in camera_tree if item['path']==archive_path)
-        if archive_limit>=identity['size']:raise ValueError('Refuse a prefix cap that could request the complete archive')
+        cap=cap_overrides.get(shard,archive_limit)
+        if cap>=identity['size']:raise ValueError('Refuse a prefix cap that could request the complete archive')
         needed={str(Path(p).resolve()) for p in plan['required_images']
                 if Path(p).relative_to(sensor_root).parts[0]==name and (name in force or not Path(p).is_file())}
         if not needed:continue
         members={'openscene-v1.1/sensor_blobs/mini/'+str(Path(p).relative_to(sensor_root)) for p in needed}
         url=f'https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/{revision}/{archive_path}'
         jobs.append(dict(log=name,shard=shard,url=url,archive_identity=identity,
-                         needed=needed,members=members,budget=ByteBudget(archive_limit)))
-    reservation=len(jobs)*archive_limit
+                         needed=needed,members=members,archive_cap=cap,budget=ByteBudget(cap)))
+    reservation=sum(job['archive_cap'] for job in jobs)
     if budget.remaining<reservation:
         raise ValueError(f'Insufficient aggregate byte budget to reserve {reservation} bytes for {len(jobs)} camera prefixes')
 
     def fetch(job):
-        child=job['budget']
+        child=job['budget'];cap=job['archive_cap']
         request_opener,retry_stats=_retrying_opener(opener,max_request_attempts,retry_backoff_seconds)
-        transport=HTTPRangeReader(job['url'],child,archive_limit,chunk_size=chunk_size,opener=request_opener)
+        transport=HTTPRangeReader(job['url'],child,cap,chunk_size=chunk_size,opener=request_opener)
         failure=None;verified={}
         def publish(retained):
             for item in retained:
@@ -259,8 +271,8 @@ def acquire_plan(plan,camera_tree,*,sensor_dest,budget,revision=REVISION,archive
             return False
         try:
             with tempfile.TemporaryDirectory(prefix='.camera-verify-',dir=sensor_dest.parent) as temporary:
-                result=extract_tar_prefix(transport,temporary,ByteBudget(archive_limit+1_000_000),
-                    lambda member:member in job['members'],len(job['members']),archive_limit+1_000_000,stop=publish)
+                result=extract_tar_prefix(transport,temporary,ByteBudget(cap+1_000_000),
+                    lambda member:member in job['members'],len(job['members']),cap+1_000_000,stop=publish)
                 # extract_tar_prefix short-circuits its callback on the last
                 # selected member, so publish that final member explicitly.
                 publish(result['files'])
@@ -274,7 +286,7 @@ def acquire_plan(plan,camera_tree,*,sensor_dest,budget,revision=REVISION,archive
             attempt_id=uuid.uuid4().hex,response_body_bytes=child.used,requests=retry_stats['attempts'],
             request_attempts=retry_stats['attempts'],successful_responses=transport.requests,
             pre_response_failures=retry_stats['pre_response_failures'],chunk_size_bytes=chunk_size,
-            reserved_cap_bytes=archive_limit,
+            reserved_cap_bytes=cap,
             response_prefix_sha256=transport.sha.hexdigest() if child.used==transport.response_body_bytes else None,
             full_archive_verified=False,files=list(verified.values()),
             complete=failure is None,error=failure)
@@ -305,7 +317,7 @@ def acquire_plan(plan,camera_tree,*,sensor_dest,budget,revision=REVISION,archive
     return reports
 
 
-def load_completed_reports(output,plan,camera_tree):
+def load_completed_reports(output,plan,camera_tree,*,archive_cap_overrides=None):
     """Restore completed local archive provenance after verifying its identities.
 
     The wire-prefix digest is checked for valid form; compressed camera prefixes
@@ -313,6 +325,7 @@ def load_completed_reports(output,plan,camera_tree):
     Interrupted reports are preserved by the caller and never count as complete.
     """
     reports=[];sensor_root=Path(plan['sensor_root']).resolve()
+    cap_overrides=_checked_cap_overrides(plan,archive_cap_overrides)
     for name in plan['splits']['train']+plan['splits']['new_val']:
         shard=plan['logs'][name]['shard'];path=Path(output)/f'camera_{shard}_acquisition.json'
         if not path.exists():continue
@@ -322,11 +335,14 @@ def load_completed_reports(output,plan,camera_tree):
         identity=next(item for item in camera_tree if item['path']==archive_path)
         url=f'https://huggingface.co/datasets/OpenDriveLab/OpenScene/resolve/{REVISION}/{archive_path}'
         digest=report.get('response_prefix_sha256');requests=report.get('requests');size=report.get('response_body_bytes')
+        declared_cap=cap_overrides.get(shard,225_000_000)
+        report_cap=report.get('reserved_cap_bytes',declared_cap)
         if (report.get('log')!=name or report.get('shard')!=shard or report.get('archive_identity')!=identity
                 or report.get('url')!=url or report.get('full_archive_verified') is not False or report.get('error') is not None
                 or not isinstance(digest,str) or len(digest)!=64 or any(c not in '0123456789abcdef' for c in digest)
                 or isinstance(requests,bool) or not isinstance(requests,int) or requests<=0
-                or isinstance(size,bool) or not isinstance(size,int) or not 0<size<=225_000_000
+                or type(report_cap) is not int or not 0<report_cap<=declared_cap or report_cap>=identity['size']
+                or isinstance(size,bool) or not isinstance(size,int) or not 0<size<=report_cap
                 or not isinstance(report.get('files'),list) or not report['files']):
             raise ValueError(f'Invalid completed archive identity/accounting: {path.name}')
         required={p for p in plan['required_images'] if Path(p).relative_to(sensor_root).parts[0]==name}

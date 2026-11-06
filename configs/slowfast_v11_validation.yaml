@@ -1,0 +1,38 @@
+schema_version: slowfast_v11_validation
+seed: 42
+fast: {model_path: models/Qwen3.5-0.8B, device: 'cuda:0'}
+slow: {model_path: models/Qwen3.5-2B, device: 'cuda:0'}
+allow_single_gpu: true
+model:
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.0
+  lora_parameter_dtype: float32
+  position_offset: 4096
+data:
+  train_manifest: outputs/navsim/data/train.jsonl
+  val_manifest: outputs/navsim/data/val.jsonl
+  stats: outputs/navsim/data/stats.json
+  sensor_root: data/navsim_smoke/sensors/openscene-v1.1/sensor_blobs/mini
+  ages_s: [0.0, 0.5, 1.0, 1.5]
+  max_train_rows: 12
+  max_val_rows: 4
+  max_source_observations: 64
+  moving_speed_mps: 1.0
+processor:
+  policy: original_pad
+  pad_multiple: 32
+  brightness: 0.0
+stages:
+  fast_warmup: 80
+  slow_inputs: 20
+  slow_lora: 40
+  fast_consumer: 120
+optimizer:
+  lora_lr: 0.0001
+  new_lr: 0.0005
+  weight_decay: 0.01
+  grad_clip: 1.0
+  schedule: constant
+consumer_modes: [none, none, none, fresh, fresh, fresh, fresh, stale, stale, stale]
+output: outputs/slowfast_v11_validation

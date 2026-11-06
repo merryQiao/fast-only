@@ -4,6 +4,8 @@
 
 本分支新增 [Slow-Fast V1.1 P0 接口原型](docs/SLOWFAST_V11_P0.md)：真实 2B→0.8B 六层 KV、Planning Queries 可见性和联合梯度审计。它使用独立目录 `slowfast_v11/`；以下 Fast-only 验收记录仍对应原基线。异步调度、Future 检验和闭环收益尚未完成。
 
+后续的[小规模适配与 KV 验证](docs/SLOWFAST_V11_VALIDATION.md)包含真实训练、同检查点对照和独立重载。当前小预算结果尚未显示 KV 的位置规划增益；请连同样本覆盖和无 KV 对照阅读。
+
 **当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 
 > **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。

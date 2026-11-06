@@ -1,0 +1,74 @@
+{
+  "recorded_at_utc": "2026-11-06T10:38:47.177357+00:00",
+  "tests": {
+    "tests": 495,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests tests_navsim tests_slowfast -q --import-mode=importlib",
+  "base_commit": "81225186e77419f03deca3d7d7612bcf8fa10e2e",
+  "original_planners_unchanged": true,
+  "source_sha256": {
+    "slowfast_v11/diagnostic_data.py": "b75f9dc32f0a3ffc0e5893203af0d15cca0f0b0e6e8daa9df2e5efece766ac77",
+    "slowfast_v11/validation.py": "267c9ebd75c0ae1ac38de0dd81fd26d61b7eacbe7955b73cb8514fe85ac153f6",
+    "tools/validate_slowfast_v11.py": "09c04b49700349876d30fd744639c8c345f402f098c0e2bb5873fc9dac2a84fc",
+    "tools/reload_slowfast_validation.py": "d3b59f312f168307ef96a8b1e88571cc1f2dd383b9d40a3944205b8cd748e294",
+    "tools/control_slowfast_v11.py": "cea63023442750f41f13fcb4b6cfe0733a0e66f0b2573e4d60166862246bd100",
+    "configs/slowfast_v11_validation.yaml": "58bde8302d83d9c0147781a63c9cb937c73d3e7a091bc68544a3cb9ec206d37d"
+  },
+  "execution_passed": true,
+  "conclusion": "No positive inference-time XY planning value from correct KV established in this bounded diagnostic; not a rejection of sufficiently trained Slow-Fast.",
+  "main_optimizer_updates": 260,
+  "additional_matched_control_updates": 120,
+  "combined_operational_updates": 380,
+  "val_used_for_selection": false,
+  "test_used": false,
+  "new_data_downloaded": false,
+  "real_weight_original_resolution": true,
+  "multi_gpu_validated": false,
+  "independent_review": {
+    "data_tests": 20,
+    "training_tests": 6,
+    "reload_tests": 34,
+    "control_tests": 16,
+    "remaining_important_findings": 0
+  },
+  "independent_process_reload": {
+    "passed": true,
+    "count": 13,
+    "atol": 0.0,
+    "max_abs_difference": 0.0,
+    "by_mode": {
+      "none": {
+        "count": 4,
+        "max_abs_difference": 0.0,
+        "passed": true
+      },
+      "fresh": {
+        "count": 4,
+        "max_abs_difference": 0.0,
+        "passed": true
+      },
+      "shuffled": {
+        "count": 4,
+        "max_abs_difference": 0.0,
+        "passed": true
+      },
+      "stale": {
+        "count": 1,
+        "max_abs_difference": 0.0,
+        "passed": true
+      }
+    }
+  },
+  "training_continuation_verified": false,
+  "limitations": [
+    "12 TRAIN / 4 VAL from 3 logs; VAL contains only one moving case",
+    "VAL has one stationary 0.5s stale pair and no 1s/1.5s pair",
+    "Same Fast update budget and target order, but main has 60 additional Slow updates",
+    "One training seed; no actual async delivery or closed-loop measurements",
+    "Learning-model errors remain above the constant-velocity reference"
+  ],
+  "inference_time_kv_position_benefit_established": false
+}

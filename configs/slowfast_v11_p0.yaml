@@ -1,0 +1,45 @@
+schema_version: slowfast_v11_p0
+seed: 42
+fast:
+  model_path: models/Qwen3.5-0.8B
+  device: cuda:0
+slow:
+  model_path: models/Qwen3.5-2B
+  device: cuda:1
+model:
+  dtype: bfloat16
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.0  # Interface audit uses eval; train dropout must be chosen later.
+  lora_parameter_dtype: float32
+interface:
+  layers_one_based: [4, 8, 12, 16, 20, 24]
+  planning_queries: 8
+  fast_position_offset: 4096
+  metadata_fields: [age_s, dx_m, dy_m, sin_dyaw, cos_dyaw, enabled]
+  metadata_units: raw_SI
+  no_cache_policy: learned_missing_token_when_absent_or_disabled
+  source_key: after_knorm_before_rope
+  fusion: planning_rows_only_sdpa_before_native_output_projection
+  native_state: reset_each_forward
+  loss: existing_navsim_mean_l1_pose
+  gradient_checkpointing: false
+data:
+  manifest: outputs/navsim/data/deep_train.jsonl
+  stats: outputs/navsim/data/stats.json
+  frequency_hz: 2
+  camera: CAM_F0
+  image_policy: original_pad
+  pad_multiple: 32
+  history_times_s: [-1.5, -1.0, -0.5, 0.0]
+  future_times_s: [0.5, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0]
+audit:
+  samples: 1
+  optimizer_updates: 1
+  allow_single_gpu: false
+  output: outputs/slowfast_v11/p0.json
+scope:
+  future_head: deferred_P2
+  motion_head: deferred
+  async_scheduler: deferred_P4
+  closed_loop_evaluation: deferred_P5

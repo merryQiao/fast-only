@@ -1,0 +1,395 @@
+{
+  "passed": true,
+  "scope": "P0/P1 interface audit; untrained planning additions; not KV planning benefit",
+  "multi_gpu_validated": false,
+  "device_assignment": {
+    "fast": "cuda:0",
+    "slow": "cuda:0"
+  },
+  "clock_test": "synthetic mapped times only; actual async publication not implemented",
+  "compatibility": {
+    "layers_one_based": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24
+    ],
+    "kv_heads": 2,
+    "head_dim": 256,
+    "fast_width": 1024,
+    "slow_width": 2048
+  },
+  "checks": {
+    "masked_equals_absent": true,
+    "masked_content_independent": true,
+    "context_content_independent": true,
+    "active_content_changes_plan": true,
+    "active_max_plan_change_mixed_units": 0.369951456785202,
+    "optimizer_changed_fast_head": true,
+    "all_trainable_gradients_finite": true,
+    "fast_loss_reaches_slow": true,
+    "new_input_gradients_valid": true,
+    "visual_frozen_and_without_gradient": true
+  },
+  "gradients": {
+    "slow_lora_from_fast_loss": {
+      "count": 182,
+      "finite": true,
+      "nonzero": true
+    },
+    "slow_feedback_from_fast_loss": {
+      "count": 4,
+      "finite": true,
+      "nonzero": true
+    },
+    "fast_metadata": {
+      "count": 4,
+      "finite": true,
+      "nonzero": true
+    },
+    "slow_kv_layers": [
+      {
+        "key": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        },
+        "value": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      {
+        "key": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        },
+        "value": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      {
+        "key": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        },
+        "value": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      {
+        "key": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        },
+        "value": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      {
+        "key": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        },
+        "value": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      {
+        "key": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        },
+        "value": {
+          "count": 1,
+          "finite": true,
+          "nonzero": true
+        }
+      }
+    ],
+    "fast_visual_frozen": true,
+    "slow_visual_frozen": true
+  },
+  "image_audit": {
+    "fast": [
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      },
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      },
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      },
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      }
+    ],
+    "slow": [
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      },
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      },
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      },
+      {
+        "source_size_wh": [
+          1920,
+          1080
+        ],
+        "processed_size_wh": [
+          1920,
+          1088
+        ],
+        "resized": false,
+        "padding_ltrb": [
+          0,
+          0,
+          0,
+          8
+        ],
+        "policy": "original_pad",
+        "image_grid_thw": [
+          1,
+          68,
+          120
+        ],
+        "visual_tokens": 2040
+      }
+    ]
+  },
+  "layout": {
+    "fast": {
+      "sequence_length": 8248,
+      "trajectory_shape": [
+        8,
+        3
+      ],
+      "suffix_order": [
+        "ego",
+        "command",
+        "cache_metadata",
+        "planning_queries_x8"
+      ],
+      "position_offset": 4096,
+      "query_indices": [
+        8240,
+        8241,
+        8242,
+        8243,
+        8244,
+        8245,
+        8246,
+        8247
+      ]
+    },
+    "slow": {
+      "sequence_length": 8255,
+      "trajectory_shape": [
+        8,
+        3
+      ],
+      "feedback_missing": false,
+      "feedback_times_s": [
+        0.5,
+        1.0,
+        1.5,
+        2.0,
+        2.5,
+        3.0,
+        3.5,
+        4.0
+      ],
+      "suffix_order": [
+        "ego",
+        "command",
+        "feedback_x8",
+        "planning_queries_x8"
+      ]
+    }
+  },
+  "samples": 1,
+  "optimizer_updates": 1,
+  "fast_loss_only": 0.8989226222038269,
+  "grad_norm": 13.23729419708252,
+  "active_fast_model_only_ms_single_measurement": 161.90655902028084,
+  "memory": {
+    "cuda:0": {
+      "gpu": "NVIDIA H800",
+      "peak_allocated_gib": 49.49542284011841,
+      "peak_reserved_gib": 50.88671875
+    }
+  },
+  "elapsed_s": 27.61496725678444,
+  "torch": "2.8.0+cu128",
+  "seed": 42,
+  "deterministic_algorithms": false,
+  "feature_future_head": "not implemented",
+  "native_training_checkpoint_resume": "not implemented for joint prototype"
+}

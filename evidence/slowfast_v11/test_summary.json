@@ -1,0 +1,47 @@
+{
+  "recorded_at_utc": "2026-11-06T10:02:39.325475+00:00",
+  "command": "OMP_NUM_THREADS=2 OPENBLAS_NUM_THREADS=2 PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests tests_navsim tests_slowfast -q --import-mode=importlib",
+  "result": {
+    "tests": 419,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "baseline_tests": 402,
+  "new_tests": 17,
+  "cuda_startup_regression_executed": true,
+  "local_fixtures": "existing local 0.8B processor assets and historical B2D source audit supplied under ignored paths; no dataset downloaded",
+  "baseline_commit": "ef77e1ff2b848983bd6756fe4e0119f656caffd7",
+  "baseline_source_unchanged": [
+    "fast_navsim",
+    "fast_only",
+    "tests",
+    "tests_navsim",
+    "configs/navsim.yaml",
+    "configs/navsim_preflight.yaml"
+  ],
+  "source_sha256": {
+    "slowfast_v11/__init__.py": "2a976ffd06188ec332ab1075ce46fee29ac3684114c19312ef98e52639b64cdc",
+    "slowfast_v11/attention.py": "114f174759bbec1ff746e57922a667df38a7ec98217b8ae4bcdfeb3b3fafab72",
+    "slowfast_v11/model.py": "44c328f44d438526241d404021e94a1a2ebec5ec72ff20144dea832c246a78d8",
+    "slowfast_v11/protocol.py": "760904674097e0c028f1d2b7e4446a977d81bfe9b624fe01a83322cb7c2e8d3e",
+    "tools/slowfast_v11_audit.py": "311a599be31a15c4aa063ba36296d6fc7e9e74f75317ec7087022d31c7ead1fe"
+  },
+  "independent_review": {
+    "focused_tests_passed": 17,
+    "status": "no remaining important findings within bounded P0/partial P1 scope",
+    "resolved_findings": [
+      "Reject nonfinite or integer KV, including masked columns",
+      "Require key and value gradients independently",
+      "Reject native cache and malformed/reused hook sessions",
+      "Initialize CUDA before peak allocator statistics"
+    ]
+  },
+  "limitations": [
+    "One physical H800 only; multi GPU not validated",
+    "No Future/motion head, asynchronous scheduler or closed loop validation",
+    "No measured KV planning benefit; newly added modules not trained",
+    "Joint prototype checkpoint/resume not implemented"
+  ],
+  "warnings": "Upstream SWIG and NumPy processing DeprecationWarnings; no failed/skipped tests"
+}

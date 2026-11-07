@@ -1,0 +1,23 @@
+schema: frozen_slow_expert_control_v1
+source_run: outputs/slowfast_v11_expanded/run_01
+feature_run: outputs/slowfast_readability/run_01
+seed: 42
+steps: 4096
+micro_batch: 1
+train_size: 256
+warmup_steps: 128
+min_lr_ratio: 0.1
+weight_decay: 0.01
+grad_clip: 1.0
+block_lr: 0.0001
+conditioning_head_lr: 0.0005
+curve_steps: [1024, 2048, 3072, 4096]
+expert:
+  width: 512
+  ffn_width: 1536
+  layers: 24
+  query_heads: 8
+  kv_heads: 2
+  head_dim: 256
+  position_offset: 4096
+max_allocated_gib: 76

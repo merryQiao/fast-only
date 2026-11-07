@@ -1,0 +1,4638 @@
+{
+  "new_val": {
+    "correct": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.03196195204509422,
+            "mass_per_token": 1.5667623551516774e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.017856333884992637,
+            "mass_per_token": 8.753104845584626e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.013327062712050974,
+            "mass_per_token": 6.532873878456359e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010228473984170705,
+            "mass_per_token": 5.013957835377796e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.013776658379356377,
+            "mass_per_token": 0.00017891764129034256
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 6.462084007807789e-05,
+            "mass_per_token": 6.462084007807789e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.171339526237716e-05,
+            "mass_per_token": 4.171339526237716e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0010502698760319618,
+            "mass_per_token": 0.00013128373450399522
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0014108703708188841,
+            "mass_per_token": 0.00017635879635236051
+          }
+        },
+        "external_mass": 0.08971795532852411,
+        "self_mass": 0.910282046534121,
+        "external_value_norm": 0.6036997614428401,
+        "self_value_norm": 6.272482588887215,
+        "combined_value_norm": 6.751666896045208
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011527204362209886,
+            "mass_per_token": 5.650590373632297e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.013274785655084997,
+            "mass_per_token": 6.507247870139704e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007704140331043163,
+            "mass_per_token": 3.7765393779623346e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009555653741699643,
+            "mass_per_token": 4.684143991029237e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.00102952105771692,
+            "mass_per_token": 1.3370403346972988e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.4415712961124427e-05,
+            "mass_per_token": 1.4415712961124427e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.0393380633088043e-05,
+            "mass_per_token": 2.0393380633088043e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00018046963577944553,
+            "mass_per_token": 2.255870447243069e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00023160879743500118,
+            "mass_per_token": 2.8951099679375147e-05
+          }
+        },
+        "external_mass": 0.043538192519918084,
+        "self_mass": 0.9564618011936545,
+        "external_value_norm": 0.2824673466384411,
+        "self_value_norm": 6.761369653046131,
+        "combined_value_norm": 6.934074707329273
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.02374231713474728,
+            "mass_per_token": 1.16383907523271e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00923826869984623,
+            "mass_per_token": 4.528563088159917e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007100166694726795,
+            "mass_per_token": 3.480473869964115e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008515836168953683,
+            "mass_per_token": 4.174429494585139e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.004098357811017195,
+            "mass_per_token": 5.322542611710642e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 9.735182104009255e-05,
+            "mass_per_token": 9.735182104009255e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.110919322286577e-05,
+            "mass_per_token": 4.110919322286577e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 8.735058707998178e-05,
+            "mass_per_token": 1.0918823384997722e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.000373304875552094,
+            "mass_per_token": 4.666310944401175e-05
+          }
+        },
+        "external_mass": 0.05329406284727156,
+        "self_mass": 0.9467059401795268,
+        "external_value_norm": 0.312055884860456,
+        "self_value_norm": 6.793672241270542,
+        "combined_value_norm": 6.952552899718285
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011345933700795285,
+            "mass_per_token": 5.561732206272198e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009891704241454136,
+            "mass_per_token": 4.848874628163792e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007875607370806392,
+            "mass_per_token": 3.860591848434506e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005925265613768715,
+            "mass_per_token": 2.9045419675336843e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.011101795116701396,
+            "mass_per_token": 0.0001441791573597584
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00018951883213702558,
+            "mass_per_token": 0.00018951883213702558
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 8.227921011183525e-06,
+            "mass_per_token": 8.227921011183525e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00032538522486902366,
+            "mass_per_token": 4.067315310862796e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0003385505410733458,
+            "mass_per_token": 4.2318817634168227e-05
+          }
+        },
+        "external_mass": 0.04700198821956292,
+        "self_mass": 0.9529980160295963,
+        "external_value_norm": 0.6524247056804597,
+        "self_value_norm": 7.901112645864487,
+        "combined_value_norm": 8.317865513265133
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007312845667911461,
+            "mass_per_token": 3.5847282685840493e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005371500481487601,
+            "mass_per_token": 2.6330884713174515e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004450569937944238,
+            "mass_per_token": 2.1816519303648223e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0037826236975888605,
+            "mass_per_token": 1.8542273027396373e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0021026825061198906,
+            "mass_per_token": 2.7307565014544034e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.571615190305465e-05,
+            "mass_per_token": 2.571615190305465e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.640631406260809e-06,
+            "mass_per_token": 4.640631406260809e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00035677042546922166,
+            "mass_per_token": 4.459630318365271e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.000357629523932701,
+            "mass_per_token": 4.470369049158762e-05
+          }
+        },
+        "external_mass": 0.023764979276165832,
+        "self_mass": 0.976235019043088,
+        "external_value_norm": 0.2374178043100983,
+        "self_value_norm": 12.570765763521194,
+        "combined_value_norm": 12.73514373600483
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00893196344259195,
+            "mass_per_token": 4.378413452250956e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.003329934522298572,
+            "mass_per_token": 1.632320844264006e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002772920299321413,
+            "mass_per_token": 1.3592746565301044e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00274303171045176,
+            "mass_per_token": 1.3446233874763527e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.000823419028392891,
+            "mass_per_token": 1.0693753615492092e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.080800000176964e-05,
+            "mass_per_token": 3.080800000176964e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.4215827309225233e-06,
+            "mass_per_token": 3.4215827309225233e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 7.123624342852963e-05,
+            "mass_per_token": 8.904530428566204e-06
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00019765700906759776,
+            "mass_per_token": 2.470712613344972e-05
+          }
+        },
+        "external_mass": 0.018904391869000392,
+        "self_mass": 0.9810956101864576,
+        "external_value_norm": 1.040664913598448,
+        "self_value_norm": 37.20447778701782,
+        "combined_value_norm": 38.193946838378906
+      }
+    ],
+    "shuffled": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.033425387722672895,
+            "mass_per_token": 1.6384993981702398e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.018538862306741066,
+            "mass_per_token": 9.08767760134366e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.01396817910426762,
+            "mass_per_token": 6.847146619739029e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010617856256430969,
+            "mass_per_token": 5.204831498250475e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.013768139426247217,
+            "mass_per_token": 0.00017880700553567816
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 6.505877854579012e-05,
+            "mass_per_token": 6.505877854579012e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.564839337855119e-05,
+            "mass_per_token": 3.564839337855119e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.001091472506232094,
+            "mass_per_token": 0.00013643406327901175
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0014291868874352076,
+            "mass_per_token": 0.00017864836092940095
+          }
+        },
+        "external_mass": 0.09293979161884636,
+        "self_mass": 0.9070602105930448,
+        "external_value_norm": 0.6296064159832895,
+        "self_value_norm": 6.254259832203388,
+        "combined_value_norm": 6.745199881494045
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.013092102453811094,
+            "mass_per_token": 6.417697281279948e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.015563544693577569,
+            "mass_per_token": 7.629188575283122e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008862343012879137,
+            "mass_per_token": 4.344285790627028e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011108945371233858,
+            "mass_per_token": 5.4455614564871845e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0010099113333126297,
+            "mass_per_token": 1.3115731601462724e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.62829989420743e-05,
+            "mass_per_token": 1.62829989420743e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.186067289906447e-05,
+            "mass_per_token": 3.186067289906447e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0001484396190676307,
+            "mass_per_token": 1.8554952383453838e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0002149356582776818,
+            "mass_per_token": 2.6866957284710224e-05
+          }
+        },
+        "external_mass": 0.05004836569423787,
+        "self_mass": 0.9499516393989325,
+        "external_value_norm": 0.3302277837647125,
+        "self_value_norm": 6.721109554171562,
+        "combined_value_norm": 6.924707874655724
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.024047253667959012,
+            "mass_per_token": 1.1787869445077946e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00931105768904672,
+            "mass_per_token": 4.56424396521898e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0071164669207064435,
+            "mass_per_token": 3.4884641768168843e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008483290886942996,
+            "mass_per_token": 4.158475924972056e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.00409507088988903,
+            "mass_per_token": 5.3182738829727656e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00014441132586284766,
+            "mass_per_token": 0.00014441132586284766
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.5147452141993654e-05,
+            "mass_per_token": 2.5147452141993654e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00010189289838535842,
+            "mass_per_token": 1.2736612298169803e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0004440305378921039,
+            "mass_per_token": 5.550381723651299e-05
+          }
+        },
+        "external_mass": 0.05376862161210738,
+        "self_mass": 0.9462313782423735,
+        "external_value_norm": 0.31297720200382173,
+        "self_value_norm": 6.796090543270111,
+        "combined_value_norm": 6.949440881609917
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011794411955634132,
+            "mass_per_token": 5.781574488055947e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010304501542123035,
+            "mass_per_token": 5.051226246138743e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00813940920488676,
+            "mass_per_token": 3.989906472983707e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006162009420222603,
+            "mass_per_token": 3.0205928530502953e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.011136059431009926,
+            "mass_per_token": 0.00014462414845467435
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.0001964705904811126,
+            "mass_per_token": 0.0001964705904811126
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 9.64562492433707e-06,
+            "mass_per_token": 9.64562492433707e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00034106527334643033,
+            "mass_per_token": 4.263315916830379e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0003208144395898671,
+            "mass_per_token": 4.010180494873339e-05
+          }
+        },
+        "external_mass": 0.04840438751853071,
+        "self_mass": 0.9515956118702888,
+        "external_value_norm": 0.665730515960604,
+        "self_value_norm": 7.885777719318867,
+        "combined_value_norm": 8.306952953338623
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0069035913147672545,
+            "mass_per_token": 3.3841133895917915e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005287064945150632,
+            "mass_per_token": 2.59169850252482e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004306471255404176,
+            "mass_per_token": 2.111015321276557e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.003631119521742221,
+            "mass_per_token": 1.7799605498736377e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0020947313441865845,
+            "mass_per_token": 2.7204303171254342e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.3219777485650184e-05,
+            "mass_per_token": 2.3219777485650184e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 6.311228743616226e-06,
+            "mass_per_token": 6.311228743616226e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00038663532444616067,
+            "mass_per_token": 4.832941555577008e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00034135490739117813,
+            "mass_per_token": 4.2669363423897266e-05
+          }
+        },
+        "external_mass": 0.022980499546974897,
+        "self_mass": 0.9770194971933961,
+        "external_value_norm": 0.22782054380513728,
+        "self_value_norm": 12.57714231312275,
+        "combined_value_norm": 12.733593299984932
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009167824568066862,
+            "mass_per_token": 4.494031651013168e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0033295889897999587,
+            "mass_per_token": 1.632151465588215e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002698189216062019,
+            "mass_per_token": 1.322641772579421e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0026187232319898612,
+            "mass_per_token": 1.2836878588185594e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0008254224367192364,
+            "mass_per_token": 1.0719771905444628e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.154523947872633e-05,
+            "mass_per_token": 2.154523947872633e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.5924058332525988e-06,
+            "mass_per_token": 3.5924058332525988e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00011693267601486923,
+            "mass_per_token": 1.4616584501858654e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00016806213221798316,
+            "mass_per_token": 2.1007766527247895e-05
+          }
+        },
+        "external_mass": 0.01894988077765447,
+        "self_mass": 0.9810501234605908,
+        "external_value_norm": 1.0442987710703164,
+        "self_value_norm": 37.20147806406021,
+        "combined_value_norm": 38.19442147016525
+      }
+    ],
+    "contrast": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.030841493949992582,
+            "mass_per_token": 1.5118379387251265e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.017543750815093517,
+            "mass_per_token": 8.599877850536038e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.013104469835525379,
+            "mass_per_token": 6.423759723296754e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.01014491030946374,
+            "mass_per_token": 4.972995249737127e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.014034932595677674,
+            "mass_per_token": 0.00018227185189191787
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.0001257826913416693,
+            "mass_per_token": 0.0001257826913416693
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.721149198554485e-05,
+            "mass_per_token": 3.721149198554485e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0012272718399799487,
+            "mass_per_token": 0.0001534089799974936
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0016022526106098667,
+            "mass_per_token": 0.00020028157632623333
+          }
+        },
+        "external_mass": 0.0886620762757957,
+        "self_mass": 0.9113379288464785,
+        "external_value_norm": 0.5983926397748291,
+        "self_value_norm": 6.275275811553001,
+        "combined_value_norm": 6.743413805961609
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.015058224482345395,
+            "mass_per_token": 7.3814825893849975e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.018443024178850465,
+            "mass_per_token": 9.040698126887483e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009291566257161321,
+            "mass_per_token": 4.554689341745745e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.012250906165718334,
+            "mass_per_token": 6.00534615966585e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.001010328710435715,
+            "mass_per_token": 1.3121152083580713e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.7245295751422418e-05,
+            "mass_per_token": 1.7245295751422418e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.9144664832614353e-05,
+            "mass_per_token": 2.9144664832614353e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00015147775343393732,
+            "mass_per_token": 1.8934719179242165e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00019172644715581555,
+            "mass_per_token": 2.3965805894476944e-05
+          }
+        },
+        "external_mass": 0.056443643756210804,
+        "self_mass": 0.9435563664883375,
+        "external_value_norm": 0.38153184088878334,
+        "self_value_norm": 6.6806696727871895,
+        "combined_value_norm": 6.919319771230221
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.023131404726882465,
+            "mass_per_token": 1.1338923885726698e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008950559993536444,
+            "mass_per_token": 4.387529408596296e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006807955513068009,
+            "mass_per_token": 3.337233094641181e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0077966372919036075,
+            "mass_per_token": 3.821881025442945e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.004133240221563028,
+            "mass_per_token": 5.367844443588348e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00018331323235543096,
+            "mass_per_token": 0.00018331323235543096
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.1308761752436567e-05,
+            "mass_per_token": 2.1308761752436567e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00010402009689869374,
+            "mass_per_token": 1.3002512112336717e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0005471671452141891,
+            "mass_per_token": 6.839589315177363e-05
+          }
+        },
+        "external_mass": 0.051675606169737875,
+        "self_mass": 0.9483243888244033,
+        "external_value_norm": 0.3021813938394189,
+        "self_value_norm": 6.818773254752159,
+        "combined_value_norm": 6.967902667820454
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.012130460621847305,
+            "mass_per_token": 5.946304226395738e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010328979187761433,
+            "mass_per_token": 5.063225092039918e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008022044545214158,
+            "mass_per_token": 3.932374777065763e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005893332890991587,
+            "mass_per_token": 2.8888886720546997e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.011106027908681426,
+            "mass_per_token": 0.00014423412868417435
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00022244391595904744,
+            "mass_per_token": 0.00022244391595904744
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.037359774613833e-05,
+            "mass_per_token": 1.037359774613833e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00025157661019648003,
+            "mass_per_token": 3.1447076274560004e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00036652958442573436,
+            "mass_per_token": 4.5816198053216795e-05
+          }
+        },
+        "external_mass": 0.04833176897955127,
+        "self_mass": 0.9516682252287865,
+        "external_value_norm": 0.6715459125116467,
+        "self_value_norm": 7.882858417928219,
+        "combined_value_norm": 8.308494605123997
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0067103123910783324,
+            "mass_per_token": 3.2893688191560454e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005092082580631541,
+            "mass_per_token": 2.4961189120742845e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004106786854208622,
+            "mass_per_token": 2.0131308108865792e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.003413052615542256,
+            "mass_per_token": 1.6730650076187528e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.002093904436151206,
+            "mass_per_token": 2.7193564105859818e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.3612917704317624e-05,
+            "mass_per_token": 3.3612917704317624e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 7.005109925017905e-06,
+            "mass_per_token": 7.005109925017905e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0003328579024355349,
+            "mass_per_token": 4.1607237804441866e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0003308925138298946,
+            "mass_per_token": 4.1361564228736825e-05
+          }
+        },
+        "external_mass": 0.02212050717935199,
+        "self_mass": 0.9778794934973121,
+        "external_value_norm": 0.21925146726425737,
+        "self_value_norm": 12.584018930792809,
+        "combined_value_norm": 12.73332965373993
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009266240887882304,
+            "mass_per_token": 4.542274945040346e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.003225212762117735,
+            "mass_per_token": 1.580986648096929e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002565968094586424,
+            "mass_per_token": 1.2578274973462863e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002486744778252614,
+            "mass_per_token": 1.2189925383591245e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0008245050089499273,
+            "mass_per_token": 1.0707857259089966e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.9306678200669012e-05,
+            "mass_per_token": 2.9306678200669012e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.30062937425879e-06,
+            "mass_per_token": 3.30062937425879e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00011139089316003492,
+            "mass_per_token": 1.3923861645004365e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00015084026460954192,
+            "mass_per_token": 1.885503307619274e-05
+          }
+        },
+        "external_mass": 0.01866351013086387,
+        "self_mass": 0.9813364865258336,
+        "external_value_norm": 1.0279453196562827,
+        "self_value_norm": 37.21232545375824,
+        "combined_value_norm": 38.18968254327774
+      }
+    ],
+    "masked": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.819723896682262,
+        "combined_value_norm": 6.819723896682262
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 7.020253784954548,
+        "combined_value_norm": 7.020253784954548
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 0.9999999990686774,
+        "external_value_norm": 0.0,
+        "self_value_norm": 7.108523726463318,
+        "combined_value_norm": 7.108523726463318
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 8.262447692453861,
+        "combined_value_norm": 8.262447692453861
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 12.74814946949482,
+        "combined_value_norm": 12.74814946949482
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 37.923524081707,
+        "combined_value_norm": 37.923524081707
+      }
+    ],
+    "zero_v": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.03196195204509422,
+            "mass_per_token": 1.5667623551516774e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.017856333884992637,
+            "mass_per_token": 8.753104845584626e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.013327062712050974,
+            "mass_per_token": 6.532873878456359e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010228473984170705,
+            "mass_per_token": 5.013957835377796e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.013776658379356377,
+            "mass_per_token": 0.00017891764129034256
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 6.462084007807789e-05,
+            "mass_per_token": 6.462084007807789e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.171339526237716e-05,
+            "mass_per_token": 4.171339526237716e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0010502698760319618,
+            "mass_per_token": 0.00013128373450399522
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0014108703708188841,
+            "mass_per_token": 0.00017635879635236051
+          }
+        },
+        "external_mass": 0.08971795532852411,
+        "self_mass": 0.910282046534121,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.272482588887215,
+        "combined_value_norm": 6.272482588887215
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011507096533023287,
+            "mass_per_token": 5.640733594619259e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.012898258995846845,
+            "mass_per_token": 6.322675978356296e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007565308958874084,
+            "mass_per_token": 3.708484783761806e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009347970437374897,
+            "mass_per_token": 4.582338449693577e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0010023110826296033,
+            "mass_per_token": 1.3017027047137705e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.4337710169343154e-05,
+            "mass_per_token": 1.4337710169343154e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.9577154896310844e-05,
+            "mass_per_token": 1.9577154896310844e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0001756471496037193,
+            "mass_per_token": 2.1955893700464912e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0002271185348945437,
+            "mass_per_token": 2.8389816861817962e-05
+          }
+        },
+        "external_mass": 0.042757626477396116,
+        "self_mass": 0.9572423761710525,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.779941461980343,
+        "combined_value_norm": 6.779941461980343
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.023771035514073446,
+            "mass_per_token": 1.165246838925169e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00924843005486764,
+            "mass_per_token": 4.533544144542961e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007114015890692826,
+            "mass_per_token": 3.487262691516091e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008560459689761046,
+            "mass_per_token": 4.196303769490709e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.004228852012602147,
+            "mass_per_token": 5.492015600782009e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 9.799008364552719e-05,
+            "mass_per_token": 9.799008364552719e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.072822957823519e-05,
+            "mass_per_token": 4.072822957823519e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 8.687193638934332e-05,
+            "mass_per_token": 1.0858992048667915e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00036838865980826085,
+            "mass_per_token": 4.604858247603261e-05
+          }
+        },
+        "external_mass": 0.05351677205180749,
+        "self_mass": 0.9464832302182913,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.692720852792263,
+        "combined_value_norm": 6.692720852792263
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011754798426409252,
+            "mass_per_token": 5.762156091377084e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010074075951706618,
+            "mass_per_token": 4.938272525346381e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007955705041240435,
+            "mass_per_token": 3.8998554123727624e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005944285585428588,
+            "mass_per_token": 2.9138654830532297e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.010459669909323566,
+            "mass_per_token": 0.00013583986895225413
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.0001842402979690405,
+            "mass_per_token": 0.0001842402979690405
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 8.403534128120782e-06,
+            "mass_per_token": 8.403534128120782e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00031711798158085003,
+            "mass_per_token": 3.9639747697606253e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0003299083452930063,
+            "mass_per_token": 4.1238543161625785e-05
+          }
+        },
+        "external_mass": 0.047028204950038344,
+        "self_mass": 0.952971801161766,
+        "external_value_norm": 0.0,
+        "self_value_norm": 7.8743045553565025,
+        "combined_value_norm": 7.8743045553565025
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00747115285412292,
+            "mass_per_token": 3.662329830452412e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005419973649622989,
+            "mass_per_token": 2.6568498282465633e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004472292115679011,
+            "mass_per_token": 2.1923000567053976e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0037663278835680103,
+            "mass_per_token": 1.8462391586117697e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.002176227336349257,
+            "mass_per_token": 2.8262692679860476e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.57164455597092e-05,
+            "mass_per_token": 2.57164455597092e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.575403824702562e-06,
+            "mass_per_token": 4.575403824702562e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00035504890433912806,
+            "mass_per_token": 4.438111304239101e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0003616806632180669,
+            "mass_per_token": 4.5210082902258364e-05
+          }
+        },
+        "external_mass": 0.024052995133388322,
+        "self_mass": 0.9759470000863075,
+        "external_value_norm": 0.0,
+        "self_value_norm": 12.563893899321556,
+        "combined_value_norm": 12.563893899321556
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00896890600779443,
+            "mass_per_token": 4.396522552840407e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00333834438060876,
+            "mass_per_token": 1.6364433238278233e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002779523610115575,
+            "mass_per_token": 1.3625115735860662e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0027379371013012133,
+            "mass_per_token": 1.3421260300496143e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0008200045217563456,
+            "mass_per_token": 1.0649409373459033e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.952517009902067e-05,
+            "mass_per_token": 2.952517009902067e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.447954449509183e-06,
+            "mass_per_token": 3.447954449509183e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 7.046529174203897e-05,
+            "mass_per_token": 8.808161467754871e-06
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00019521145162570974,
+            "mass_per_token": 2.4401431453213718e-05
+          }
+        },
+        "external_mass": 0.018943365466839168,
+        "self_mass": 0.9810566306114197,
+        "external_value_norm": 0.0,
+        "self_value_norm": 37.21369433403015,
+        "combined_value_norm": 37.21369433403015
+      }
+    ],
+    "reference": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.03198102780152112,
+            "mass_per_token": 1.5676974412510353e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.016458561090985313,
+            "mass_per_token": 8.067922103424174e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.012736973163555376,
+            "mass_per_token": 6.243614295860479e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009891656649415381,
+            "mass_per_token": 4.8488512987330295e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.01382441321038641,
+            "mass_per_token": 0.0001795378339011222
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.4533584419496037e-05,
+            "mass_per_token": 1.4533584419496037e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.0872115683800985e-05,
+            "mass_per_token": 2.0872115683800985e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.000635199250154983,
+            "mass_per_token": 7.939990626937288e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0012448680772649823,
+            "mass_per_token": 0.00015560850965812278
+          }
+        },
+        "external_mass": 0.08680810534860939,
+        "self_mass": 0.9131918987259269,
+        "external_value_norm": 0.6079567633569241,
+        "self_value_norm": 6.273227967321873,
+        "combined_value_norm": 6.756238579750061
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.014320880960440263,
+            "mass_per_token": 7.020039686490324e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.016822072429931723,
+            "mass_per_token": 8.24611393624104e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010363813275034772,
+            "mass_per_token": 5.080300625017046e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011961023956246208,
+            "mass_per_token": 5.8632470373755925e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0010097263011630275,
+            "mass_per_token": 1.3113328586532825e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.0282096148728215e-05,
+            "mass_per_token": 1.0282096148728215e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.08561054459733e-05,
+            "mass_per_token": 5.08561054459733e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00017007164530014052,
+            "mass_per_token": 2.1258955662517565e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.000306962356035001,
+            "mass_per_token": 3.8370294504375124e-05
+          }
+        },
+        "external_mass": 0.055015688558341935,
+        "self_mass": 0.9449843149632215,
+        "external_value_norm": 0.37965938448905945,
+        "self_value_norm": 6.695036858320236,
+        "combined_value_norm": 6.938329517841339
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.02459452314360533,
+            "mass_per_token": 1.2056138795884966e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008471389999613166,
+            "mass_per_token": 4.152642156673121e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006637121001404012,
+            "mass_per_token": 3.253490686962751e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007298324675502954,
+            "mass_per_token": 3.577610135050468e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.004078317309904378,
+            "mass_per_token": 5.296515986888803e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 6.77771186587961e-05,
+            "mass_per_token": 6.77771186587961e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 6.083182648808361e-05,
+            "mass_per_token": 6.083182648808361e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00015815182018741325,
+            "mass_per_token": 1.9768977523426656e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0002254024618650874,
+            "mass_per_token": 2.8175307733135924e-05
+          }
+        },
+        "external_mass": 0.051591839554021135,
+        "self_mass": 0.9484081557020545,
+        "external_value_norm": 0.30230408906936646,
+        "self_value_norm": 6.81425079703331,
+        "combined_value_norm": 6.966244466602802
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.01191462255519582,
+            "mass_per_token": 5.84050125254697e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009997598725021817,
+            "mass_per_token": 4.900783688736185e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007679579714022111,
+            "mass_per_token": 3.7644998598147603e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005664071923092706,
+            "mass_per_token": 2.7765058446532873e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.011204536487639416,
+            "mass_per_token": 0.000145513460878434
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.0001405531995715137,
+            "mass_per_token": 0.0001405531995715137
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 6.490061686292847e-06,
+            "mass_per_token": 6.490061686292847e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00029539425975144695,
+            "mass_per_token": 3.692428246893087e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00020129667677792895,
+            "mass_per_token": 2.516208459724112e-05
+          }
+        },
+        "external_mass": 0.04710414362489246,
+        "self_mass": 0.9528958555310965,
+        "external_value_norm": 0.6645179428160191,
+        "self_value_norm": 7.89222077280283,
+        "combined_value_norm": 8.313333697617054
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007205539523056359,
+            "mass_per_token": 3.5321272171844897e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0050730215616567875,
+            "mass_per_token": 2.4867752753219545e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0041771880960368435,
+            "mass_per_token": 2.047641223547472e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0035370658988540526,
+            "mass_per_token": 1.7338558327715944e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0020989563772673137,
+            "mass_per_token": 2.7259173730744334e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.286220570051455e-05,
+            "mass_per_token": 1.286220570051455e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 8.973341032003646e-06,
+            "mass_per_token": 8.973341032003646e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0006523209740407765,
+            "mass_per_token": 8.154012175509706e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0004305198785914399,
+            "mass_per_token": 5.381498482392999e-05
+          }
+        },
+        "external_mass": 0.02319644783710828,
+        "self_mass": 0.9768035504966974,
+        "external_value_norm": 0.23282992385793477,
+        "self_value_norm": 12.577055037021637,
+        "combined_value_norm": 12.73652771115303
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009732777858516783,
+            "mass_per_token": 4.770969538488619e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0032085909424495185,
+            "mass_per_token": 1.5728386972791758e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0025042544607458694,
+            "mass_per_token": 1.2275757160518968e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002354416488287825,
+            "mass_per_token": 1.1541257295528554e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0008218507275614684,
+            "mass_per_token": 1.0673386072226862e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 8.442446734591158e-06,
+            "mass_per_token": 8.442446734591158e-06
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 3.946830949175251e-06,
+            "mass_per_token": 3.946830949175251e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00018322138049597925,
+            "mass_per_token": 2.2902672561997406e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00011120924361307516,
+            "mass_per_token": 1.3901155451634395e-05
+          }
+        },
+        "external_mass": 0.018928710247564595,
+        "self_mass": 0.9810712849721313,
+        "external_value_norm": 1.0488151195459068,
+        "self_value_norm": 37.20150941610336,
+        "combined_value_norm": 38.19864135980606
+      }
+    ]
+  },
+  "legacy_val": {
+    "correct": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.036039894446730614,
+            "mass_per_token": 1.766661492486795e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.019765889272093773,
+            "mass_per_token": 9.689161407889106e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.015567150432616472,
+            "mass_per_token": 7.630956094419838e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.01163503690622747,
+            "mass_per_token": 5.703449463836995e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.014307895209640265,
+            "mass_per_token": 0.000185816820904419
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 8.69423272433778e-05,
+            "mass_per_token": 8.69423272433778e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.7730449144437443e-05,
+            "mass_per_token": 1.7730449144437443e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0006655383622273803,
+            "mass_per_token": 8.319229527842253e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0012878005800303072,
+            "mass_per_token": 0.0001609750725037884
+          }
+        },
+        "external_mass": 0.09937387704849243,
+        "self_mass": 0.9006261229515076,
+        "external_value_norm": 0.6889803111553192,
+        "self_value_norm": 6.293809294700623,
+        "combined_value_norm": 6.851008653640747
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.014693310018628836,
+            "mass_per_token": 7.202602950308253e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.017962314654141665,
+            "mass_per_token": 8.80505620301062e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009042581892572343,
+            "mass_per_token": 4.432638182633501e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.012368565425276756,
+            "mass_per_token": 6.063022267292528e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0009408431069459766,
+            "mass_per_token": 1.2218741648649047e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.0677342743292684e-05,
+            "mass_per_token": 1.0677342743292684e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.524930045590736e-05,
+            "mass_per_token": 4.524930045590736e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.000173523832927458,
+            "mass_per_token": 2.169047911593225e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00026736504514701664,
+            "mass_per_token": 3.342063064337708e-05
+          }
+        },
+        "external_mass": 0.05550442868843675,
+        "self_mass": 0.9444955587387085,
+        "external_value_norm": 0.3690841346979141,
+        "self_value_norm": 6.5893964767456055,
+        "combined_value_norm": 6.825552225112915
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.021837799344211817,
+            "mass_per_token": 1.0704803600103832e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007813667529262602,
+            "mass_per_token": 3.83022918101108e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005867998697794974,
+            "mass_per_token": 2.876469949899497e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006831591133959591,
+            "mass_per_token": 3.348819183313525e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0037564412923529744,
+            "mass_per_token": 4.878495184873992e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.638759012072114e-05,
+            "mass_per_token": 5.638759012072114e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.740006988868117e-05,
+            "mass_per_token": 4.740006988868117e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 9.423612027603667e-05,
+            "mass_per_token": 1.1779515034504584e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00025517034373478964,
+            "mass_per_token": 3.1896292966848705e-05
+          }
+        },
+        "external_mass": 0.046560690738260746,
+        "self_mass": 0.9534393101930618,
+        "external_value_norm": 0.27494633942842484,
+        "self_value_norm": 6.663982152938843,
+        "combined_value_norm": 6.81021249294281
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009464948903769255,
+            "mass_per_token": 4.639680835181007e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008586887153796852,
+            "mass_per_token": 4.209258408723947e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006581331021152437,
+            "mass_per_token": 3.2261426574276648e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004897314705885947,
+            "mass_per_token": 2.4006444636695816e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.00766334030777216,
+            "mass_per_token": 9.952390010093713e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.000134766001792741,
+            "mass_per_token": 0.000134766001792741
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.751589585794136e-06,
+            "mass_per_token": 4.751589585794136e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 8.30686949484516e-05,
+            "mass_per_token": 1.038358686855645e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00015912068192847073,
+            "mass_per_token": 1.989008524105884e-05
+          }
+        },
+        "external_mass": 0.037575528491288424,
+        "self_mass": 0.9624244719743729,
+        "external_value_norm": 0.5134975239634514,
+        "self_value_norm": 8.414841413497925,
+        "combined_value_norm": 8.727227687835693
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004504316195379943,
+            "mass_per_token": 2.207998134990168e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.003199743543518707,
+            "mass_per_token": 1.5685017370189741e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002655950709595345,
+            "mass_per_token": 1.3019366223506592e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0023456415510736406,
+            "mass_per_token": 1.1498242897419806e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0020636659464798868,
+            "mass_per_token": 2.6800856447790736e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.3816270868337597e-05,
+            "mass_per_token": 2.3816270868337597e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 7.52630126044096e-06,
+            "mass_per_token": 7.52630126044096e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0002859532069123816,
+            "mass_per_token": 3.57441508640477e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00037346484168665484,
+            "mass_per_token": 4.6683105210831854e-05
+          }
+        },
+        "external_mass": 0.015460078720934689,
+        "self_mass": 0.9845399111509323,
+        "external_value_norm": 0.17649485915899277,
+        "self_value_norm": 14.111143589019775,
+        "combined_value_norm": 14.241440534591675
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005148187134182081,
+            "mass_per_token": 2.523621144206902e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0018793792551150545,
+            "mass_per_token": 9.212643407426738e-07
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0015745259224786423,
+            "mass_per_token": 7.718264325875697e-07
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0014850646184640937,
+            "mass_per_token": 7.279728521882813e-07
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0004818206616619136,
+            "mass_per_token": 6.257411190414463e-06
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.0416336440121086e-05,
+            "mass_per_token": 2.0416336440121086e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.270866917479907e-06,
+            "mass_per_token": 1.270866917479907e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 4.4038348278263584e-05,
+            "mass_per_token": 5.504793534782948e-06
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00010935114869425888,
+            "mass_per_token": 1.366889358678236e-05
+          }
+        },
+        "external_mass": 0.010744054103270173,
+        "self_mass": 0.9892559200525284,
+        "external_value_norm": 0.5873209573328495,
+        "self_value_norm": 36.98752498626709,
+        "combined_value_norm": 37.54464530944824
+      }
+    ],
+    "shuffled": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.036303017288446426,
+            "mass_per_token": 1.7795596710022758e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.019988725893199444,
+            "mass_per_token": 9.798395045686003e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0157054690644145,
+            "mass_per_token": 7.698759345301227e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011761220870539546,
+            "mass_per_token": 5.765304348303699e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.014344505965709686,
+            "mass_per_token": 0.00018629228526895696
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 9.95626132862526e-05,
+            "mass_per_token": 9.95626132862526e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.713144956738688e-05,
+            "mass_per_token": 1.713144956738688e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0007932064181659371,
+            "mass_per_token": 9.915080227074213e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0013252058415673673,
+            "mass_per_token": 0.00016565073019592091
+          }
+        },
+        "external_mass": 0.1003380473703146,
+        "self_mass": 0.8996619433164597,
+        "external_value_norm": 0.6938300132751465,
+        "self_value_norm": 6.289511322975159,
+        "combined_value_norm": 6.852144837379456
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.015153772896155715,
+            "mass_per_token": 7.428320047135155e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.01889664272312075,
+            "mass_per_token": 9.263060158392524e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009402692783623934,
+            "mass_per_token": 4.609163129227419e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.012780543649569154,
+            "mass_per_token": 6.264972377239781e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0009320321114500985,
+            "mass_per_token": 1.2104313135715565e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.2473695733206114e-05,
+            "mass_per_token": 1.2473695733206114e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.555873556455481e-05,
+            "mass_per_token": 4.555873556455481e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00015179820638877572,
+            "mass_per_token": 1.8974775798596966e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00025251809711335227,
+            "mass_per_token": 3.1564762139169034e-05
+          }
+        },
+        "external_mass": 0.05762803414836526,
+        "self_mass": 0.9423719644546509,
+        "external_value_norm": 0.3875650428235531,
+        "self_value_norm": 6.573986649513245,
+        "combined_value_norm": 6.821303009986877
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.022279697004705667,
+            "mass_per_token": 1.0921420100345916e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008019507862627506,
+            "mass_per_token": 3.931131305209562e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0059707112377509475,
+            "mass_per_token": 2.926819234191641e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006764283054508269,
+            "mass_per_token": 3.3158250267197396e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0037607397534884512,
+            "mass_per_token": 4.884077601933054e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00010111083520314423,
+            "mass_per_token": 0.00010111083520314423
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.002847137802746e-05,
+            "mass_per_token": 5.002847137802746e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0001066523705048894,
+            "mass_per_token": 1.3331546313111176e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00032936242860159837,
+            "mass_per_token": 4.1170303575199796e-05
+          }
+        },
+        "external_mass": 0.04738209396600723,
+        "self_mass": 0.9526179283857346,
+        "external_value_norm": 0.2795814126729965,
+        "self_value_norm": 6.654190540313721,
+        "combined_value_norm": 6.80320930480957
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010403449879959226,
+            "mass_per_token": 5.099730333313346e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008943173568695784,
+            "mass_per_token": 4.383908612105777e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00665263831615448,
+            "mass_per_token": 3.2610972138012156e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005090193240903318,
+            "mass_per_token": 2.4951927651486854e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.007769632386043668,
+            "mass_per_token": 0.00010090431670186582
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00010313301027053967,
+            "mass_per_token": 0.00010313301027053967
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.603134866305481e-06,
+            "mass_per_token": 5.603134866305481e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00014338970504468307,
+            "mass_per_token": 1.7923713130585384e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0001287219492951408,
+            "mass_per_token": 1.60902436618926e-05
+          }
+        },
+        "external_mass": 0.03923993557691574,
+        "self_mass": 0.9607600718736649,
+        "external_value_norm": 0.5272944271564484,
+        "self_value_norm": 8.404141902923584,
+        "combined_value_norm": 8.727432250976562
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004955620097462088,
+            "mass_per_token": 2.4292255379716118e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0034714267239905894,
+            "mass_per_token": 1.7016797666620537e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0027774890913860872,
+            "mass_per_token": 1.361514260483376e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002583934910944663,
+            "mass_per_token": 1.2666347602669917e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0020776911842403933,
+            "mass_per_token": 2.698300239273238e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.7463710719312076e-05,
+            "mass_per_token": 1.7463710719312076e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 7.230276025893545e-06,
+            "mass_per_token": 7.230276025893545e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0004183291848676163,
+            "mass_per_token": 5.2291148108452035e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00031572191801387817,
+            "mass_per_token": 3.946523975173477e-05
+          }
+        },
+        "external_mass": 0.016624906682409346,
+        "self_mass": 0.983375072479248,
+        "external_value_norm": 0.18615812808275223,
+        "self_value_norm": 14.096976041793823,
+        "combined_value_norm": 14.234837293624878
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005025173595640808,
+            "mass_per_token": 2.463320390020004e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0018068614735966548,
+            "mass_per_token": 8.857164086258112e-07
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.001432684759492986,
+            "mass_per_token": 7.022964507318558e-07
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0013777420172118582,
+            "mass_per_token": 6.753637339273814e-07
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0004805930111615453,
+            "mass_per_token": 6.241467677422666e-06
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.910767981731624e-06,
+            "mass_per_token": 5.910767981731624e-06
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.2325325400297515e-06,
+            "mass_per_token": 1.2325325400297515e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 9.907116714202857e-05,
+            "mass_per_token": 1.2383895892753571e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 7.375880431936821e-05,
+            "mass_per_token": 9.219850539921026e-06
+          }
+        },
+        "external_mass": 0.010303028277121484,
+        "self_mass": 0.9896969795227051,
+        "external_value_norm": 0.5655267350375652,
+        "self_value_norm": 37.000043869018555,
+        "combined_value_norm": 37.535959243774414
+      }
+    ],
+    "contrast": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.034101758152246475,
+            "mass_per_token": 1.671654811384631e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.018686228431761265,
+            "mass_per_token": 9.159915897922188e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.014464298263192177,
+            "mass_per_token": 7.0903422858785185e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.010634183650836349,
+            "mass_per_token": 5.212835122958994e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.014655814738944173,
+            "mass_per_token": 0.00019033525634992433
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00027000630643669865,
+            "mass_per_token": 0.00027000630643669865
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.7221875168615952e-05,
+            "mass_per_token": 1.7221875168615952e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0011700474133249372,
+            "mass_per_token": 0.00014625592666561715
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0016399950545746833,
+            "mass_per_token": 0.00020499938182183541
+          }
+        },
+        "external_mass": 0.09563955292105675,
+        "self_mass": 0.904360443353653,
+        "external_value_norm": 0.6627142876386642,
+        "self_value_norm": 6.31311571598053,
+        "combined_value_norm": 6.8554229736328125
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.016158134676516056,
+            "mass_per_token": 7.920654253194146e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.021506170509383082,
+            "mass_per_token": 1.0542240445776022e-05
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009860672289505601,
+            "mass_per_token": 4.833662887012549e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.013524394715204835,
+            "mass_per_token": 6.629605252551389e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0009429659112356603,
+            "mass_per_token": 1.2246310535528055e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.6821898952912306e-05,
+            "mass_per_token": 1.6821898952912306e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.6228355131461285e-05,
+            "mass_per_token": 4.6228355131461285e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00014205818570189876,
+            "mass_per_token": 1.7757273212737346e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00017107067833421752,
+            "mass_per_token": 2.138383479177719e-05
+          }
+        },
+        "external_mass": 0.062368517741560936,
+        "self_mass": 0.9376314878463745,
+        "external_value_norm": 0.42962443456053734,
+        "self_value_norm": 6.533827304840088,
+        "combined_value_norm": 6.806734800338745
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.02136058174073696,
+            "mass_per_token": 1.047087340232204e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008125071879476309,
+            "mass_per_token": 3.982878372292308e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005986265372484922,
+            "mass_per_token": 2.934443810041629e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007028930936940014,
+            "mass_per_token": 3.4455543808529484e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0036851923796348274,
+            "mass_per_token": 4.78596412939588e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.000186911962373415,
+            "mass_per_token": 0.000186911962373415
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.098231486044824e-05,
+            "mass_per_token": 5.098231486044824e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 6.549023146362742e-05,
+            "mass_per_token": 8.186278932953428e-06
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0005887386942049488,
+            "mass_per_token": 7.35923367756186e-05
+          }
+        },
+        "external_mass": 0.04707816615700722,
+        "self_mass": 0.9529218375682831,
+        "external_value_norm": 0.2795742452144623,
+        "self_value_norm": 6.6549763679504395,
+        "combined_value_norm": 6.80327296257019
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011335166404023767,
+            "mass_per_token": 5.556454119619494e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009575103875249624,
+            "mass_per_token": 4.693678370220404e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0069248119834810495,
+            "mass_per_token": 3.3945156781769848e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005243033403530717,
+            "mass_per_token": 2.5701144134954497e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.007737155421636999,
+            "mass_per_token": 0.00010048253794333764
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00015613251525792293,
+            "mass_per_token": 0.00015613251525792293
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.4782048550805484e-06,
+            "mass_per_token": 5.4782048550805484e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0001165082426268782,
+            "mass_per_token": 1.4563530328359775e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0001918009038490709,
+            "mass_per_token": 2.397511298113386e-05
+          }
+        },
+        "external_mass": 0.04128518979996443,
+        "self_mass": 0.9587147980928421,
+        "external_value_norm": 0.5486953184008598,
+        "self_value_norm": 8.376486778259277,
+        "combined_value_norm": 8.715531587600708
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004789573111338541,
+            "mass_per_token": 2.3478299565385004e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0035129486641380936,
+            "mass_per_token": 1.7220336588912223e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0028874763374915347,
+            "mass_per_token": 1.4154295772017328e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00251875925459899,
+            "mass_per_token": 1.234685909117152e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.002091715461574495,
+            "mass_per_token": 2.716513586460383e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.951200895040529e-05,
+            "mass_per_token": 2.951200895040529e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.0642187829907925e-06,
+            "mass_per_token": 5.0642187829907925e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00025926565831468906,
+            "mass_per_token": 3.240820728933613e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00021286666742525995,
+            "mass_per_token": 2.6608333428157493e-05
+          }
+        },
+        "external_mass": 0.016307181562297046,
+        "self_mass": 0.9836927950382233,
+        "external_value_norm": 0.1797618307173252,
+        "self_value_norm": 14.09691071510315,
+        "combined_value_norm": 14.228594064712524
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005062156211351976,
+            "mass_per_token": 2.481449123211753e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0018556383292889223,
+            "mass_per_token": 9.096266320043736e-07
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0015093826659722254,
+            "mass_per_token": 7.398934637118752e-07
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0014816173497820273,
+            "mass_per_token": 7.262830145990331e-07
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.00048293392319465056,
+            "mass_per_token": 6.27186913239806e-06
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 8.009229532035533e-06,
+            "mass_per_token": 8.009229532035533e-06
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.2303532344049017e-06,
+            "mass_per_token": 1.2303532344049017e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 7.759270556562115e-05,
+            "mass_per_token": 9.699088195702643e-06
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 7.85564880061429e-05,
+            "mass_per_token": 9.819561000767862e-06
+          }
+        },
+        "external_mass": 0.01055711682420224,
+        "self_mass": 0.9894428998231888,
+        "external_value_norm": 0.5797940939664841,
+        "self_value_norm": 36.992003440856934,
+        "combined_value_norm": 37.5409517288208
+      }
+    ],
+    "masked": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.9259254932403564,
+        "combined_value_norm": 6.9259254932403564
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.91090989112854,
+        "combined_value_norm": 6.91090989112854
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.9513325691223145,
+        "combined_value_norm": 6.9513325691223145
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 8.673868179321289,
+        "combined_value_norm": 8.673868179321289
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 14.227039575576782,
+        "combined_value_norm": 14.227039575576782
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 0.0,
+            "mass": 0.0,
+            "mass_per_token": 0.0
+          }
+        },
+        "external_mass": 0.0,
+        "self_mass": 1.0,
+        "external_value_norm": 0.0,
+        "self_value_norm": 37.38254928588867,
+        "combined_value_norm": 37.38254928588867
+      }
+    ],
+    "zero_v": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.036039894446730614,
+            "mass_per_token": 1.766661492486795e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.019765889272093773,
+            "mass_per_token": 9.689161407889106e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.015567150432616472,
+            "mass_per_token": 7.630956094419838e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.01163503690622747,
+            "mass_per_token": 5.703449463836995e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.014307895209640265,
+            "mass_per_token": 0.000185816820904419
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 8.69423272433778e-05,
+            "mass_per_token": 8.69423272433778e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.7730449144437443e-05,
+            "mass_per_token": 1.7730449144437443e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0006655383622273803,
+            "mass_per_token": 8.319229527842253e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0012878005800303072,
+            "mass_per_token": 0.0001609750725037884
+          }
+        },
+        "external_mass": 0.09937387704849243,
+        "self_mass": 0.9006261229515076,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.293809294700623,
+        "combined_value_norm": 6.293809294700623
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.014428892871364951,
+            "mass_per_token": 7.072986701649485e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.017104787868447602,
+            "mass_per_token": 8.384699935513531e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00876021315343678,
+            "mass_per_token": 4.294222134037637e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011919828364625573,
+            "mass_per_token": 5.8430531199144965e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0008941964333644137,
+            "mass_per_token": 1.1612940693044332e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.0625115464790724e-05,
+            "mass_per_token": 1.0625115464790724e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.3063344492111355e-05,
+            "mass_per_token": 4.3063344492111355e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0001749066504999064,
+            "mass_per_token": 2.18633313124883e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00026384233569842763,
+            "mass_per_token": 3.2980291962303454e-05
+          }
+        },
+        "external_mass": 0.05360035551711917,
+        "self_mass": 0.9463996142148972,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.608724117279053,
+        "combined_value_norm": 6.608724117279053
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.021890875417739153,
+            "mass_per_token": 1.0730821283205467e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.007809899980202317,
+            "mass_per_token": 3.82838234323643e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005872649024240673,
+            "mass_per_token": 2.878749521686604e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006869482225738466,
+            "mass_per_token": 3.3673932479110126e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0038916142657399178,
+            "mass_per_token": 5.054044500960932e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.637327467411524e-05,
+            "mass_per_token": 5.637327467411524e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.041713737024111e-05,
+            "mass_per_token": 4.041713737024111e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 9.259091348212678e-05,
+            "mass_per_token": 1.1573864185265847e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00024979543377412483,
+            "mass_per_token": 3.1224429221765604e-05
+          }
+        },
+        "external_mass": 0.046773696318268776,
+        "self_mass": 0.9532262831926346,
+        "external_value_norm": 0.0,
+        "self_value_norm": 6.591121673583984,
+        "combined_value_norm": 6.591121673583984
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009898871066980064,
+            "mass_per_token": 4.852387777931404e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00880340626463294,
+            "mass_per_token": 4.315395227761245e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006690337206237018,
+            "mass_per_token": 3.279577061880891e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004924994194880128,
+            "mass_per_token": 2.414212840627514e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.007359577575698495,
+            "mass_per_token": 9.557892955452591e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 0.00013590431444754358,
+            "mass_per_token": 0.00013590431444754358
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.697682015830651e-06,
+            "mass_per_token": 4.697682015830651e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 8.174926006176975e-05,
+            "mass_per_token": 1.0218657507721218e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00015713456195953768,
+            "mass_per_token": 1.964182024494221e-05
+          }
+        },
+        "external_mass": 0.038056673016399145,
+        "self_mass": 0.9619433432817459,
+        "external_value_norm": 0.0,
+        "self_value_norm": 8.367921829223633,
+        "combined_value_norm": 8.367921829223633
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004568348114844412,
+            "mass_per_token": 2.2393863308060843e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0032171307248063385,
+            "mass_per_token": 1.577024865101146e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002658448152942583,
+            "mass_per_token": 1.3031608592855798e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0023298314190469682,
+            "mass_per_token": 1.1420742250230237e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0021362393454182893,
+            "mass_per_token": 2.7743368122315442e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 2.332197095711308e-05,
+            "mass_per_token": 2.332197095711308e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 7.413045636894822e-06,
+            "mass_per_token": 7.413045636894822e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00027751231027650647,
+            "mass_per_token": 3.468903878456331e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00036892385833198205,
+            "mass_per_token": 4.6115482291497756e-05
+          }
+        },
+        "external_mass": 0.01558716909494251,
+        "self_mass": 0.9844128340482712,
+        "external_value_norm": 0.0,
+        "self_value_norm": 14.086230993270874,
+        "combined_value_norm": 14.086230993270874
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005109850142616779,
+            "mass_per_token": 2.5048285012827346e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0018654832092579454,
+            "mass_per_token": 9.144525535578164e-07
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.001561711833346635,
+            "mass_per_token": 7.655450163463898e-07
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0014686709619127214,
+            "mass_per_token": 7.199367460356478e-07
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.00048054487342596985,
+            "mass_per_token": 6.240842512025582e-06
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.94467824030653e-05,
+            "mass_per_token": 1.94467824030653e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.2784911973540147e-06,
+            "mass_per_token": 1.2784911973540147e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 4.4871301724924706e-05,
+            "mass_per_token": 5.608912715615588e-06
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00010901714631472714,
+            "mass_per_token": 1.3627143289340893e-05
+          }
+        },
+        "external_mass": 0.01066087424987927,
+        "self_mass": 0.9893391281366348,
+        "external_value_norm": 0.0,
+        "self_value_norm": 36.98937702178955,
+        "combined_value_norm": 36.98937702178955
+      }
+    ],
+    "reference": [
+      {
+        "layer_one_based": 4,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.03176362719386816,
+            "mass_per_token": 1.5570405487190274e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.016268229577690363,
+            "mass_per_token": 7.97462234200508e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.012965039117261767,
+            "mass_per_token": 6.355411331991062e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009963820455595851,
+            "mass_per_token": 4.884225713527378e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.014408150454983115,
+            "mass_per_token": 0.0001871188370777028
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.3492675861925818e-05,
+            "mass_per_token": 1.3492675861925818e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.9095640709565487e-05,
+            "mass_per_token": 1.9095640709565487e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0006594624283025041,
+            "mass_per_token": 8.243280353781302e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.001257601659744978,
+            "mass_per_token": 0.00015720020746812224
+          }
+        },
+        "external_mass": 0.08731851726770401,
+        "self_mass": 0.9126814901828766,
+        "external_value_norm": 0.6151470094919205,
+        "self_value_norm": 6.36672043800354,
+        "combined_value_norm": 6.861152648925781
+      },
+      {
+        "layer_one_based": 8,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.013201599242165685,
+            "mass_per_token": 6.471372177532199e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.016300748335197568,
+            "mass_per_token": 7.990562909410571e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009682803531177342,
+            "mass_per_token": 4.746472319204579e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.011405209545046091,
+            "mass_per_token": 5.590788992669653e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0009364432044094428,
+            "mass_per_token": 1.2161600057265491e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.0162012358705397e-05,
+            "mass_per_token": 1.0162012358705397e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.916372972729732e-05,
+            "mass_per_token": 4.916372972729732e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00016087850599433295,
+            "mass_per_token": 2.010981324929162e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00029612537764478475,
+            "mass_per_token": 3.7015672205598094e-05
+          }
+        },
+        "external_mass": 0.0520431324839592,
+        "self_mass": 0.947956845164299,
+        "external_value_norm": 0.3604901507496834,
+        "self_value_norm": 6.6125346422195435,
+        "combined_value_norm": 6.847201824188232
+      },
+      {
+        "layer_one_based": 12,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.020597954280674458,
+            "mass_per_token": 1.0097036412095322e-05
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006697887554764748,
+            "mass_per_token": 3.283278213119974e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005177751882001758,
+            "mass_per_token": 2.5381136676479205e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005554981995373964,
+            "mass_per_token": 2.7230303898891983e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0037354122032411397,
+            "mass_per_token": 4.851184679533948e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.716724626836367e-05,
+            "mass_per_token": 5.716724626836367e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 5.923816115682712e-05,
+            "mass_per_token": 5.923816115682712e-05
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00012894649080408271,
+            "mass_per_token": 1.611831135051034e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0002184953773394227,
+            "mass_per_token": 2.7311922167427838e-05
+          }
+        },
+        "external_mass": 0.04222783539444208,
+        "self_mass": 0.9577721804380417,
+        "external_value_norm": 0.24914978072047234,
+        "self_value_norm": 6.6723092794418335,
+        "combined_value_norm": 6.802873849868774
+      },
+      {
+        "layer_one_based": 16,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.009143881383351982,
+            "mass_per_token": 4.4822947957607755e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.008276532054878771,
+            "mass_per_token": 4.0571235563131235e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.006680106627754867,
+            "mass_per_token": 3.274562072428856e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.005013318732380867,
+            "mass_per_token": 2.4575091825396407e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.007814773009158671,
+            "mass_per_token": 0.00010149055856050222
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 7.670532613701653e-05,
+            "mass_per_token": 7.670532613701653e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.8757258355180966e-06,
+            "mass_per_token": 4.8757258355180966e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00016225679792114533,
+            "mass_per_token": 2.0282099740143167e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00010682499669201206,
+            "mass_per_token": 1.3353124586501508e-05
+          }
+        },
+        "external_mass": 0.03727927431464195,
+        "self_mass": 0.9627207070589066,
+        "external_value_norm": 0.5264415219426155,
+        "self_value_norm": 8.386167764663696,
+        "combined_value_norm": 8.70414400100708
+      },
+      {
+        "layer_one_based": 20,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.004558458836982027,
+            "mass_per_token": 2.234538645579425e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0033106831833720207,
+            "mass_per_token": 1.6228839134176573e-06
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0026443260576343164,
+            "mass_per_token": 1.2962382635462337e-06
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.002292758654220961,
+            "mass_per_token": 1.1239013010887063e-06
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0020723279303638265,
+            "mass_per_token": 2.691334974498476e-05
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.0841516086657066e-05,
+            "mass_per_token": 1.0841516086657066e-05
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 7.574886353722832e-06,
+            "mass_per_token": 7.574886353722832e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.0004989852241124026,
+            "mass_per_token": 6.237315301405033e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00036686348175862804,
+            "mass_per_token": 4.5857935219828505e-05
+          }
+        },
+        "external_mass": 0.01576281967572868,
+        "self_mass": 0.9842371940612793,
+        "external_value_norm": 0.17676666751503944,
+        "self_value_norm": 14.101927995681763,
+        "combined_value_norm": 14.23117208480835
+      },
+      {
+        "layer_one_based": 24,
+        "groups": {
+          "image_0": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.00505040813004598,
+            "mass_per_token": 2.4756902598264613e-06
+          },
+          "image_1": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0016564695251872763,
+            "mass_per_token": 8.119948652878806e-07
+          },
+          "image_2": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0013112594315316528,
+            "mass_per_token": 6.427742311429671e-07
+          },
+          "image_3": {
+            "tokens": 2040.0,
+            "visible_tokens": 2040.0,
+            "mass": 0.0012304863339522853,
+            "mass_per_token": 6.031795754668066e-07
+          },
+          "native_other": {
+            "tokens": 77.0,
+            "visible_tokens": 77.0,
+            "mass": 0.0004883774745394476,
+            "mass_per_token": 6.3425646044084105e-06
+          },
+          "ego": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 4.717056128811237e-06,
+            "mass_per_token": 4.717056128811237e-06
+          },
+          "command": {
+            "tokens": 1.0,
+            "visible_tokens": 1.0,
+            "mass": 1.533323143121379e-06,
+            "mass_per_token": 1.533323143121379e-06
+          },
+          "feedback": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 0.00011298485242150491,
+            "mass_per_token": 1.4123106552688114e-05
+          },
+          "planning_queries": {
+            "tokens": 8.0,
+            "visible_tokens": 8.0,
+            "mass": 7.311734088943922e-05,
+            "mass_per_token": 9.139667611179902e-06
+          }
+        },
+        "external_mass": 0.009929353254847229,
+        "self_mass": 0.9900706559419632,
+        "external_value_norm": 0.5494496822357178,
+        "self_value_norm": 37.0071439743042,
+        "combined_value_norm": 37.52833366394043
+      }
+    ]
+  }
+}

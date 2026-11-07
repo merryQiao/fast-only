@@ -1,0 +1,600 @@
+{
+  "new_val": {
+    "shuffled": {
+      "count": 64,
+      "cross_log": 64,
+      "different_command": 52,
+      "unique_donors": 64,
+      "mean_abs_speed_delta_mps": 5.894472956906428,
+      "layers": [
+        {
+          "layer_one_based": 4,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1036254074424505,
+            "cosine": 0.3909431900829077,
+            "rms_difference": 1.5680182687938213
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0277339098975062,
+            "cosine": 0.4718718659132719,
+            "rms_difference": 0.6855803653597832
+          }
+        },
+        {
+          "layer_one_based": 8,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1225994005799294,
+            "cosine": 0.36982157453894615,
+            "rms_difference": 1.6856783330440521
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0788233540952206,
+            "cosine": 0.4181380048394203,
+            "rms_difference": 0.7099780682474375
+          }
+        },
+        {
+          "layer_one_based": 12,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1013576090335846,
+            "cosine": 0.3934499816969037,
+            "rms_difference": 1.7103088684380054
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.1991431191563606,
+            "cosine": 0.2811036128550768,
+            "rms_difference": 0.8705286514014006
+          }
+        },
+        {
+          "layer_one_based": 16,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0649668108671904,
+            "cosine": 0.4328598463907838,
+            "rms_difference": 1.697767861187458
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.2185800857841969,
+            "cosine": 0.2577686868607998,
+            "rms_difference": 1.1949691027402878
+          }
+        },
+        {
+          "layer_one_based": 20,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0617994833737612,
+            "cosine": 0.4362352592870593,
+            "rms_difference": 1.4932045973837376
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.078878678381443,
+            "cosine": 0.4182315431535244,
+            "rms_difference": 1.4888807758688927
+          }
+        },
+        {
+          "layer_one_based": 24,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.103466548025608,
+            "cosine": 0.39109666645526886,
+            "rms_difference": 1.5522564128041267
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.34766264585778117,
+            "cosine": 0.9395569302141666,
+            "rms_difference": 1.2101088911294937
+          }
+        }
+      ]
+    },
+    "contrast": {
+      "count": 64,
+      "cross_log": 64,
+      "different_command": 64,
+      "unique_donors": 5,
+      "mean_abs_speed_delta_mps": 10.071481259808575,
+      "layers": [
+        {
+          "layer_one_based": 4,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1036332119256258,
+            "cosine": 0.391186467371881,
+            "rms_difference": 1.5680336896330118
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.030590170994401,
+            "cosine": 0.4704387695528567,
+            "rms_difference": 0.6874886024743319
+          }
+        },
+        {
+          "layer_one_based": 8,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1226722840219736,
+            "cosine": 0.3698245920240879,
+            "rms_difference": 1.685785984620452
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.079225668683648,
+            "cosine": 0.4170798775739968,
+            "rms_difference": 0.7102303775027394
+          }
+        },
+        {
+          "layer_one_based": 12,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1035369280725718,
+            "cosine": 0.3917070119641721,
+            "rms_difference": 1.7136892229318619
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.2001101523637772,
+            "cosine": 0.2803935753181577,
+            "rms_difference": 0.871208818629384
+          }
+        },
+        {
+          "layer_one_based": 16,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0663238298147917,
+            "cosine": 0.4318791744299233,
+            "rms_difference": 1.6999248582869768
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.2157806381583214,
+            "cosine": 0.25776504864916205,
+            "rms_difference": 1.1922106500715017
+          }
+        },
+        {
+          "layer_one_based": 20,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0611431542783976,
+            "cosine": 0.4369646767154336,
+            "rms_difference": 1.4922698196023703
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0792900547385216,
+            "cosine": 0.4183687996119261,
+            "rms_difference": 1.4893099032342434
+          }
+        },
+        {
+          "layer_one_based": 24,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1027503572404385,
+            "cosine": 0.3918342152610421,
+            "rms_difference": 1.5512530077248812
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.34732005605474114,
+            "cosine": 0.9396479865536094,
+            "rms_difference": 1.208908312022686
+          }
+        }
+      ]
+    },
+    "reference": {
+      "count": 64,
+      "cross_log": 64,
+      "different_command": 28,
+      "unique_donors": 1,
+      "mean_abs_speed_delta_mps": 4.038608027029752,
+      "layers": [
+        {
+          "layer_one_based": 4,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0842184536159039,
+            "cosine": 0.4105757372453809,
+            "rms_difference": 1.5404642447829247
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0130209913477302,
+            "cosine": 0.4900226332247257,
+            "rms_difference": 0.675760199315846
+          }
+        },
+        {
+          "layer_one_based": 8,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.103374931961298,
+            "cosine": 0.3910298543050885,
+            "rms_difference": 1.6568129267543554
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0662122890353203,
+            "cosine": 0.43186176801100373,
+            "rms_difference": 0.7016654387116432
+          }
+        },
+        {
+          "layer_one_based": 12,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0866404175758362,
+            "cosine": 0.41047083074226975,
+            "rms_difference": 1.6874517165124416
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.187396241351962,
+            "cosine": 0.2947990014217794,
+            "rms_difference": 0.8619808657094836
+          }
+        },
+        {
+          "layer_one_based": 16,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0521446261554956,
+            "cosine": 0.44665334885939956,
+            "rms_difference": 1.677326636388898
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.2038802094757557,
+            "cosine": 0.2711955779232085,
+            "rms_difference": 1.180547010153532
+          }
+        },
+        {
+          "layer_one_based": 20,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0491798762232065,
+            "cosine": 0.4498191331513226,
+            "rms_difference": 1.475458512082696
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0690142940729856,
+            "cosine": 0.42734586587175727,
+            "rms_difference": 1.475245289504528
+          }
+        },
+        {
+          "layer_one_based": 24,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0898217856884003,
+            "cosine": 0.4063961673527956,
+            "rms_difference": 1.5330611374229193
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.3437063042074442,
+            "cosine": 0.9413499254733324,
+            "rms_difference": 1.1963427104055882
+          }
+        }
+      ]
+    }
+  },
+  "legacy_val": {
+    "shuffled": {
+      "count": 4,
+      "cross_log": 0,
+      "different_command": 0,
+      "unique_donors": 4,
+      "mean_abs_speed_delta_mps": 7.539535730412509,
+      "layers": [
+        {
+          "layer_one_based": 4,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 0.8804922252893448,
+            "cosine": 0.591595783829689,
+            "rms_difference": 1.2507016360759735
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.8303337246179581,
+            "cosine": 0.6393985897302628,
+            "rms_difference": 0.5548457652330399
+          }
+        },
+        {
+          "layer_one_based": 8,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 0.9050303995609283,
+            "cosine": 0.5711996555328369,
+            "rms_difference": 1.3592615127563477
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.8739006370306015,
+            "cosine": 0.6014108508825302,
+            "rms_difference": 0.5794757008552551
+          }
+        },
+        {
+          "layer_one_based": 12,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 0.9028483182191849,
+            "cosine": 0.5774887800216675,
+            "rms_difference": 1.4064745903015137
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.9961158484220505,
+            "cosine": 0.4884876012802124,
+            "rms_difference": 0.7300467789173126
+          }
+        },
+        {
+          "layer_one_based": 16,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 0.8803064227104187,
+            "cosine": 0.5997274219989777,
+            "rms_difference": 1.4070570468902588
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.00849150121212,
+            "cosine": 0.47295330464839935,
+            "rms_difference": 0.9974513351917267
+          }
+        },
+        {
+          "layer_one_based": 20,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 0.8825228065252304,
+            "cosine": 0.596735343337059,
+            "rms_difference": 1.2457906007766724
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.9030009508132935,
+            "cosine": 0.5762012153863907,
+            "rms_difference": 1.2626540064811707
+          }
+        },
+        {
+          "layer_one_based": 24,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 0.9215290993452072,
+            "cosine": 0.5614008158445358,
+            "rms_difference": 1.2964836955070496
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.2986092008650303,
+            "cosine": 0.9538826942443848,
+            "rms_difference": 1.040490746498108
+          }
+        }
+      ]
+    },
+    "contrast": {
+      "count": 4,
+      "cross_log": 0,
+      "different_command": 0,
+      "unique_donors": 2,
+      "mean_abs_speed_delta_mps": 15.079190161790377,
+      "layers": [
+        {
+          "layer_one_based": 4,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0844880044460297,
+            "cosine": 0.4119960069656372,
+            "rms_difference": 1.540474534034729
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0130123794078827,
+            "cosine": 0.49078864604234695,
+            "rms_difference": 0.6763657629489899
+          }
+        },
+        {
+          "layer_one_based": 8,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.1017391681671143,
+            "cosine": 0.3931414559483528,
+            "rms_difference": 1.654680848121643
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0567421615123749,
+            "cosine": 0.44143451750278473,
+            "rms_difference": 0.7007876485586166
+          }
+        },
+        {
+          "layer_one_based": 12,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0768333673477173,
+            "cosine": 0.4205040708184242,
+            "rms_difference": 1.6773906350135803
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.173621028661728,
+            "cosine": 0.31360575556755066,
+            "rms_difference": 0.8598434627056122
+          }
+        },
+        {
+          "layer_one_based": 16,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0420308411121368,
+            "cosine": 0.45731130987405777,
+            "rms_difference": 1.6654692590236664
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.2005585432052612,
+            "cosine": 0.2782004624605179,
+            "rms_difference": 1.1876057088375092
+          }
+        },
+        {
+          "layer_one_based": 20,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0495692491531372,
+            "cosine": 0.44872334599494934,
+            "rms_difference": 1.4817053377628326
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0823366045951843,
+            "cosine": 0.4136063903570175,
+            "rms_difference": 1.5137596428394318
+          }
+        },
+        {
+          "layer_one_based": 24,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0902172029018402,
+            "cosine": 0.4057348445057869,
+            "rms_difference": 1.5337757170200348
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.3542207106947899,
+            "cosine": 0.9372032880783081,
+            "rms_difference": 1.2343543469905853
+          }
+        }
+      ]
+    },
+    "reference": {
+      "count": 4,
+      "cross_log": 4,
+      "different_command": 0,
+      "unique_donors": 1,
+      "mean_abs_speed_delta_mps": 3.7715237085914506,
+      "layers": [
+        {
+          "layer_one_based": 4,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0901564359664917,
+            "cosine": 0.40430064499378204,
+            "rms_difference": 1.5485253036022186
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.015713095664978,
+            "cosine": 0.48693636804819107,
+            "rms_difference": 0.678161695599556
+          }
+        },
+        {
+          "layer_one_based": 8,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.108094334602356,
+            "cosine": 0.38575947284698486,
+            "rms_difference": 1.6642246544361115
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0633822977542877,
+            "cosine": 0.43057870119810104,
+            "rms_difference": 0.7051930725574493
+          }
+        },
+        {
+          "layer_one_based": 12,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0873424112796783,
+            "cosine": 0.4079708680510521,
+            "rms_difference": 1.6937569081783295
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.1779997944831848,
+            "cosine": 0.29958151280879974,
+            "rms_difference": 0.8630532622337341
+          }
+        },
+        {
+          "layer_one_based": 16,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.055030882358551,
+            "cosine": 0.44226087629795074,
+            "rms_difference": 1.6862425208091736
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.1986167430877686,
+            "cosine": 0.2712686359882355,
+            "rms_difference": 1.1856930553913116
+          }
+        },
+        {
+          "layer_one_based": 20,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0560129880905151,
+            "cosine": 0.4405268356204033,
+            "rms_difference": 1.4908077120780945
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 1.0691047012805939,
+            "cosine": 0.4195292592048645,
+            "rms_difference": 1.4952562153339386
+          }
+        },
+        {
+          "layer_one_based": 24,
+          "key": {
+            "equal_count": 0,
+            "relative_l2": 1.0967531502246857,
+            "cosine": 0.3988204002380371,
+            "rms_difference": 1.5429702699184418
+          },
+          "value": {
+            "equal_count": 0,
+            "relative_l2": 0.3499060571193695,
+            "cosine": 0.9391470402479172,
+            "rms_difference": 1.2193247973918915
+          }
+        }
+      ]
+    }
+  }
+}

@@ -23,8 +23,8 @@
 
 ## Tasks
 
-- [ ] Write CPU tests first: donor constraints/GT independence; immutable layout transplant; zeroV-vs-mask softmax distinction; scoped probe output identity/cleanup; actual six-layer routing; retrospective slicing.
-- [ ] Implement slowfast_v11/content_diagnostics.py with pure donor/audit/intervention/summary functions and scoped inference probe. Keep runtime behavior unchanged outside the scope.
-- [ ] Implement tools/diagnose_slowfast_content.py, reuse ExpandedExperiment and checked_checkpoint. Persist protocol before GPU evaluation; stream per-window results/probes and checkpoint identity, fail loudly on mismatched references.
-- [ ] Independent review, targeted/regression tests, then run the one fixed diagnostic pass. Keep the original results unchanged.
-- [ ] Add tools/report_slowfast_content.py and docs/SLOWFAST_KV_CONTENT_DIAGNOSTIC.md; export portable evidence and charts; verify hashes and source identities; commit findings including negative/inconclusive outcomes. Attempt GitHub publication only with available credentials and verify remote before claiming it.
+- [x] Write CPU tests first: donor constraints/GT independence; immutable layout transplant; zeroV-vs-mask softmax distinction; scoped probe output identity/cleanup; actual six-layer routing; retrospective slicing.
+- [x] Implement slowfast_v11/content_diagnostics.py with pure donor/audit/intervention/summary functions and scoped inference probe. Keep runtime behavior unchanged outside the scope.
+- [x] Implement tools/diagnose_slowfast_content.py, reuse ExpandedExperiment and checked_checkpoint. Persist protocol before GPU evaluation; stream per-window results/probes and checkpoint identity, fail loudly on mismatched references.
+- [x] Independent review, targeted/regression tests, then run the one fixed diagnostic pass. Keep the original results unchanged.
+- [x] Add tools/report_slowfast_content.py and docs/SLOWFAST_KV_CONTENT_DIAGNOSTIC.md; export portable evidence and charts; verify hashes and source identities; commit findings including negative/inconclusive outcomes. Attempt GitHub publication only with available credentials and verify remote before claiming it.

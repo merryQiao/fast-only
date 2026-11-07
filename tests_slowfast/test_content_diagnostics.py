@@ -156,3 +156,12 @@ def test_summary_slices_clear_slow_advantage_and_keeps_cohorts_separate():
     paired=summary['new_val']['all']['modes']['correct']
     assert paired['gain_ADE_vs_masked_m']==pytest.approx(.2)
     assert paired['ADE']==pytest.approx(.7)
+
+
+def test_even_window_median_uses_midpoint_instead_of_lower_order_statistic():
+    def poses(x):return [[x,0.,0.]]*8
+    records=[dict(token=str(i),cohort='new_val',route='one',speed_mps=2.,target=poses(0.),
+                  slow_prediction=poses(.5),predictions={'none':poses(1.),'correct':poses(x),'masked':poses(.9)})
+             for i,x in enumerate([.7,.9])]
+    metrics=api().summarize_records(records)['new_val']['all']['modes']['correct']
+    assert metrics['median_delta_ADE_vs_masked_m']==pytest.approx(-.1,abs=1e-6)

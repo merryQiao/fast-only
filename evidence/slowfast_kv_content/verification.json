@@ -1,0 +1,19 @@
+{
+  "tests": {
+    "tests": 625,
+    "errors": 0,
+    "failures": 0,
+    "skipped": 0
+  },
+  "test_xml_sha256": "7f87764900c91ddb5ec561a6f1e5603dac0a18898b35dcf31672907c55369c56",
+  "exact_original_predictions": 204,
+  "max_original_difference": 0.0,
+  "masked_content_invariance": {
+    "token": "f1adbcbb33e557de",
+    "max_abs_difference": 0.0,
+    "passed": true
+  },
+  "weights_unchanged": true,
+  "no_training": true,
+  "no_download": true
+}

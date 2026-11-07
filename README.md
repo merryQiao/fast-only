@@ -20,6 +20,8 @@
 
 [冻结Fast＋Reader残差融合](docs/SLOWFAST_READER_FUSION.md)保留原唯一轨迹Head，仅训练726K融合模块。新VAL正确来源ADE为0.782680m，原Fast关闭分支为0.952469m；固定来源训练对照也达到0.791077m，且第二条VAL日志的正确来源劣于固定/错配干预。因此融合改善了当前基线，但稳定的来源匹配增量仍未建立。两臂同初始化/顺序/16个新增epoch，原图在线检查、全VAL重载与最后一步恢复均精确通过。
 
+后续KV机制研究的主要适配基线为 **Fast＋固定特征任务适配器**，R0随包保存，在线只运行Fast及726K融合模块；[加载与推理说明](docs/FIXED_ADAPTER_USAGE.md)。[三个配对种子与八条新日志验证](docs/SLOWFAST_ADAPTER_STUDY.md)中，真实来源相对该基线的平均ADE收益仅1.83mm，95%区间−2.09至+6.99mm，未达预先锁定的2cm门槛。原Fast/off保留为次要对照；当前结果不支持把额外任务适配收益记为快慢协作收益。原始Fast-only全量训练入口与本次固定Mini机制验证入口的范围分别记录在各自指南中。
+
 **当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 
 > **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。

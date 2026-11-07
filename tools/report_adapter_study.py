@@ -307,6 +307,23 @@ def validate_deployment(deployment, expected_tokens):
     return True
 
 
+def validate_extraction_retry(receipt):
+    require(receipt['passed'] and receipt.get('comparisons'), 'Missing/failed extraction retry verification')
+    def visit(value):
+        if isinstance(value, dict):
+            if 'passed' in value:
+                require(value['passed'], 'Failed extraction retry artifact comparison')
+            if 'max_abs_difference' in value:
+                require(value['max_abs_difference'] == 0, 'Inexact extraction retry artifact comparison')
+            for child in value.values():
+                visit(child)
+        elif isinstance(value, list):
+            for child in value:
+                visit(child)
+    visit(receipt['comparisons'])
+    return True
+
+
 def source_hashes(protocol, features, repo):
     historical = {}
     for name, expected in protocol['source_code_sha256'].items():
@@ -393,13 +410,14 @@ def make_plots(output, primary, summary, training):
     image = axes[0].imshow(matrix, cmap='RdBu', vmin=-limit, vmax=limit, aspect='auto')
     for i in range(3):
         for j in range(8):
-            axes[0].text(j, i, f'{matrix[i,j]:+.3f}', ha='center', va='center', fontsize=8)
+            axes[0].text(j, i, f'{matrix[i,j]:+.3f}', ha='center', va='center', fontsize=8,
+                         color='white' if abs(matrix[i,j]) > .6 * limit else 'black')
     axes[0].set(xticks=range(8), xticklabels=labels, yticks=range(3), yticklabels=SEEDS,
                 title='Paired ADE gain (m)', xlabel='New recording group', ylabel='Fusion seed')
     fig.colorbar(image, ax=axes[0], label='Reference minus matched source (m)')
     axes[1].bar(labels, matrix.mean(0), color='C0')
     axes[1].axhline(0, color='black', lw=.8)
-    axes[1].axhline(.02, color='C3', ls='--', label='Declared2cm threshold')
+    axes[1].axhline(.02, color='C3', ls='--', label='Declared 2 cm threshold')
     axes[1].set(title='Mean of three paired fusion seeds', ylabel='ADE gain (m)')
     axes[1].legend(fontsize=8); axes[1].grid(axis='y', alpha=.2)
     fig.savefig(output / 'paired_seed_log_gains.png', dpi=160); plt.close(fig)
@@ -408,7 +426,7 @@ def make_plots(output, primary, summary, training):
         for arm, offset in [('correct', -.18), ('reference', .18)]:
             values = [summary['holdout'][str(seed)]['all']['metrics'][arm][mode]['ADE'] for mode in MODES]
             ax.bar(np.arange(4) + offset, values, width=.36, label=arm + '-trained')
-        ax.set(title=f'New holdout: fusion seed{seed}', ylabel='ADE (m)', xticks=range(4), xticklabels=MODES)
+        ax.set(title=f'New holdout: fusion seed {seed}', ylabel='ADE (m)', xticks=range(4), xticklabels=MODES)
         ax.legend(fontsize=8); ax.grid(axis='y', alpha=.2)
     fig.savefig(output / 'four_source_conditions.png', dpi=160); plt.close(fig)
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.6), layout='constrained')
@@ -417,10 +435,10 @@ def make_plots(output, primary, summary, training):
             entries = training[str(seed)][arm]; width = 20
             values = [r['loss'] for r in entries]
             axes[0].plot(range(width, 513), np.convolve(values, np.ones(width) / width, mode='valid'), label=f'{seed}/{arm}', lw=1)
-    axes[0].set(title='TRAIN256 loss:20-update moving mean', xlabel='Optimizer update', ylabel='Pose L1 (m/rad)')
+    axes[0].set(title='TRAIN256 loss: 20-update moving mean', xlabel='Optimizer update', ylabel='Pose L1 (m/rad)')
     axes[0].legend(fontsize=7); axes[0].grid(alpha=.2)
     axes[1].plot(range(1, 513), [r['lr'] for r in training['42']['correct']], color='C0')
-    axes[1].set(title='Fixed512-update learning-rate schedule', xlabel='Optimizer update', ylabel='AdamW learning rate')
+    axes[1].set(title='Fixed 512-update learning-rate schedule', xlabel='Optimizer update', ylabel='AdamW learning rate')
     axes[1].grid(alpha=.2)
     fig.savefig(output / 'training_traces.png', dpi=160); plt.close(fig)
     fig, axes = plt.subplots(1, 2, figsize=(10, 3.6), layout='constrained')
@@ -428,7 +446,7 @@ def make_plots(output, primary, summary, training):
         for arm, offset in [('correct', -.18), ('reference', .18)]:
             values = [np.mean([summary['old_val'][cohort][str(seed)]['all']['metrics'][arm][mode]['ADE'] for seed in SEEDS]) for mode in MODES]
             ax.bar(np.arange(4) + offset, values, width=.36, label=arm + '-trained')
-        ax.set(title=f'Historical diagnostic only:{cohort}', ylabel='Mean fusion-seed ADE (m)', xticks=range(4), xticklabels=MODES)
+        ax.set(title=f'Historical diagnostic only: {cohort}', ylabel='Mean fusion-seed ADE (m)', xticks=range(4), xticklabels=MODES)
         ax.legend(fontsize=8); ax.grid(axis='y', alpha=.2)
     fig.savefig(output / 'historical_val_diagnostics.png', dpi=160); plt.close(fig)
 
@@ -436,6 +454,12 @@ def make_plots(output, primary, summary, training):
 def write_document(document, output, primary, summary, verification, data, config):
     mean = primary['mean_gain_m']; lo, hi = primary['ci95_m']
     verdict = '达到' if primary['passes_primary_gate'] else '未达到'
+    gate_label = 'PASS' if primary['passes_primary_gate'] else 'FAIL'
+    interval_statement = '区间跨越零；' if lo <= 0 <= hi else ''
+    upper_statement = '区间上界也低于预设的 20 mm 实用阈值。' if hi < .02 else ''
+    primary_ade = {arm: float(np.mean([summary['holdout'][str(seed)]['all']['metrics'][arm][arm]['ADE']
+                                     for seed in SEEDS])) for arm in ARMS}
+    off_ade = summary['holdout']['42']['all']['metrics']['correct']['off']['ADE']
     table = ['| Seed | ' + ' | '.join(f'L{i+1}' for i in range(8)) + ' | Mean | Median | Positive logs |',
              '| --- | ' + ' | '.join(['---:'] * 11) + ' |']
     for i, seed in enumerate(SEEDS):
@@ -452,6 +476,10 @@ def write_document(document, output, primary, summary, verification, data, confi
     text = f'''# 固定特征 Fast 适配器与新日志配对实验
 
 匹配来源适配器**{verdict}预先声明的主要判据**：平均 ADE 收益为 `{mean:+.6f} m`，种子与日志配对 bootstrap 的 95% 百分位区间为 `[{lo:+.6f}, {hi:+.6f}] m`。正收益定义为 reference 训练/reference 评估的 ADE 减去 correct 训练/correct 评估的 ADE。判据在读取新 holdout 指标前锁定：平均收益至少 `0.02 m`，**且**区间下界大于零。模型、阈值、训练日程和评估队列均未根据本次结果选择或调整。
+
+Reader 条件分支的实用增量判据：**{gate_label}**。实际平均收益为 `{mean * 1000:+.2f} mm`，95% 区间为 `[{lo * 1000:+.2f}, {hi * 1000:+.2f}] mm`；{interval_statement}{upper_statement}三个种子平均的 correct 训练/correct 评估 ADE 为 `{primary_ade['correct']:.6f} m`，reference 训练/reference 评估为 `{primary_ade['reference']:.6f} m`；原始 Fast/off 为 `{off_ade:.6f} m`。固定 reference 基线已吸收大部分相对原始 Fast 的改善，本次证据未达到逐窗口 Reader 条件分支相对该基线所要求的额外收益。此主要比较本身不单独识别视觉信息或来源匹配语义的作用。
+
+主基线是导出的固定来源 Fast+task-adapter，保留残差结构并只在原始 Fast 上在线计算；原始 Fast/off 为次要比较。[固定适配器使用说明](FIXED_ADAPTER_USAGE.md) 给出带哈希认证的加载与推理方法。读取本轮终点结果后，没有延长训练、追加日志/窗口或挑选种子。
 
 ## 主要配对证据
 
@@ -479,13 +507,17 @@ def write_document(document, output, primary, summary, verification, data, confi
 
 六次融合训练复用同一已认证的历史 TRAIN256 特征与归一化统计，冻结 Fast、Slow、Reader 和原始任务 head。Fast SHA256 为 `{config['fast_checkpoint_sha256']}`；Reader 为 `{config['reader_checkpoint_sha256']}`；冻结 joint Slow 来源为 `{config['source_checkpoint_sha256']}`。新 Slow 的反馈来自保存的 Fast512 producer，不使用最新 Fast 或真值反馈。256 个新目标的来源布局全部一致，reference 特征恒定。种子 42/43/44 各自训练 correct 与 reference 两臂，同一种子内使用相同初始化与 4096 次有序抽样：512 次更新 × batch 8，即每个 TRAIN 窗口出现 16 次；AdamW 学习率 5e-4、weight decay .01、梯度裁剪 1、32 步 warmup、cosine 降至初始学习率的 .1。没有新增 backbone/Reader 更新、early stopping 或重复调参。
 
+特征提取保留了一次真实失败与重试：第一次已完成全部 256 个窗口的冻结推理并保存五个完整输出，但在最后组装回执、读取 `len(audit['sources'])` 时，逐图像 audit 变量遮蔽了来源审计对象，导致回执生成失败。修复仅重命名两个变量（首次代码 `3edf0b1`，修复 `b1123a2`），未改变权重、数据或分析规则。随后重新执行同一冻结推理，并将第一次保留的特征 bank 张量、元数据及原生输入包与重试结果逐项精确比较；[提取重试回执]({relative}/extraction_retry.json) 保留失败原因、代码版本、原始文件哈希和比较结果，不复制原始 PT。新 holdout 指标在这次修复与重试前尚未计算，也未用于决定重试。
+
 ![固定训练轨迹]({relative}/training_traces.png)
 
 ## 固定适配器部署与复核
 
-导出的 reference 基线包含融合权重及与认证 Fast checkpoint 绑定的常量 `R0[1,8,768]`。在线路径使用原始 Fast 特征，经残差适配器及原始 head 输出，无需逐窗口 Slow、Reader、实时 KV 或来源图像计算。常量仍携带历史 Slow/Reader 先验及其训练成本，因此本结果不能解释为纯视觉信息价值。原始 Fast/off 是次要比较。实际冷启动 Fast-only 推理从原始图像重新处理输入，对每个融合种子检查相同的一个历史 TRAIN 样本和一个新 holdout 样本；全程未实例化 Slow 或 Reader，且与 reference 来源推理逐值完全一致。
+导出的 reference 基线包含融合权重及与认证 Fast checkpoint 绑定的常量 `R0[1,8,768]`。在线路径仍使用当前 Fast 图像、Ego 状态及导航输入，经原始 Fast、残差适配器及原始 head 输出；跳过逐窗口 Slow/Reader 推理及其视觉路径，也无需实时来源 KV。常量保留历史 Slow/Reader 先验，相应历史训练成本仍须计入。实际条件分支的 KV 同时包含视觉、Ego、导航和旧计划信息，因此本比较未单独隔离视觉增量。原始 Fast/off 是次要比较。实际冷启动 Fast-only 推理从原始图像重新处理输入，对每个融合种子检查相同的一个历史 TRAIN 样本和一个新 holdout 样本；全程未实例化 Slow 或 Reader，且与 reference 来源推理逐值完全一致。
 
 六个融合训练均完成实际最后一步优化器更新重放，并完整重载各自 1024 个 holdout 来源条件的预测。种子 42 精确复现此前融合权重和全部 68 个历史验证窗口的预测。CPU 重算指标的最大绝对差为 `{verification['metric_recompute_max_abs_error']:.9g}`，上限为 1e-5。回归测试 `{verification['tests']['counts']['tests']}` 项通过，错误、失败和跳过均为零。历史训练代码通过 Git 版本 `{TRAINING_REVISION}` 的 blob 认证；当前提取、评估、验证及报告代码另存哈希。便携证据仅包含 JSON/JSONL、图表及哈希，不复制权重或原始图像。
+
+便携 `result.json` 保留评估完成时的历史标记 `verified:false`；最终独立复核状态以[报告验证记录]({relative}/verification.json) 的 `passed:true` 及其中三类证明为准。
 
 ## 历史诊断与推断范围
 
@@ -505,6 +537,8 @@ def run(root, output, document, verification, deployment, tests):
     root, output, document = Path(root), Path(output), Path(document)
     result, protocol = read_json(root / 'result.json'), read_json(root / 'protocol.json')
     training, features = read_json(root / 'training.json'), read_json(root / 'features.json')
+    extraction_retry = read_json(root / 'extraction_retry.json')
+    validate_extraction_retry(extraction_retry)
     require(result['completed'] and result['protocol'] == protocol == training['protocol']
             and result['training'] == training and result['features'] == features, 'Run artifact identity/completion differs')
     config = validate_config(protocol)
@@ -579,7 +613,8 @@ def run(root, output, document, verification, deployment, tests):
         metric_recompute_max_abs_error=maximum, optimizer_health=health, cohort_boundary=cohorts,
         paired_initialization_and_order=True, fixed_update_budget=True, historical_seed42_exact=training['seed42_prior_exact'],
         source_frozen=True, holdout_used_for_selection=False, tests=dict(counts=counts, xml_sha256=sha256(tests)),
-        replay=verify, cold_fast_only_deployment=deploy)
+        replay=verify, cold_fast_only_deployment=deploy, extraction_retry=extraction_retry,
+        extraction_retry_sha256=sha256(root / 'extraction_retry.json'))
     # No write occurs until every mandatory authentication and validation has passed.
     require(not output.exists() or not any(output.iterdir()), 'Use a fresh empty evidence directory')
     output.mkdir(parents=True, exist_ok=True)
@@ -589,6 +624,7 @@ def run(root, output, document, verification, deployment, tests):
                         ('holdout_window_metrics.json', windows), ('historical_val_window_metrics.json', old_windows),
                         ('source_hashes.json', hashes), ('reload_verification.json', verify), ('deployment.json', deploy)]:
         write_json(output / name, value)
+    write_json(output / 'extraction_retry.json', extraction_retry)
     for name, value in data.items():
         if name == 'network_requests':
             (output / 'network_requests.jsonl').write_text(''.join(json.dumps(portable(r), allow_nan=False) + '\n' for r in value))

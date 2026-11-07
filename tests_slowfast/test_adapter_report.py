@@ -88,6 +88,18 @@ class ReportTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'processor'):
             self.m.validate_deployment(proof,['old','new'])
 
+    def test_failed_or_inexact_extraction_retry_cannot_pass(self):
+        proof=dict(passed=True,comparisons={'frozen_bank':dict(passed=True,max_abs_difference=0),
+                                          'native_packets':dict(passed=True,max_abs_difference=0)})
+        self.m.validate_extraction_retry(proof)
+        proof['comparisons']['native_packets']['max_abs_difference']=.001
+        with self.assertRaisesRegex(ValueError,'retry'):
+            self.m.validate_extraction_retry(proof)
+        proof['comparisons']['native_packets']['max_abs_difference']=0
+        proof['passed']=False
+        with self.assertRaisesRegex(ValueError,'retry'):
+            self.m.validate_extraction_retry(proof)
+
     def test_all_source_tokens_follow_locked_interventions(self):
         reference='old_train_reference'
         donors={r['token']:self.rows[(i+128)%256]['token'] for i,r in enumerate(self.rows)}

@@ -1,0 +1,29 @@
+{
+  "training_runtime_revision": "22ced6a",
+  "training_runtime": {
+    "tools/train_adapter_study.py": "9f65a9a088e9dd7fdc28f747c1846283f232b1cd4962f3a2d0655e56b66b9822",
+    "tools/train_reader_fusion.py": "0f3973f881744a7140c675f2b6d3959e99a7f3c7a6bd9b2f2b567c2ba7533ae2",
+    "slowfast_v11/reader_fusion.py": "9581c1c533cb217a10d78697150f7c31ef99a26d018a3a005fb2d3d82267f4e5"
+  },
+  "extraction_runtime": {
+    "tools/extract_adapter_study.py": "57af2fb9b9e370eaf98721da453a316483373a7afd6c52bffc8361bebdbed17f",
+    "slowfast_v11/adapter_features.py": "e1ec80f81b0aa856a6946203ba1e4eac061536718c92777d57154b7751871761"
+  },
+  "current_reporting_and_evaluation": {
+    "tools/report_adapter_study.py": "32da47fb0411f5da2d8a3dbab00c9555331ec9c54b4aa25f05bed3f3ed9583fc",
+    "tools/train_adapter_study.py": "00e8f59be06390adf28e90ea76cb88f776b88a9c39137a305b7d85e85d67b143",
+    "tools/extract_adapter_study.py": "57af2fb9b9e370eaf98721da453a316483373a7afd6c52bffc8361bebdbed17f",
+    "tools/prepare_adapter_study.py": "d0e1fbea1a78d08ea9e157e0bb842f4de9a07e98076f020985720ca6ce72ecae",
+    "tools/verify_adapter_study.py": "158589ed52f0f1cd229306ac928479b49bdf499c89972b1a4cf17a4a62d80046",
+    "tools/verify_fixed_adapter.py": "a284d0172dec1a1a8603d5777dadbb9f2266ccba50812e602be83b1ca2daea6d",
+    "slowfast_v11/adapter_statistics.py": "fb4faa929322e99c3c3bb2526d9b88467a162aedeb066f4dd97106ef6b43cf6c",
+    "slowfast_v11/adapter_data.py": "88a80adbd454fe927ccf02da7095d1a00d58cbe397a17267d0499dd8b3601ac6",
+    "slowfast_v11/adapter_features.py": "e1ec80f81b0aa856a6946203ba1e4eac061536718c92777d57154b7751871761",
+    "slowfast_v11/fixed_adapter.py": "3b6ee4a85047044630f1d67cb6765ae7d1106996e16e8ade53bf50bd5cea5408",
+    "tools/train_reader_fusion.py": "0f3973f881744a7140c675f2b6d3959e99a7f3c7a6bd9b2f2b567c2ba7533ae2",
+    "slowfast_v11/reader_fusion.py": "9581c1c533cb217a10d78697150f7c31ef99a26d018a3a005fb2d3d82267f4e5",
+    "configs/slowfast_adapter_study.yaml": "185d016c4120c72f2975453a129418e0f45e19fa497b10cb032474b66a1fb4af",
+    "configs/slowfast_adapter_cohort.json": "22d0db0e1b6768894ec685f4626e67efc5b396c9a476e28863c0a5efcfceb65a"
+  },
+  "note": "Historical training source authenticated from its Git blob; later evaluation/authentication hardening recorded separately."
+}

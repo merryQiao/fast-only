@@ -1,0 +1,34 @@
+{
+  "camera_archives": 8,
+  "camera_prefix_cap_bytes": 225000000,
+  "event_timestamp_utc": "2026-11-07T15:01:14.881298+00:00",
+  "explicit_cli_flag": "--metadata-prefix-cap 320000000",
+  "new_total_response_body_cap_bytes": 2000000000,
+  "preserved_snapshots": [
+    {
+      "path": "<local>/metadata_acquisition_280000000.json",
+      "sha256": "d8077039c86aec52f4b4afb65e84557023a2c906e0f6529fd487496b42f0b9b5"
+    },
+    {
+      "path": "<local>/selection_failure_280000000.json",
+      "sha256": "8df4916d9a4df88f41df55c05d95edcbddcb00970c137c3c29e38d9320afde74"
+    },
+    {
+      "path": "<local>/source_audit_280000000.json",
+      "sha256": "5223405851056fe75e9ad43f389735c472d5613ab41f6049b59c40c72905eeaf"
+    },
+    {
+      "path": "<local>/network_budget_280000000.json",
+      "sha256": "41daa2b30a1abf42ed4825f02573cd20cfaf7406b530c2118b4cb4d7b379d1db"
+    }
+  ],
+  "previous_metadata_acquisition_sha256": "d8077039c86aec52f4b4afb65e84557023a2c906e0f6529fd487496b42f0b9b5",
+  "previous_metadata_prefix_cap_bytes": 280000000,
+  "previous_prefix_sha256": "0793629728cc5fac8626aa4cee3bd623b2eb6db170c0b8a9c7be9bbdc1b24a70",
+  "reason": "Authorized operational extension after fixed280MB prefix yielded seven eligible groups; eight-group cohort and all selection/model/analysis rules remain fixed; no model metrics accessed",
+  "requested_metadata_new_body_cap_bytes": 200000000,
+  "requested_metadata_prefix_cap_bytes": 320000000,
+  "schema": "slowfast_adapter_metadata_amendment_v1",
+  "selection_failure_path": "<local>/selection_failure.json",
+  "selection_failure_sha256": "8df4916d9a4df88f41df55c05d95edcbddcb00970c137c3c29e38d9320afde74"
+}

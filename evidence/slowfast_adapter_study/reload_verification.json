@@ -1,0 +1,319 @@
+{
+  "passed": true,
+  "comparisons": {
+    "42": {
+      "correct": {
+        "conditions": 1024,
+        "full_holdout_predictions": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "actual_step_replay": {
+          "fusion": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 10,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "optimizer": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 30,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "scheduler": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "rng": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 2,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "reference_prediction": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 1,
+            "differing_fields": 0,
+            "first_differences": []
+          }
+        },
+        "last_step_loss": 0.08260343968868256,
+        "last_step_grad_norm": 1.1115655899047852,
+        "before": 511,
+        "after": 512
+      },
+      "reference": {
+        "conditions": 1024,
+        "full_holdout_predictions": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "actual_step_replay": {
+          "fusion": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 10,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "optimizer": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 30,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "scheduler": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "rng": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 2,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "reference_prediction": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 1,
+            "differing_fields": 0,
+            "first_differences": []
+          }
+        },
+        "last_step_loss": 0.08569439500570297,
+        "last_step_grad_norm": 1.0845478773117065,
+        "before": 511,
+        "after": 512
+      }
+    },
+    "43": {
+      "correct": {
+        "conditions": 1024,
+        "full_holdout_predictions": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "actual_step_replay": {
+          "fusion": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 10,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "optimizer": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 30,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "scheduler": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "rng": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 2,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "reference_prediction": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 1,
+            "differing_fields": 0,
+            "first_differences": []
+          }
+        },
+        "last_step_loss": 0.13505923748016357,
+        "last_step_grad_norm": 0.6252581477165222,
+        "before": 511,
+        "after": 512
+      },
+      "reference": {
+        "conditions": 1024,
+        "full_holdout_predictions": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "actual_step_replay": {
+          "fusion": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 10,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "optimizer": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 30,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "scheduler": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "rng": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 2,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "reference_prediction": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 1,
+            "differing_fields": 0,
+            "first_differences": []
+          }
+        },
+        "last_step_loss": 0.13683085143566132,
+        "last_step_grad_norm": 0.2992078363895416,
+        "before": 511,
+        "after": 512
+      }
+    },
+    "44": {
+      "correct": {
+        "conditions": 1024,
+        "full_holdout_predictions": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "actual_step_replay": {
+          "fusion": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 10,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "optimizer": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 30,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "scheduler": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "rng": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 2,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "reference_prediction": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 1,
+            "differing_fields": 0,
+            "first_differences": []
+          }
+        },
+        "last_step_loss": 0.10119767487049103,
+        "last_step_grad_norm": 0.30618220567703247,
+        "before": 511,
+        "after": 512
+      },
+      "reference": {
+        "conditions": 1024,
+        "full_holdout_predictions": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "actual_step_replay": {
+          "fusion": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 10,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "optimizer": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 30,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "scheduler": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "rng": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 2,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "reference_prediction": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 1,
+            "differing_fields": 0,
+            "first_differences": []
+          }
+        },
+        "last_step_loss": 0.10442133992910385,
+        "last_step_grad_norm": 0.5215020775794983,
+        "before": 511,
+        "after": 512
+      }
+    }
+  },
+  "scope": "same_H800_runtime_all256new_windows_four_conditions_and_six_actual_single_updates",
+  "new_network_bytes": 0
+}

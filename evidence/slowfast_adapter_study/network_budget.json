@@ -1,0 +1,24 @@
+{
+  "camera_cap_overrides": {},
+  "camera_prefix_cap_bytes": 225000000,
+  "camera_requests": 296,
+  "camera_response_body_bytes": 1494753510,
+  "cumulative_response_body_bytes": 3403085681,
+  "full_archives_verified": false,
+  "inherited_budget": {
+    "path": "<local>/network_budget.json",
+    "sha256": "1f47f326b67a5881360fca6f3510ed2b2f2df61cb8580d152c7514ef25294406"
+  },
+  "inherited_previous_response_body_bytes": 1708332171,
+  "limit": 2000000000,
+  "metadata_new_cap_bytes": 200000000,
+  "metadata_prefix_cap_bytes": 320000000,
+  "metadata_requests": 25,
+  "metadata_response_body_bytes": 200000000,
+  "new_response_body_bytes": 1694753510,
+  "phase": "complete",
+  "request_ledger_path": "<local>/network_requests.jsonl",
+  "request_ledger_sha256": "5d998e04b5d717ea2317fd3d7c626e61adbb26bef616cdf216ce5d1ef98a0b1e",
+  "schema": "slowfast_adapter_network_budget_v1",
+  "used": 1694753510
+}

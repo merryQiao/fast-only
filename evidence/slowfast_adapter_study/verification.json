@@ -1,0 +1,2101 @@
+{
+  "passed": true,
+  "matched_holdout_windows": 256,
+  "matched_holdout_conditions": 6144,
+  "metric_recompute_max_abs_error": 3.8471703911469035e-07,
+  "optimizer_health": {
+    "42": {
+      "correct": {
+        "updates": 512,
+        "batch_size": 8,
+        "exposures": 4096,
+        "epochs": 16,
+        "grad_norm_median": 0.7370427250862122,
+        "clip_fraction": 0.34765625,
+        "trainable_parameters": 726017,
+        "gradient_probes": [
+          {
+            "step": 1,
+            "tokens": [
+              "eadf8b8f1a7b5dcc",
+              "09bfd9508d3d5ef9",
+              "6393ba52f3465071",
+              "37ce2446a53c5f95",
+              "076d18b802dc5bcb",
+              "491d81c65dd35afe",
+              "e6c6b06688f65611",
+              "e40cdf175ffc5590"
+            ],
+            "loss": 0.21937964856624603,
+            "grad_norm": 0.020520174875855446,
+            "lr": 1.5625e-05,
+            "windows_seen": 8,
+            "epochs": 0.03125,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 2,
+            "tokens": [
+              "2f094d5c049050bb",
+              "315b5742b91459a6",
+              "8610ea5f114c5004",
+              "059970176f8b5f53",
+              "aab14233e18d5b0a",
+              "1f85cffbaa1d5d71",
+              "ab585a9d053f5309",
+              "d62b92563f10554e"
+            ],
+            "loss": 0.16241805255413055,
+            "grad_norm": 0.016078665852546692,
+            "lr": 3.125e-05,
+            "windows_seen": 16,
+            "epochs": 0.0625,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 128,
+            "tokens": [
+              "faaeb53485375b18",
+              "9e0ad3bd86d35dfb",
+              "2d3ff8b3501c51fa",
+              "5508b79b77d0595d",
+              "c9f5be39e9565839",
+              "3b552e222d715bfc",
+              "b301b2f4a1905046",
+              "f2e3544f29955ce3"
+            ],
+            "loss": 0.10830583423376083,
+            "grad_norm": 1.2048163414001465,
+            "lr": 0.00045702882373436317,
+            "windows_seen": 1024,
+            "epochs": 4.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 512,
+            "tokens": [
+              "3c77ee298b675c17",
+              "df6c177649ca5307",
+              "cafe455d265a516e",
+              "c2034c2e5a95564a",
+              "2318616271ce5c49",
+              "5742c2226ae65287",
+              "2d3ff8b3501c51fa",
+              "866b7b1dc16e55dc"
+            ],
+            "loss": 0.08260343968868256,
+            "grad_norm": 1.1115655899047852,
+            "lr": 5e-05,
+            "windows_seen": 4096,
+            "epochs": 16.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          }
+        ],
+        "first_step_zero_upstream_gradients_expected_from_zero_residual": true
+      },
+      "reference": {
+        "updates": 512,
+        "batch_size": 8,
+        "exposures": 4096,
+        "epochs": 16,
+        "grad_norm_median": 0.7732996046543121,
+        "clip_fraction": 0.33984375,
+        "trainable_parameters": 726017,
+        "gradient_probes": [
+          {
+            "step": 1,
+            "tokens": [
+              "eadf8b8f1a7b5dcc",
+              "09bfd9508d3d5ef9",
+              "6393ba52f3465071",
+              "37ce2446a53c5f95",
+              "076d18b802dc5bcb",
+              "491d81c65dd35afe",
+              "e6c6b06688f65611",
+              "e40cdf175ffc5590"
+            ],
+            "loss": 0.21937964856624603,
+            "grad_norm": 0.020771393552422523,
+            "lr": 1.5625e-05,
+            "windows_seen": 8,
+            "epochs": 0.03125,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 2,
+            "tokens": [
+              "2f094d5c049050bb",
+              "315b5742b91459a6",
+              "8610ea5f114c5004",
+              "059970176f8b5f53",
+              "aab14233e18d5b0a",
+              "1f85cffbaa1d5d71",
+              "ab585a9d053f5309",
+              "d62b92563f10554e"
+            ],
+            "loss": 0.16241629421710968,
+            "grad_norm": 0.016050560399889946,
+            "lr": 3.125e-05,
+            "windows_seen": 16,
+            "epochs": 0.0625,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 128,
+            "tokens": [
+              "faaeb53485375b18",
+              "9e0ad3bd86d35dfb",
+              "2d3ff8b3501c51fa",
+              "5508b79b77d0595d",
+              "c9f5be39e9565839",
+              "3b552e222d715bfc",
+              "b301b2f4a1905046",
+              "f2e3544f29955ce3"
+            ],
+            "loss": 0.10567458719015121,
+            "grad_norm": 0.3597087264060974,
+            "lr": 0.00045702882373436317,
+            "windows_seen": 1024,
+            "epochs": 4.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 512,
+            "tokens": [
+              "3c77ee298b675c17",
+              "df6c177649ca5307",
+              "cafe455d265a516e",
+              "c2034c2e5a95564a",
+              "2318616271ce5c49",
+              "5742c2226ae65287",
+              "2d3ff8b3501c51fa",
+              "866b7b1dc16e55dc"
+            ],
+            "loss": 0.08569439500570297,
+            "grad_norm": 1.0845478773117065,
+            "lr": 5e-05,
+            "windows_seen": 4096,
+            "epochs": 16.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          }
+        ],
+        "first_step_zero_upstream_gradients_expected_from_zero_residual": true
+      }
+    },
+    "43": {
+      "correct": {
+        "updates": 512,
+        "batch_size": 8,
+        "exposures": 4096,
+        "epochs": 16,
+        "grad_norm_median": 0.7546406388282776,
+        "clip_fraction": 0.32421875,
+        "trainable_parameters": 726017,
+        "gradient_probes": [
+          {
+            "step": 1,
+            "tokens": [
+              "a4d3ae66c7375ff6",
+              "3a4a569a6bb352c0",
+              "87d4b0a9ec7d584c",
+              "5097e9d3d403597f",
+              "37ce2446a53c5f95",
+              "329ef7ef6aef5b1c",
+              "b191162bf459579e",
+              "e6c6b06688f65611"
+            ],
+            "loss": 0.39891526103019714,
+            "grad_norm": 0.018221963196992874,
+            "lr": 1.5625e-05,
+            "windows_seen": 8,
+            "epochs": 0.03125,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 2,
+            "tokens": [
+              "2e33ba46c6625b10",
+              "e1a5ba34039d5c0a",
+              "b84ff5ed26a45987",
+              "049a70bc48e95f88",
+              "d334a55cdd8057d5",
+              "e5a77feb5cc65c02",
+              "faaeb53485375b18",
+              "491d81c65dd35afe"
+            ],
+            "loss": 0.15415239334106445,
+            "grad_norm": 0.0164475254714489,
+            "lr": 3.125e-05,
+            "windows_seen": 16,
+            "epochs": 0.0625,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 128,
+            "tokens": [
+              "bd3d6850e3255a9b",
+              "d3795ffe0b635b03",
+              "c11cc222e3f35591",
+              "2a73a7ff01a45447",
+              "cccf4e31bc5e5dd8",
+              "faaeb53485375b18",
+              "ccd814ef0d565f60",
+              "e995c4fd5887594c"
+            ],
+            "loss": 0.12424175441265106,
+            "grad_norm": 3.083963394165039,
+            "lr": 0.00045702882373436317,
+            "windows_seen": 1024,
+            "epochs": 4.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 512,
+            "tokens": [
+              "fedd1653147b5142",
+              "3b552e222d715bfc",
+              "1b6805bc659b5362",
+              "7df7c21ed4fd53ea",
+              "99fc17fb53125edf",
+              "450cb570a91f568e",
+              "a7df317632305d38",
+              "6258329363115cc5"
+            ],
+            "loss": 0.13505923748016357,
+            "grad_norm": 0.6252581477165222,
+            "lr": 5e-05,
+            "windows_seen": 4096,
+            "epochs": 16.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          }
+        ],
+        "first_step_zero_upstream_gradients_expected_from_zero_residual": true
+      },
+      "reference": {
+        "updates": 512,
+        "batch_size": 8,
+        "exposures": 4096,
+        "epochs": 16,
+        "grad_norm_median": 0.7706836462020874,
+        "clip_fraction": 0.310546875,
+        "trainable_parameters": 726017,
+        "gradient_probes": [
+          {
+            "step": 1,
+            "tokens": [
+              "a4d3ae66c7375ff6",
+              "3a4a569a6bb352c0",
+              "87d4b0a9ec7d584c",
+              "5097e9d3d403597f",
+              "37ce2446a53c5f95",
+              "329ef7ef6aef5b1c",
+              "b191162bf459579e",
+              "e6c6b06688f65611"
+            ],
+            "loss": 0.39891526103019714,
+            "grad_norm": 0.019361255690455437,
+            "lr": 1.5625e-05,
+            "windows_seen": 8,
+            "epochs": 0.03125,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 2,
+            "tokens": [
+              "2e33ba46c6625b10",
+              "e1a5ba34039d5c0a",
+              "b84ff5ed26a45987",
+              "049a70bc48e95f88",
+              "d334a55cdd8057d5",
+              "e5a77feb5cc65c02",
+              "faaeb53485375b18",
+              "491d81c65dd35afe"
+            ],
+            "loss": 0.15414530038833618,
+            "grad_norm": 0.017370790243148804,
+            "lr": 3.125e-05,
+            "windows_seen": 16,
+            "epochs": 0.0625,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 128,
+            "tokens": [
+              "bd3d6850e3255a9b",
+              "d3795ffe0b635b03",
+              "c11cc222e3f35591",
+              "2a73a7ff01a45447",
+              "cccf4e31bc5e5dd8",
+              "faaeb53485375b18",
+              "ccd814ef0d565f60",
+              "e995c4fd5887594c"
+            ],
+            "loss": 0.13821327686309814,
+            "grad_norm": 4.133768081665039,
+            "lr": 0.00045702882373436317,
+            "windows_seen": 1024,
+            "epochs": 4.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 512,
+            "tokens": [
+              "fedd1653147b5142",
+              "3b552e222d715bfc",
+              "1b6805bc659b5362",
+              "7df7c21ed4fd53ea",
+              "99fc17fb53125edf",
+              "450cb570a91f568e",
+              "a7df317632305d38",
+              "6258329363115cc5"
+            ],
+            "loss": 0.13683085143566132,
+            "grad_norm": 0.2992078363895416,
+            "lr": 5e-05,
+            "windows_seen": 4096,
+            "epochs": 16.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          }
+        ],
+        "first_step_zero_upstream_gradients_expected_from_zero_residual": true
+      }
+    },
+    "44": {
+      "correct": {
+        "updates": 512,
+        "batch_size": 8,
+        "exposures": 4096,
+        "epochs": 16,
+        "grad_norm_median": 0.7276459336280823,
+        "clip_fraction": 0.29296875,
+        "trainable_parameters": 726017,
+        "gradient_probes": [
+          {
+            "step": 1,
+            "tokens": [
+              "ff6c1a4265c45d52",
+              "3229b5c5afbb5798",
+              "3b552e222d715bfc",
+              "7df7c21ed4fd53ea",
+              "d281703cf2ac5681",
+              "d334a55cdd8057d5",
+              "2541e6a640df5e53",
+              "ec279363f5bf5506"
+            ],
+            "loss": 0.24050818383693695,
+            "grad_norm": 0.018408294767141342,
+            "lr": 1.5625e-05,
+            "windows_seen": 8,
+            "epochs": 0.03125,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 2,
+            "tokens": [
+              "4b951f4e7bd95e6f",
+              "8c8c80dcc52455a9",
+              "4e92919865c151b9",
+              "cb092efc749f5eda",
+              "c714b2e7a3985f91",
+              "190af3c5a3765033",
+              "491d81c65dd35afe",
+              "e995c4fd5887594c"
+            ],
+            "loss": 0.14828376471996307,
+            "grad_norm": 0.019109148532152176,
+            "lr": 3.125e-05,
+            "windows_seen": 16,
+            "epochs": 0.0625,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 128,
+            "tokens": [
+              "bad190149b3d5908",
+              "66973e6243c956eb",
+              "aee323842efa57a9",
+              "bcb2c8dfd1575f67",
+              "37ce2446a53c5f95",
+              "65378ff6484756b4",
+              "69fd93a2cabb5248",
+              "d281703cf2ac5681"
+            ],
+            "loss": 0.08793102949857712,
+            "grad_norm": 0.9561064839363098,
+            "lr": 0.00045702882373436317,
+            "windows_seen": 1024,
+            "epochs": 4.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 512,
+            "tokens": [
+              "38c8646d98c75195",
+              "23ef8278569a5687",
+              "3c2b0235d5dc51c7",
+              "2d3ff8b3501c51fa",
+              "44602cbef5ce57eb",
+              "bce715ccad9b508a",
+              "1d0ad435d5b352ed",
+              "99e0d4808a975753"
+            ],
+            "loss": 0.10119767487049103,
+            "grad_norm": 0.30618220567703247,
+            "lr": 5e-05,
+            "windows_seen": 4096,
+            "epochs": 16.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          }
+        ],
+        "first_step_zero_upstream_gradients_expected_from_zero_residual": true
+      },
+      "reference": {
+        "updates": 512,
+        "batch_size": 8,
+        "exposures": 4096,
+        "epochs": 16,
+        "grad_norm_median": 0.7316314578056335,
+        "clip_fraction": 0.26953125,
+        "trainable_parameters": 726017,
+        "gradient_probes": [
+          {
+            "step": 1,
+            "tokens": [
+              "ff6c1a4265c45d52",
+              "3229b5c5afbb5798",
+              "3b552e222d715bfc",
+              "7df7c21ed4fd53ea",
+              "d281703cf2ac5681",
+              "d334a55cdd8057d5",
+              "2541e6a640df5e53",
+              "ec279363f5bf5506"
+            ],
+            "loss": 0.24050818383693695,
+            "grad_norm": 0.01759299263358116,
+            "lr": 1.5625e-05,
+            "windows_seen": 8,
+            "epochs": 0.03125,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": false
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": false
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 2,
+            "tokens": [
+              "4b951f4e7bd95e6f",
+              "8c8c80dcc52455a9",
+              "4e92919865c151b9",
+              "cb092efc749f5eda",
+              "c714b2e7a3985f91",
+              "190af3c5a3765033",
+              "491d81c65dd35afe",
+              "e995c4fd5887594c"
+            ],
+            "loss": 0.1482892632484436,
+            "grad_norm": 0.01814197190105915,
+            "lr": 3.125e-05,
+            "windows_seen": 16,
+            "epochs": 0.0625,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 128,
+            "tokens": [
+              "bad190149b3d5908",
+              "66973e6243c956eb",
+              "aee323842efa57a9",
+              "bcb2c8dfd1575f67",
+              "37ce2446a53c5f95",
+              "65378ff6484756b4",
+              "69fd93a2cabb5248",
+              "d281703cf2ac5681"
+            ],
+            "loss": 0.08860808610916138,
+            "grad_norm": 1.1740381717681885,
+            "lr": 0.00045702882373436317,
+            "windows_seen": 1024,
+            "epochs": 4.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          },
+          {
+            "step": 512,
+            "tokens": [
+              "38c8646d98c75195",
+              "23ef8278569a5687",
+              "3c2b0235d5dc51c7",
+              "2d3ff8b3501c51fa",
+              "44602cbef5ce57eb",
+              "bce715ccad9b508a",
+              "1d0ad435d5b352ed",
+              "99e0d4808a975753"
+            ],
+            "loss": 0.10442133992910385,
+            "grad_norm": 0.5215020775794983,
+            "lr": 5e-05,
+            "windows_seen": 4096,
+            "epochs": 16.0,
+            "gradients": {
+              "fast_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "fast_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "reader_norm.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "combine.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "gate.bias": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.weight": {
+                "finite": true,
+                "nonzero": true
+              },
+              "residual.bias": {
+                "finite": true,
+                "nonzero": true
+              }
+            }
+          }
+        ],
+        "first_step_zero_upstream_gradients_expected_from_zero_residual": true
+      }
+    }
+  },
+  "cohort_boundary": {
+    "holdout_windows": 256,
+    "holdout_recording_groups": [
+      "2021.06.03.12.02.06_veh-35_00233_00609",
+      "2021.06.03.13.55.17_veh-35_00073_00426",
+      "2021.06.08.14.35.24_veh-26_02555_03004",
+      "2021.06.09.12.39.51_veh-26_05620_06003",
+      "2021.06.09.17.23.18_veh-38_02526_03027",
+      "2021.06.14.16.48.02_veh-12_04057_04438",
+      "2021.06.14.17.26.26_veh-38_04544_04920",
+      "2021.06.14.18.42.45_veh-12_03445_03902"
+    ],
+    "previous_recording_groups": [
+      "2021.05.12.23.36.44_veh-35",
+      "2021.06.08.12.54.54_veh-26",
+      "2021.06.09.14.03.17_veh-12",
+      "2021.06.09.14.58.55_veh-35",
+      "2021.06.28.16.57.59_veh-26",
+      "2021.08.17.16.57.11_veh-08",
+      "2021.10.11.02.57.41_veh-50"
+    ],
+    "recording_groups_disjoint": true,
+    "old_counts": {
+      "train": 256,
+      "new_val": 64,
+      "legacy_val": 4
+    }
+  },
+  "paired_initialization_and_order": true,
+  "fixed_update_budget": true,
+  "historical_seed42_exact": {
+    "correct": {
+      "weights": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 10,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "old_VAL_predictions": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 0,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "parent_checkpoint_sha256": "2f4d6a0d6bf8ef7e868ea0a2154a56d2786c934d3cc70b392d25f366814dfa08"
+    },
+    "reference": {
+      "weights": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 10,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "old_VAL_predictions": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 0,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "parent_checkpoint_sha256": "d235f5e6b9617787d2563122a946c5e4649afa7933a8fd94ce6f292cd7919631"
+    }
+  },
+  "source_frozen": true,
+  "holdout_used_for_selection": false,
+  "tests": {
+    "counts": {
+      "tests": 745,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "xml_sha256": "711642bb8155cc87085c41bc9648b5029f7d3a65994b479604e240131c65b08d"
+  },
+  "replay": {
+    "passed": true,
+    "comparisons": {
+      "42": {
+        "correct": {
+          "conditions": 1024,
+          "full_holdout_predictions": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "actual_step_replay": {
+            "fusion": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 10,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "optimizer": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 30,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "scheduler": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 0,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "rng": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 2,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "reference_prediction": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 1,
+              "differing_fields": 0,
+              "first_differences": []
+            }
+          },
+          "last_step_loss": 0.08260343968868256,
+          "last_step_grad_norm": 1.1115655899047852,
+          "before": 511,
+          "after": 512
+        },
+        "reference": {
+          "conditions": 1024,
+          "full_holdout_predictions": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "actual_step_replay": {
+            "fusion": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 10,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "optimizer": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 30,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "scheduler": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 0,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "rng": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 2,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "reference_prediction": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 1,
+              "differing_fields": 0,
+              "first_differences": []
+            }
+          },
+          "last_step_loss": 0.08569439500570297,
+          "last_step_grad_norm": 1.0845478773117065,
+          "before": 511,
+          "after": 512
+        }
+      },
+      "43": {
+        "correct": {
+          "conditions": 1024,
+          "full_holdout_predictions": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "actual_step_replay": {
+            "fusion": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 10,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "optimizer": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 30,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "scheduler": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 0,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "rng": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 2,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "reference_prediction": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 1,
+              "differing_fields": 0,
+              "first_differences": []
+            }
+          },
+          "last_step_loss": 0.13505923748016357,
+          "last_step_grad_norm": 0.6252581477165222,
+          "before": 511,
+          "after": 512
+        },
+        "reference": {
+          "conditions": 1024,
+          "full_holdout_predictions": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "actual_step_replay": {
+            "fusion": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 10,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "optimizer": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 30,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "scheduler": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 0,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "rng": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 2,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "reference_prediction": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 1,
+              "differing_fields": 0,
+              "first_differences": []
+            }
+          },
+          "last_step_loss": 0.13683085143566132,
+          "last_step_grad_norm": 0.2992078363895416,
+          "before": 511,
+          "after": 512
+        }
+      },
+      "44": {
+        "correct": {
+          "conditions": 1024,
+          "full_holdout_predictions": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "actual_step_replay": {
+            "fusion": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 10,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "optimizer": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 30,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "scheduler": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 0,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "rng": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 2,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "reference_prediction": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 1,
+              "differing_fields": 0,
+              "first_differences": []
+            }
+          },
+          "last_step_loss": 0.10119767487049103,
+          "last_step_grad_norm": 0.30618220567703247,
+          "before": 511,
+          "after": 512
+        },
+        "reference": {
+          "conditions": 1024,
+          "full_holdout_predictions": {
+            "passed": true,
+            "max_abs_difference": 0.0,
+            "tensor_count": 0,
+            "differing_fields": 0,
+            "first_differences": []
+          },
+          "actual_step_replay": {
+            "fusion": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 10,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "optimizer": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 30,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "scheduler": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 0,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "rng": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 2,
+              "differing_fields": 0,
+              "first_differences": []
+            },
+            "reference_prediction": {
+              "passed": true,
+              "max_abs_difference": 0.0,
+              "tensor_count": 1,
+              "differing_fields": 0,
+              "first_differences": []
+            }
+          },
+          "last_step_loss": 0.10442133992910385,
+          "last_step_grad_norm": 0.5215020775794983,
+          "before": 511,
+          "after": 512
+        }
+      }
+    },
+    "scope": "same_H800_runtime_all256new_windows_four_conditions_and_six_actual_single_updates",
+    "new_network_bytes": 0
+  },
+  "cold_fast_only_deployment": {
+    "passed": true,
+    "no_slow_or_reader": true,
+    "models_constructed": {
+      "Fast": 1,
+      "Slow": 0,
+      "Reader": 0
+    },
+    "checks": [
+      {
+        "seed": 42,
+        "token": "2a73a7ff01a45447",
+        "cohort": "train",
+        "exact": true,
+        "max_abs_difference": 0.0,
+        "native_processor_exact": true,
+        "original_head_calls": 1,
+        "visual_tokens": [
+          2040,
+          2040,
+          2040,
+          2040
+        ]
+      },
+      {
+        "seed": 42,
+        "token": "218eaff976ba56bb",
+        "cohort": "holdout",
+        "exact": true,
+        "max_abs_difference": 0.0,
+        "native_processor_exact": true,
+        "original_head_calls": 1,
+        "visual_tokens": [
+          2040,
+          2040,
+          2040,
+          2040
+        ]
+      },
+      {
+        "seed": 43,
+        "token": "2a73a7ff01a45447",
+        "cohort": "train",
+        "exact": true,
+        "max_abs_difference": 0.0,
+        "native_processor_exact": true,
+        "original_head_calls": 1,
+        "visual_tokens": [
+          2040,
+          2040,
+          2040,
+          2040
+        ]
+      },
+      {
+        "seed": 43,
+        "token": "218eaff976ba56bb",
+        "cohort": "holdout",
+        "exact": true,
+        "max_abs_difference": 0.0,
+        "native_processor_exact": true,
+        "original_head_calls": 1,
+        "visual_tokens": [
+          2040,
+          2040,
+          2040,
+          2040
+        ]
+      },
+      {
+        "seed": 44,
+        "token": "2a73a7ff01a45447",
+        "cohort": "train",
+        "exact": true,
+        "max_abs_difference": 0.0,
+        "native_processor_exact": true,
+        "original_head_calls": 1,
+        "visual_tokens": [
+          2040,
+          2040,
+          2040,
+          2040
+        ]
+      },
+      {
+        "seed": 44,
+        "token": "218eaff976ba56bb",
+        "cohort": "holdout",
+        "exact": true,
+        "max_abs_difference": 0.0,
+        "native_processor_exact": true,
+        "original_head_calls": 1,
+        "visual_tokens": [
+          2040,
+          2040,
+          2040,
+          2040
+        ]
+      }
+    ],
+    "scope": "fresh_process_original_JPEG_and_native_Processor_full_Fast_with_fixed_bundle;two_predeclared_rows_per_seed",
+    "fast_checkpoint_sha256": "02c3964a225efd79e1c06644cbf49228a38a612021f211258e8476e6606882b1",
+    "new_network_bytes": 0,
+    "source_code_sha256": "a284d0172dec1a1a8603d5777dadbb9f2266ccba50812e602be83b1ca2daea6d"
+  },
+  "extraction_retry": {
+    "passed": true,
+    "first_runtime_git": "3edf0b1",
+    "retry_runtime_git": "b1123a2",
+    "reason": "sourceaudit dictionary shadowed by per-image audit list only in final receipt; two-variable-name fix",
+    "comparisons": {
+      "frozen_features.pt": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 11,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "cold_inputs.pt": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 14,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "rows.json": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 0,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "reader_predictions.json": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 0,
+        "differing_fields": 0,
+        "first_differences": []
+      },
+      "feedback_predictions.json": {
+        "passed": true,
+        "max_abs_difference": 0.0,
+        "tensor_count": 0,
+        "differing_fields": 0,
+        "first_differences": []
+      }
+    },
+    "first_failure_sha256": "07bb0b6584c0e5d27b125c6edcf34abb43906c44b02efb996f0da731e00c9254",
+    "first_log_sha256": "515103155f74c22814ae075dd58ccba273739c253b2048c5960de611e81a36bd",
+    "successful_log_sha256": "d17c45f692429032d20838786d13220a7a8f783748b51caffcc1ca09a778475d",
+    "failed_artifacts": {
+      "frozen_features.pt": {
+        "bytes": 62919050,
+        "sha256": "0b882c6f1bc0781215329fb7578f0c860f15530494d031e84d2b54d25d1a4a1e"
+      },
+      "cold_inputs.pt": {
+        "bytes": 401483145,
+        "sha256": "688f093b333ecc673bafe9b56938db8bf9aa10e5c48f2d2e327010b89d4adfc0"
+      },
+      "rows.json": {
+        "bytes": 2089194,
+        "sha256": "a25a86d041c26624749361b74f60d57d0ca216d3d6d4cda586679e6c871a4bd4"
+      },
+      "reader_predictions.json": {
+        "bytes": 438737,
+        "sha256": "8411cc3062ab1a215aa3e5cbaaa2c6de481e1ed671b25f7cec1b69d9a3594b9f"
+      },
+      "feedback_predictions.json": {
+        "bytes": 233542,
+        "sha256": "b40a7097a6dcb7eaab026d7b540061847dc632685c6a595cfd76f62d10df03f6"
+      }
+    },
+    "new_network_bytes": 0,
+    "changed_training_weights": false,
+    "changed_cohort": false,
+    "changed_analysis": false,
+    "notes": "Both complete frozen inference passes compared exactly before first holdout planning metric evaluation."
+  },
+  "extraction_retry_sha256": "d5f1493aaa029b48c5a22a967b6ed59d0aa743d10f760b50716cd4aae171eb90"
+}

@@ -1,0 +1,105 @@
+{
+  "passed": true,
+  "no_slow_or_reader": true,
+  "models_constructed": {
+    "Fast": 1,
+    "Slow": 0,
+    "Reader": 0
+  },
+  "checks": [
+    {
+      "seed": 42,
+      "token": "2a73a7ff01a45447",
+      "cohort": "train",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "native_processor_exact": true,
+      "original_head_calls": 1,
+      "visual_tokens": [
+        2040,
+        2040,
+        2040,
+        2040
+      ]
+    },
+    {
+      "seed": 42,
+      "token": "218eaff976ba56bb",
+      "cohort": "holdout",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "native_processor_exact": true,
+      "original_head_calls": 1,
+      "visual_tokens": [
+        2040,
+        2040,
+        2040,
+        2040
+      ]
+    },
+    {
+      "seed": 43,
+      "token": "2a73a7ff01a45447",
+      "cohort": "train",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "native_processor_exact": true,
+      "original_head_calls": 1,
+      "visual_tokens": [
+        2040,
+        2040,
+        2040,
+        2040
+      ]
+    },
+    {
+      "seed": 43,
+      "token": "218eaff976ba56bb",
+      "cohort": "holdout",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "native_processor_exact": true,
+      "original_head_calls": 1,
+      "visual_tokens": [
+        2040,
+        2040,
+        2040,
+        2040
+      ]
+    },
+    {
+      "seed": 44,
+      "token": "2a73a7ff01a45447",
+      "cohort": "train",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "native_processor_exact": true,
+      "original_head_calls": 1,
+      "visual_tokens": [
+        2040,
+        2040,
+        2040,
+        2040
+      ]
+    },
+    {
+      "seed": 44,
+      "token": "218eaff976ba56bb",
+      "cohort": "holdout",
+      "exact": true,
+      "max_abs_difference": 0.0,
+      "native_processor_exact": true,
+      "original_head_calls": 1,
+      "visual_tokens": [
+        2040,
+        2040,
+        2040,
+        2040
+      ]
+    }
+  ],
+  "scope": "fresh_process_original_JPEG_and_native_Processor_full_Fast_with_fixed_bundle;two_predeclared_rows_per_seed",
+  "fast_checkpoint_sha256": "02c3964a225efd79e1c06644cbf49228a38a612021f211258e8476e6606882b1",
+  "new_network_bytes": 0,
+  "source_code_sha256": "a284d0172dec1a1a8603d5777dadbb9f2266ccba50812e602be83b1ca2daea6d"
+}

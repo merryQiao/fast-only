@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "first_runtime_git": "3edf0b1",
+  "retry_runtime_git": "b1123a2",
+  "reason": "sourceaudit dictionary shadowed by per-image audit list only in final receipt; two-variable-name fix",
+  "comparisons": {
+    "frozen_features.pt": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 11,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "cold_inputs.pt": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 14,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "rows.json": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "reader_predictions.json": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "feedback_predictions.json": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    }
+  },
+  "first_failure_sha256": "07bb0b6584c0e5d27b125c6edcf34abb43906c44b02efb996f0da731e00c9254",
+  "first_log_sha256": "515103155f74c22814ae075dd58ccba273739c253b2048c5960de611e81a36bd",
+  "successful_log_sha256": "d17c45f692429032d20838786d13220a7a8f783748b51caffcc1ca09a778475d",
+  "failed_artifacts": {
+    "frozen_features.pt": {
+      "bytes": 62919050,
+      "sha256": "0b882c6f1bc0781215329fb7578f0c860f15530494d031e84d2b54d25d1a4a1e"
+    },
+    "cold_inputs.pt": {
+      "bytes": 401483145,
+      "sha256": "688f093b333ecc673bafe9b56938db8bf9aa10e5c48f2d2e327010b89d4adfc0"
+    },
+    "rows.json": {
+      "bytes": 2089194,
+      "sha256": "a25a86d041c26624749361b74f60d57d0ca216d3d6d4cda586679e6c871a4bd4"
+    },
+    "reader_predictions.json": {
+      "bytes": 438737,
+      "sha256": "8411cc3062ab1a215aa3e5cbaaa2c6de481e1ed671b25f7cec1b69d9a3594b9f"
+    },
+    "feedback_predictions.json": {
+      "bytes": 233542,
+      "sha256": "b40a7097a6dcb7eaab026d7b540061847dc632685c6a595cfd76f62d10df03f6"
+    }
+  },
+  "new_network_bytes": 0,
+  "changed_training_weights": false,
+  "changed_cohort": false,
+  "changed_analysis": false,
+  "notes": "Both complete frozen inference passes compared exactly before first holdout planning metric evaluation."
+}

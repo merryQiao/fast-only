@@ -1,0 +1,55 @@
+{
+  "schema": "adapter_paired_study_v1",
+  "parent_run": "outputs/slowfast_reader_fusion/run_01",
+  "data_dir": "outputs/slowfast_adapter_study/data",
+  "holdout_manifest": "outputs/slowfast_adapter_study/data/holdout.jsonl",
+  "feature_source_run": "outputs/slowfast_readability/run_01",
+  "old_feature_bank_sha256": "d91f423d6277c294726d60046ba27096e21c86fbbb729a70de73a16433f6e529",
+  "old_rows_sha256": "84fd2be3fa56e063059f871096e949aaeb278761db796d6faf66f4d2de0ce7b0",
+  "fast_checkpoint_sha256": "02c3964a225efd79e1c06644cbf49228a38a612021f211258e8476e6606882b1",
+  "reader_checkpoint_sha256": "f32855f1698752ca4c315665f0d554dc3cb646948a8dd00cd9d5b7cfca1e9bf7",
+  "source_checkpoint_sha256": "448571f4d543913a4d93471781a1ecf4aa392078f2aa2dafa3816be43f9f0ae9",
+  "train_seeds": [
+    42,
+    43,
+    44
+  ],
+  "arms": [
+    "correct",
+    "reference"
+  ],
+  "train_size": 256,
+  "holdout_logs": 8,
+  "holdout_windows_per_log": 32,
+  "steps": 512,
+  "batch_size": 8,
+  "warmup_steps": 32,
+  "min_lr_ratio": 0.1,
+  "learning_rate": 0.0005,
+  "weight_decay": 0.01,
+  "grad_clip": 1.0,
+  "curve_steps": [
+    128,
+    256,
+    384,
+    512
+  ],
+  "fusion": {
+    "reader_width": 768,
+    "hidden": 256,
+    "gate_bias": -2.0
+  },
+  "max_allocated_gib": 64,
+  "new_network_response_body_cap": 2000000000,
+  "analysis": {
+    "primary": "reference_trained_reference_minus_correct_trained_correct_ADE",
+    "unit": "equal_weight_recording_group_after_within_log_window_mean",
+    "bootstrap": "paired_cartesian_seed_and_log",
+    "bootstrap_replicates": 20000,
+    "analysis_seed": 20261107,
+    "confidence": 0.95,
+    "practical_mean_gain_m": 0.02,
+    "require_positive_CI_lower_bound": true,
+    "threshold_origin": "declared_default_before_new_holdout_metrics"
+  }
+}

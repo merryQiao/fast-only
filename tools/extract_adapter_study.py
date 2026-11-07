@@ -129,7 +129,7 @@ def run(config_path,root):
     del rb,old_slow,old_r,old_teacher,capture,bf,bs,packed,packed_s,obs
     print('Old TRAIN teacher/Fast F/Slow->Reader R all reproduced exactly before new prefills',flush=True)
     for number,row in enumerate(held,1):
-        bf,audit=batch(row,'fast');bs,_=batch(row,'slow');features=original_vision(bf['native']['pixel_values'],bf['native']['image_grid_thw'],return_dict=True).pooler_output
+        bf,image_audit=batch(row,'fast');bs,_=batch(row,'slow');features=original_vision(bf['native']['pixel_values'],bf['native']['image_grid_thw'],return_dict=True).pooler_output
         with cached_vision(fast.backbone,features,bf['native']['image_grid_thw']):
             restore_weights(fast,teacher);feedback=fast(**bf)
             restore_weights(fast,latest)
@@ -144,7 +144,7 @@ def run(config_path,root):
         f_list.append(captured[0]);r_list.append(rf.float());baseline.append(pred)
         reader_predictions.append(dict(token=row['token'],route=row['route'],prediction=rp[0].float().cpu().tolist(),target=row['trajectory_gt']))
         feedback_records.append(dict(token=row['token'],prediction=feedback[0].float().cpu().tolist()))
-        if number==1:cold[row['token']]=dict(batch=to_device(bf,'cpu'),images=row['images'],image_audit=audit,cohort='holdout')
+        if number==1:cold[row['token']]=dict(batch=to_device(bf,'cpu'),images=row['images'],image_audit=image_audit,cohort='holdout')
         del rb,source,features,bf,bs,captured,feedback,pred,rf,rp
         if number%16==0:print(f'frozen original-resolution new-log features {number}/256,elapsed={time.monotonic()-started:.1f}s',flush=True)
         if torch.cuda.max_memory_allocated()/2**30>c['max_allocated_gib']:raise MemoryError('New feature working allocation exceeded')

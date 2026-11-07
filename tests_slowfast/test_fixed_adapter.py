@@ -227,4 +227,3 @@ def test_authenticated_but_malformed_bundle_is_rejected(tmp_path, malformation):
     digest = hashlib.sha256(path.read_bytes()).hexdigest()
     with pytest.raises(ValueError):
         load_fixed_adapter(path, expected_sha256=digest, fast_checkpoint_sha256="a" * 64, head=head)
-

@@ -54,7 +54,7 @@ def load_cache(root,expected_source,expected_data):
     cache.positions=torch.empty(3,len(tokens),shape[2],device='cuda:0',dtype=torch.long)
     cache.groups=torch.empty(len(tokens),shape[2],device='cuda:0',dtype=torch.long)
     cache.valid=torch.empty(len(tokens),shape[2],device='cuda:0',dtype=torch.bool)
-    cache.final=torch.empty(len(tokens),8,1,device='cuda:0')  # unused in consumer controls
+    cache.final=torch.zeros(len(tokens),8,1,device='cuda:0')  # unused in consumer controls
     for number,shard in enumerate(manifest['shards']):
         path=root/shard['path']
         if fingerprint(path)!=shard['sha256']:raise ValueError('Frozen cache shard SHA mismatch')
@@ -168,6 +168,8 @@ def run(config,arm,output):
             if arm=='fast':
                 packet['native']=to_device(inputs[token]['native'],'cpu')
                 packet['vision']=tuple(t.cpu() for t in vision[token])
+                packet['ego']=inputs[token]['ego'].cpu().clone()
+                packet['command']=inputs[token]['command'].cpu().clone()
             torch.save(packet,output/'replay_input.pt')
         optimizer.zero_grad(set_to_none=True);prediction=forward(token)
         target=torch.tensor([e.by_token[token]['trajectory_gt']],device='cuda:0')
@@ -185,6 +187,8 @@ def run(config,arm,output):
         if step==1 or step%64==0:print(f'{arm} {step}/4096 loss={float(loss):.6f} grad={float(norm):.4f} elapsed={time.monotonic()-started:.1f}s',flush=True)
         if step in c['curve_steps']:
             diag=[e.by_token[t] for t in e.diagnostic_tokens];curves[step]=control_metrics(evaluate('train_curve',diag,['correct']));model.train()
+            write_json(output/'curves.json',curves)
+            print(f'{arm} fixed TRAIN32 step{step} ADE={curves[step]["ADE"]:.6f}',flush=True)
         if torch.cuda.max_memory_allocated()/2**30>c['max_allocated_gib']:raise MemoryError('Consumer working allocation cap exceeded')
     final=evaluate('final',e.cohorts['new_val']+e.cohorts['legacy_val'],['correct','masked','reference','shuffled'])
     summary={name:{mode:control_metrics([r for r in final if r['cohort']==name and r['mode']==mode])

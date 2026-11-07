@@ -1,0 +1,8 @@
+{
+  "configs/slowfast_reader_fusion.yaml": "add6822ecbc0d5f4d80a99d25350aecf1839b8b0e4291a4a7fbf2d373d60f750",
+  "slowfast_v11/reader_fusion.py": "9581c1c533cb217a10d78697150f7c31ef99a26d018a3a005fb2d3d82267f4e5",
+  "tools/train_reader_fusion.py": "0f3973f881744a7140c675f2b6d3959e99a7f3c7a6bd9b2f2b567c2ba7533ae2",
+  "tools/reload_reader_fusion.py": "2ca48515574579f69cc31a865b390fbc0059273ab725cda12485e382544ab3a4",
+  "tests_slowfast/test_reader_fusion.py": "c048600c532212ed857644c0574683f27c465bbd81fa2d330a3541c305b34a88",
+  "tools/report_reader_fusion.py": "acf09a224186c8e3b5b7d2632ba73b3dee236fd228a8a0e462f99da84a6bb51f"
+}

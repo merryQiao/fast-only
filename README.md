@@ -18,6 +18,8 @@
 
 [专用ActionExpert与完整Fast对照](docs/SLOWFAST_ACTION_EXPERT_CONTROL.md)固定Slow，每支新增4096个样本更新：145M全参数Expert学会来源依赖，但本次留出规划误差未赢过完整Fast＋LoRA；Fast仍未建立正确KV的稳定增量收益。两支均通过实际最后一步重放。这是小规模适配机制对照，不能作为论文复现或全量训练结论；[参考实现审计](docs/KV_EXPERT_REFERENCE_AUDIT.md)列明训练与结构差异。
 
+[冻结Fast＋Reader残差融合](docs/SLOWFAST_READER_FUSION.md)保留原唯一轨迹Head，仅训练726K融合模块。新VAL正确来源ADE为0.782680m，原Fast关闭分支为0.952469m；固定来源训练对照也达到0.791077m，且第二条VAL日志的正确来源劣于固定/错配干预。因此融合改善了当前基线，但稳定的来源匹配增量仍未建立。两臂同初始化/顺序/16个新增epoch，原图在线检查、全VAL重载与最后一步恢复均精确通过。
+
 **当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 
 > **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。

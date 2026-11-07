@@ -1,0 +1,22 @@
+schema: frozen_reader_residual_v1
+source_run: outputs/slowfast_v11_expanded/run_01
+feature_run: outputs/slowfast_readability/run_01
+fast_run: outputs/slowfast_expert_control/fast_01
+fast_checkpoint_sha256: 02c3964a225efd79e1c06644cbf49228a38a612021f211258e8476e6606882b1
+reader_checkpoint_sha256: f32855f1698752ca4c315665f0d554dc3cb646948a8dd00cd9d5b7cfca1e9bf7
+seed: 42
+arms: [correct, reference]
+steps: 512
+batch_size: 8
+train_size: 256
+warmup_steps: 32
+min_lr_ratio: 0.1
+learning_rate: 0.0005
+weight_decay: 0.01
+grad_clip: 1.0
+curve_steps: [128, 256, 384, 512]
+fusion: {reader_width: 768, hidden: 256, gate_bias: -2.0}
+fast_mode: native_no_external_KV
+reader_feature_geometry: batch1
+evaluation_geometry: batch1
+max_allocated_gib: 64

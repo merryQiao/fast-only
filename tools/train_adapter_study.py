@@ -1,5 +1,6 @@
 """Paired fusion-only seeds; new logs are excluded from all optimizer updates."""
 import argparse
+from collections import Counter
 import copy
 import json
 from pathlib import Path
@@ -11,7 +12,7 @@ from fast_only.common import apply_reproducibility,fingerprint,write_json
 from slowfast_v11.expanded_protocol import select_train_diagnostics
 from slowfast_v11.reader_fusion import ResidualFusion
 from slowfast_v11.validation import state_digest
-from tools.train_reader_fusion import train_arm,make_head,evaluate,metrics
+from tools.train_reader_fusion import train_arm,make_head,evaluate,metrics,cached_forward
 from tools.train_slowfast_joint import compare_trees
 
 
@@ -79,14 +80,46 @@ def evaluate_study(root):
     from slowfast_v11.fixed_adapter import FixedFeatureAdapter,save_fixed_adapter
     root=Path(root);trained=json.loads((root/'training.json').read_text());p=trained['protocol'];c=p['config']
     features=json.loads((root/'features.json').read_text())
+    if features['config_sha256']!=p['config_sha256'] or fingerprint('configs/slowfast_adapter_study.yaml')!=p['config_sha256']:
+        raise ValueError('Frozen evaluation config differs from training preregistration')
+    for key in ['old_feature_bank_sha256','old_rows_sha256','fast_checkpoint_sha256','reader_checkpoint_sha256','source_checkpoint_sha256']:
+        if features[key]!=c[key]:raise ValueError('New feature extraction lineage differs')
+    data_dir=Path(c['data_dir']);pin=json.loads(Path('configs/slowfast_adapter_cohort.json').read_text())
+    for path,digest in [(data_dir/'plan.json',features['data_plan_sha256']),(data_dir/'frozen_tokens.json',features['frozen_tokens_sha256']),
+                        (data_dir/'source_audit.json',features['source_audit_sha256']),(Path(c['holdout_manifest']),features['holdout_manifest_sha256']),
+                        (Path('configs/slowfast_adapter_cohort.json'),features['cohort_pin_sha256'])]:
+        if fingerprint(path)!=digest:raise ValueError('Frozen acquisition/selection identity differs')
+    if pin['plan_file_sha256']!=features['data_plan_sha256'] or pin['tokens_file_sha256']!=features['frozen_tokens_sha256']:
+        raise ValueError('Feature cohort was not pinned before camera access')
     if fingerprint(root/'frozen_features.pt')!=features['feature_bank_sha256'] or fingerprint(root/'rows.json')!=features['rows_sha256']:
         raise ValueError('New frozen feature identity differs')
+    # Check all six frozen endpoints and all destinations before the first new prediction.
+    for seed in c['train_seeds']:
+        if (root/f'seed_{seed}'/'fixed_adapter.pt').exists():raise FileExistsError('Fixed bundle already exported')
+        for arm in c['arms']:
+            dest=root/f'seed_{seed}'/arm
+            if fingerprint(dest/'final.pt')!=trained['seeds'][str(seed)][arm]['checkpoint_sha256']:raise ValueError('Trained fusion endpoint differs')
+            if (dest/'holdout_predictions.json').exists():raise FileExistsError('Holdout already evaluated')
     original=json.loads((Path(p['parent_protocol']['config']['source_run'])/'result.json').read_text())
     apply_reproducibility(original['config']);torch.set_num_threads(4)
     bank=torch.load(root/'frozen_features.pt',map_location='cuda:0',weights_only=False)
     rows=json.loads((root/'rows.json').read_text());held=[r for r in rows if r['cohort']=='holdout'];head=make_head(bank['head'],'cuda:0')
-    if len(held)!=256 or len({r['route'] for r in held})!=8 or any(r['split']!='val' for r in held):raise ValueError('Fixed holdout coverage differs')
-    evaluation={};bundles={}
+    from slowfast_v11.adapter_data import recording_group
+    old_rows=json.loads((Path(c['parent_run'])/'rows.json').read_text());old=torch.load(Path(c['parent_run'])/'frozen_features.pt',map_location='cuda:0',weights_only=False)
+    groups=Counter(recording_group(r['route']) for r in held)
+    if (len(held)!=256 or len(groups)!=8 or set(groups.values())!={32} or set(groups)&{recording_group(r['route']) for r in old_rows}
+            or any(r['split']!='val' for r in held) or [r['token'] for r in held]!=pin['tokens']
+            or rows[:len(old_rows)]!=old_rows or bank['tokens'][:len(old_rows)]!=old['tokens']):raise ValueError('Fixed holdout/preserved TRAIN coverage differs')
+    n=len(old['tokens'])
+    for name in ['fast','baseline']:
+        if not torch.equal(bank[name][:n],old[name]):raise ValueError('Old features changed in extended bank')
+    for mode in ['correct','reference','shuffled']:
+        if not torch.equal(bank['reader'][mode][:n],old['reader'][mode]):raise ValueError('Old Reader feature content changed')
+        if {t:bank['sources'][mode][t] for t in old['tokens']}!=old['sources'][mode]:raise ValueError('Old source mapping changed')
+    if (not compare_trees(old['head'],bank['head'])['passed']
+            or not torch.equal(bank['reader']['reference'],old['reader']['reference'][:1].expand_as(bank['reader']['reference']))):
+        raise ValueError('Frozen original head/R0 differs')
+    evaluation={};bundles={};cold_expected=[]
     for seed in c['train_seeds']:
         evaluation[str(seed)]={}
         for arm in c['arms']:
@@ -96,7 +129,6 @@ def evaluate_study(root):
             fusion=ResidualFusion(fast_width=bank['fast'].shape[-1],**c['fusion']).cuda();fusion.load_state_dict(saved['fusion'])
             records=evaluate(fusion,head,bank,held)
             path=dest/'holdout_predictions.json'
-            if path.exists():raise FileExistsError('Holdout already evaluated')
             write_json(path,records)
             evaluation[str(seed)][arm]=dict(summary={mode:metrics([r for r in records if r['mode']==mode]) for mode in ['correct','off','reference','shuffled']},
                 predictions_sha256=fingerprint(path),conditions=len(records))
@@ -105,8 +137,14 @@ def evaluate_study(root):
                 path=root/f'seed_{seed}'/'fixed_adapter.pt'
                 digest=save_fixed_adapter(path,adapter,fast_checkpoint_sha256=c['fast_checkpoint_sha256'],head=head)
                 bundles[str(seed)]=dict(path=str(path),sha256=digest,source_training_checkpoint=r['checkpoint_sha256'])
-    write_json(root/'result.json',dict(completed=True,protocol=p,features=features,training=trained,
-        holdout=evaluation,fixed_bundles=bundles,new_holdout_used_for_selection=False,new_backbone_updates=0,new_Reader_updates=0,
+                with torch.no_grad():
+                    for token in features['cold_tokens']:
+                        cold_expected.append(dict(seed=seed,token=token,prediction=cached_forward(fusion,head,bank,[token],'reference')[0].float().cpu().tolist()))
+    write_json(root/'cold_expected.json',cold_expected)
+    write_json(root/'result.json',dict(completed=True,stage='evaluation_completed_pending_independent_verification',verified=False,
+        evaluation_source_sha256=fingerprint(__file__),protocol=p,features=features,training=trained,
+        holdout=evaluation,fixed_bundles=bundles,cold_expected_sha256=fingerprint(root/'cold_expected.json'),
+        new_holdout_used_for_selection=False,new_backbone_updates=0,new_Reader_updates=0,
         new_network_response_body_bytes=features['new_network_response_body_bytes']))
     print('Frozen three-seed holdout evaluation completed',flush=True)
 

@@ -1,0 +1,30 @@
+# KV Content Diagnostic Implementation Plan
+
+> **For agentic workers:** Use superpowers:executing-plans to implement this plan task-by-task. Review is advisory; the user already supplied the diagnostic design and authorized continuation.
+
+**Goal:** Separate scene-specific Slow KV information from external-slot/metadata effects at the existing joint checkpoint, without training or downloading data.
+
+**Architecture:** Add inference-only utilities and a scoped attention probe; leave model and training behavior unchanged. Reuse the verified expanded-data loader/checkpoint identities, exact final predictions, original images and fixed feedback. Probe six layers at fixed current context and cache metadata. Never change positions or token counts across content interventions.
+
+**Tech Stack:** Existing Torch/Transformers/FLA runtime, one H800, source branch efe0353, original NAVSIM expanded mini data.
+
+## Locked protocol
+
+- Use joint_final.pt from outputs/slowfast_v11_expanded/run_01, with its recorded SHA, base assets, data identities and feedback checked by checked_checkpoint. No optimizer updates, downloads, threshold tuning or checkpoint selection.
+- Evaluate all 64 new VAL windows and four legacy windows, separately. These are previously observed diagnostic VAL cohorts (two logs / one log), not new held-out test evidence. Do not treat adjacent windows as independent episodes.
+- Seven conditions per target: historical none; correct; legacy deterministic shuffled donor; contrast donor; all external columns masked with cache metadata retained; correct K with V=0; fixed reference KV. All cache conditions retain the target correct snapshot's position_ids, valid layout, current inputs and identical age/relative-pose/valid metadata. Require exact position/mask and tensor-layout compatibility before transplanting donor K/V. Fail clearly on incompatible layouts; do not interpolate, truncate or pad KV.
+- Contrast donor: same split/cohort, different token; prefer another log where available; maximize command difference first, then absolute current raw-speed difference, deterministic token tie break. No GT, future information, model error or predictions used for donor selection. Record all candidates' constraints, source command/speed and achieved contrast. Legacy has only same-log donors and cannot guarantee different commands. This is stronger observable-condition contrast, not proof of visual semantic dissimilarity.
+- Fixed reference: lexicographically smallest TRAIN token, chosen without GT/error. No target-specific reference selection. Its use is an intentionally invalid inference intervention only, never a legal deployed cache or training input. Keep actual source identity separate from deliberately held-fixed target metadata.
+- Audit actual six-layer pre-RoPE K/V difference for original and contrast donors, globally and by visual/context/suffix token type; finite/equality/relative-L2/cosine, group coverage and layout. Record exact selected-token mappings and identities, not entire KV tensors.
+- Scoped attention probe calls the original planning_attention, then computes float32 reference attention statistics from the same Q/K and masks: external mass, per-source-token-group mass, per-query mass, token counts/per-token mass, external and self Value-contribution norms before sigmoid gating/output projection. It must not alter the actual production output. At masked condition set source_valid false, retaining enabled and metadata. At zero_v keep K/source_valid, zero V. Non-reentrant, eval/no-grad only, restore original function on success/error. No production training API change.
+- First reproduce saved none/fresh/shuffled predictions exactly, with statistics enabled on fresh/shuffled; fail if any differ. Assert source tensors, model state and fixed metadata remain unchanged. All-cache-masked outputs must be invariant to different external content while fixed metadata is held. Test this synthetically and on one predeclared VAL token. Context-read restriction remains unchanged.
+- Record per-window Slow own-head predictions from the same snapshot prefill. Report all windows and predeclared descriptive subsets: Slow better than Fast-none by any amount; clear advantage = at least0.1m AND20% ADE improvement. Report subset sizes, paired gains for correct vs masked/shuffled/contrast/reference, and overall speed/log strata. This GT-based retrospective slicing supports diagnosis only.
+- Export portable JSON/figures and hashes, exact reconstruction checks, probe tests and runtime identities. Keep checkpoints, images and full snapshots ignored. Masked-vs-none also changes metadata-token and native/recomputed attention path; it is not metadata-only. ZeroV preserves logits only for fixed per-layer Q/K; later layers may diverge. No causal claim from a singleton reference or synthetic out-of-distribution zeros; distinguish attention-mass observation from Value contribution and actual planning accuracy.
+
+## Tasks
+
+- [ ] Write CPU tests first: donor constraints/GT independence; immutable layout transplant; zeroV-vs-mask softmax distinction; scoped probe output identity/cleanup; actual six-layer routing; retrospective slicing.
+- [ ] Implement slowfast_v11/content_diagnostics.py with pure donor/audit/intervention/summary functions and scoped inference probe. Keep runtime behavior unchanged outside the scope.
+- [ ] Implement tools/diagnose_slowfast_content.py, reuse ExpandedExperiment and checked_checkpoint. Persist protocol before GPU evaluation; stream per-window results/probes and checkpoint identity, fail loudly on mismatched references.
+- [ ] Independent review, targeted/regression tests, then run the one fixed diagnostic pass. Keep the original results unchanged.
+- [ ] Add tools/report_slowfast_content.py and docs/SLOWFAST_KV_CONTENT_DIAGNOSTIC.md; export portable evidence and charts; verify hashes and source identities; commit findings including negative/inconclusive outcomes. Attempt GitHub publication only with available credentials and verify remote before claiming it.

@@ -1,0 +1,44 @@
+{
+  "input_files": {
+    "outputs/slowfast_readability/run_01/result.json": "f90259c3175896cddbf9927ced18ba42ef6cffa70f6d94c1813797e43d6a497c",
+    "outputs/slowfast_readability/run_01/protocol.json": "523937eb67c9f7ed639ceb8163a902db8c3c8f54780f9353d3853c4a4730f633",
+    "outputs/slowfast_readability/run_01/export.json": "50a6847840365587fc54c52773d708b4cef35fbec0eda109cf28a577a2914fdf",
+    "outputs/slowfast_readability/run_01/predictions.json": "62ec16f1d0bead191eae11b453a00dfdb52ab15d0c53e47007beacd87c39cd16",
+    "outputs/slowfast_readability/run_01/path_records.jsonl": "f30078f6bb7d34c6f3b04953d3482a7af89cded502fcf403631afd1f3bdac960",
+    "outputs/slowfast_readability/run_01/baselines.json": "0b43ad0882494d48170caaf9ecc3632a3a2a7dd17b67e05e06b02e4c0dd011e6",
+    "outputs/slowfast_readability/run_01/train.jsonl": "14a43baf09613d6eccc803de02166e1d1ac6ca965fe98bd0f0bfc0b5a243af0e",
+    "outputs/slowfast_readability/reload_01.json": "1cfeb1ea78a100e49ea1e6fb1d71fdda49099340eba4e4e5d3ddd8e52ca2e605",
+    "outputs/slowfast_readability/sdpa_audit_01.json": "ad33ab8bb8351d0f08044e81e80e6877fa3dfc20c0ee7372632018543a8ada2a",
+    "outputs/slowfast_readability/final_tests.xml": "810584de531c114892bc4f73ecf9ecaca23fe63e494c9be079d08dc5cc77578d",
+    "outputs/slowfast_readability/run_01/frozen_cache/manifest.json": "401fe157104944caf50c8cf2f6397810c8833533afe55d081c001d46a0dd9694"
+  },
+  "captured_implementation_sha256": {
+    "tools/diagnose_slowfast_readability.py": "9e14b9c289e0a631a0f07e343fc4bec6c8f84ee7f9ecda8f01974438832d7aaa",
+    "slowfast_v11/path_diagnostics.py": "7c79c411895c88cffb7aebd0b67a24588b6c67a2075052a34844e57105f17858",
+    "slowfast_v11/readability.py": "963c8dc1784877defeb58fe2baef53c407372372ab640bb3684dbbcc15f1297d",
+    "tools/audit_slowfast_sdpa.py": "785b4b731f45f26162a3b7c32a3d048e1c6cd038edbc9b3e11a5a53fefa76d3a",
+    "slowfast_v11/attention.py": "114f174759bbec1ff746e57922a667df38a7ec98217b8ae4bcdfeb3b3fafab72",
+    "transformers/modeling_qwen3_5.py": "fd9963c32aa3d50c753a990a2670cfdbea055b6316b40027e0de976019e42551",
+    "transformers/sdpa_attention.py": "87f933d1a2d8508df572da5c0748c6b24c22ff2b625796949957dcd86cc57564"
+  },
+  "current_implementation_sha256": {
+    "tools/diagnose_slowfast_readability.py": "9e14b9c289e0a631a0f07e343fc4bec6c8f84ee7f9ecda8f01974438832d7aaa",
+    "slowfast_v11/path_diagnostics.py": "7c79c411895c88cffb7aebd0b67a24588b6c67a2075052a34844e57105f17858",
+    "slowfast_v11/readability.py": "963c8dc1784877defeb58fe2baef53c407372372ab640bb3684dbbcc15f1297d",
+    "tools/audit_slowfast_sdpa.py": "785b4b731f45f26162a3b7c32a3d048e1c6cd038edbc9b3e11a5a53fefa76d3a",
+    "slowfast_v11/attention.py": "114f174759bbec1ff746e57922a667df38a7ec98217b8ae4bcdfeb3b3fafab72",
+    "transformers/modeling_qwen3_5.py": "fd9963c32aa3d50c753a990a2670cfdbea055b6316b40027e0de976019e42551",
+    "transformers/sdpa_attention.py": "87f933d1a2d8508df572da5c0748c6b24c22ff2b625796949957dcd86cc57564"
+  },
+  "captured_matches_current": {
+    "tools/diagnose_slowfast_readability.py": true,
+    "slowfast_v11/path_diagnostics.py": true,
+    "slowfast_v11/readability.py": true,
+    "tools/audit_slowfast_sdpa.py": true,
+    "slowfast_v11/attention.py": true,
+    "transformers/modeling_qwen3_5.py": true,
+    "transformers/sdpa_attention.py": true
+  },
+  "report_tool_sha256": "65fd2b72ac7644116be12480eb4b052dbd9a6dbdcc177e8128698cd1230cbab6",
+  "source_checkpoint_sha256": "448571f4d543913a4d93471781a1ecf4aa392078f2aa2dafa3816be43f9f0ae9"
+}

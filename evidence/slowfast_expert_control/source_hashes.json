@@ -1,0 +1,29 @@
+{
+  "input_files": {
+    "outputs/slowfast_expert_control/expert_01/result.json": "9cd87109074417bbb5c086c10ba37625b44b50e00b7e1ea6645b47a4c01fc66c",
+    "outputs/slowfast_expert_control/expert_01/protocol.json": "7232194ac966e8ba70632346049db02f5a4dcd4bcabc38243bcd1dca75af4aa3",
+    "outputs/slowfast_expert_control/expert_01/predictions.json": "0c4bf43452f14819229785b6c0c0e03b6588319801bb1fec2063db7bd000fb9c",
+    "outputs/slowfast_expert_control/expert_01/train.jsonl": "35e42a523f5fd2d5e9ce2320d1b5e209e8aa462998d6da61233628641d5b6914",
+    "outputs/slowfast_expert_control/fast_01/result.json": "0a8e4b9a486e45e4e0bdad4f90a21365cc53a388d10aa0ee4a67ead2082d8a05",
+    "outputs/slowfast_expert_control/fast_01/protocol.json": "2f4a6353df897d2275e83df2cc024e488bf02a768a4fde906af81712a99719ee",
+    "outputs/slowfast_expert_control/fast_01/predictions.json": "0a9a33e6b3857419027758691303aadf4a566f72e8e67f74d1d8a8f7cbeaea48",
+    "outputs/slowfast_expert_control/fast_01/train.jsonl": "c85a54d3620a58269e69e8ac9c09b4a41ac206c19d319ac0ecd20416800c1764",
+    "outputs/slowfast_expert_control/expert_replay_02.json": "efb2f25d1091ef3038732d2f46fe71798b8990c48ce814ab2d3e21af1f8b4f1c",
+    "outputs/slowfast_expert_control/fast_replay_01.json": "89ab6430bc9bb7fb7e9f191e8d5fe187ed0990f7f84c66bdbe9148110e43822b",
+    "outputs/slowfast_expert_control/final_tests.xml": "367597628be9a523b91f57be9f7f1fddc99863710c948df8cd3ca7601c59697f"
+  },
+  "recorded_checkpoints": {
+    "expert": {
+      "checkpoint_sha256": "639bd8c1368c9f9d5b3afd5ea67d49e4538387fcc3fad8f56e195ba3d50e0314",
+      "before_final_sha256": "f0961a1f97a1196c719444f499d8f63f0664881ea1618003c6a9e8644c13297f",
+      "replay_input_sha256": "2e850375967c4297f54158fda5fff3a64818026bc414475d403661beb5cafb82"
+    },
+    "fast": {
+      "checkpoint_sha256": "02c3964a225efd79e1c06644cbf49228a38a612021f211258e8476e6606882b1",
+      "before_final_sha256": "80a1f78b92fa1c60f9491cf92d64a9d2dd034a115aee7b920d907a09e2b82fb7",
+      "replay_input_sha256": "83f8567823c194303df529c1f34d399c3bc8a5920fecb8dcaf7e847390d0dfcb"
+    }
+  },
+  "report_tool_sha256": "fabf81fb7c28a10bff9866c6dc29f59055e8f4777f313ba5dd43b7f9a9c80179",
+  "replay_reader_sha256": "6f37da0ca526ecf4773f5e819749d3332099d3e5b36eecb5cffb4dbfd1fb2a2d"
+}

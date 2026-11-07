@@ -1,0 +1,30 @@
+{
+  "arms": {
+    "expert": {
+      "revision": "d82fac8",
+      "trainer_sha256": "48e8b1c447599ed6160f44122754b688467d6837accee8b9c43c523407064ad8",
+      "recorded_matches_git": true,
+      "recorded_source_sha256": {
+        "<local>/train_frozen_expert.py": "48e8b1c447599ed6160f44122754b688467d6837accee8b9c43c523407064ad8",
+        "slowfast_v11/action_expert.py": "6c502ded480012626ead4647e545e2c511cd6eb51e376cc270c93e3382c4de87"
+      }
+    },
+    "fast": {
+      "revision": "fc4cb32",
+      "trainer_sha256": "3c1ae598b4b22d22b332c1ace5c786d7e39966fa64f48ce0e57ceff62b6528c2",
+      "recorded_matches_git": true,
+      "recorded_source_sha256": {
+        "<local>/train_frozen_expert.py": "3c1ae598b4b22d22b332c1ace5c786d7e39966fa64f48ce0e57ceff62b6528c2",
+        "slowfast_v11/action_expert.py": "6c502ded480012626ead4647e545e2c511cd6eb51e376cc270c93e3382c4de87"
+      }
+    }
+  },
+  "trainer_diff": "diff --git a/tools/train_frozen_expert.py b/tools/train_frozen_expert.py\nindex acef00b..77138ff 100644\n--- a/tools/train_frozen_expert.py\n+++ b/tools/train_frozen_expert.py\n@@ -54,7 +54,7 @@ def load_cache(root,expected_source,expected_data):\n     cache.positions=torch.empty(3,len(tokens),shape[2],device='cuda:0',dtype=torch.long)\n     cache.groups=torch.empty(len(tokens),shape[2],device='cuda:0',dtype=torch.long)\n     cache.valid=torch.empty(len(tokens),shape[2],device='cuda:0',dtype=torch.bool)\n-    cache.final=torch.empty(len(tokens),8,1,device='cuda:0')  # unused in consumer controls\n+    cache.final=torch.zeros(len(tokens),8,1,device='cuda:0')  # unused in consumer controls\n     for number,shard in enumerate(manifest['shards']):\n         path=root/shard['path']\n         if fingerprint(path)!=shard['sha256']:raise ValueError('Frozen cache shard SHA mismatch')\n@@ -168,6 +168,8 @@ def run(config,arm,output):\n             if arm=='fast':\n                 packet['native']=to_device(inputs[token]['native'],'cpu')\n                 packet['vision']=tuple(t.cpu() for t in vision[token])\n+                packet['ego']=inputs[token]['ego'].cpu().clone()\n+                packet['command']=inputs[token]['command'].cpu().clone()\n             torch.save(packet,output/'replay_input.pt')\n         optimizer.zero_grad(set_to_none=True);prediction=forward(token)\n         target=torch.tensor([e.by_token[token]['trajectory_gt']],device='cuda:0')\n@@ -185,6 +187,8 @@ def run(config,arm,output):\n         if step==1 or step%64==0:print(f'{arm} {step}/4096 loss={float(loss):.6f} grad={float(norm):.4f} elapsed={time.monotonic()-started:.1f}s',flush=True)\n         if step in c['curve_steps']:\n             diag=[e.by_token[t] for t in e.diagnostic_tokens];curves[step]=control_metrics(evaluate('train_curve',diag,['correct']));model.train()\n+            write_json(output/'curves.json',curves)\n+            print(f'{arm} fixed TRAIN32 step{step} ADE={curves[step][\"ADE\"]:.6f}',flush=True)\n         if torch.cuda.max_memory_allocated()/2**30>c['max_allocated_gib']:raise MemoryError('Consumer working allocation cap exceeded')\n     final=evaluate('final',e.cohorts['new_val']+e.cohorts['legacy_val'],['correct','masked','reference','shuffled'])\n     summary={name:{mode:control_metrics([r for r in final if r['cohort']==name and r['mode']==mode])\n",
+  "diff_sha256": "2648e5198ad5f254bcc5282a03c3db982d544bfd1d258fb08475748d8e01b7f9",
+  "interpretation": "unused cache.final empty->zeros; direct Fast ego/command replay packet; TRAIN curve logging. No forward/loss/optimizer change.",
+  "current_files": {
+    "tools/train_frozen_expert.py": "3c1ae598b4b22d22b332c1ace5c786d7e39966fa64f48ce0e57ceff62b6528c2",
+    "tools/reload_frozen_expert.py": "6f37da0ca526ecf4773f5e819749d3332099d3e5b36eecb5cffb4dbfd1fb2a2d",
+    "slowfast_v11/action_expert.py": "6c502ded480012626ead4647e545e2c511cd6eb51e376cc270c93e3382c4de87"
+  }
+}

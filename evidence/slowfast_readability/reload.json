@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "comparisons": {
+    "kv": {
+      "count": 48,
+      "max_abs_difference": 0.0,
+      "passed": true
+    },
+    "final": {
+      "count": 48,
+      "max_abs_difference": 0.0,
+      "passed": true
+    }
+  },
+  "scope": "same_H800_runtime_readout_only"
+}

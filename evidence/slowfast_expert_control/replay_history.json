@@ -1,0 +1,12 @@
+{
+  "expert_first_attempt": {
+    "log_sha256": "672fd67107d676977c22ace3b663b48de68cf21a76ad11b05f838f70e56d5f82",
+    "failed_before_update": true,
+    "reason": "Result/checkpoint tuple-versus-JSON-list comparison; reader-only normalization fix",
+    "training_changed": false
+  },
+  "successful_replays": {
+    "expert": "expert_replay_02.json",
+    "fast": "fast_replay_01.json"
+  }
+}

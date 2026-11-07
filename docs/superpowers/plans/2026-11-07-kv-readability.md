@@ -19,8 +19,8 @@
 
 ## Files and tasks
 
-- [ ] Test-first slowfast_v11/readability.py + tests_slowfast/test_readability.py: raw-KV reader and final-feature reader, full-token/group/position layouts, source-content sensitivity, TRAIN-only invertible RMS scales, gradient isolation and synthetic fit. Independent worker may own these two files.
-- [ ] Test-first slowfast_v11/path_diagnostics.py + tests_slowfast/test_path_diagnostics.py: forced no_cache metadata scoped hook, six-layer downstream traces and cleanup; native-vs-masked equality on small actual language model.
-- [ ] tools/diagnose_slowfast_readability.py: fixed protocol, checkpoint guard, extraction, Step1, exact Head reproduction, GPU cache/train/eval, loss/gradient/RNG/checkpoint evidence. Root owns runner and report; no other worker uses GPU.
-- [ ] Independent plan/code review; regression tests; run bounded diagnostic,1024x2 probe updates, final held-log evaluation, independent readout reload prediction check.
-- [ ] docs/SLOWFAST_KV_READABILITY.md and portable evidence/plots/identity hashes; record outcomes and limitations, commit separate branch. GitHub remains dependent on credentials; verify push before claiming upload.
+- [x] Test-first slowfast_v11/readability.py + tests_slowfast/test_readability.py: raw-KV reader and final-feature reader, full-token/group/position layouts, source-content sensitivity, TRAIN-only invertible RMS scales, gradient isolation and synthetic fit. Independent worker may own these two files.
+- [x] Test-first slowfast_v11/path_diagnostics.py + tests_slowfast/test_path_diagnostics.py: forced no_cache metadata scoped hook, six-layer downstream traces and cleanup; native-vs-masked equality on small actual language model.
+- [x] tools/diagnose_slowfast_readability.py: fixed protocol, checkpoint guard, extraction, Step1, exact Head reproduction, GPU cache/train/eval, loss/gradient/RNG/checkpoint evidence. Root owns runner and report; no other worker uses GPU.
+- [x] Independent plan/code review; regression tests; run bounded diagnostic,1024x2 probe updates, final held-log evaluation, independent readout reload prediction check.
+- [x] docs/SLOWFAST_KV_READABILITY.md and portable evidence/plots/identity hashes; record outcomes and limitations, commit separate branch. GitHub remains dependent on credentials; verify push before claiming upload.

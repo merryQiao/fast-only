@@ -1,0 +1,55 @@
+{
+  "source_parameters_unchanged": true,
+  "original_head_exact_count": 324,
+  "raw_KV_shape": [
+    324,
+    6,
+    8255,
+    512
+  ],
+  "raw_KV_dtype": "torch.bfloat16",
+  "raw_KV_bytes": 32865730560,
+  "key_scales": [
+    1.419787049293518,
+    1.501768708229065,
+    1.5540425777435303,
+    1.5953632593154907,
+    1.4087167978286743,
+    1.407204270362854
+  ],
+  "value_scales": [
+    0.6699414253234863,
+    0.6608286499977112,
+    0.7287386655807495,
+    0.9887528419494629,
+    1.3881030082702637,
+    3.4866831302642822
+  ],
+  "scales_source": "TRAIN256_only",
+  "group_names": [
+    "image_0",
+    "image_1",
+    "image_2",
+    "image_3",
+    "native_other",
+    "ego",
+    "command",
+    "feedback",
+    "planning_queries"
+  ],
+  "source_versions": [
+    1944,
+    1944,
+    324,
+    324,
+    324,
+    324
+  ],
+  "path_exact_references": 204,
+  "empty_equivalence_prediction_tolerance": 0.0001,
+  "before_digests": {
+    "fast": "aff9e0eef88fcc87da3564fb4951c104ed4ca23625a5e0e84c12778154991cd2",
+    "slow": "88b5e8c5157f81fd2362155995b15ab94a096f3677b5ae0afa328270df33b739"
+  },
+  "post_model_unload_allocated_gib": 30.743406772613525
+}

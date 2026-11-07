@@ -1,0 +1,48 @@
+{
+  "passed": true,
+  "arm": "expert",
+  "step_before": 4095,
+  "step_after": 4096,
+  "token": "866b7b1dc16e55dc",
+  "loss": 0.2348160743713379,
+  "grad_norm": 30.82285499572754,
+  "comparisons": {
+    "model": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 280,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "optimizer": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 840,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "scheduler": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "rng": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 2,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "reference_prediction": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 1,
+      "differing_fields": 0,
+      "first_differences": []
+    }
+  },
+  "scope": "same_H800_runtime_actual_single_update",
+  "source_provider_frozen": true
+}

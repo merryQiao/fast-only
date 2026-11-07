@@ -1,0 +1,101 @@
+{
+  "schema": "slowfast_readability_report_verification_v1",
+  "historical_regression": {
+    "counts": {
+      "tests": 652,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "xml_sha256": "810584de531c114892bc4f73ecf9ecaca23fe63e494c9be079d08dc5cc77578d",
+    "suite_timestamps": [
+      "2026-11-07T05:25:57.798858+00:00"
+    ],
+    "scope": "Historical regression snapshot; subsequent checkpoint-helper/control changes are not certified by this record."
+  },
+  "reload": {
+    "passed": true,
+    "comparisons": {
+      "kv": {
+        "count": 48,
+        "max_abs_difference": 0.0,
+        "passed": true
+      },
+      "final": {
+        "count": 48,
+        "max_abs_difference": 0.0,
+        "passed": true
+      }
+    },
+    "scope": "same_H800_runtime_readout_only"
+  },
+  "reload_coverage": {
+    "kv": {
+      "conditions": 48,
+      "unique_targets": 16,
+      "cohorts": {
+        "new_val": 48
+      },
+      "modes": {
+        "correct": 16,
+        "shuffled": 16,
+        "reference": 16
+      }
+    },
+    "final": {
+      "conditions": 48,
+      "unique_targets": 16,
+      "cohorts": {
+        "new_val": 48
+      },
+      "modes": {
+        "correct": 16,
+        "shuffled": 16,
+        "reference": 16
+      }
+    }
+  },
+  "reload_scope": "16 new_VAL targets per reader, 3 source modes; not all68 VAL windows",
+  "original_head_exact_count": 324,
+  "path_reference_predictions_exact": 204,
+  "metric_recompute_max_abs_error": 1.681085954885475e-06,
+  "recompute_dtype": "float64 NumPy; stored metrics were float32 Torch",
+  "frozen_cache_unchanged": true,
+  "no_base_model_updates": true,
+  "no_downloads": true,
+  "report_cpu_only": true,
+  "recorded_runtime": {
+    "torch": "2.8.0+cu128",
+    "transformers": "5.10.2",
+    "gpu": "NVIDIA H800",
+    "cuda": "12.8",
+    "reproducibility": {
+      "deterministic_algorithms": true,
+      "warn_only": false,
+      "cublas_workspace_config": ":4096:8",
+      "cudnn_deterministic": true,
+      "cudnn_benchmark": false,
+      "allow_tf32": false
+    }
+  },
+  "source_condition_counts": {
+    "kv/train/correct": 256,
+    "kv/new_val/correct": 64,
+    "kv/legacy_val/correct": 4,
+    "kv/train/shuffled": 256,
+    "kv/new_val/shuffled": 64,
+    "kv/legacy_val/shuffled": 4,
+    "kv/train/reference": 256,
+    "kv/new_val/reference": 64,
+    "kv/legacy_val/reference": 4,
+    "final/train/correct": 256,
+    "final/new_val/correct": 64,
+    "final/legacy_val/correct": 4,
+    "final/train/shuffled": 256,
+    "final/new_val/shuffled": 64,
+    "final/legacy_val/shuffled": 4,
+    "final/train/reference": 256,
+    "final/new_val/reference": 64,
+    "final/legacy_val/reference": 4
+  }
+}

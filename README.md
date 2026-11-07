@@ -14,6 +14,10 @@
 
 [固定检查点的KV内容诊断](docs/SLOWFAST_KV_CONTENT_DIAGNOSTIC.md)区分正确内容、外部槽位和缓存元数据：固定当前输入与位置，比较屏蔽外部列、V置零、固定参考及更强条件错配，并检查Slow有优势时Fast是否受益。只做离线诊断，不新增训练或下载。
 
+[冻结Slow的可读性与空路径诊断](docs/SLOWFAST_KV_READABILITY.md)验证完整六层KV可被小型Reader读出轨迹，并区分metadata与数值实现路径。它包含两个读出器的真实训练、独立重载和原生SDPA数值核对。
+
+[专用ActionExpert与完整Fast对照](docs/SLOWFAST_ACTION_EXPERT_CONTROL.md)固定Slow，每支新增4096个样本更新：145M全参数Expert学会来源依赖，但本次留出规划误差未赢过完整Fast＋LoRA；Fast仍未建立正确KV的稳定增量收益。两支均通过实际最后一步重放。这是小规模适配机制对照，不能作为论文复现或全量训练结论；[参考实现审计](docs/KV_EXPERT_REFERENCE_AUDIT.md)列明训练与结构差异。
+
 **当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 
 > **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。

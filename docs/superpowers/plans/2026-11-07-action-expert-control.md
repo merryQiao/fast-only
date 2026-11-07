@@ -19,7 +19,7 @@
 
 ## Tasks
 
-- [ ] Native-compatible ActionExpert and CPU24layer geometry/grad/mask/sourceimmutability tests.
-- [ ] Cache loader / readonlysnapshot / cachedfrozenvision equivalence / frozenSlowmatchedtraining runner and tests.
-- [ ] Independent review and source pinning; run Expert and completeFastLoRA sequentially ononeGPU underfixedbudget.
-- [ ] Portable results, trainingcurves, perlog/speed/conditionmetrics, checkpoint identities, limitations and research implications; report alongside empty-path/readability evidence. Commit without rawcache/images/weights; GitHub auth stillrequired.
+- [x] Native-compatible ActionExpert and CPU24layer geometry/grad/mask/sourceimmutability tests.
+- [x] Cache loader / readonlysnapshot / cachedfrozenvision equivalence / frozenSlowmatchedtraining runner and tests.
+- [x] Independent review and source pinning; run Expert and completeFastLoRA sequentially ononeGPU underfixedbudget.
+- [x] Portable results, trainingcurves, perlog/speed/conditionmetrics, checkpoint identities, limitations and research implications; report alongside empty-path/readability evidence. Commit without rawcache/images/weights; GitHub auth stillrequired.

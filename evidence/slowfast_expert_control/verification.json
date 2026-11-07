@@ -1,0 +1,797 @@
+{
+  "schema": "frozen_expert_report_verification_v1",
+  "both_completed": true,
+  "exact_shared_identities": [
+    "config",
+    "source_checkpoint",
+    "source_data",
+    "assets",
+    "order",
+    "feature_manifest_sha256"
+  ],
+  "tests": {
+    "counts": {
+      "tests": 652,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0
+    },
+    "xml_sha256": "367597628be9a523b91f57be9f7f1fddc99863710c948df8cd3ca7601c59697f",
+    "timestamps": [
+      "2026-11-07T06:21:35.238854+00:00"
+    ],
+    "scope": "Historical regression snapshot; subsequent changes require their own checks."
+  },
+  "matched_conditions": 544,
+  "matched_windows": 68,
+  "source_frozen": true,
+  "no_Slow_updates": true,
+  "no_downloads": true,
+  "sampler": {
+    "updates_per_arm": 4096,
+    "micro_batch": 1,
+    "epochs": 16,
+    "identical_order": true
+  },
+  "optimizer_health": {
+    "expert": {
+      "updates": 4096,
+      "nonfinite_records": 0,
+      "preclip_gradient_norm": {
+        "minimum": 0.11873579770326614,
+        "median": 16.51129150390625,
+        "maximum": 48.33332824707031,
+        "clipped_updates": 3241,
+        "clip_fraction": 0.791259765625
+      },
+      "block_gradient_probes": [
+        {
+          "step": 1,
+          "blocks": [
+            {
+              "block": 1,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 2,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 3,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 4,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 5,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 6,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 7,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 8,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 9,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 10,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 11,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 12,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 13,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 14,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 15,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 16,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 17,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 18,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 19,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 20,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 21,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 22,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 23,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 24,
+              "finite": true,
+              "nonzero": true
+            }
+          ]
+        },
+        {
+          "step": 1024,
+          "blocks": [
+            {
+              "block": 1,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 2,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 3,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 4,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 5,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 6,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 7,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 8,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 9,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 10,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 11,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 12,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 13,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 14,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 15,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 16,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 17,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 18,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 19,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 20,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 21,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 22,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 23,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 24,
+              "finite": true,
+              "nonzero": true
+            }
+          ]
+        },
+        {
+          "step": 2048,
+          "blocks": [
+            {
+              "block": 1,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 2,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 3,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 4,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 5,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 6,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 7,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 8,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 9,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 10,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 11,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 12,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 13,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 14,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 15,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 16,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 17,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 18,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 19,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 20,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 21,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 22,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 23,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 24,
+              "finite": true,
+              "nonzero": true
+            }
+          ]
+        },
+        {
+          "step": 3072,
+          "blocks": [
+            {
+              "block": 1,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 2,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 3,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 4,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 5,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 6,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 7,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 8,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 9,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 10,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 11,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 12,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 13,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 14,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 15,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 16,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 17,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 18,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 19,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 20,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 21,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 22,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 23,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 24,
+              "finite": true,
+              "nonzero": true
+            }
+          ]
+        },
+        {
+          "step": 4096,
+          "blocks": [
+            {
+              "block": 1,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 2,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 3,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 4,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 5,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 6,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 7,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 8,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 9,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 10,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 11,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 12,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 13,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 14,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 15,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 16,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 17,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 18,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 19,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 20,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 21,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 22,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 23,
+              "finite": true,
+              "nonzero": true
+            },
+            {
+              "block": 24,
+              "finite": true,
+              "nonzero": true
+            }
+          ]
+        }
+      ]
+    },
+    "fast": {
+      "updates": 4096,
+      "nonfinite_records": 0,
+      "preclip_gradient_norm": {
+        "minimum": 0.11785274744033813,
+        "median": 15.818938255310059,
+        "maximum": 39.351585388183594,
+        "clipped_updates": 3123,
+        "clip_fraction": 0.762451171875
+      },
+      "block_gradient_probes": []
+    }
+  },
+  "cached_vision_checks": [
+    {
+      "token": "2a73a7ff01a45447",
+      "max_abs_difference": 0.0
+    },
+    {
+      "token": "f1adbcbb33e557de",
+      "max_abs_difference": 0.0
+    }
+  ],
+  "replay": {
+    "expert": {
+      "passed": true,
+      "arm": "expert",
+      "step_before": 4095,
+      "step_after": 4096,
+      "token": "866b7b1dc16e55dc",
+      "loss": 0.2348160743713379,
+      "grad_norm": 30.82285499572754,
+      "comparisons": {
+        "model": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 280,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "optimizer": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 840,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "scheduler": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "rng": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 2,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "reference_prediction": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 1,
+          "differing_fields": 0,
+          "first_differences": []
+        }
+      },
+      "scope": "same_H800_runtime_actual_single_update",
+      "source_provider_frozen": true
+    },
+    "fast": {
+      "passed": true,
+      "arm": "fast",
+      "step_before": 4095,
+      "step_after": 4096,
+      "token": "866b7b1dc16e55dc",
+      "loss": 0.0979418009519577,
+      "grad_norm": 25.068246841430664,
+      "comparisons": {
+        "model": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 209,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "optimizer": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 627,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "scheduler": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 0,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "rng": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 2,
+          "differing_fields": 0,
+          "first_differences": []
+        },
+        "reference_prediction": {
+          "passed": true,
+          "max_abs_difference": 0.0,
+          "tensor_count": 1,
+          "differing_fields": 0,
+          "first_differences": []
+        }
+      },
+      "scope": "same_H800_runtime_actual_single_update",
+      "source_provider_frozen": true
+    }
+  },
+  "metric_recompute_max_abs_error": 1.2859024565159416e-06
+}

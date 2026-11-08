@@ -22,7 +22,9 @@
 
 后续KV机制研究的主要适配基线为 **Fast＋固定特征任务适配器**，R0随包保存，在线只运行Fast及726K融合模块；[加载与推理说明](docs/FIXED_ADAPTER_USAGE.md)。[三个配对种子与八条新日志验证](docs/SLOWFAST_ADAPTER_STUDY.md)中，真实来源相对该基线的平均ADE收益仅1.83mm，95%区间−2.09至+6.99mm，未达预先锁定的2cm门槛。原Fast/off保留为次要对照；当前结果不支持把额外任务适配收益记为快慢协作收益。原始Fast-only全量训练入口与本次固定Mini机制验证入口的范围分别记录在各自指南中。
 
-**当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** 原服务器的小规模开发与 Smoke 阶段已经结束。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
+[直接 KV＋完整 Fast 语言主干实验](docs/SLOWFAST_DIRECT_FULL.md)停止继续调整冻结 Reader 残差分支，真正扩大 TRAIN 为 512 窗口／12 个记录组，并另留 256 窗口／8 个新记录组。冻结 Slow 和 Fast 视觉塔，更新约 7.60 亿参数，比较同起点、同顺序、同预算的 Fast-only、正确直接 KV、固定直接 KV。真实原图全参数更新与恢复工程验收已通过；三组固定终点的规划增益结论仍待训练和独立评测完成。
+
+**当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** Fast-only 基线的小规模开发与 Smoke 阶段已经结束，后续快慢机制研究按独立实验执行。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 
 > **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。
 

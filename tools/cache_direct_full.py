@@ -16,6 +16,25 @@ from slowfast_v11.model import SlowPrefill
 from slowfast_v11.validation import canonical_state,restore_weights,state_digest
 from tools.direct_full_common import read_config,source_info,load_fast,train_rows,vision_packet,LegacySources,equal_source_layout
 from tools.train_frozen_expert import cached_vision
+from tools.train_slowfast_joint import compare_trees
+
+
+def cpu_export(value):
+    """Complete D2H before a CPU serializer can inspect any storage."""
+    if isinstance(value,torch.Tensor):
+        return value.detach().to('cpu',non_blocking=False).clone()
+    if isinstance(value,dict):return {k:cpu_export(v) for k,v in value.items()}
+    if isinstance(value,list):return [cpu_export(v) for v in value]
+    if isinstance(value,tuple):return tuple(cpu_export(v) for v in value)
+    return value
+
+
+def save_export(value,path):
+    completed=cpu_export(value)
+    torch.save(completed,path)
+    loaded=torch.load(path,map_location='cpu',mmap=True,weights_only=False)
+    if not compare_trees(completed,loaded)['passed']:raise ValueError('Saved frozen tensor tree differs from completed host export')
+    return dict(path=str(Path(path).resolve()),sha256=fingerprint(path),loaded_tensor_roundtrip_exact=True)
 
 
 def validate_rows(train,val,*,counts=(512,256),groups=(12,8)):
@@ -90,10 +109,12 @@ def run(config_path,output):
     restore_weights(slow,joint['slow']);slow_digest=state_digest(canonical_state(slow))
     slow_collator=NavsimCollator(original['config']['slow']['model_path'],**original['config']['processor'])
     legacy=LegacySources(c);reference=min(r['token'] for r in train);template=legacy.packet(reference)
-    entries={};feedback_records=[];slow_records=[];old_exact=False
+    entries={};feedback_records=[];slow_records=[];old_exact=False;stage_totals=dict(vision_packet_s=0.,packet_export_s=0.,source_s=0.)
     for n,row in enumerate(rows,1):
-        token=row['token'];packet=vision_packet(fast,collator,row,stats);validate_packet(packet)
-        packet_path=out/'packets'/f'{token}.pt';torch.save(to_device(packet,'cpu'),packet_path)
+        row_start=time.monotonic();token=row['token'];packet=vision_packet(fast,collator,row,stats);validate_packet(packet)
+        after_vision=time.monotonic();stage_totals['vision_packet_s']+=after_vision-row_start
+        packet_path=out/'packets'/f'{token}.pt';packet_entry=save_export(packet,packet_path)
+        after_export=time.monotonic();stage_totals['packet_export_s']+=after_export-after_vision
         source_entry=dict(kind='legacy',token=token)
         # Reproduce one old source exactly, then use its authenticated immutable cache.
         need_source=token not in legacy.entries or n==1
@@ -113,15 +134,15 @@ def run(config_path,output):
                 if any(not torch.equal(source[k],old[k]) for k in ['keys','values','positions','valid']):raise ValueError('Recomputed frozen Slow differs from legacy raw KV')
                 old_exact=True;del old
             else:
-                path=out/'sources'/f'{token}.pt';torch.save(to_device(source,'cpu'),path)
-                source_entry=dict(kind='native',path=str(path.resolve()),sha256=fingerprint(path))
+                path=out/'sources'/f'{token}.pt';source_entry=dict(kind='native',**save_export(source,path))
             feedback_records.append(dict(token=token,prediction=feedback[0].float().cpu().tolist()))
             del batch,packed,result,source,feedback
         else:
             source=legacy.packet(token);equal_source_layout(template,source);del source
-        entries[token]=dict(packet=dict(path=str(packet_path.resolve()),sha256=fingerprint(packet_path)),source=source_entry)
+        entries[token]=dict(packet=packet_entry,source=source_entry)
+        stage_totals['source_s']+=time.monotonic()-after_export
         del packet
-        if n%16==0:print(f'frozen native visual/Slow KV cache {n}/768,elapsed={time.monotonic()-started:.1f}s',flush=True)
+        if n%16==0:print(f'frozen native visual/Slow KV cache {n}/768,elapsed={time.monotonic()-started:.1f}s,stages={stage_totals}',flush=True)
     if state_digest(canonical_state(fast))!=latest_digest or state_digest(canonical_state(slow))!=slow_digest:raise ValueError('Frozen provider changed')
     if any(p.requires_grad or p.grad is not None for m in [fast,slow] for p in m.parameters()):raise ValueError('Frozen provider acquired gradients')
     write_json(out/'feedback.json',feedback_records)
@@ -132,7 +153,8 @@ def run(config_path,output):
         legacy_manifest_path=str((legacy.root/'manifest.json').resolve()),legacy_manifest_sha256=fingerprint(legacy.root/'manifest.json'),
         slow_predictions_sha256=fingerprint(out/'slow_predictions.json'),feedback_predictions_sha256=fingerprint(out/'feedback.json'),
         raw_shape=[1,6,8255,512],fixed_source=reference,source_layout_all_exact=True,vision_native_prediction_all_exact=True,
-        source_frozen=True,visual_only_cache=True,elapsed_s=time.monotonic()-started,
+        source_frozen=True,visual_only_cache=True,elapsed_s=time.monotonic()-started,stage_elapsed_s=stage_totals,
+        serialization_cpu_blocking=True,serialization_loaded_tensor_roundtrip_exact=True,
         source_code_sha256={p:fingerprint(p) for p in ['tools/cache_direct_full.py','tools/direct_full_common.py']})
     write_json(out/'manifest.json',manifest);print('Complete frozen inputs exported; no new VAL metrics computed',flush=True)
 
@@ -143,6 +165,8 @@ class DirectCache:
         c=read_config(config);m=self.manifest
         if (not m['completed'] or m['schema']!='direct_full_frozen_inputs_v1' or m['config_sha256']!=fingerprint(config)
                 or m['source_checkpoint']!=c['source_checkpoint_sha256'] or m['fast_checkpoint']!=c['fast_checkpoint_sha256']):raise ValueError('Frozen cache protocol changed')
+        if m.get('serialization_cpu_blocking') is not True or m.get('serialization_loaded_tensor_roundtrip_exact') is not True:
+            raise ValueError('Frozen inputs require completed host copies and exact file reload proof')
         train,val,data=authenticated_data(c)
         if m['data']!=data or m['rows']!=train+val or set(m['entries'])!={r['token'] for r in train+val}:raise ValueError('Cache no longer matches authenticated data')
         pin=json.loads(Path('configs/slowfast_direct_full_cohort.json').read_text())

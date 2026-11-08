@@ -1,0 +1,40 @@
+schema: direct_full_language_v1
+source_run: outputs/slowfast_v11_expanded/run_01
+fast_run: outputs/slowfast_expert_control/fast_01
+adapter_run: outputs/slowfast_adapter_study/run_01
+original_train_manifest: outputs/slowfast_v11_expanded/data/train.jsonl
+promoted_holdout_manifest: outputs/slowfast_adapter_study/data/holdout.jsonl
+data_dir: outputs/slowfast_direct_full/data
+source_checkpoint_sha256: 448571f4d543913a4d93471781a1ecf4aa392078f2aa2dafa3816be43f9f0ae9
+fast_checkpoint_sha256: 02c3964a225efd79e1c06644cbf49228a38a612021f211258e8476e6606882b1
+train_seed: 42
+arms: [full_fast_only, full_correct_kv, full_fixed_kv]
+train_windows: 512
+train_recording_groups: 12
+val_windows: 256
+val_recording_groups: 8
+optimizer_updates: 1024
+micro_batch: 1
+gradient_accumulation: 4
+language_lr: 0.00001
+new_lr: 0.00005
+weight_decay: 0.01
+gradient_clip: 1.0
+warmup_updates: 64
+minimum_lr_ratio: 0.1
+train_curve_updates: [256, 512, 768, 1024]
+train_diagnostic_windows: 64
+normalization: preserve_source_checkpoint_train256_interface
+expanded_train_stats: audit_only_no_automatic_replacement
+precision:
+  master_parameters: float32
+  language_compute: bfloat16
+  assembled_language_inputs: bfloat16
+  lora_A_B_compute: float32
+  planning_head_and_sensor_mlps: float32
+gradient_checkpointing: false
+max_allocated_gib: 76
+new_response_body_cap_bytes: 2000000000
+practical_mean_ade_gain_m: 0.02
+analysis_seed: 20261108
+bootstrap_replicates: 20000

@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "delayed_cuda_producer": true,
+  "identity": {
+    "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_direct_full/gpu_export_probe.pt",
+    "sha256": "e55bd343b610b5090e30150ba5033a797bcbf1a3d10dfa5ec17c0b595d1be27e",
+    "loaded_tensor_roundtrip_exact": true
+  },
+  "source_code_sha256": "0dc2c47a0c29f77dc9a847619b35c9e44da3bdbcc607d44c27b2069d439870e3"
+}

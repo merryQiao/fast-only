@@ -1,0 +1,225 @@
+{
+  "schema": "direct_full_replay_v1",
+  "arm": "full_correct_kv",
+  "passed": true,
+  "checks": {
+    "model": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 529,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "optimizer": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 1587,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "scheduler": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "rng": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 2,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "sampler": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    },
+    "reference_predictions": {
+      "passed": true,
+      "max_abs_difference": 0.0,
+      "tensor_count": 0,
+      "differing_fields": 0,
+      "first_differences": []
+    }
+  },
+  "replayed_updates": 1,
+  "micro_batches": 4,
+  "final_update": {
+    "loss": 0.137760316953063,
+    "micro_losses": [
+      0.062441419810056686,
+      0.05530211329460144,
+      0.3741094470024109,
+      0.05918828770518303
+    ],
+    "grad_norm": 19.62083625793457,
+    "learning_rates": {
+      "language": 1.0000000000000002e-06,
+      "new": 5e-06
+    },
+    "gradient_probes": {
+      "blocks": [
+        {
+          "block": 1,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 2,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 3,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 4,
+          "tensors_with_grad": 11,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 5,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 6,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 7,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 8,
+          "tensors_with_grad": 11,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 9,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 10,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 11,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 12,
+          "tensors_with_grad": 11,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 13,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 14,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 15,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 16,
+          "tensors_with_grad": 11,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 17,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 18,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 19,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 20,
+          "tensors_with_grad": 11,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 21,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 22,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 23,
+          "tensors_with_grad": 14,
+          "finite": true,
+          "nonzero": true
+        },
+        {
+          "block": 24,
+          "tensors_with_grad": 11,
+          "finite": true,
+          "nonzero": true
+        }
+      ],
+      "embedding_and_final_norm": {
+        "embed_tokens.weight": {
+          "finite": true,
+          "nonzero": true
+        },
+        "norm.weight": {
+          "finite": true,
+          "nonzero": true
+        }
+      },
+      "visual_frozen": true
+    }
+  },
+  "checkpoint_sha256": "5f08df489c645487bf3183b8b0dfdc06ea691ba8a205ab2e9b131e662a8fd558"
+}

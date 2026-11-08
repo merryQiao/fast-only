@@ -1,0 +1,47 @@
+{
+  "artifact_hashes": {
+    "build_report.json": "6fa9b6511e887597f5db567e4dbbef85243e9554d90511db7a3e70d1416f2e2e",
+    "network_budget.json": "72332ed13ccc57b3ca16dbc08c06d0b79924eef126eb28825574145118c0a107",
+    "network_requests.jsonl": "e3eb08ea2fba00546b45863ef91963d90ddcf0b14285e3761a8b5f0de513c4f4",
+    "source_audit.json": "fc2069bce0804b81e08a31ae5b4ce6ff84b9dfc626d983a40a04051c2e1c7496",
+    "stats.json": "35dc682328e66c31f35c671ad2a6654031b31d7d6c22927377301cceaf687bb6",
+    "train.jsonl": "eb0572b98935adb124e0796982d041b12e7210b73ffe2919a10d125b0a502a2b",
+    "train512_stats_audit.json": "550f7915a4641d47e05adddb1a711d500562bacc665d18f5eb1bd094141ec3f4",
+    "transport_extent_amendment.json": "1a0c56c18a3a7ab29089af7add825830d0b9fff97bdd506276bfd75b7987f484",
+    "val.jsonl": "e7274e6560d74cd99d49be7bdc9f77a5c71e2069200f822641f68b6e90e3018d"
+  },
+  "camera_coverage": {
+    "camera_archives": 8,
+    "legacy_images": 0,
+    "verified_images": 1024
+  },
+  "complete": true,
+  "completed_archive_body_bytes": 1434250874,
+  "cumulative_response_body_bytes": 5403028597,
+  "durable_body_bytes": 229000000,
+  "durable_charged_not_retained_bytes": 0,
+  "durable_prefix_sha256": "cba41c71237474f19fd6651e8b97f34eae7356223653523543705e808834832b",
+  "durable_records": 232,
+  "durable_retained_bytes": 229000000,
+  "excluded_seen_groups": 15,
+  "failed_attempt_body_bytes": 365692042,
+  "failed_request_records": 12,
+  "new_response_body_bytes": 1999942916,
+  "plan_sha256": "e31aff1da24d09f91ef32e85f67e434748e7fdfce3c52d71524fec548bc9396c",
+  "remaining_new_cap_bytes": 57084,
+  "request_records": 529,
+  "schema": "slowfast_direct_full_data_independent_verification_v1",
+  "source_kinds": {
+    "inherited_metadata": 12,
+    "inherited_original_jpeg": 2048,
+    "retained_metadata": 8,
+    "retained_original_jpeg": 1024
+  },
+  "source_records_verified": 3092,
+  "token_manifest_sha256": "280efb0e3b7529570041414f227b633f9c8d75efe3c10e1b5bb1f8db8c78b0dd",
+  "train_groups": 12,
+  "train_rows": 512,
+  "unique_tokens": 768,
+  "val_groups": 8,
+  "val_rows": 256
+}

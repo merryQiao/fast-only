@@ -1,0 +1,36 @@
+{
+  "schema": "direct_full_endpoint_v1",
+  "arm": "full_fast_only",
+  "passed": true,
+  "metrics": {
+    "ADE": 0.41692614555358887,
+    "FDE": 1.0160627365112305,
+    "loss_l1_pose": 0.16946321725845337,
+    "loss_l1_xy": 0.48471879959106445,
+    "heading_mae_rad": 0.023670822381973267,
+    "heading_final_mae_rad": 0.04450886696577072,
+    "samples": 256,
+    "L2@0.5s": 0.047696638852357864,
+    "L2@1s": 0.09344424307346344,
+    "L2@1.5s": 0.16516000032424927,
+    "L2@2s": 0.26845020055770874,
+    "L2@2.5s": 0.4008469581604004,
+    "L2@3s": 0.5759057998657227,
+    "L2@3.5s": 0.7678425908088684,
+    "L2@4s": 1.0160627365112305
+  },
+  "samples": 256,
+  "checkpoint_sha256": "3af11731a14c80b5d08f30c28c6c8cf75727657b83a13984db5b5fe920e41d89",
+  "model_digest": "b23f5d41ea47dc8cf6e64a1f5b7d2de3d94c5bae8b43d438d28b1ebe9ad0a461",
+  "reference_prediction_check": {
+    "passed": true,
+    "max_abs_difference": 0.0,
+    "tensor_count": 0,
+    "differing_fields": 0,
+    "first_differences": []
+  },
+  "full_state_keys": 529,
+  "predictions_sha256": "cdaad77d974a67b172f0618949ce2f33a92113371aab6aaf1d96e0d47b0d4336",
+  "final_checkpoint_selected_by": "fixed update budget",
+  "val_used_for_selection": false
+}

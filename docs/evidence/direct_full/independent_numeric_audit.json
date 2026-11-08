@@ -1,0 +1,519 @@
+{
+  "schema": "direct_full_independent_numpy_numeric_audit_v1",
+  "passed": true,
+  "utc": "2026-11-08T07:31:12.505601+00:00",
+  "implementation": "Python stdlib + NumPy float64; no product metric/bootstrap helper imports; no torch/GPU/network",
+  "script_sha256": "6cd4f1245dcf5d912c421669bc73151354d3452bcb475c4884071727897c32bc",
+  "script_source": "\nimport json, hashlib, re, random, sys\nfrom pathlib import Path\nfrom datetime import datetime, timezone\nfrom collections import Counter\nimport numpy as np\n\nbase=Path('outputs/slowfast_direct_full')\nroot=base/'run_01'\ncache_path=base/'cache_01/manifest.json'\nresult=json.loads((root/'result.json').read_text())\nmanifest=json.loads(cache_path.read_text())\nread=lambda p:json.loads(Path(p).read_text())\nsha=lambda p:hashlib.sha256(Path(p).read_bytes()).hexdigest()\ngroup=lambda s:re.sub(r'_\\d+_\\d+$','',s)\nrows=manifest['rows']\ntrain=[r for r in rows if r['split']=='train']\nval=[r for r in rows if r['split']=='val']\ntokens=[r['token'] for r in val]\nby_token={r['token']:r for r in val}\ngroups=sorted({group(r['route']) for r in val})\nassert len(train)==512 and len(val)==len(set(tokens))==256\nassert len(groups)==8 and set(Counter(group(r['route']) for r in val).values())=={32}\nassert not {group(r['route']) for r in train}&set(groups)\nassert not {r['token'] for r in train}&set(tokens)\nmask=np.array([group(r['route']) for r in val])\n\ndef arrays(records):\n    lookup={r['token']:r for r in records}\n    assert len(records)==len(lookup)==256 and set(lookup)==set(tokens)\n    ordered=[lookup[t] for t in tokens]\n    for row,record in zip(val,ordered):\n        assert record['target']==row['trajectory_gt']\n        assert record['route']==row['route']\n        if 'split' in record:assert record['split']=='val'\n    p=np.asarray([r['prediction'] for r in ordered],dtype=np.float64)\n    t=np.asarray([r['target'] for r in ordered],dtype=np.float64)\n    assert p.shape==t.shape==(256,8,3) and np.isfinite(p).all() and np.isfinite(t).all()\n    return p,t,ordered\n\ndef metric(p,t):\n    d=p-t\n    xy=np.sqrt(np.square(d[...,:2]).sum(-1))\n    heading=np.abs(np.arctan2(np.sin(d[...,2]),np.cos(d[...,2])))\n    m=dict(ADE=float(xy.mean()),FDE=float(xy[:,-1].mean()),\n        loss_l1_pose=float(np.abs(d).mean()),loss_l1_xy=float(np.abs(d[...,:2]).sum(-1).mean()),\n        heading_mae_rad=float(heading.mean()),heading_final_mae_rad=float(heading[:,-1].mean()),\n        samples=len(p))\n    m.update({f'L2@{(i+1)*.5:g}s':float(v) for i,v in enumerate(xy.mean(0))})\n    return m,xy.mean(-1)\n\ndef boot(gain):\n    per_log=np.asarray([gain[mask==g].mean() for g in groups],dtype=np.float64)\n    rng=np.random.default_rng(20261108)\n    picks=rng.integers(0,8,size=(20000,8))\n    samples=per_log[picks].mean(-1)\n    ci=np.percentile(samples,[2.5,97.5])\n    return dict(mean_gain_m=float(per_log.mean()),ci95_m=ci.tolist(),\n        median_window_gain_m=float(np.median(gain)),\n        per_log_gain_m={g:float(v) for g,v in zip(groups,per_log)},\n        positive_log_count=int((per_log>0).sum()),positive_window_count=int((gain>0).sum()),\n        passes_20mm_positive_lower_CI_gate=bool(per_log.mean()>=.02 and ci[0]>0))\n\ndef error(actual,stored):\n    return max(abs(actual[k]-stored[k]) for k in actual)\n\nendpoints={}\npred={}\nwindow_ade={}\nidentities=[]\norders=[]\nhealth={}\nmetric_errors={}\nsource_hashes={str(cache_path):sha(cache_path),str(root/'result.json'):sha(root/'result.json')}\nfor arm in result['config']['arms']:\n    directory=root/arm\n    path=directory/'final_predictions.json'\n    records=read(path)\n    p,t,ordered=arrays(records)\n    actual,ade=metric(p,t)\n    endpoints[arm]=actual\n    pred[arm]=p\n    window_ade[arm]=ade\n    metric_errors[arm]=error(actual,result['arms'][arm]['metrics'])\n    saved=read(directory/'result.json')\n    protocol=read(directory/'protocol.json')\n    verification=read(directory/'verification.json')\n    replay=read(directory/'replay.json')\n    assert sha(path)==verification['predictions_sha256']\n    assert verification['full_state_keys']==529\n    assert replay['passed'] and replay['replayed_updates']==1 and replay['micro_batches']==4\n    assert set(replay['checks'])=={'model','optimizer','scheduler','rng','sampler','reference_predictions'}\n    assert all(c['passed'] and c['max_abs_difference']==0 and c['differing_fields']==0 for c in replay['checks'].values())\n    assert replay['checks']['model']['tensor_count']==529\n    assert replay['checks']['optimizer']['tensor_count']==3*saved['optimizer_state_parameters']\n    assert verification['reference_prediction_check']['passed'] and verification['reference_prediction_check']['max_abs_difference']==0\n    assert saved['identity']==protocol['identity'] and saved['identity']['cache_sha256']==sha(cache_path)\n    identities.append(saved['identity'])\n    orders.append(protocol['draw_order'])\n    logs=[json.loads(line) for line in (directory/'train.jsonl').read_text().splitlines()]\n    assert len(logs)==1024\n    for i,row in enumerate(logs,1):\n        assert row['update']==i and row['draw_index']==row['windows_seen']==i*4 and row['accumulation_index']==0\n        assert row['tokens']==protocol['draw_order'][(i-1)*4:i*4]\n        assert np.isfinite(row['loss']) and abs(row['loss']-np.mean(row['micro_losses']))<1e-10\n    assert [r['update'] for r in logs if 'gradient_probes' in r]==[1,256,512,768,1024]\n    for row in [r for r in logs if 'gradient_probes' in r]:\n        assert len(row['gradient_probes']['blocks'])==24\n        assert all(b['finite'] and b['nonzero'] for b in row['gradient_probes']['blocks'])\n        assert row['gradient_probes']['visual_frozen']\n        assert len(row['base_weight_deltas'])==24 and all(b['max_abs_change']>0 for b in row['base_weight_deltas'])\n    health[arm]=dict(updates=1024,draws=4096,epochs=8,full_state_keys=529,\n        optimizer_state_parameters=saved['optimizer_state_parameters'],replay_exact=True,\n        maximum_peak_allocated_gib=max(r['peak_allocated_gib'] for r in logs))\n    source_hashes.update({str(path):sha(path),str(directory/'protocol.json'):sha(directory/'protocol.json'),\n        str(directory/'train.jsonl'):sha(directory/'train.jsonl'),str(directory/'verification.json'):sha(directory/'verification.json'),\n        str(directory/'replay.json'):sha(directory/'replay.json')})\n\nassert identities[0]==identities[1]==identities[2]\nassert orders[0]==orders[1]==orders[2]\nassert identities[0]['initial_digest']=='1fb5ef2f20024b895aaad58c76ce0ef79f3b35a36e148535be1f5abc1d61f41b'\nassert read(base/'p0_01/result.json')['initial_digest']==identities[0]['initial_digest']\nrng=random.Random(42)\nexpected=[]\nfor _ in range(8):\n    epoch=[r['token'] for r in train]\n    rng.shuffle(epoch)\n    expected.extend(epoch)\nassert expected==orders[0]\norder_sha=hashlib.sha256(json.dumps(expected,separators=(',',':')).encode()).hexdigest()\nassert all(result['arms'][a]['result']['draw_order_sha256']==order_sha for a in result['arms'])\nprimary=boot(window_ade['full_fixed_kv']-window_ade['full_correct_kv'])\nfast_gain=boot(window_ade['full_fast_only']-window_ade['full_correct_kv'])\nregistered_difference=dict(\n    primary_mean_abs_difference_m=abs(primary['mean_gain_m']-result['primary_correct_vs_separately_trained_fixed']['mean_gain_m']),\n    primary_CI_max_abs_difference_m=float(np.max(np.abs(np.asarray(primary['ci95_m'])-result['primary_correct_vs_separately_trained_fixed']['ci95_m']))),\n    fast_mean_abs_difference_m=abs(fast_gain['mean_gain_m']-result['correct_vs_fully_adapted_fast_only']['mean_gain_m']),\n    fast_CI_max_abs_difference_m=float(np.max(np.abs(np.asarray(fast_gain['ci95_m'])-result['correct_vs_fully_adapted_fast_only']['ci95_m']))))\nassert max(registered_difference.values())<1e-6\n\ndiagnostics=read(root/'correct_checkpoint_diagnostics.json')\nassert diagnostics['checkpoint_sha256']==result['arms']['full_correct_kv']['result']['checkpoint_sha256']\nassert diagnostics['cache_sha256']==sha(cache_path)\ndiag={}\ndiag_ade={}\ndiag_pred={}\nfor mode in ['correct','off','reference','shuffled']:\n    records=[r for r in diagnostics['records'] if r['mode']==mode]\n    p,t,ordered=arrays(records)\n    for r in ordered:\n        expected_source=r['token'] if mode=='correct' else None if mode=='off' else manifest['fixed_source'] if mode=='reference' else diagnostics['donors'][r['token']]\n        assert r['source_token']==expected_source\n        if mode=='shuffled':assert group(by_token[r['source_token']]['route'])!=group(r['route'])\n    actual,ade=metric(p,t)\n    diag[mode]=dict(metrics=actual)\n    diag_ade[mode]=ade\n    diag_pred[mode]=p\n    metric_errors['diagnostic_'+mode]=error(actual,result['same_correct_checkpoint_metrics'][mode])\nassert np.array_equal(diag_pred['correct'],pred['full_correct_kv'])\nfor mode in ['off','reference','shuffled']:\n    d=diag_pred[mode]-diag_pred['correct']\n    xy=np.sqrt(np.square(d[...,:2]).sum(-1))\n    yaw=np.abs(np.arctan2(np.sin(d[...,2]),np.cos(d[...,2])))\n    diag[mode]['gain_of_current_KV_over_this_mode']=boot(diag_ade[mode]-diag_ade['correct'])\n    diag[mode]['XY_prediction_difference_from_current']=dict(mean_m=float(xy.mean()),\n        median_m=float(np.median(xy)),p95_m=float(np.percentile(xy,95)),max_m=float(xy.max()),\n        terminal_mean_m=float(xy[:,-1].mean()),heading_mean_abs_rad=float(yaw.mean()),\n        exact_eight_pose_window_count=int(np.all(d==0,axis=(1,2)).sum()),\n        per_log_mean_m={g:float(xy[mask==g].mean()) for g in groups})\n\nreference=read(root/'historical_reference.json')\nhistorical={}\nfor method in ['original_fast','historical_fixed_seed_42','historical_fixed_seed_43','historical_fixed_seed_44']:\n    p,t,_=arrays([r for r in reference['records'] if r['method']==method])\n    historical[method]=metric(p,t)[0]\n    metric_errors[method]=error(historical[method],result['historical_reference_metrics'][method])\nslow_records=[dict(r,target=by_token[r['token']]['trajectory_gt']) for r in read(base/'cache_01/slow_predictions.json') if r['token'] in by_token]\np,t,_=arrays(slow_records)\nslow_metric=metric(p,t)[0]\nmetric_errors['frozen_slow']=error(slow_metric,result['frozen_slow_metrics'])\ncv=np.zeros((256,8,3),dtype=np.float64)\ncv[...,:2]=np.asarray([r['ego'][:2] for r in val],dtype=np.float64)[:,None,:]*np.arange(.5,4.1,.5)[None,:,None]\ngt=np.asarray([r['trajectory_gt'] for r in val],dtype=np.float64)\ncv_metric=metric(cv,gt)[0]\nmetric_errors['constant_velocity']=max(abs(cv_metric[k]-result['constant_velocity_metrics'][k]) for k in cv_metric)\nassert max(metric_errors.values())<1e-6\n\npipeline=[json.loads(line) for line in (base/'pipeline.log').read_text().splitlines()]\nphases=[r['phase'] for r in pipeline]\ntrain_positions=[phases.index(a+'_train') for a in result['config']['arms']]\nverify_positions=[phases.index(a+'_verify') for a in result['config']['arms']]\nreplay_positions=[phases.index(a+'_replay') for a in result['config']['arms']]\nassert max(train_positions)<min(verify_positions) and max(replay_positions)<min(verify_positions)\nassert phases[-1]=='complete' and pipeline[-1]['status']=='complete'\nlast_training_result_mtime=max((root/a/'result.json').stat().st_mtime for a in result['config']['arms'])\nfirst_val=datetime.fromisoformat(pipeline[min(verify_positions)]['utc'])\nassert last_training_result_mtime<first_val.timestamp()\ntimeline=dict(all_training_and_replays_precede_first_endpoint_VAL=True,\n    latest_training_result_utc=datetime.fromtimestamp(last_training_result_mtime,timezone.utc).isoformat(),\n    first_endpoint_VAL_start_utc=first_val.isoformat(),\n    gap_seconds=first_val.timestamp()-last_training_result_mtime,\n    note='Frozen providers and visual packets for VAL were exported before training; this check concerns endpoint VAL metrics, not absence of VAL image access.')\nsource_hashes.update({str(root/'correct_checkpoint_diagnostics.json'):sha(root/'correct_checkpoint_diagnostics.json'),\n    str(root/'historical_reference.json'):sha(root/'historical_reference.json'),\n    str(base/'pipeline.log'):sha(base/'pipeline.log'),str(base/'launch_pipeline.py'):sha(base/'launch_pipeline.py')})\naudit=dict(schema='direct_full_independent_numpy_numeric_audit_v1',passed=True,\n    utc=datetime.now(timezone.utc).isoformat(),implementation='Python stdlib + NumPy float64; no product metric/bootstrap helper imports; no torch/GPU/network',\n    script_sha256=hashlib.sha256(sys.argv[1].encode()).hexdigest(),script_source=sys.argv[1],\n    source_hashes=source_hashes,endpoint_metrics_float64=endpoints,primary_correct_vs_trained_fixed=primary,\n    correct_vs_trained_fast_only=fast_gain,registered_float32_comparison_difference=registered_difference,\n    same_correct_checkpoint_diagnostics=diag,current_diagnostic_predictions_equal_independent_endpoint_windows=256,\n    historical_metrics_float64=historical,frozen_slow_metrics_float64=slow_metric,constant_velocity_metrics_float64=cv_metric,\n    float64_vs_registered_metric_max_abs_errors=metric_errors,shared_identity=identities[0],\n    independently_reproduced_train_order_sha256=order_sha,training_health=health,endpoint_VAL_timeline=timeline,\n    interpretation=[\n        'The single-seed current-KV training recipe improves mean ADE over independently trained fixed-KV and fast-only recipes on these eight recordings.',\n        'At the correct-trained checkpoint, replacing current KV with fixed or shuffled sources slightly improves mean ADE. Matched-source inference utility is not established.',\n        'Turning KV off also changes the trained no-cache/metadata path. Its degradation supports dependence on that conditioning path but does not isolate current-source semantic information.',\n        'These source interventions do not prove that online Slow computation is necessary. The exact freezing/deployment replacement and retraining implications are outside this audit.',\n        'All bootstrap intervals here resample eight recording groups only; one training seed gives no training-seed uncertainty. Intervention intervals are exploratory, unadjusted comparisons.',\n        'Pipeline ordering supports no endpoint VAL evaluation before all three training/replay stages completed. Cache export legitimately accessed VAL images and frozen-provider outputs earlier.'])\npath=root/'independent_numeric_audit.json'\nif path.exists():raise FileExistsError(path)\npath.write_text(json.dumps(audit,indent=2,allow_nan=False)+'\\n')\nprint(json.dumps(dict(artifact=str(path),script_sha256=audit['script_sha256'],\n    endpoint_metrics_float64=endpoints,primary=primary,versus_fast=fast_gain,\n    diagnostic=diag,registered_float32_comparison_difference=registered_difference,\n    maximum_metric_error=max(metric_errors.values()),timeline=timeline),indent=2))\n",
+  "source_hashes": {
+    "outputs/slowfast_direct_full/cache_01/manifest.json": "da820769e598351f06fcb03df825b5c2a19e271e669305636e1027263d7250a3",
+    "outputs/slowfast_direct_full/run_01/result.json": "a5240a4d4d120a511d89227f0615d5531ce47fc2a1add5af8ad8b2ee3cf34997",
+    "outputs/slowfast_direct_full/run_01/full_fast_only/final_predictions.json": "cdaad77d974a67b172f0618949ce2f33a92113371aab6aaf1d96e0d47b0d4336",
+    "outputs/slowfast_direct_full/run_01/full_fast_only/protocol.json": "70bfc137a1307dcf7a1fdc1da56e22ab1284930a0d9edec3eaf8f47d0125f204",
+    "outputs/slowfast_direct_full/run_01/full_fast_only/train.jsonl": "7ee0cde4aed3b45c3c65ed596163ba2ac19763884a1c9865e72e6e83353954f5",
+    "outputs/slowfast_direct_full/run_01/full_fast_only/verification.json": "f5fe6d875fe0b4b70323929dbeca7e66dfe9dff89f80ebbdb3b7c54d19e409e1",
+    "outputs/slowfast_direct_full/run_01/full_fast_only/replay.json": "36162e0b4c20491a834da473734fcc6ff64de63ace27e65e6354ddb563c391a0",
+    "outputs/slowfast_direct_full/run_01/full_correct_kv/final_predictions.json": "5083891283465a0790a4e238e8f433427ad3bc203121d74fe86b7ce93dc921ed",
+    "outputs/slowfast_direct_full/run_01/full_correct_kv/protocol.json": "cc50d4c5e351fb8c2cad42c5b03348a1d61dbb55b218e1afb6160e3cd5031ea0",
+    "outputs/slowfast_direct_full/run_01/full_correct_kv/train.jsonl": "0a48e8ead79aae58386a46e724a3008edc6f6551c8797c692b3487fc1fdc4b34",
+    "outputs/slowfast_direct_full/run_01/full_correct_kv/verification.json": "d1609f3dde39dcf7b596b2a1cb7a5601d681c97a96af4d669e87b7f87df5b801",
+    "outputs/slowfast_direct_full/run_01/full_correct_kv/replay.json": "809e5363dbcc6a3fbc5dd329c57212e8abbfd46496d15d485d61e76da2fca2c1",
+    "outputs/slowfast_direct_full/run_01/full_fixed_kv/final_predictions.json": "616b84acea4db417951f922ccd295c74b673a5b66c5ef4ef031daaeeb7ef8373",
+    "outputs/slowfast_direct_full/run_01/full_fixed_kv/protocol.json": "2601f9734b99dc75dc2630077893b7b880d0fd27162bed9863859c9f6d75d11b",
+    "outputs/slowfast_direct_full/run_01/full_fixed_kv/train.jsonl": "fc2e4d26eed20ba90939045e4c24a74e6ff6d822f5fcba092761c58ff0656b0e",
+    "outputs/slowfast_direct_full/run_01/full_fixed_kv/verification.json": "776dec9fadeb9bbeb5635b8f3c60fdc1472ac59d682d3ba92563144ed94e4c9b",
+    "outputs/slowfast_direct_full/run_01/full_fixed_kv/replay.json": "a26952c1b2ab72f7f1f676bd35c48759508d97e7dc127e35cb17d129743e4081",
+    "outputs/slowfast_direct_full/run_01/correct_checkpoint_diagnostics.json": "e7bc4ac67f7ffc3a4503dc5a83c60a16539df1683b74592ec8ba50a9eddaf61c",
+    "outputs/slowfast_direct_full/run_01/historical_reference.json": "0dca1491303fb51f7110c2ca454f23c7112fdadd1f4819ff727244a51e0d11e3",
+    "outputs/slowfast_direct_full/pipeline.log": "e700a5d63bc871fb10e292b6ca058b06567d4097e384d546127af76810f6ae0a",
+    "outputs/slowfast_direct_full/launch_pipeline.py": "608602a884b1420fea439faa2647df08f4f71bc0eb9e487a4f40a8e54a3223e0"
+  },
+  "endpoint_metrics_float64": {
+    "full_fast_only": {
+      "ADE": 0.4169261310564116,
+      "FDE": 1.0160627409211669,
+      "loss_l1_pose": 0.16946320852282948,
+      "loss_l1_xy": 0.48471880316141736,
+      "heading_mae_rad": 0.023670822407071218,
+      "heading_final_mae_rad": 0.04450886563526427,
+      "samples": 256,
+      "L2@0.5s": 0.04769664312950725,
+      "L2@1s": 0.0934442493105112,
+      "L2@1.5s": 0.16515999139924134,
+      "L2@2s": 0.26845019557132865,
+      "L2@2.5s": 0.4008469268157934,
+      "L2@3s": 0.575905786416728,
+      "L2@3.5s": 0.7678425148870163,
+      "L2@4s": 1.016062740921166
+    },
+    "full_correct_kv": {
+      "ADE": 0.3932475649942589,
+      "FDE": 0.9838882767374153,
+      "loss_l1_pose": 0.16021653836346422,
+      "loss_l1_xy": 0.45936290181573813,
+      "heading_mae_rad": 0.021286713274654534,
+      "heading_final_mae_rad": 0.04125811216503961,
+      "samples": 256,
+      "L2@0.5s": 0.036733817720003295,
+      "L2@1s": 0.07922223364490161,
+      "L2@1.5s": 0.13866359548178792,
+      "L2@2s": 0.2452440075869397,
+      "L2@2.5s": 0.38258809194725346,
+      "L2@3s": 0.5467320008080404,
+      "L2@3.5s": 0.7329084960277288,
+      "L2@4s": 0.9838882767374152
+    },
+    "full_fixed_kv": {
+      "ADE": 0.4169679939862654,
+      "FDE": 1.0306100992550888,
+      "loss_l1_pose": 0.1714677132683339,
+      "loss_l1_xy": 0.48964172111770815,
+      "heading_mae_rad": 0.024761418687293688,
+      "heading_final_mae_rad": 0.04745809284550693,
+      "samples": 256,
+      "L2@0.5s": 0.04398412289719032,
+      "L2@1s": 0.08798936491303465,
+      "L2@1.5s": 0.1509360155863703,
+      "L2@2s": 0.2569385136792587,
+      "L2@2.5s": 0.4022303256975315,
+      "L2@3s": 0.5787141688161802,
+      "L2@3.5s": 0.7843413410454685,
+      "L2@4s": 1.0306100992550886
+    }
+  },
+  "primary_correct_vs_trained_fixed": {
+    "mean_gain_m": 0.023720428992006524,
+    "ci95_m": [
+      0.0014756726168298712,
+      0.04813987023882424
+    ],
+    "median_window_gain_m": -5.57484894335354e-05,
+    "per_log_gain_m": {
+      "2021.05.12.22.28.35_veh-35": 0.0014814027390489815,
+      "2021.06.08.16.31.33_veh-38": 0.01176189247174416,
+      "2021.06.09.17.37.09_veh-12": -0.02419220294364692,
+      "2021.06.14.16.32.09_veh-35": 0.04420383185715173,
+      "2021.06.23.15.56.12_veh-16": 0.016371762398876,
+      "2021.06.23.16.54.19_veh-35": 0.08771553223385355,
+      "2021.06.23.17.31.36_veh-16": 0.05276334566934425,
+      "2021.06.28.16.29.11_veh-38": -0.0003421324903195537
+    },
+    "positive_log_count": 6,
+    "positive_window_count": 93,
+    "passes_20mm_positive_lower_CI_gate": true
+  },
+  "correct_vs_trained_fast_only": {
+    "mean_gain_m": 0.02367856606215269,
+    "ci95_m": [
+      0.0037401500907836417,
+      0.04682844654202012
+    ],
+    "median_window_gain_m": -5.215579195606925e-05,
+    "per_log_gain_m": {
+      "2021.05.12.22.28.35_veh-35": 0.008655554490776741,
+      "2021.06.08.16.31.33_veh-38": -0.006682633785481187,
+      "2021.06.09.17.37.09_veh-12": 0.015513447779968041,
+      "2021.06.14.16.32.09_veh-35": 0.07968987238484838,
+      "2021.06.23.15.56.12_veh-16": -0.005693345965483812,
+      "2021.06.23.16.54.19_veh-35": 0.06776269232227428,
+      "2021.06.23.17.31.36_veh-16": 0.03053041936909069,
+      "2021.06.28.16.29.11_veh-38": -0.0003474780987716224
+    },
+    "positive_log_count": 5,
+    "positive_window_count": 94,
+    "passes_20mm_positive_lower_CI_gate": true
+  },
+  "registered_float32_comparison_difference": {
+    "primary_mean_abs_difference_m": 2.603116635441216e-09,
+    "primary_CI_max_abs_difference_m": 5.118156370942373e-09,
+    "fast_mean_abs_difference_m": 5.110429975030417e-09,
+    "fast_CI_max_abs_difference_m": 6.020653933735964e-09
+  },
+  "same_correct_checkpoint_diagnostics": {
+    "correct": {
+      "metrics": {
+        "ADE": 0.3932475649942589,
+        "FDE": 0.9838882767374153,
+        "loss_l1_pose": 0.16021653836346422,
+        "loss_l1_xy": 0.45936290181573813,
+        "heading_mae_rad": 0.021286713274654534,
+        "heading_final_mae_rad": 0.04125811216503961,
+        "samples": 256,
+        "L2@0.5s": 0.036733817720003295,
+        "L2@1s": 0.07922223364490161,
+        "L2@1.5s": 0.13866359548178792,
+        "L2@2s": 0.2452440075869397,
+        "L2@2.5s": 0.38258809194725346,
+        "L2@3s": 0.5467320008080404,
+        "L2@3.5s": 0.7329084960277288,
+        "L2@4s": 0.9838882767374152
+      }
+    },
+    "off": {
+      "metrics": {
+        "ADE": 0.4481390319631941,
+        "FDE": 0.9973715486275216,
+        "loss_l1_pose": 0.1802284483817702,
+        "loss_l1_xy": 0.5182919689273278,
+        "heading_mae_rad": 0.022393376217982833,
+        "heading_final_mae_rad": 0.04358126757694812,
+        "samples": 256,
+        "L2@0.5s": 0.3041027371834107,
+        "L2@1s": 0.1332192534279789,
+        "L2@1.5s": 0.1472194718751969,
+        "L2@2s": 0.3033908869732671,
+        "L2@2.5s": 0.4003312019433545,
+        "L2@3s": 0.5551374265174319,
+        "L2@3.5s": 0.7443397291573912,
+        "L2@4s": 0.9973715486275215
+      },
+      "gain_of_current_KV_over_this_mode": {
+        "mean_gain_m": 0.05489146696893521,
+        "ci95_m": [
+          0.030083283904260717,
+          0.08181826607287321
+        ],
+        "median_window_gain_m": 3.884775466203694e-06,
+        "per_log_gain_m": {
+          "2021.05.12.22.28.35_veh-35": 0.09994068831259814,
+          "2021.06.08.16.31.33_veh-38": 0.041898957911106385,
+          "2021.06.09.17.37.09_veh-12": 0.03738204473908814,
+          "2021.06.14.16.32.09_veh-35": 0.0374475403803453,
+          "2021.06.23.15.56.12_veh-16": 0.025969873010131768,
+          "2021.06.23.16.54.19_veh-35": 0.11884204946794065,
+          "2021.06.23.17.31.36_veh-16": 0.07776417359968107,
+          "2021.06.28.16.29.11_veh-38": -0.00011359166940976856
+        },
+        "positive_log_count": 7,
+        "positive_window_count": 131,
+        "passes_20mm_positive_lower_CI_gate": true
+      },
+      "XY_prediction_difference_from_current": {
+        "mean_m": 0.09941455130399118,
+        "median_m": 0.0001707374174548347,
+        "p95_m": 0.5543883480068393,
+        "max_m": 2.505534985670188,
+        "terminal_mean_m": 0.087499147856422,
+        "heading_mean_abs_rad": 0.004270444315593203,
+        "exact_eight_pose_window_count": 0,
+        "per_log_mean_m": {
+          "2021.05.12.22.28.35_veh-35": 0.15643956216202837,
+          "2021.06.08.16.31.33_veh-38": 0.0787581436736554,
+          "2021.06.09.17.37.09_veh-12": 0.06771554493967655,
+          "2021.06.14.16.32.09_veh-35": 0.06924279325123615,
+          "2021.06.23.15.56.12_veh-16": 0.05052484085135703,
+          "2021.06.23.16.54.19_veh-35": 0.24203851567581636,
+          "2021.06.23.17.31.36_veh-16": 0.13044689964656775,
+          "2021.06.28.16.29.11_veh-38": 0.00015011023159180456
+        }
+      }
+    },
+    "reference": {
+      "metrics": {
+        "ADE": 0.3928934442573776,
+        "FDE": 0.9828616381888101,
+        "loss_l1_pose": 0.1600676721335842,
+        "loss_l1_xy": 0.4589064851974952,
+        "heading_mae_rad": 0.021296531203257384,
+        "heading_final_mae_rad": 0.04131136171083846,
+        "samples": 256,
+        "L2@0.5s": 0.03717049843668824,
+        "L2@1s": 0.07999567726126007,
+        "L2@1.5s": 0.13830675125577188,
+        "L2@2s": 0.24510293099092892,
+        "L2@2.5s": 0.381211128366894,
+        "L2@3s": 0.5460467539133192,
+        "L2@3.5s": 0.7324521756453487,
+        "L2@4s": 0.9828616381888102
+      },
+      "gain_of_current_KV_over_this_mode": {
+        "mean_gain_m": -0.0003541207368812433,
+        "ci95_m": [
+          -0.0010285714776204187,
+          0.0003155777865864565
+        ],
+        "median_window_gain_m": 1.056634065977767e-07,
+        "per_log_gain_m": {
+          "2021.05.12.22.28.35_veh-35": 0.00011716663997851149,
+          "2021.06.08.16.31.33_veh-38": -0.00037177284978864703,
+          "2021.06.09.17.37.09_veh-12": -0.0004563275361176857,
+          "2021.06.14.16.32.09_veh-35": -0.0019320248481254063,
+          "2021.06.23.15.56.12_veh-16": -0.0016219540907054116,
+          "2021.06.23.16.54.19_veh-35": 5.638960397686375e-05,
+          "2021.06.23.17.31.36_veh-16": 0.0013798313966421932,
+          "2021.06.28.16.29.11_veh-38": -4.274210910364204e-06
+        },
+        "positive_log_count": 3,
+        "positive_window_count": 130,
+        "passes_20mm_positive_lower_CI_gate": false
+      },
+      "XY_prediction_difference_from_current": {
+        "mean_m": 0.00546766993134291,
+        "median_m": 1.88079810154221e-05,
+        "p95_m": 0.02653030088236572,
+        "max_m": 0.08307979263800358,
+        "terminal_mean_m": 0.005338629351961862,
+        "heading_mean_abs_rad": 0.0004443195663874633,
+        "exact_eight_pose_window_count": 0,
+        "per_log_mean_m": {
+          "2021.05.12.22.28.35_veh-35": 0.005518516086907333,
+          "2021.06.08.16.31.33_veh-38": 0.004957832102654379,
+          "2021.06.09.17.37.09_veh-12": 0.0033690897787490926,
+          "2021.06.14.16.32.09_veh-35": 0.005841382650150001,
+          "2021.06.23.15.56.12_veh-16": 0.0028244596909783597,
+          "2021.06.23.16.54.19_veh-35": 0.01119340369184397,
+          "2021.06.23.17.31.36_veh-16": 0.010020317655929473,
+          "2021.06.28.16.29.11_veh-38": 1.635779353067843e-05
+        }
+      }
+    },
+    "shuffled": {
+      "metrics": {
+        "ADE": 0.39248781572265273,
+        "FDE": 0.9829534019780488,
+        "loss_l1_pose": 0.15996360016616626,
+        "loss_l1_xy": 0.45861510190168153,
+        "heading_mae_rad": 0.02127569859681717,
+        "heading_final_mae_rad": 0.041257808251524516,
+        "samples": 256,
+        "L2@0.5s": 0.03694879755434115,
+        "L2@1s": 0.07834589472912289,
+        "L2@1.5s": 0.13857336055600983,
+        "L2@2s": 0.2452370293547105,
+        "L2@2.5s": 0.38051916224894283,
+        "L2@3s": 0.5452374162289597,
+        "L2@3.5s": 0.732087463131086,
+        "L2@4s": 0.9829534019780489
+      },
+      "gain_of_current_KV_over_this_mode": {
+        "mean_gain_m": -0.0007597492716061804,
+        "ci95_m": [
+          -0.0015372311624246978,
+          0.00025966074644382926
+        ],
+        "median_window_gain_m": -1.1063347237547078e-06,
+        "per_log_gain_m": {
+          "2021.05.12.22.28.35_veh-35": -0.00027818059911704335,
+          "2021.06.08.16.31.33_veh-38": -0.0014386503605939723,
+          "2021.06.09.17.37.09_veh-12": -0.00183651379914327,
+          "2021.06.14.16.32.09_veh-35": -0.0020908209504466673,
+          "2021.06.23.15.56.12_veh-16": -0.001255933617696741,
+          "2021.06.23.16.54.19_veh-35": 0.0022196990928341565,
+          "2021.06.23.17.31.36_veh-16": -0.0013991320671117825,
+          "2021.06.28.16.29.11_veh-38": 1.5381284258772964e-06
+        },
+        "positive_log_count": 2,
+        "positive_window_count": 107,
+        "passes_20mm_positive_lower_CI_gate": false
+      },
+      "XY_prediction_difference_from_current": {
+        "mean_m": 0.005736768155629326,
+        "median_m": 1.5684341867852265e-05,
+        "p95_m": 0.02809082786993624,
+        "max_m": 0.08850316020439004,
+        "terminal_mean_m": 0.005874606923574359,
+        "heading_mean_abs_rad": 0.0003910778592475239,
+        "exact_eight_pose_window_count": 0,
+        "per_log_mean_m": {
+          "2021.05.12.22.28.35_veh-35": 0.006329327678172461,
+          "2021.06.08.16.31.33_veh-38": 0.006484253465706387,
+          "2021.06.09.17.37.09_veh-12": 0.00428343976102034,
+          "2021.06.14.16.32.09_veh-35": 0.008361866716065453,
+          "2021.06.23.15.56.12_veh-16": 0.0033091849878372115,
+          "2021.06.23.16.54.19_veh-35": 0.010352965715626113,
+          "2021.06.23.17.31.36_veh-16": 0.006759141421807042,
+          "2021.06.28.16.29.11_veh-38": 1.3965498799603353e-05
+        }
+      }
+    }
+  },
+  "current_diagnostic_predictions_equal_independent_endpoint_windows": 256,
+  "historical_metrics_float64": {
+    "original_fast": {
+      "ADE": 0.5577890203992424,
+      "FDE": 1.2485644495540535,
+      "loss_l1_pose": 0.2254247495669186,
+      "loss_l1_xy": 0.6467145876149945,
+      "heading_mae_rad": 0.029559661085761336,
+      "heading_final_mae_rad": 0.05731806306466803,
+      "samples": 256,
+      "L2@0.5s": 0.26315997996349577,
+      "L2@1s": 0.1784266325891335,
+      "L2@1.5s": 0.21572848432283892,
+      "L2@2s": 0.3450889320007025,
+      "L2@2.5s": 0.518438193861629,
+      "L2@3s": 0.7171112667843738,
+      "L2@3.5s": 0.9757942241177134,
+      "L2@4s": 1.2485644495540529
+    },
+    "historical_fixed_seed_42": {
+      "ADE": 0.49240455890611096,
+      "FDE": 1.2130523636864414,
+      "loss_l1_pose": 0.20243347528973932,
+      "loss_l1_xy": 0.576945860147305,
+      "heading_mae_rad": 0.030354565721912998,
+      "heading_final_mae_rad": 0.06007002730344026,
+      "samples": 256,
+      "L2@0.5s": 0.052742013666245896,
+      "L2@1s": 0.09788997808677538,
+      "L2@1.5s": 0.170246724578117,
+      "L2@2s": 0.3186944097612649,
+      "L2@2.5s": 0.4879693904795137,
+      "L2@3s": 0.6771294782633069,
+      "L2@3.5s": 0.9215121127272223,
+      "L2@4s": 1.21305236368644
+    },
+    "historical_fixed_seed_43": {
+      "ADE": 0.491801658369115,
+      "FDE": 1.2108162994968046,
+      "loss_l1_pose": 0.2023259915598429,
+      "loss_l1_xy": 0.5766127508402059,
+      "heading_mae_rad": 0.03036522383932277,
+      "heading_final_mae_rad": 0.05949916143731732,
+      "samples": 256,
+      "L2@0.5s": 0.050504331776675286,
+      "L2@1s": 0.0982544738229845,
+      "L2@1.5s": 0.1695375453670874,
+      "L2@2s": 0.31790375783302244,
+      "L2@2.5s": 0.48758034345795237,
+      "L2@3s": 0.678152486570069,
+      "L2@3.5s": 0.921664028628324,
+      "L2@4s": 1.2108162994968061
+    },
+    "historical_fixed_seed_44": {
+      "ADE": 0.49049054703913686,
+      "FDE": 1.2135491332385553,
+      "loss_l1_pose": 0.20179852267931264,
+      "loss_l1_xy": 0.5746560582734503,
+      "heading_mae_rad": 0.03073950976448762,
+      "heading_final_mae_rad": 0.060444025541032134,
+      "samples": 256,
+      "L2@0.5s": 0.045559218531593414,
+      "L2@1s": 0.09638305921539764,
+      "L2@1.5s": 0.1695303897889847,
+      "L2@2s": 0.3173137235164977,
+      "L2@2.5s": 0.4851172841446201,
+      "L2@3s": 0.6755612217393906,
+      "L2@3.5s": 0.9209103461380551,
+      "L2@4s": 1.213549133238555
+    }
+  },
+  "frozen_slow_metrics_float64": {
+    "ADE": 0.5550832871496707,
+    "FDE": 1.2871964213112048,
+    "loss_l1_pose": 0.22404988577648177,
+    "loss_l1_xy": 0.6382305097695962,
+    "heading_mae_rad": 0.03391914755984923,
+    "heading_final_mae_rad": 0.06354719014633034,
+    "samples": 256,
+    "L2@0.5s": 0.10600987411410447,
+    "L2@1s": 0.20422037523441552,
+    "L2@1.5s": 0.28356980241333507,
+    "L2@2s": 0.3566593499274123,
+    "L2@2.5s": 0.5100602106835459,
+    "L2@3s": 0.7151018393026295,
+    "L2@3.5s": 0.9778484242107174,
+    "L2@4s": 1.2871964213112055
+  },
+  "constant_velocity_metrics_float64": {
+    "ADE": 0.8084441194359638,
+    "FDE": 1.9063530806715296,
+    "loss_l1_pose": 0.324214249205156,
+    "loss_l1_xy": 0.9350988086433909,
+    "heading_mae_rad": 0.03754393897207728,
+    "heading_final_mae_rad": 0.06548788701776281,
+    "samples": 256,
+    "L2@0.5s": 0.05526501166068524,
+    "L2@1s": 0.16222128139573097,
+    "L2@1.5s": 0.3286525422701607,
+    "L2@2s": 0.5530714908001262,
+    "L2@2.5s": 0.8229814445337926,
+    "L2@3s": 1.1396263297559395,
+    "L2@3.5s": 1.4993817743997468,
+    "L2@4s": 1.9063530806715283
+  },
+  "float64_vs_registered_metric_max_abs_errors": {
+    "full_fast_only": 7.592185213844971e-08,
+    "full_correct_kv": 6.831242727045606e-08,
+    "full_fixed_kv": 3.650722024683972e-08,
+    "diagnostic_correct": 6.831242727045606e-08,
+    "diagnostic_off": 3.065866727158806e-08,
+    "diagnostic_reference": 1.1908963226670011e-07,
+    "diagnostic_shuffled": 2.9811724089334746e-08,
+    "original_fast": 6.6896289840912e-08,
+    "historical_fixed_seed_42": 2.8801512397258477e-08,
+    "historical_fixed_seed_43": 8.386501182400252e-08,
+    "historical_fixed_seed_44": 1.2308621299972344e-07,
+    "frozen_slow": 5.244048684183156e-08,
+    "constant_velocity": 8.695932973701304e-08
+  },
+  "shared_identity": {
+    "cache_sha256": "da820769e598351f06fcb03df825b5c2a19e271e669305636e1027263d7250a3",
+    "init_sha256": "d661d8cd77a24819a837995d6385a658813c49f21bd9293e43f85b3334ce8168",
+    "initial_digest": "1fb5ef2f20024b895aaad58c76ce0ef79f3b35a36e148535be1f5abc1d61f41b",
+    "source_checkpoint_sha256": "448571f4d543913a4d93471781a1ecf4aa392078f2aa2dafa3816be43f9f0ae9",
+    "fast_checkpoint_sha256": "02c3964a225efd79e1c06644cbf49228a38a612021f211258e8476e6606882b1",
+    "data": {
+      "plan_sha256": "da7a335a57ca3794f644fb01ec9f0a6393e259e988d9e6a6ab832e284b730911",
+      "tokens_sha256": "60a409fa690513a7c7697ae0ace0b0e0b39bb4cc2aa0d508eedb510134ada9aa",
+      "source_audit_sha256": "fc2069bce0804b81e08a31ae5b4ce6ff84b9dfc626d983a40a04051c2e1c7496",
+      "train_manifest_sha256": "eb0572b98935adb124e0796982d041b12e7210b73ffe2919a10d125b0a502a2b",
+      "val_manifest_sha256": "e7274e6560d74cd99d49be7bdc9f77a5c71e2069200f822641f68b6e90e3018d",
+      "normalizer_sha256": "35dc682328e66c31f35c671ad2a6654031b31d7d6c22927377301cceaf687bb6",
+      "pin_sha256": "8e2d523b51f0dd58fef63a680d95695d8639fe779a0ae6ade2f6983eddd67169",
+      "verified_sources": 3092
+    },
+    "source_code_sha256": {
+      "tools/train_direct_full.py": "f32969756536fee779aec005b1aedd4d745eced22280d5705afb98eb857f3e8b",
+      "tools/direct_full_common.py": "2ffebe4a124e6fc42ca8e80e6d71b573522ba7d81c5f766c93dff63ad02a8c83",
+      "tools/cache_direct_full.py": "0dc2c47a0c29f77dc9a847619b35c9e44da3bdbcc607d44c27b2069d439870e3",
+      "slowfast_v11/full_training.py": "338e1494b7dc4495785f2dec32a02d481f3068d27e656768ed2f8acd3f153a87",
+      "slowfast_v11/expanded_protocol.py": "82204d5b2e8b0f10a4c2dadf5027f001d93024010a653659b04b07eade582133"
+    }
+  },
+  "independently_reproduced_train_order_sha256": "9b6422a402a1efa83d61657cfb038adfeb95dd8c49483b9e24097740b3b85c3e",
+  "training_health": {
+    "full_fast_only": {
+      "updates": 1024,
+      "draws": 4096,
+      "epochs": 8,
+      "full_state_keys": 529,
+      "optimizer_state_parameters": 525,
+      "replay_exact": true,
+      "maximum_peak_allocated_gib": 34.81339740753174
+    },
+    "full_correct_kv": {
+      "updates": 1024,
+      "draws": 4096,
+      "epochs": 8,
+      "full_state_keys": 529,
+      "optimizer_state_parameters": 529,
+      "replay_exact": true,
+      "maximum_peak_allocated_gib": 35.71514892578125
+    },
+    "full_fixed_kv": {
+      "updates": 1024,
+      "draws": 4096,
+      "epochs": 8,
+      "full_state_keys": 529,
+      "optimizer_state_parameters": 529,
+      "replay_exact": true,
+      "maximum_peak_allocated_gib": 35.71514892578125
+    }
+  },
+  "endpoint_VAL_timeline": {
+    "all_training_and_replays_precede_first_endpoint_VAL": true,
+    "latest_training_result_utc": "2026-11-08T07:12:20+00:00",
+    "first_endpoint_VAL_start_utc": "2026-11-08T07:14:16.993711+00:00",
+    "gap_seconds": 116.99371099472046,
+    "note": "Frozen providers and visual packets for VAL were exported before training; this check concerns endpoint VAL metrics, not absence of VAL image access."
+  },
+  "interpretation": [
+    "The single-seed current-KV training recipe improves mean ADE over independently trained fixed-KV and fast-only recipes on these eight recordings.",
+    "At the correct-trained checkpoint, replacing current KV with fixed or shuffled sources slightly improves mean ADE. Matched-source inference utility is not established.",
+    "Turning KV off also changes the trained no-cache/metadata path. Its degradation supports dependence on that conditioning path but does not isolate current-source semantic information.",
+    "These source interventions do not prove that online Slow computation is necessary. The exact freezing/deployment replacement and retraining implications are outside this audit.",
+    "All bootstrap intervals here resample eight recording groups only; one training seed gives no training-seed uncertainty. Intervention intervals are exploratory, unadjusted comparisons.",
+    "Pipeline ordering supports no endpoint VAL evaluation before all three training/replay stages completed. Cache export legitimately accessed VAL images and frozen-provider outputs earlier."
+  ]
+}

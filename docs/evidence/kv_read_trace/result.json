@@ -1,0 +1,21 @@
+{
+  "schema": "frozen_direct_kv_read_trace_result_v1",
+  "completed": true,
+  "new_training_updates": 0,
+  "new_response_body_bytes": 0,
+  "exact_prior_predictions": 768,
+  "parameter_versions_unchanged": true,
+  "all_parameter_sha256_before": "e41e31fa4cb88eefe41465d9eb7c7add500d2c0d22d715b75d2049c412e91fcc",
+  "all_parameter_sha256_after": "e41e31fa4cb88eefe41465d9eb7c7add500d2c0d22d715b75d2049c412e91fcc",
+  "source_tensors_unchanged": true,
+  "context_24layers_all_rows_exact_natural_passes": 768,
+  "context_checks_exclude_single_layer_interventions": true,
+  "single_layer_interventions": 1152,
+  "scope_cleanup_baseline_rechecks": 64,
+  "protocol_sha256": "4424f1b39899c36440cdff04ca41b2c62a95131b848cdeb6eb47ed7accd0a2f1",
+  "records_sha256": "61577dd132847a10558a88419c32135074714039f1517c27112081a9842e137b",
+  "interventions_sha256": "abaec2788f07cb4fb61aeafcc57e11e3c6e9ccc99b3542df04bc3e7d59e0c6e7",
+  "summary_sha256": "537ae929ccc572da9b3f8b895f70365d34083df39d8962f11e48a5add94f59c3",
+  "elapsed_s": 489.640290196985,
+  "peak_allocated_gib": 4.472689151763916
+}

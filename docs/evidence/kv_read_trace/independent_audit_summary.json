@@ -1,0 +1,146 @@
+{
+  "checks": {
+    "all_record_hashes_verified": true,
+    "max_head_stage_3_vs_independent_pose_error": 1.2015621733696413e-08,
+    "max_joint_mass_accounting_error": 1.043081283569336e-07,
+    "max_local_correct_RMS_error": 0.0,
+    "max_pre_read_natural_invariant_RMS_error": 0.0,
+    "max_product_summary_vs_independent_float64_error": 3.625981717103599e-07,
+    "max_relative_norm_identity_error": 6.599030422105301e-08,
+    "max_saved_effect_vs_independent_float64_error": {
+      "ADE_gain_vs_correct_m": 3.344130270477308e-07,
+      "max_plan_xy_change_m": 4.788912141839852e-09,
+      "mean_plan_xy_change_m": 6.317464537608508e-09
+    },
+    "metadata_selection64_reproduced_exactly": true,
+    "model_unchanged_claims": "matching before/after runner digests and version/source immutability assertions; model tensors not independently loaded"
+  },
+  "counts": {
+    "exact_previous_forecasts": 768,
+    "intervention_windows": 64,
+    "recording_groups": {
+      "2021.05.12.22.28.35_veh-35": 32,
+      "2021.06.08.16.31.33_veh-38": 32,
+      "2021.06.09.17.37.09_veh-12": 32,
+      "2021.06.14.16.32.09_veh-35": 32,
+      "2021.06.23.15.56.12_veh-16": 32,
+      "2021.06.23.16.54.19_veh-35": 32,
+      "2021.06.23.17.31.36_veh-16": 32,
+      "2021.06.28.16.29.11_veh-38": 32
+    },
+    "single_layer_records": 1152,
+    "single_layer_records_per_token": 18,
+    "source_position_groups": [
+      "image_0",
+      "image_1",
+      "image_2",
+      "image_3",
+      "native_other",
+      "ego",
+      "command",
+      "feedback",
+      "planning_queries"
+    ],
+    "windows": 256
+  },
+  "inputs": {
+    "audit_script": {
+      "bytes": 22570,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_kv_read_trace/independent_audit/audit_trace.py",
+      "sha256": "ccbd268d56bf003e30d335857cc2478cf26e97e83e5f18545db5a7b015211764"
+    },
+    "cache_manifest": {
+      "bytes": 3466971,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_direct_full/cache_01/manifest.json",
+      "sha256": "da820769e598351f06fcb03df825b5c2a19e271e669305636e1027263d7250a3"
+    },
+    "correct_endpoint_verification": {
+      "bytes": 1210,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_direct_full/run_01/full_correct_kv/verification.json",
+      "sha256": "d1609f3dde39dcf7b596b2a1cb7a5601d681c97a96af4d669e87b7f87df5b801"
+    },
+    "input_config": {
+      "bytes": 1435,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slow-adapt/configs/slowfast_direct_full.yaml",
+      "sha256": "cde8a731d51b708132ad11bdd305124314aa1164dc32ecffb1b1a03244baee24"
+    },
+    "interventions.jsonl": {
+      "bytes": 2302781,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_kv_read_trace/run_01/interventions.jsonl",
+      "sha256": "abaec2788f07cb4fb61aeafcc57e11e3c6e9ccc99b3542df04bc3e7d59e0c6e7"
+    },
+    "prior_diagnostic": {
+      "bytes": 2368750,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_direct_full/run_01/correct_checkpoint_diagnostics.json",
+      "sha256": "e7bc4ac67f7ffc3a4503dc5a83c60a16539df1683b74592ec8ba50a9eddaf61c"
+    },
+    "protocol.json": {
+      "bytes": 21014,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_kv_read_trace/run_01/protocol.json",
+      "sha256": "4424f1b39899c36440cdff04ca41b2c62a95131b848cdeb6eb47ed7accd0a2f1"
+    },
+    "records.jsonl": {
+      "bytes": 75505875,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_kv_read_trace/run_01/records.jsonl",
+      "sha256": "61577dd132847a10558a88419c32135074714039f1517c27112081a9842e137b"
+    },
+    "result.json": {
+      "bytes": 1081,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_kv_read_trace/run_01/result.json",
+      "sha256": "1e075bfd7cb693bb6ccd591b51de4a1bc3a1b2be6a56822e87ed971c3391419b"
+    },
+    "source:slowfast_v11/attention.py": {
+      "bytes": 9544,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slow-adapt/slowfast_v11/attention.py",
+      "sha256": "114f174759bbec1ff746e57922a667df38a7ec98217b8ae4bcdfeb3b3fafab72"
+    },
+    "source:slowfast_v11/content_diagnostics.py": {
+      "bytes": 9579,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slow-adapt/slowfast_v11/content_diagnostics.py",
+      "sha256": "2e8ca1ea229bbf2cf6b66260cee0644deb9e63b18179a5bdd2a31ea46e671ff6"
+    },
+    "source:slowfast_v11/full_training.py": {
+      "bytes": 8660,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slow-adapt/slowfast_v11/full_training.py",
+      "sha256": "338e1494b7dc4495785f2dec32a02d481f3068d27e656768ed2f8acd3f153a87"
+    },
+    "source:slowfast_v11/path_diagnostics.py": {
+      "bytes": 2532,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slow-adapt/slowfast_v11/path_diagnostics.py",
+      "sha256": "7c79c411895c88cffb7aebd0b67a24588b6c67a2075052a34844e57105f17858"
+    },
+    "source:slowfast_v11/read_trace.py": {
+      "bytes": 14843,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slow-adapt/slowfast_v11/read_trace.py",
+      "sha256": "fcaf2de235adf357dcf1d787966e225fd0766b62d89391b130c75c84a2cbee3d"
+    },
+    "source:tools/trace_direct_kv.py": {
+      "bytes": 20886,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slow-adapt/tools/trace_direct_kv.py",
+      "sha256": "c71f90a50f701d63d7e4c2e687a32c940553a6d5d4184b131f37368ad02b2fc1"
+    },
+    "summary.json": {
+      "bytes": 8903217,
+      "path": "/inspire/ssd/project/sais-bio/public/meiruiqiao/navsim-slowfast-expanded/outputs/slowfast_kv_read_trace/run_01/summary.json",
+      "sha256": "537ae929ccc572da9b3f8b895f70365d34083df39d8962f11e48a5add94f59c3"
+    }
+  },
+  "interpretation_limits": [
+    "Own-head Slow ADE is not a proxy for frozen KV quality; no Slow adaptation is evaluated or recommended by this audit.",
+    "Nonzero source-swap activations establish content sensitivity at fixed current Q/FastKV/gate; they do not establish task benefit.",
+    "Natural all-layer source changes cascade through earlier layers and change later Q/gates. Single-layer causal interventions also propagate downstream; neither equals local fixed-Q changes.",
+    "Masked source columns remove the external branch and renormalize joint softmax; effects mix branch availability, softmax competition, content, and distribution shift.",
+    "Nine positional source groups partition the columns, but contextualized group states mix upstream information. Attention to an image span is not isolated image-modality attribution.",
+    "P(0) bias vector/RMS is not serialized. Bias-aware projection reconstruction and native-full/query-shape errors are audited; an isolated bias magnitude is unidentifiable here.",
+    "Float32 softmax decomposition and native BF16 projection are numerical references, not bit-exact additive causal attributions. Contribution RMS values cannot be summed as scalar shares.",
+    "Only eight previously observed recording groups; interventions64 is metadata-selected, not the full VAL256, and moving subsets can change group weights."
+  ],
+  "libraries": [
+    "Python stdlib",
+    "NumPy"
+  ],
+  "passed": true,
+  "schema": "independent_frozen_six_layer_trace_audit_v1",
+  "full_audit_sha256": "6be84a241960bbe96a9e9d24202c50a606f401abe8e7b73dc44ca9974d363a29",
+  "full_audit_local_path": "outputs/slowfast_kv_read_trace/independent_audit/audit.json"
+}

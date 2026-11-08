@@ -1,0 +1,24 @@
+{
+  "schema": "frozen_read_trace_numeric_bundle_v1",
+  "path": "outputs/slowfast_kv_read_trace/numeric_evidence.tar.gz",
+  "bytes": 24162252,
+  "sha256": "c9ca1435f771c68f11054abcdfae8297fda53aaee3b2b647a7072985f4d77d4b",
+  "files": [
+    "outputs/slowfast_kv_read_trace/run_01/protocol.json",
+    "outputs/slowfast_kv_read_trace/run_01/records.jsonl",
+    "outputs/slowfast_kv_read_trace/run_01/interventions.jsonl",
+    "outputs/slowfast_kv_read_trace/run_01/result.json",
+    "outputs/slowfast_kv_read_trace/run_01/summary.json",
+    "outputs/slowfast_kv_read_trace/independent_audit/checksums.json",
+    "outputs/slowfast_kv_read_trace/independent_audit/audit_trace.py",
+    "outputs/slowfast_kv_read_trace/independent_audit/audit.json",
+    "outputs/slowfast_kv_read_trace/independent_audit/findings.txt",
+    "outputs/slowfast_kv_read_trace/independent_audit/moving_layer_reference.csv",
+    "outputs/slowfast_direct_full/cache_01/manifest.json",
+    "outputs/slowfast_direct_full/run_01/correct_checkpoint_diagnostics.json",
+    "outputs/slowfast_direct_full/run_01/full_correct_kv/verification.json"
+  ],
+  "contains_model_weights": false,
+  "contains_raw_images": false,
+  "reproduction": "Extract at repository root; run python outputs/slowfast_kv_read_trace/independent_audit/audit_trace.py; requires only stdlib+NumPy and protocol-pinned source files, no GPU."
+}

@@ -26,6 +26,8 @@
 
 **当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** Fast-only 基线的小规模开发与 Smoke 阶段已经结束，后续快慢机制研究按独立实验执行。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
 
+[冻结检查点的六层 KV 读取定位](docs/SLOWFAST_KV_READ_TRACE.md)保持 Slow 冻结，未新增训练或下载。768 次来源推理精确复现旧结果，1152 次单层干预完成；固定 Q 的换源差异穿过 gate／o_proj 并到达 Head。移动子集的读出相对差异在 Head 第一线性映射附近变小，但正确来源仍无 ADE 优势；这支持继续定位任务读出，不能把 Slow 自身轨迹分数作为必须先重训它的依据。
+
 > **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。
 
 ## 已验证到什么程度

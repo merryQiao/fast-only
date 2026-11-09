@@ -1,0 +1,290 @@
+{
+  "schema": "navsim_cluster_smoke_report_v1",
+  "created_utc": "2026-11-09T03:46:59.600257+00:00",
+  "validation_scope": "one H800 native smoke + two-rank CPU Gloo; target16-H200 not executed",
+  "tests": {
+    "all_regression": {
+      "tests": 1015,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "passed": 1014
+    },
+    "cluster_focused": {
+      "tests": 55,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 55
+    }
+  },
+  "native_training": {
+    "fast_only": {
+      "completed": true,
+      "execution_mode": "smoke",
+      "arm": "fast_only",
+      "seed": 42,
+      "update": 4,
+      "total_updates": 4,
+      "windows_seen": 8,
+      "equivalent_epochs": 1.0,
+      "best_val_ADE": 1.2463030517101288,
+      "endpoint": {
+        "correct": {
+          "ADE": 1.2463030517101288,
+          "FDE": 1.50470831990242,
+          "loss_l1_pose": 0.4997689574956894,
+          "samples": 4
+        }
+      },
+      "validation_scope": "native single-GPU smoke"
+    },
+    "slow_fast": {
+      "completed": true,
+      "execution_mode": "smoke",
+      "stage": "smoke",
+      "arm": "slow_fast",
+      "seed": 42,
+      "update": 4,
+      "total_updates": 4,
+      "windows_seen": 8,
+      "equivalent_epochs": 1.0,
+      "best_val_ADE": 1.402931421995163,
+      "endpoint": {
+        "correct": {
+          "ADE": 1.402931421995163,
+          "FDE": 1.8142809867858887,
+          "loss_l1_pose": 0.5683512389659882,
+          "samples": 4
+        },
+        "fixed": {
+          "ADE": 1.4078589379787445,
+          "FDE": 1.8265855610370636,
+          "loss_l1_pose": 0.5702948123216629,
+          "samples": 4
+        }
+      },
+      "validation_scope": "native single-GPU smoke"
+    },
+    "same_fast_initialization_digest": "06fb74efb39411ae98069b300ac9bad4760c36f60a5e7294fb0e8f5f64dedd47",
+    "same_data_identity": true,
+    "joint_frozen_parameters_and_buffers_equal": true,
+    "dense_blocks_finite_nonzero": 24,
+    "peak_allocated_gib": {
+      "fast_only": 35.00129842758179,
+      "slow_fast": 41.91663122177124
+    },
+    "quality_conclusion": "none; four updates per arm on 8 TRAIN/4 VAL fixture"
+  },
+  "native_disk_resume": {
+    "schema": "navsim_cluster_native_resume_v1",
+    "fields_bitwise_equal": [
+      "schema",
+      "identity",
+      "world_size",
+      "progress",
+      "model",
+      "fast_buffers",
+      "optimizer",
+      "scheduler",
+      "rng_by_rank"
+    ],
+    "independent_reload_prediction_bitwise_equal": true,
+    "prediction_max_abs_difference": 0.0,
+    "source": "real disk checkpoints from separate training processes",
+    "world_size": 1,
+    "device": "cuda:0",
+    "uninterrupted_sha256": "9cd4b31be809be9f4f60e3655d156a0a9788b5f3f154e818182b7ceeb238442c",
+    "resumed_sha256": "9cd4b31be809be9f4f60e3655d156a0a9788b5f3f154e818182b7ceeb238442c",
+    "update": 4,
+    "sample_token": "000afad751a95adb"
+  },
+  "gloo_algorithm": {
+    "validation_scope": "two-rank CPU algorithm regression; no native model or H200 coverage",
+    "world_size": 2,
+    "backend": "gloo",
+    "valid_samples": 13,
+    "checkpoint_writers": [
+      0
+    ],
+    "retained_checkpoints": 2,
+    "mean_gradient_equal": true,
+    "resume_equal": true,
+    "rank_rng_equal": true,
+    "parameters_equal": true
+  },
+  "async": {
+    "planning_count": 12,
+    "source_count": 49,
+    "planning_frequency_hz": 0.6090570812755401,
+    "source_frequency_hz": 2.020257581667173,
+    "consumed_versions": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "maximum_cpu_snapshot_bytes": 101643815,
+    "busy_refresh_skips": 18,
+    "dropped_source_windows": 31,
+    "fast_frozen_unchanged": true,
+    "slow_frozen_unchanged": true,
+    "shutdown_clean": true,
+    "transport_clean": true,
+    "slow_worker_exitcode": 0,
+    "multi_gpu_validated": false
+  },
+  "async_causal_audit": {
+    "causal_used_versions": true,
+    "used_plan_count": 11,
+    "distinct_versions": [
+      1,
+      3,
+      4,
+      5,
+      6
+    ],
+    "frozen_unchanged": true,
+    "clean_shutdown_and_transport": true,
+    "same_device_h800_only": true,
+    "timings": {
+      "source_to_submit_s": {
+        "p50": 1.4848200473934412,
+        "p95": 5.026814626157282
+      },
+      "language_head_s": {
+        "p50": 0.13522759824991226,
+        "p95": 0.7903946496546264
+      },
+      "vision_language_head_s": {
+        "p50": 0.26691248267889023,
+        "p95": 1.3435728732496492
+      }
+    }
+  },
+  "frozen_source": {
+    "source_checkpoint_sha256": "448571f4d543913a4d93471781a1ecf4aa392078f2aa2dafa3816be43f9f0ae9",
+    "bundle_sha256": "cd16b8aa6ea907814b1906f9dbb6f9ad3a133eeec13393ad1eab67c59d29e11e",
+    "bytes": 79234297,
+    "task_training_provenance_file": "fast_cluster/source_provenance.json"
+  },
+  "formal_data_policy": {
+    "official_train_logs": 978,
+    "official_val_logs": 214,
+    "selection_val_logs": 208,
+    "selection_val_groups": 60,
+    "source_seen_val_group": "2021.06.08.12.54.54_veh-26",
+    "source_seen_val_logs": 6,
+    "full_official_val": "preserved report_only; known upstream contamination; not checkpoint selection",
+    "official_train_changed": false,
+    "full_data_downloaded_locally": false
+  },
+  "target_required": [
+    "complete V1 data preparation and TRAIN stats",
+    "16-rank NCCL/IB native forward/backward/partialVAL/resume preflight",
+    "formal8epoch twoarm twoseed training"
+  ],
+  "evidence_root": "outputs/slowfast_cluster/",
+  "frozen_source_forward_parity": {
+    "schema": "navsim_cluster_frozen_source_forward_parity_v1",
+    "token": "2a73a7ff01a45447",
+    "source_checkpoint": "448571f4d543913a4d93471781a1ecf4aa392078f2aa2dafa3816be43f9f0ae9",
+    "source_bundle": "cd16b8aa6ea907814b1906f9dbb6f9ad3a133eeec13393ad1eab67c59d29e11e",
+    "layers": [
+      {
+        "layer_one_based": 4,
+        "values": [
+          {
+            "field": "key",
+            "equal": true,
+            "max_abs_diff": 0.0
+          },
+          {
+            "field": "value",
+            "equal": true,
+            "max_abs_diff": 0.0
+          }
+        ]
+      },
+      {
+        "layer_one_based": 8,
+        "values": [
+          {
+            "field": "key",
+            "equal": true,
+            "max_abs_diff": 0.0
+          },
+          {
+            "field": "value",
+            "equal": true,
+            "max_abs_diff": 0.0
+          }
+        ]
+      },
+      {
+        "layer_one_based": 12,
+        "values": [
+          {
+            "field": "key",
+            "equal": true,
+            "max_abs_diff": 0.0
+          },
+          {
+            "field": "value",
+            "equal": true,
+            "max_abs_diff": 0.0
+          }
+        ]
+      },
+      {
+        "layer_one_based": 16,
+        "values": [
+          {
+            "field": "key",
+            "equal": true,
+            "max_abs_diff": 0.0
+          },
+          {
+            "field": "value",
+            "equal": true,
+            "max_abs_diff": 0.0
+          }
+        ]
+      },
+      {
+        "layer_one_based": 20,
+        "values": [
+          {
+            "field": "key",
+            "equal": true,
+            "max_abs_diff": 0.0
+          },
+          {
+            "field": "value",
+            "equal": true,
+            "max_abs_diff": 0.0
+          }
+        ]
+      },
+      {
+        "layer_one_based": 24,
+        "values": [
+          {
+            "field": "key",
+            "equal": true,
+            "max_abs_diff": 0.0
+          },
+          {
+            "field": "value",
+            "equal": true,
+            "max_abs_diff": 0.0
+          }
+        ]
+      }
+    ],
+    "positions_equal": true,
+    "valid_equal": true,
+    "scope": "one native source forward vs authenticated historical frozen source packet; no training"
+  }
+}

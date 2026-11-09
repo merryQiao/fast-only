@@ -9,11 +9,11 @@
 **Tech Stack:** PyTorch2.8 DDP/NCCL/Gloo, Transformers5.10.2, existing Qwen/FLA, NumPy/PyYAML, spawn multiprocessing.
 
 - [x] Close previous diagnosis; pin user scope/current singleH800/target16H200 and officialV1 source contract.
-- [ ] Independent review of this spec and concrete interfaces.
-- [ ] Official V1 data builder and relocatable dataset: tests first, full-role coverage/filter/14frame eligibility/stats/provenance; prepare no-download Mini Smoke.
-- [ ] Distributed epoch plan, valid padding/loss scaling, local-rank RNG and complete atomic checkpoint with strict identity: tests first and actual2rank CPU smoke.
-- [ ] Source bundle exporter plus planner backend using existing models, proper per-model normalization, full Fast scope/native visual buffer and fresh frozen source; real source parity and bounded GPU update tests.
-- [ ] DDP training/eval/resume loop, twoarm/twoseed launch scripts, configuration/epoch budgets and final staticKV eval.
-- [ ] Async mailbox/worker/version/clock lifecycle with input-only requests; continuous original images from local prefix and real same-device process Smoke.
-- [ ] Full relevant regression and independent code/evidence review; explicit current-vs-target validation limits.
-- [ ] Chinese handoff, requirements/launch/preflight/data/asset commands, compact numerical evidence and portable source/source-bundle receipts; GitHub status accurate.
+- [x] Independent review of this spec and concrete interfaces.
+- [x] Official V1 data builder and relocatable dataset: tests first, full-role coverage/filter/14frame eligibility/stats/provenance; prepare no-download Mini Smoke. Source-trained VAL recording group explicitly excluded from selection; full official VAL retained for labelled report only.
+- [x] Distributed epoch plan, valid padding/loss scaling, local-rank RNG and complete atomic checkpoint with strict identity: tests first and actual2rank CPU smoke.
+- [x] Source bundle exporter plus planner backend using existing models, proper per-model normalization, full Fast scope/native visual buffer and fresh frozen source; authenticated source/state identity, native six-layer KV forward parity (max difference zero), and bounded GPU update tests.
+- [x] DDP training/eval/resume loop, twoarm/twoseed launch scripts, configuration/epoch budgets and final staticKV eval.
+- [x] Async mailbox/worker/version/clock lifecycle with input-only requests; continuous original images from local prefix and real same-device process Smoke. Complete file-backed CPU transfer avoids 64MiB shm limit; completed plan remains paired with exact source observation/time.
+- [x] Full relevant regression and independent code/evidence review; 1014 passed/1 expected skip; 55 cluster tests; native disk resume and separate-process reload prediction max difference zero. Target16-H200/NCCL remains explicit future preflight.
+- [x] Chinese handoff, requirements/launch/preflight/data/asset commands, compact numerical evidence and portable source/source-bundle receipts; source/archive/GitHub status supplied in final delivery.

@@ -1,0 +1,59 @@
+schema: navsim_cluster_v1
+execution:
+  mode: smoke
+  expected_world_size: 1
+  expected_local_world_size: 1
+  backend: nccl
+  timeout_s: 180
+assets:
+  fast_model: models/Qwen3.5-0.8B
+  slow_model: models/Qwen3.5-2B
+  source_bundle: outputs/slowfast_cluster/source/source_bundle.pt
+  source_checkpoint_sha256: 448571f4d543913a4d93471781a1ecf4aa392078f2aa2dafa3816be43f9f0ae9
+data:
+  bundle: outputs/slowfast_cluster/smoke_data
+  sensor_root: data
+  workers: 0
+  prefetch_factor: 2
+  normalization: full_train_fast__preserved_source_slow
+processor:
+  policy: original_pad
+  pad_multiple: 32
+  brightness: 0.0
+  prompt_template: navsim_temporal_v1
+model:
+  init: pretrained
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.0
+  lora_parameter_dtype: float32
+  position_offset: 4096
+  gradient_checkpointing: false
+train:
+  loss: official_unweighted_pose_l1
+  arms: [fast_only, slow_fast]
+  seeds: [42, 43]
+  epochs: 1
+  micro_batch: 1
+  gradient_accumulation: 2
+  language_lr: 0.00001
+  new_lr: 0.00005
+  weight_decay: 0.01
+  gradient_clip: 1.0
+  warmup_fraction: 0.03
+  minimum_lr_ratio: 0.1
+  source_feedback: frozen_source_teacher
+  evaluate_every_epochs: 1
+  checkpoint_every_updates: 2
+  keep_full_checkpoints: 2
+evaluation:
+  primary: val_ADE
+  final_joint_modes: [correct, fixed]
+  fixed_source: lexicographically_first_train_token
+reproducibility:
+  deterministic_algorithms: true
+  warn_only: false
+  cublas_workspace_config: ':4096:8'
+  cudnn_deterministic: true
+  cudnn_benchmark: false
+  allow_tf32: false

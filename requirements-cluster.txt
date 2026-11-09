@@ -1,0 +1,12 @@
+# Versions exercised by local native/algorithm Smoke. Install PyTorch CUDA 12.8
+# for the target driver first; build FLA/TileLang against that environment.
+# Base model assets and CUDA compiler/toolkit are separate prerequisites.
+torch==2.8.0
+transformers==5.10.2
+peft==0.18.1
+flash-linear-attention==0.5.1
+tilelang==0.1.15
+numpy==2.4.4
+Pillow==12.2.0
+PyYAML==6.0.3
+pytest==8.4.2

@@ -1,0 +1,26 @@
+{
+  "revision": "3e8291bfa89ff247231e0227778840cd0a036896",
+  "branch": "v1.1",
+  "files": {
+    "navtrain.yaml": {
+      "sha256": "c37fea567a0cfdbc29076cca893d4f5dd32db59baec18ae214527206d6b64e6f",
+      "source_path": "navsim/planning/script/config/common/train_test_split/scene_filter/navtrain.yaml",
+      "url": "https://github.com/autonomousvision/navsim/blob/3e8291bfa89ff247231e0227778840cd0a036896/navsim/planning/script/config/common/train_test_split/scene_filter/navtrain.yaml"
+    },
+    "navtest.yaml": {
+      "sha256": "61284edf5003c0291f843ce9817c822ba306609a62d54544223adae3fc7fc9cd",
+      "source_path": "navsim/planning/script/config/common/train_test_split/scene_filter/navtest.yaml",
+      "url": "https://github.com/autonomousvision/navsim/blob/3e8291bfa89ff247231e0227778840cd0a036896/navsim/planning/script/config/common/train_test_split/scene_filter/navtest.yaml"
+    },
+    "log_split.yaml": {
+      "sha256": "3c2182f5ed60442710f34d8ce6bab5b4eae9a38ae5ac3f5615e470aa4c6cd150",
+      "source_path": "navsim/planning/script/config/training/default_train_val_test_log_split.yaml",
+      "url": "https://github.com/autonomousvision/navsim/blob/3e8291bfa89ff247231e0227778840cd0a036896/navsim/planning/script/config/training/default_train_val_test_log_split.yaml"
+    },
+    "LICENSE": {
+      "sha256": "de4940fe77d9b191436c278d5419323ac437487aa9883843bfcac06032e8d13d",
+      "source_path": "LICENSE",
+      "url": "https://github.com/autonomousvision/navsim/blob/3e8291bfa89ff247231e0227778840cd0a036896/LICENSE"
+    }
+  }
+}

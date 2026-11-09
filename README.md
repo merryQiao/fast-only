@@ -2,7 +2,9 @@
 
 使用 **Qwen3.5-0.8B 原生多模态骨干**，输入 NAVSIM/OpenScene 的四帧前视图像、当前 Ego 动态状态和官方导航命令，单次 forward 输出未来 **4 秒、8 个 `(x, y, heading)` pose**。
 
-本分支新增 [Slow-Fast V1.1 P0 接口原型](docs/SLOWFAST_V11_P0.md)：真实 2B→0.8B 六层 KV、Planning Queries 可见性和联合梯度审计。它使用独立目录 `slowfast_v11/`；以下 Fast-only 验收记录仍对应原基线。异步调度、Future 检验和闭环收益尚未完成。
+**当前主入口：NAVSIM V1全量、2节点×8 H200。** 新增独立 `fast_cluster/` 工程，保留冻结2B＋完整0.8B六层Direct-KV，正式只运行Fast-only/Slow-Fast两臂、种子42/43、各8epoch，并提供固定周期最小异步运行链路。当前服务器只做有界Smoke；[迁移及全量训练说明](docs/NAVSIM_V1_CLUSTER_HANDOFF.md)、[当前Smoke证据](docs/NAVSIM_V1_CLUSTER_SMOKE.md)。下文各Mini报告为历史研究记录，未作为本轮继续诊断的前提。
+
+历史 [Slow-Fast V1.1 P0 接口原型](docs/SLOWFAST_V11_P0.md)验证真实2B→0.8B六层KV、Planning Queries可见性和联合梯度。它使用独立目录 `slowfast_v11/`；以下Fast-only验收记录对应原基线。当前最小固定周期异步已补充，Future检验和闭环收益仍待后续研究。
 
 后续的[小规模适配与 KV 验证](docs/SLOWFAST_V11_VALIDATION.md)包含真实训练、同检查点对照和独立重载。本轮验收工程可训练性，尚未验证充分收敛，不用于判断架构优劣或性能上限；请区分独立训练路径对照与同检查点 KV 开关诊断。
 
@@ -24,11 +26,11 @@
 
 [直接 KV＋完整 Fast 语言主干实验](docs/SLOWFAST_DIRECT_FULL.md)停止继续调整冻结 Reader 残差分支，真正扩大 TRAIN 为 512 窗口／12 个记录组，并另留 256 窗口／8 个新记录组。冻结 Slow 和 Fast 视觉塔，更新约 7.60 亿参数，比较同起点、同顺序、同预算的 Fast-only、正确直接 KV、固定直接 KV。三组均完成 1024×累积4 的真实全语言训练和完整冷重放。新 VAL ADE 为 Fast-only 0.416926m、当前 KV 0.393248m、固定 KV 0.416968m；训练臂配对改善 23.72mm，95% 日志区间 [1.48,48.14]mm，注册判据通过。但同一当前训练权重换成固定／错配 KV 推理为 0.392893／0.392488m，当前来源优势未建立。结果支持训练配方候选，不证明在线 Slow 必不可少；单种子、mini、开环、同步 fresh 条件的范围均保留。
 
-**当前交付定位：已验证的单卡研究基线，可迁移；全量训练启动有条件。** Fast-only 基线的小规模开发与 Smoke 阶段已经结束，后续快慢机制研究按独立实验执行。本仓库没有完成全量 `navtrain` 训练，也尚未实现多卡 DDP 或官方 NAVSIM Agent/EPDMS 接口。
+**历史单卡交付记录：** 以下Fast-only/Mini实验未执行全量训练。新增正式DDP入口见页首；16 H200目标机预检与官方NAVSIM Agent/评分接口仍需后续完成。
 
 [冻结检查点的六层 KV 读取定位](docs/SLOWFAST_KV_READ_TRACE.md)保持 Slow 冻结，未新增训练或下载。768 次来源推理精确复现旧结果，1152 次单层干预完成；固定 Q 的换源差异穿过 gate／o_proj 并到达 Head。移动子集的读出相对差异在 Head 第一线性映射附近变小，但正确来源仍无 ADE 优势；这支持继续定位任务读出，不能把 Slow 自身轨迹分数作为必须先重训它的依据。
 
-> **不能直接执行 `configs/navsim.yaml` 开始全量训练。** 当前 Schema 固定 mini cohort、清单路径和已验证训练预算，正式入口会主动拒绝在该 cohort 上训练。接入完整数据需要修改配置校验、数据准备和训练工程，**不需要修改 Backbone、8 个 Planning Queries 或轨迹 Head**。详见[全量训练迁移指南](docs/FULL_DATA_TRAINING.md)。
+> 旧 `configs/navsim.yaml` 固定Mini身份。新正式入口使用 `configs/navsim_v1_h200_2x8.yaml`；接入完整官方V1数据无需修改模型代码。旧[迁移指南](docs/FULL_DATA_TRAINING.md)保留当时状态，当前操作以页首新交接文档为准。
 
 ## 已验证到什么程度
 

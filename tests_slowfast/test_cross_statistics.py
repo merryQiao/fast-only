@@ -41,7 +41,8 @@ def test_averages_donor_errors_in_window_without_cancelling_predictions():
     assert windows[0]['cells']['swapped']['XY_change'] == 2.
     effect = api().paired_effect(windows, {'swapped': 1., 'original': -1.}, reps=500)
     assert effect['window_count'] == effect['log_count'] == 1
-    assert effect['ci95'] == [2., 2.]
+    assert effect['ci95'] is None
+    assert 'fewer than two' in effect['ci95_unavailable_reason']
 
 
 def test_donors_are_not_replicates_and_logs_have_equal_bootstrap_weight():
@@ -57,6 +58,7 @@ def test_donors_are_not_replicates_and_logs_have_equal_bootstrap_weight():
     rng = np.random.default_rng(20261109)
     expected = np.array([0., 4.])[rng.integers(2, size=(2000, 2))].mean(1)
     assert result['ci95'] == pytest.approx(np.percentile(expected, [2.5, 97.5]))
+    assert '2 eligible' in result['interval_caution']
 
 
 def test_factorial_interaction_and_different_donor_rescue_match_image_first():
@@ -135,7 +137,8 @@ def saved_run(tmp_path, monkeypatch):
     for group in range(8):
         for index in range(32):
             canonical.append(dict(token=f'g{group}t{index}', route=f'log{group}_00000_00010',
-                command=2 if (group, index) == (0, 0) else group % 2, ego=[2.+group, 0., 0., 0.],
+                command=2 if (group, index) == (0, 0) else group % 2,
+                ego=[2.+group+(1. if group == 7 else 0.), 0., 0., 0.],
                 trajectory_gt=np.zeros((8, 3)).tolist(), split='val'))
     targets = [{key: row[key] for key in ('token', 'route', 'command', 'ego')} for row in canonical]
     tokens = [row['token'] for row in canonical]
@@ -262,6 +265,16 @@ def test_report_writes_fixed_tables_figures_and_sparse_class_caveat(saved_run, t
     assert summary['cohorts']['all']['full_correct_kv']['window_count'] == 256
     assert summary['cohorts']['command_2']['full_correct_kv']['window_count'] == 1
     assert summary['cohorts']['command_2']['stable_class_conclusion_supported'] is False
+    assert summary['cohorts']['command_2']['full_correct_kv']['effects']['C_minus_A']['ADE']['ci95'] is None
+    high = summary['cohorts']['high_ge_10']['full_correct_kv']
+    assert high['log_count'] == 1 and high['effects']['C_minus_A']['ADE']['ci95'] is None
+    import csv
+    with (output/'effects.csv').open() as stream:
+        sparse = [row for row in csv.DictReader(stream) if row['cohort'] == 'command_2']
+    assert sparse and all(row['ci95_low'] == row['ci95_high'] == '' for row in sparse)
+    assert all('fewer than two' in row['ci95_unavailable_reason'] for row in sparse)
+    assert '不提供区间' in (output/'report_zh.md').read_text()
+    assert '2–3 个日志' in (output/'report_zh.md').read_text()
     assert (output/'summary.json').is_file() and (output/'report_zh.md').is_file()
     assert len(list(output.glob('*.png'))) == 4
     assert len((output/'offset_metrics.csv').read_text().splitlines()) == 1+20*256

@@ -156,7 +156,8 @@ def paired_effect(windows, coefficients, metric='ADE', seed=20261109, reps=20000
     Every represented recording receives equal bootstrap weight. The separately
     returned window-weighted mean describes its actual cohort composition.
     Intervals condition on the fixed targets/checkpoints/donor maps and contain
-    neither training-seed nor donor-selection uncertainty.
+    neither training-seed nor donor-selection uncertainty. One eligible log has
+    no interval (ci95=None); two or three eligible logs carry a fragility caveat.
     """
     require(isinstance(coefficients, Mapping) and bool(coefficients), 'Specify a nonempty cell contrast')
     require(all(isinstance(c, Real) and not isinstance(c, bool) and np.isfinite(c)
@@ -181,12 +182,21 @@ def paired_effect(windows, coefficients, metric='ADE', seed=20261109, reps=20000
     require(bool(effects), 'No paired windows in this cohort')
     logs = sorted(per_log)
     means = np.array([np.mean(per_log[log]) for log in logs])
-    rng = np.random.default_rng(seed)
-    bootstrap = means[rng.integers(len(logs), size=(reps, len(logs)))].mean(1)
+    interval = None
+    unavailable_reason = None
+    caution = None
+    if len(logs) < 2:
+        unavailable_reason = 'fewer than two eligible recording groups; descriptive means only'
+    else:
+        rng = np.random.default_rng(seed)
+        bootstrap = means[rng.integers(len(logs), size=(reps, len(logs)))].mean(1)
+        interval = np.percentile(bootstrap, [2.5, 97.5]).tolist()
+        if len(logs) <= 3:
+            caution = f'Only {len(logs)} eligible recording groups; conditional bootstrap interval is fragile.'
     return dict(window_count=len(effects), log_count=len(logs), window_weighted_mean=float(np.mean(effects)),
                 equal_log_mean=float(means.mean()), per_log_means=dict(zip(logs, means.tolist())),
                 per_log_window_counts={log: len(per_log[log]) for log in logs},
-                ci95=np.percentile(bootstrap, [2.5, 97.5]).tolist(), metric=metric,
+                ci95=interval, ci95_unavailable_reason=unavailable_reason, interval_caution=caution, metric=metric,
                 coefficients=dict(coefficients), analysis_seed=int(seed), bootstrap_replicates=int(reps),
                 bootstrap_unit='target recording group; paired effects averaged within log',
                 uncertainty_scope='conditional on fixed observed targets, donor maps and frozen checkpoints; '
@@ -445,13 +455,18 @@ def render_figures(output, summary):
         for index, name in enumerate(cohort_names):
             effect = summary['cohorts'][name][arm]['effects'].get(contrast, {}).get('ADE')
             if effect:
-                value = effect['equal_log_mean']; lo, hi = effect['ci95']
+                value = effect['equal_log_mean']
                 ax.bar(index, value, color='#4477aa')
-                ax.vlines(index, lo, hi, color='black'); ax.hlines([lo, hi], index-.07, index+.07, color='black')
+                if effect['ci95'] is None:
+                    ax.annotate('1 log; no CI', (index, value), xytext=(0, 4),
+                                textcoords='offset points', ha='center', fontsize=7)
+                else:
+                    lo, hi = effect['ci95']
+                    ax.vlines(index, lo, hi, color='black'); ax.hlines([lo, hi], index-.07, index+.07, color='black')
         ax.axhline(0, color='black', linewidth=.6); ax.axhline(.02, color='#aa7733', linestyle=':', label='20 mm reference')
         ax.set_xticks(range(3), ['All', 'Speed >=1', 'Speed >=10']); ax.set_ylabel('Paired ADE damage (m)')
         ax.set_title(title); ax.legend(fontsize=8)
-    fig.suptitle('Equal-log means and conditional paired log-bootstrap 95% intervals')
+    fig.suptitle('Equal-log means; conditional 95% intervals require >=2 logs (2-3 logs: fragile)')
     fig.tight_layout(); fig.savefig(output/'image_sensitivity.png'); plt.close(fig)
 
     fig, axes = plt.subplots(1, 2, figsize=(10, 4))
@@ -525,11 +540,19 @@ def chinese_report(summary):
     for cohort in ('all', 'moving_ge_1', 'high_ge_10'):
         for arm in ARMS:
             for name, metrics in summary['cohorts'][cohort][arm]['effects'].items():
-                effect = metrics['ADE']; lo, hi = effect['ci95']
-                rows.append(f"|{cohort}|{arm}/{name}|{effect['window_weighted_mean']*1000:.3f}|{effect['equal_log_mean']*1000:.3f}|[{lo*1000:.3f}, {hi*1000:.3f}]|")
+                effect = metrics['ADE']
+                if effect['ci95'] is None:
+                    interval = '不提供区间（仅 1 个日志；只报告描述性均值）'
+                else:
+                    lo, hi = effect['ci95']
+                    interval = f'[{lo*1000:.3f}, {hi*1000:.3f}]'
+                    if effect['interval_caution']:
+                        interval += f"（仅 {effect['log_count']} 个日志，区间不稳）"
+                rows.append(f"|{cohort}|{arm}/{name}|{effect['window_weighted_mean']*1000:.3f}|{effect['equal_log_mean']*1000:.3f}|{interval}|")
     rows += ['', '交互量定义为 D_same−C−B+A；先用相同图像 donor 配对 D−C，'
              '再于窗口内平均。D_same 与不同 donor 的 D 分开报告。', '',
              '区间用固定种子 20261109、20,000 次日志有放回重采样，仅条件于固定目标日志和 donor 映射。'
+             '仅一个日志时不提供区间，只保留描述性均值；只有 2–3 个日志时区间不稳，需结合逐日志数量与权重审慎阅读。'
              '它不包含 donor 选择或训练种子不确定性；不显著不等于等效。20 mm 只是沿用的描述性实用参考，'
              '不是选择实验、判定显著性或强制归类的阈值。', '',
              '## 四图像来源 × 四 KV 来源', '', '|图像 offset／KV offset|0|1|4|7|', '|---|---:|---:|---:|---:|']
@@ -596,7 +619,10 @@ def run(run_root, output, *, project_root=None):
                     effect_rows.append(dict(cohort=name, arm=arm, contrast=contrast, metric=metric,
                                             window_count=effect['window_count'], log_count=effect['log_count'],
                                             window_weighted_mean=effect['window_weighted_mean'], equal_log_mean=effect['equal_log_mean'],
-                                            ci95_low=effect['ci95'][0], ci95_high=effect['ci95'][1]))
+                                            ci95_low=None if effect['ci95'] is None else effect['ci95'][0],
+                                            ci95_high=None if effect['ci95'] is None else effect['ci95'][1],
+                                            ci95_unavailable_reason=effect['ci95_unavailable_reason'],
+                                            interval_caution=effect['interval_caution']))
                     for log, value in effect['per_log_means'].items():
                         per_log_effect_rows.append(dict(cohort=name, arm=arm, contrast=contrast, metric=metric,
                                                         log=log, window_count=counts[log], mean=value))
@@ -622,7 +648,7 @@ def run(run_root, output, *, project_root=None):
     csv_write(output/'offset_metrics.csv', offset_rows, ['arm', 'token', 'log', 'route', 'command', 'speed_mps', 'image_offset', 'kv_offset', *METRICS])
     csv_write(output/'offset_summary.csv', offset_summary_rows, ['cohort', 'arm', 'image_offset', 'kv_offset', 'weighting', 'window_count', 'log_count', *METRICS])
     csv_write(output/'per_log_metrics.csv', per_log_rows, ['cohort', 'arm', 'cell', 'log', 'window_count', *METRICS])
-    csv_write(output/'effects.csv', effect_rows, ['cohort', 'arm', 'contrast', 'metric', 'window_count', 'log_count', 'window_weighted_mean', 'equal_log_mean', 'ci95_low', 'ci95_high'])
+    csv_write(output/'effects.csv', effect_rows, ['cohort', 'arm', 'contrast', 'metric', 'window_count', 'log_count', 'window_weighted_mean', 'equal_log_mean', 'ci95_low', 'ci95_high', 'ci95_unavailable_reason', 'interval_caution'])
     csv_write(output/'per_log_effects.csv', per_log_effect_rows, ['cohort', 'arm', 'contrast', 'metric', 'log', 'window_count', 'mean'])
     (output/'report_zh.md').write_text(chinese_report(summary))
     render_figures(output, summary)

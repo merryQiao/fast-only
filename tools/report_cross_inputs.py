@@ -196,6 +196,7 @@ def paired_effect(windows, coefficients, metric='ADE', seed=20261109, reps=20000
 RUNNER_SOURCE_FILES = (
     'tools/diagnose_cross_inputs.py', 'slowfast_v11/cross_inputs.py', 'slowfast_v11/model.py',
     'slowfast_v11/attention.py', 'tools/direct_full_common.py', 'slowfast_v11/full_training.py',
+    'slowfast_v11/vision_protocol.py',
 )
 
 
@@ -232,7 +233,7 @@ def load_run(run_root, *, project_root=None):
                  raw_replay_image_sources=list(OFFSETS), metadata=[0., 0., 0., 0., 1., 1.], moving_speed_mps=1.,
                  high_speed_mps=10., practical_ade_reference_m=.02, analysis_seed=20261109,
                  bootstrap_replicates=20000, max_allocated_gib=32, new_training_updates=0, new_response_body_bytes=0,
-                 checkpoint_sha256=CHECKPOINTS)
+                 checkpoint_sha256=CHECKPOINTS, vision_precision_policy='native_fp32_visual_rope')
     require(plan.get('schema') == 'frozen_cross_inputs_protocol_v1' and
             all(config.get(key) == value for key, value in fixed.items()), 'Frozen protocol/config differs')
     config_path = project/'configs/slowfast_cross_inputs.yaml'
@@ -315,6 +316,13 @@ def load_run(run_root, *, project_root=None):
         parameter_hash = result.get('all_parameter_sha256_before', '')
         require(isinstance(parameter_hash, str) and re.fullmatch('[0-9a-f]{64}', parameter_hash) is not None
                 and parameter_hash == result.get('all_parameter_sha256_after'), 'Full parameter immutability proof differs')
+        buffer_hash = result.get('all_buffer_sha256_before', '')
+        require(isinstance(buffer_hash, str) and re.fullmatch('[0-9a-f]{64}', buffer_hash) is not None
+                and buffer_hash == result.get('all_buffer_sha256_after'), 'Full buffer immutability proof differs')
+        rope = result.get('native_visual_rope')
+        require(isinstance(rope, Mapping) and rope.get('after_dtype') == 'torch.float32'
+                and rope.get('before_dtype') in ('torch.bfloat16', 'torch.float32'),
+                'Native FP32 visual RoPE receipt missing or differs')
         peak = result.get('peak_allocated_gib')
         require(isinstance(peak, Real) and np.isfinite(peak) and 0 <= peak <= 32, 'GPU memory receipt exceeds fixed cap')
         for filename, key in [('predictions.jsonl', 'predictions_sha256'), ('raw_replays.json', 'raw_replays_sha256')]:
@@ -365,12 +373,13 @@ def load_run(run_root, *, project_root=None):
     require(exact_count == 768 and raw_count == 64, 'Combined numeric replay acceptance differs')
     acceptance = dict(records_verified=sum(map(len, all_records.values())), saved_exact_predictions_verified=exact_count,
                       raw_replays_verified=raw_count, all_factorial_sources_and_current_metadata_verified=True,
+                      all_buffer_immutability_verified=True, vision_precision_policy='native_fp32_visual_rope',
                       checkpoint_files_rehashed=False,
                       checkpoint_identity_scope='pinned endpoint verification and authenticated runner load_result_checkpoint; '
                                                 'no independent checkpoint binary reload in CPU report',
                       whole_joint_execution='all 16 cells: same six fusion layers, metadata [0,0,0,0,1,1]; '
                                             'authenticated runner source and frozen protocol',
-                      parameter_and_input_immutability='actual runner before/after hashes and tensor-version receipts')
+                      parameter_and_input_immutability='actual runner before/after parameter and buffer hashes, native FP32 visual RoPE and tensor-version receipts')
     return dict(protocol=plan, records=all_records, acceptance=acceptance, runner_results=results,
                 input_sha256=input_files, runner_source_sha256=source_hashes, run_root=str(root))
 
@@ -498,7 +507,8 @@ def chinese_report(summary):
             '绝不先平均轨迹再计算损失，也不把三个 donor 当作独立样本。', '',
             '原 Fast-only 256、联合 A 256、旧 B(offset4) 256 条预测逐数组精确复现；'
             '64 个原始 Processor 回放的原始／缓存预测和当前结果逐数组相同。'
-            '检查点身份与不可变性来自已认证 runner 的实际加载、参数 hash 和版本收据；本 CPU 报告不读取模型二进制或原图。', '',
+            '检查点身份与不可变性来自已认证 runner 的实际加载、参数及 buffer 前后 hash 和版本收据；'
+            '原生视觉 RoPE 使用固定 FP32 buffer 精度策略。本 CPU 报告不读取模型二进制或原图。', '',
             '## 当前速度子集与权重', '',
             '|子集|窗口数|日志数|每日志窗口数|', '|---|---:|---:|---|']
     for name in ('all', 'moving_ge_1', 'high_ge_10'):

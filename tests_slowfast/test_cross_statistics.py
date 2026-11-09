@@ -128,6 +128,7 @@ def saved_run(tmp_path, monkeypatch):
         path.write_bytes(arm.encode()); pins[arm] = module.sha256(path)
     monkeypatch.setattr(module, 'CHECKPOINTS', pins)
     config['checkpoint_sha256'] = pins
+    config['vision_precision_policy'] = 'native_fp32_visual_rope'
     config_path = project / 'configs/slowfast_cross_inputs.yaml'; config_path.parent.mkdir()
     config_path.write_text(yaml.safe_dump(config))
     canonical = []
@@ -188,6 +189,8 @@ def saved_run(tmp_path, monkeypatch):
         write(directory/'result.json', dict(schema='frozen_cross_inputs_arm_v1', completed=True, arm=arm,
             records=len(rows), exact_previous_forecasts=plan['expected_saved_exact'][arm], raw_processor_replays_exact=32,
             all_parameter_sha256_before='a'*64, all_parameter_sha256_after='a'*64,
+            all_buffer_sha256_before='b'*64, all_buffer_sha256_after='b'*64,
+            native_visual_rope=dict(before_dtype='torch.bfloat16', after_dtype='torch.float32'),
             parameter_versions_unchanged=True, inputs_and_sources_unchanged=True, checkpoint_sha256=pins[arm],
             predictions_sha256=module.sha256(directory/'predictions.jsonl'), raw_replays_sha256=module.sha256(directory/'raw_replays.json'),
             protocol_sha256=module.sha256(run_root/'protocol.json'), peak_allocated_gib=2.,
@@ -202,9 +205,11 @@ def test_load_run_authenticates_complete_coverage_provenance_and_all_exact_array
     assert evidence['acceptance']['saved_exact_predictions_verified'] == 768
     assert evidence['acceptance']['raw_replays_verified'] == 64
     assert evidence['acceptance']['checkpoint_files_rehashed'] is False
+    assert evidence['acceptance']['all_buffer_immutability_verified'] is True
 
 
-@pytest.mark.parametrize('problem', ['incomplete', 'file_hash', 'source_hash', 'raw_array', 'old_array', 'metadata', 'donor'])
+@pytest.mark.parametrize('problem', ['incomplete', 'file_hash', 'source_hash', 'raw_array', 'old_array', 'metadata', 'donor',
+    'buffer_changed', 'buffer_missing', 'rope_dtype', 'rope_missing', 'policy'])
 def test_load_run_rejects_invalid_receipts_arrays_current_metadata_and_provenance(saved_run, problem):
     import json
     root, project, write = saved_run
@@ -212,6 +217,18 @@ def test_load_run_rejects_invalid_receipts_arrays_current_metadata_and_provenanc
     result = json.loads(result_path.read_text())
     if problem == 'incomplete':
         result['completed'] = False
+    elif problem == 'buffer_changed':
+        result['all_buffer_sha256_after'] = 'c'*64
+    elif problem == 'buffer_missing':
+        del result['all_buffer_sha256_before']
+    elif problem == 'rope_dtype':
+        result['native_visual_rope']['after_dtype'] = 'torch.bfloat16'
+    elif problem == 'rope_missing':
+        del result['native_visual_rope']
+    elif problem == 'policy':
+        path = root/'protocol.json'; plan = json.loads(path.read_text())
+        plan['config']['vision_precision_policy'] = 'cast_all_visual_bf16'; write(path, plan)
+        result['protocol_sha256'] = api().sha256(path)
     elif problem == 'file_hash':
         result['predictions_sha256'] = '0'*64
     elif problem == 'source_hash':
@@ -250,3 +267,12 @@ def test_report_writes_fixed_tables_figures_and_sparse_class_caveat(saved_run, t
     assert len((output/'offset_metrics.csv').read_text().splitlines()) == 1+20*256
     assert json.loads((output/'provenance.json').read_text())['acceptance']['raw_replays_verified'] == 64
     with pytest.raises(FileExistsError): api().run(root, output, project_root=project)
+
+
+def test_already_fp32_native_visual_rope_receipt_is_accepted(saved_run):
+    import json
+    root, project, write = saved_run
+    for arm in ('full_fast_only', 'full_correct_kv'):
+        path = root/arm/'result.json'; result = json.loads(path.read_text())
+        result['native_visual_rope']['before_dtype'] = 'torch.float32'; write(path, result)
+    assert api().load_run(root, project_root=project)['acceptance']['all_buffer_immutability_verified'] is True

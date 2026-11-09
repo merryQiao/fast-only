@@ -4,6 +4,7 @@ All publication clocks use time.monotonic. Recorded sensor times are mapped to
 that clock only after both models are ready. CUDA tensors never cross processes.
 """
 from dataclasses import dataclass, replace
+import copy
 import importlib
 import json
 import math
@@ -212,7 +213,7 @@ def align_feedback(completed, source):
     provenance.update(age_s=age, absolute_target_times=target_times,
                       points_already_due=sum(t <= source['observation_time'] for t in target_times),
                       transform='source ego SE2 only; no resampling or action matching',
-                      producer='latest completed live Fast; differs from frozen training feedback teacher')
+                      producer='latest completed main Fast plan; may be KV-enabled; matched source observation')
     return trajectory, provenance
 
 
@@ -242,6 +243,11 @@ def select_slow_source(latest, completed):
 def _audit_backend(backend):
     audit = getattr(backend, 'audit_frozen', None)
     return audit() if callable(audit) else {'available': False}
+
+
+def _frame_cache_stats(backend):
+    cache = getattr(backend, 'frame_cache', getattr(backend, 'cache', None))
+    return cache.stats() if cache is not None and callable(getattr(cache, 'stats', None)) else None
 
 
 def _close_backend(backend):
@@ -275,7 +281,7 @@ def _slow_worker(config, device, backend_module, requests, results, acknowledgme
         backend = importlib.import_module(backend_module).make_runtime_slow(config, device)
         results.put(dict(kind='ready', pid=mp.current_process().pid, model_id=backend.model_id,
                          interface_info=getattr(backend, 'interface_info', {}),
-                         frozen_audit=_audit_backend(backend)))
+                         frozen_audit=_audit_backend(backend), frame_cache=_frame_cache_stats(backend)))
         while True:
             request = requests.get()
             if request is None:
@@ -306,6 +312,7 @@ def _slow_worker(config, device, backend_module, requests, results, acknowledgme
             results.put(dict(kind='snapshot', snapshot_path=str(path), candidate_fields=fields,
                              cpu_snapshot_bytes=payload_bytes, transport_write_complete=time.monotonic(), slow_start=start,
                              slow_completed=complete, slow_wall_s=complete-start,
+                             slow_timings=getattr(backend, 'last_timings', None),
                              source_age_at_slow_start_s=start-obs['observation_time'],
                              feedback_provenance=provenance))
             if acknowledgments.get() != request['version']:
@@ -313,7 +320,7 @@ def _slow_worker(config, device, backend_module, requests, results, acknowledgme
             # Linux mappings retain their storage after unlink, including while
             # a selected candidate awaits its blocking CPU->Fast-device transfer.
             path.unlink()
-        results.put(dict(kind='stopped', frozen_audit=_audit_backend(backend)))
+        results.put(dict(kind='stopped', frozen_audit=_audit_backend(backend), frame_cache=_frame_cache_stats(backend)))
     except BaseException:
         results.put(dict(kind='error', traceback=traceback.format_exc()))
     finally:
@@ -334,6 +341,11 @@ def run_async(config, fragment, checkpoint, output, *, fast_device='cuda:0', slo
     real spawned process. Snapshot transfer is blocking and honestly included in
     observed Fast submission latency, but never waits for an incomplete prefill.
     """
+    config = copy.deepcopy(config)
+    if checkpoint is not None:
+        checkpoint = str(Path(checkpoint).expanduser().resolve())
+        config['runtime_checkpoint'] = checkpoint
+    split_history = config.get('schema') == 'navsim_split_history_v2'
     rows = load_fragment(fragment)
     if type(max_plans) is not int or not 1 <= max_plans <= len(rows):
         raise ValueError('max_plans must fit the bounded source fragment')
@@ -365,8 +377,10 @@ def run_async(config, fragment, checkpoint, output, *, fast_device='cuda:0', slo
                   slow_device=slow_device, colocated_smoke=fast_device == slow_device,
                   shared_device_functional_smoke=fast_device == slow_device,
                   multi_gpu_validated=False, refresh_period_s=refresh_period_s,
-                  feedback_policy='latest compatible completed live Fast plan with its exact source observation',
-                  feedback_training_difference='runtime feedback producer differs from frozen training teacher',
+                  feedback_policy='latest compatible completed main Fast plan (may be KV-enabled) with its exact source observation',
+                  feedback_training_difference=('runtime uses latest completed main Fast plan (may be KV-enabled); training uses detached same-observation no-KV Fast candidate'
+                      if split_history else 'runtime feedback producer differs from frozen training teacher'),
+                  runtime_checkpoint=checkpoint,
                   source_clock='recorded microsecond deltas anchored to common time.monotonic after ready barrier',
                   timing_scope='decode/Processor/vision prepare + language/head predict + snapshot transfer + submit',
                   transport_mode='file_backed_cpu_mmap', transport_directory=str(transport),
@@ -396,6 +410,7 @@ def run_async(config, fragment, checkpoint, output, *, fast_device='cuda:0', slo
                       slow_model_id=ready['model_id'], fast_interface=fast.interface_info,
                       slow_interface=ready['interface_info'],
                       fast_frozen_before=_audit_backend(fast), slow_frozen_before=ready['frozen_audit'],
+                      fast_cache_before=_frame_cache_stats(fast), slow_cache_before=ready['frame_cache'],
                       startup_s=time.monotonic()-startup, requested_plans=max_plans)
         t0 = time.monotonic() + .05
         report['playback_start'] = t0
@@ -461,6 +476,8 @@ def run_async(config, fragment, checkpoint, output, *, fast_device='cuda:0', slo
                             version += 1
                             obs, feedback, provenance = select_slow_source(obs, completed)
                             if provenance is not None:
+                                if split_history:
+                                    provenance['producer'] = 'latest completed main Fast plan (may be KV-enabled); training uses detached same-observation no-KV Fast candidate; matched source observation'
                                 provenance.update(age_at_dispatch_s=event['checked_time']-provenance['observation_time'],
                                     points_due_at_dispatch=sum(t <= event['checked_time']
                                                               for t in provenance['absolute_target_times']))
@@ -570,6 +587,7 @@ def run_async(config, fragment, checkpoint, output, *, fast_device='cuda:0', slo
                         acknowledgments.put(message['candidate_fields']['version'], timeout=.2)
                 if message['kind'] == 'stopped':
                     report['slow_frozen_after'] = message['frozen_audit']
+                    report['slow_cache_after'] = message['frame_cache']
                 if message['kind'] == 'error' and failure is None:
                     failure = WorkerFailure(message['traceback'])
                     report['error'] = str(failure)
@@ -589,10 +607,12 @@ def run_async(config, fragment, checkpoint, output, *, fast_device='cuda:0', slo
                 break
             if message['kind'] == 'stopped':
                 report['slow_frozen_after'] = message['frozen_audit']
+                report['slow_cache_after'] = message['frame_cache']
             elif message['kind'] == 'error' and failure is None:
                 failure = WorkerFailure(message['traceback'])
                 report['error'] = str(failure)
         if fast is not None:
+            report['fast_cache_after'] = _frame_cache_stats(fast)
             try:
                 report['fast_frozen_after'] = _audit_backend(fast)
                 if 'fast_frozen_before' in report:

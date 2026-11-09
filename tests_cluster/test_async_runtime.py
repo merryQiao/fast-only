@@ -132,6 +132,8 @@ class CPUSlow:
         self.config = config
 
     def prefill(self, obs, feedback):
+        if self.config.get('expected_runtime_checkpoint'):
+            assert self.config['runtime_checkpoint'] == self.config['expected_runtime_checkpoint']
         time.sleep(self.config.get('slow_delay_s', .12))
         if self.config.get('fail_worker'):
             raise RuntimeError('intentional child failure')
@@ -214,6 +216,7 @@ def test_cli_defaults_to_distinct_gpus_and_explicit_colocation():
     assert (args.fast_device, args.slow_device) == ('cuda:0', 'cuda:1')
     assert args.refresh_period_s == 1.
     assert args.allow_colocated_smoke is False
+    assert args.config == 'configs/navsim_v1_split_history_smoke.yaml'
 
 
 def test_native_size_cpu_snapshot_uses_descriptor_transport_and_cleans_files(tmp_path):
@@ -260,3 +263,15 @@ def test_slow_feedback_uses_its_matching_observation_when_latest_is_newer():
     assert provenance['feedback_source_matches_observation'] is True
     source, feedback, provenance = select_slow_source(latest | {'navversion': 2}, completed)
     assert source['token'] == latest['token'] and feedback is None and provenance is None
+
+
+def test_runtime_injects_same_absolute_checkpoint_for_slow_worker(tmp_path):
+    from fast_cluster.async_runtime import run_async
+    checkpoint = tmp_path/'same_checkpoint.pt'
+    config = {'expected_runtime_checkpoint': str(checkpoint.resolve())}
+    result = run_async(config, [observation(i) for i in range(4)], checkpoint,
+        tmp_path/'same_source', fast_device='cpu', slow_device='cpu', allow_colocated_smoke=True,
+        max_plans=2, refresh_period_s=.2, wall_timeout_s=12,
+        backend_module='tests_cluster.test_async_runtime')
+    assert result['runtime_checkpoint'] == str(checkpoint.resolve())
+    assert 'runtime_checkpoint' not in config

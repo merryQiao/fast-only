@@ -22,9 +22,11 @@ def main(argv=None):
     official.add_argument("--devkit-root", type=Path, help="optional local official V1.1 devkit, checked against vendored hashes")
     official.add_argument("--max-rejection-fraction", type=float, default=0.0,
         help="explicit project-validity rejection allowance; default zero, missing official coverage always fails")
-    official.add_argument("--source-provenance", type=Path,
-        default=Path(__file__).resolve().parents[1] / "fast_cluster/source_provenance.json",
-        help="frozen-source training registry; exclude its recording groups from selection VAL, preserve all official VAL for reporting (default: fast_cluster/source_provenance.json)")
+    provenance = official.add_mutually_exclusive_group()
+    provenance.add_argument("--source-provenance", type=Path,
+        help="legacy frozen-source registry; default for legacy runs: fast_cluster/source_provenance.json")
+    provenance.add_argument("--official-default-val", action="store_true",
+        help="pretrained-only baseline/split-history: complete official VAL, without legacy source exclusions")
     smoke = commands.add_parser("smoke", help="exactly 8 TRAIN / 4 VAL inherited mini rows")
     smoke.add_argument("--train-manifest", type=Path, default=Path("outputs/slowfast_direct_full/data/train.jsonl"))
     smoke.add_argument("--val-manifest", type=Path, default=Path("outputs/slowfast_direct_full/data/val.jsonl"))
@@ -32,8 +34,10 @@ def main(argv=None):
     smoke.add_argument("--output", type=Path, default=Path("outputs/slowfast_cluster/smoke_data"))
     args = parser.parse_args(argv)
     if args.mode == "official":
+        registry = (None if args.official_default_val else args.source_provenance or
+                    Path(__file__).resolve().parents[1] / "fast_cluster/source_provenance.json")
         receipt = prepare_official_data(args.metadata_root, args.sensor_root, args.output,
-            args.devkit_root, args.max_rejection_fraction, source_provenance=args.source_provenance)
+            args.devkit_root, args.max_rejection_fraction, source_provenance=registry)
     else:
         receipt = prepare_smoke_data(args.train_manifest, args.val_manifest, args.sensor_root, args.output)
     print(json.dumps(receipt, sort_keys=True, indent=2))

@@ -505,7 +505,10 @@ def prepare_smoke_data(train_manifest, val_manifest, sensor_root, bundle_dir, tr
 
 class SceneDataset:
     """JSONL offsets plus a per-process mmap; no materialized list of scene dicts."""
-    def __init__(self, manifest, sensor_root, expected_rows=None, image_manifest_sha256=None):
+    def __init__(self, manifest, sensor_root, expected_rows=None, image_manifest_sha256=None, image_frames=4):
+        if type(image_frames) is not int or image_frames not in (1, 4):
+            raise ValueError("image_frames must be 1 or 4")
+        self.image_frames = image_frames
         self.manifest = Path(manifest).resolve()
         self.sensor_root = Path(sensor_root).resolve()
         self.image_manifest_sha256 = image_manifest_sha256
@@ -537,6 +540,7 @@ class SceneDataset:
         if isinstance(index, tuple):
             index, valid = index
         row = self.row(index)
+        selected_images = row["images"][-self.image_frames:]
         if self._image_hashes is None:
             inventory = self.manifest.with_name("images.jsonl")
             if self.image_manifest_sha256 is not None and _sha256(inventory) != self.image_manifest_sha256:
@@ -546,7 +550,7 @@ class SceneDataset:
                 for line in stream:
                     item = json.loads(line)
                     self._image_hashes[item["path"]] = bytes.fromhex(item["sha256"])
-        relative_paths = [_relative_image(path, self.sensor_root) for path in row["images"]]
+        relative_paths = [_relative_image(path, self.sensor_root) for path in selected_images]
         paths = [self.sensor_root / path for path in relative_paths]
         images = []
         for relative, path in zip(relative_paths, paths):
@@ -598,7 +602,7 @@ class PreparedData:
         if self.stats.get("source_split") != "train" or self.stats.get("count") != self.identity["manifests"]["train"]["rows"]:
             raise ValueError("TRAIN normalization identity differs")
 
-    def dataset(self, split):
+    def dataset(self, split, image_frames=4):
         report_only = split == "val_official"
         if report_only:
             item = self.identity["artifacts"].get("val_official.jsonl")
@@ -609,7 +613,7 @@ class PreparedData:
         else:
             raise ValueError("only TRAIN and independent VAL are prepared; navtest is held out")
         dataset = SceneDataset(self.bundle_dir / item["file"], self.sensor_root, item["rows"],
-            self.identity["artifacts"]["images.jsonl"]["sha256"])
+            self.identity["artifacts"]["images.jsonl"]["sha256"], image_frames=image_frames)
         dataset.report_only = report_only
         return dataset
 

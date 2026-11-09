@@ -164,6 +164,8 @@ def save_checkpoint(path, backend, optimizer, scheduler, *, identity, progress, 
                                          for name, value in backend.fast.named_buffers()},
                            optimizer=optimizer.state_dict(), scheduler=scheduler.state_dict(),
                            rng_by_rank=all_rng)
+            if hasattr(backend, 'source_state'):
+                payload['source_tasks'] = backend.source_state()
             _atomic_torch_save(payload, path)
             latest = Path(path).parent / 'latest.pt'
             descriptor, temporary = tempfile.mkstemp(prefix='.latest.', dir=latest.parent)
@@ -201,6 +203,8 @@ def load_checkpoint(path, backend, optimizer, scheduler, *, identity, device):
             for key, tensor in expected_buffers.items()):
         raise ValueError('Fast checkpoint buffer keys/shape/dtype differ')
     backend.restore_fast_state(state['model'])
+    if hasattr(backend, 'restore_source_state'):
+        backend.restore_source_state(state.get('source_tasks'))
     with torch.no_grad():
         for name, tensor in expected_buffers.items():
             tensor.copy_(buffers[name])
@@ -215,10 +219,13 @@ def save_best_weights(path, backend, *, identity, metrics):
     error = [None]
     if rank == 0:
         try:
-            _atomic_torch_save(dict(schema='navsim_cluster_best_weights_v1', writer_rank=0,
+            payload = dict(schema='navsim_cluster_best_weights_v1', writer_rank=0,
                                     identity=identity, metrics=metrics, model=backend.fast_state(),
                                     fast_buffers={name: tensor.detach().cpu().clone()
-                                                  for name, tensor in backend.fast.named_buffers()}), path)
+                                                  for name, tensor in backend.fast.named_buffers()})
+            if hasattr(backend, 'source_state'):
+                payload['source_tasks'] = backend.source_state()
+            _atomic_torch_save(payload, path)
         except Exception as exc:
             error[0] = f'{type(exc).__name__}: {exc}'
     if world > 1:

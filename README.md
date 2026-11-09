@@ -1,8 +1,12 @@
-# NAVSIM Fast-only：原生 Qwen3.5 轨迹规划基线
+# NAVSIM Fast / Slow-Fast：原生 Qwen3.5 轨迹规划
 
-使用 **Qwen3.5-0.8B 原生多模态骨干**，输入 NAVSIM/OpenScene 的四帧前视图像、当前 Ego 动态状态和官方导航命令，单次 forward 输出未来 **4 秒、8 个 `(x, y, heading)` pose**。
+使用 **Qwen3.5-0.8B 原生多模态 Fast**，输出 NAVSIM 未来 **4 秒、8 个 `(x, y, heading)` pose**。当前快慢协议为 **Fast 只读当前一帧，Slow 2B 读四帧历史**，经原六层 Direct-KV 通信，保留唯一 Fast 轨迹 Head。
 
-**当前主入口：NAVSIM V1全量、2节点×8 H200。** 新增独立 `fast_cluster/` 工程，保留冻结2B＋完整0.8B六层Direct-KV，正式只运行Fast-only/Slow-Fast两臂、种子42/43、各8epoch，并提供固定周期最小异步运行链路。当前服务器只做有界Smoke；[迁移及全量训练说明](docs/NAVSIM_V1_CLUSTER_HANDOFF.md)、[当前Smoke证据](docs/NAVSIM_V1_CLUSTER_SMOKE.md)。下文各Mini报告为历史研究记录，未作为本轮继续诊断的前提。
+**当前默认入口：完整 NAVSIM V1，2 节点×8 H200，三臂×两个配对种子。** 使用 `configs/navsim_v1_split_history_h200_2x8.yaml` 和 [训练与迁移指南](docs/NAVSIM_V1_SPLIT_HISTORY.md)。三臂分别为单帧 Fast-only、四帧 Fast-only、单帧 Fast＋四帧 Slow；四帧对照允许缓存历史 RGB 和冻结视觉特征。两模型从原始预训练资产初始化，**不需要旧 Mini 权重或 `source_bundle.pt`**。Fast 完整语言和规划模块更新；Slow 视觉/语言主干冻结，仅现有新增条件模块和 Queries 学习。
+
+本机已经完成三臂真实原图更新、合作模型独立进程精确恢复、同步/异步推理与历史视觉缓存 Smoke。[结构化记录](reports/navsim_v1_split_history_smoke.json)区分单 H800、CPU 两进程和尚待目标机验证的 16 H200/NCCL。当前没有全量训练、规划增益或加速倍数结论。
+
+[原始四帧 Fast-only 独立入口](docs/NAVSIM_V1_ORIGINAL_BASELINE.md)和[旧冻结来源双臂入口](docs/NAVSIM_V1_CLUSTER_HANDOFF.md)均保留为显式协议。**下文是原四帧 Fast 基线及历史 Mini 研究记录，不能用其中的输入、训练范围和迁移步骤覆盖当前协议。**
 
 历史 [Slow-Fast V1.1 P0 接口原型](docs/SLOWFAST_V11_P0.md)验证真实2B→0.8B六层KV、Planning Queries可见性和联合梯度。它使用独立目录 `slowfast_v11/`；以下Fast-only验收记录对应原基线。当前最小固定周期异步已补充，Future检验和闭环收益仍待后续研究。
 
@@ -30,7 +34,7 @@
 
 [冻结检查点的六层 KV 读取定位](docs/SLOWFAST_KV_READ_TRACE.md)保持 Slow 冻结，未新增训练或下载。768 次来源推理精确复现旧结果，1152 次单层干预完成；固定 Q 的换源差异穿过 gate／o_proj 并到达 Head。移动子集的读出相对差异在 Head 第一线性映射附近变小，但正确来源仍无 ADE 优势；这支持继续定位任务读出，不能把 Slow 自身轨迹分数作为必须先重训它的依据。
 
-> 旧 `configs/navsim.yaml` 固定Mini身份。新正式入口使用 `configs/navsim_v1_h200_2x8.yaml`；接入完整官方V1数据无需修改模型代码。旧[迁移指南](docs/FULL_DATA_TRAINING.md)保留当时状态，当前操作以页首新交接文档为准。
+> 旧 `configs/navsim.yaml` 固定 Mini 身份；`configs/navsim_v1_h200_2x8.yaml` 是旧四帧协作协议。当前正式入口为页首 `configs/navsim_v1_split_history_h200_2x8.yaml`；旧[迁移指南](docs/FULL_DATA_TRAINING.md)保留当时状态。
 
 ## 已验证到什么程度
 
@@ -86,6 +90,8 @@ flowchart TD
 
 ```text
 fast_navsim/       当前 NAVSIM 数据、模型、训练、验证与 checkpoint
+fast_cluster/      当前三臂训练、DDP、全量数据、原始来源、视觉缓存和异步运行
+slowfast_v11/      原生六层 Direct-KV 和帧数可配置的 Fast/四帧 Slow
 fast_only/         被复用的原生 Qwen/LoRA、预取、调度器等共享实现；保留旧 B2D 协议
 configs/navsim*.yaml
 tools/            NAVSIM 小样本准备/预检/独立重载；另含历史 B2D 辅助工具
@@ -147,7 +153,11 @@ PYTEST_DISABLE_PLUGIN_AUTOLOAD=1 python -m pytest tests tests_navsim -q
 
 已有数据时去掉 `--acquire`，只从保留文件构建。已有训练输出时入口拒绝覆盖；不要在训练/续训过程中重建清单、统计量或来源审计。源机器的绝对路径和旧 checkpoint 不会自动重定位。
 
-## 转移后全量训练
+## 当前全量训练入口
+
+请执行 [NAVSIM_V1_SPLIT_HISTORY.md](docs/NAVSIM_V1_SPLIT_HISTORY.md)：准备完整官方 TRAIN/VAL 和 TRAIN-only 统计量，验证目标 16 H200 的真实更新与恢复，再启动三臂配对训练。`fast_cluster.train` 已实现 DDP、无放回 epoch shuffle、全局有效样本归一化、rank RNG、采样进度及合作来源模块的完整恢复。正式训练重新初始化原始基座；历史 Mini 结果不作为正式权重。
+
+以下五项保留为原始单卡基线的历史迁移要求，不能作为当前 DDP 入口的能力说明。
 
 1. 用官方 `navtrain` Scene Filter 准备实际训练场景，保存 scene token/log 分组、缺失文件与 timestamp 拒绝统计；从训练来源建立独立 VAL，不用 `navtest`/`navhard_two_stage` 选型。
 2. 生成完整 Manifest 和 **完整 TRAIN-only** Stats，接入正式配置 Schema/路径与安全检查。当前 mini 构建器不是完整 `navtrain` pipeline。

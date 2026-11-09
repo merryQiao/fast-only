@@ -14,7 +14,7 @@ import torch.distributed as dist
 from torch.nn.parallel import DistributedDataParallel
 from torch.utils.data import DataLoader, Subset
 
-from .config import read_config, semantic_config, validate_config
+from .config import read_config, semantic_config, validate_config, split_history, fast_frame_count
 from .distributed import (EpochPlan, initialize, load_checkpoint, save_best_weights,
                           save_checkpoint, valid_scaled_loss)
 
@@ -100,6 +100,8 @@ def perform_update(wrapped, backend, optimizer, scheduler, samples, group, *, wo
                                 for i, group_ in enumerate(optimizer.param_groups)})
     if gradient_report is not None:
         result['dense_gradient_audit'] = gradient_report
+    if audit_dense and hasattr(backend,'source_gradient_report'):
+        result['source_gradient_audit'] = backend.source_gradient_report()
     return result
 
 
@@ -182,7 +184,7 @@ def _prepare_output(output, resume):
 def run_training(config, *, arm, seed, output, resume=None, stop_after_updates=None, preflight_updates=None):
     validate_config(config)
     if arm not in config['train']['arms'] or seed not in config['train']['seeds']:
-        raise ValueError('Arm/seed is outside the fixed two-arm/two-seed protocol')
+        raise ValueError('Arm/seed is outside the configured training protocol')
     if stop_after_updates is not None:
         if (config['execution']['mode'] != 'smoke' or isinstance(stop_after_updates, bool)
                 or not isinstance(stop_after_updates, int) or stop_after_updates <= 0):
@@ -202,7 +204,11 @@ def run_training(config, *, arm, seed, output, resume=None, stop_after_updates=N
     data = PreparedData(config['data']['bundle'], config['data']['sensor_root'],
                         allow_smoke=config['execution']['mode'] == 'smoke')
     validate_source_data(config, data)
-    train, val = data.dataset('train'), data.dataset('val')
+    if split_history(config):
+        frames = 4 if arm == 'slow_fast' else fast_frame_count(config,arm)
+        train,val = data.dataset('train',image_frames=frames),data.dataset('val',image_frames=frames)
+    else:
+        train,val = data.dataset('train'),data.dataset('val')
     if not len(train) or not len(val):
         raise ValueError('Nonempty independent TRAIN and VAL are required')
     from .models import build_backend
@@ -221,6 +227,8 @@ def run_training(config, *, arm, seed, output, resume=None, stop_after_updates=N
         raise ValueError('Formal preflight must stop before the complete eight-epoch schedule')
     optimizer = make_full_optimizer(backend.fast, language_lr=tc['language_lr'],
                                     new_lr=tc['new_lr'], weight_decay=tc['weight_decay'])
+    if hasattr(backend,'add_source_optimizer_group'):
+        backend.add_source_optimizer_group(optimizer,tc['new_lr'])
     scheduler = make_scheduler(optimizer, total_updates, tc['warmup_fraction'], tc['minimum_lr_ratio'])
     wrapped = DistributedDataParallel(backend, device_ids=[context.local_rank],
                 output_device=context.local_rank, find_unused_parameters=True,
@@ -353,7 +361,7 @@ def run_training(config, *, arm, seed, output, resume=None, stop_after_updates=N
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--config', required=True)
-    parser.add_argument('--arm', choices=['fast_only', 'slow_fast'], required=True)
+    parser.add_argument('--arm', choices=['fast_only', 'fast_single', 'fast_history', 'slow_fast'], required=True)
     parser.add_argument('--seed', type=int, choices=[42, 43], required=True)
     parser.add_argument('--output', required=True)
     parser.add_argument('--resume')

@@ -1,4 +1,4 @@
-"""Four full-resolution chronological images, with explicit NAVSIM timestamps."""
+"""One current or four chronological original images with NAVSIM timestamps."""
 import random
 import threading
 import torch
@@ -8,10 +8,19 @@ from fast_only.common import prepare_original_image
 HISTORY_TIMES=(-1.5,-1.,-.5,0.)
 
 
-def temporal_content(frames):
-    if len(frames)!=4:raise ValueError('Expected four chronological NAVSIM frames')
+def _history_times(history_times_s):
+    try:times=tuple(history_times_s)
+    except TypeError as error:raise ValueError('Unsupported NAVSIM time policy') from error
+    if any(isinstance(t,bool) for t in times) or times not in (HISTORY_TIMES,(0.,)):
+        raise ValueError('Unsupported NAVSIM time policy')
+    return times
+
+
+def temporal_content(frames,history_times_s=HISTORY_TIMES):
+    times=_history_times(history_times_s)
+    if len(frames)!=len(times):raise ValueError(f'Expected {len(times)} chronological NAVSIM frames')
     content=[]
-    for t,image in zip(HISTORY_TIMES,frames):
+    for t,image in zip(times,frames):
         content.extend([{'type':'text','text':f'Front camera t{t:+.1f}s: '},
                         {'type':'image','image':image}])
     content.append({'type':'text','text':'Plan eight future ego poses (x, y, heading) at 0.5 second intervals over 4 seconds.'})
@@ -22,8 +31,11 @@ class NavsimCollator:
     def __init__(self,model_path,*,policy='original_pad',pad_multiple=32,pad_fill=(0,0,0),
                  history_times_s=HISTORY_TIMES,prompt_template='navsim_temporal_v1',brightness=0.):
         from transformers import AutoProcessor
-        if policy!='original_pad' or tuple(history_times_s)!=HISTORY_TIMES or prompt_template!='navsim_temporal_v1':
+        times=_history_times(history_times_s)
+        if policy!='original_pad' or prompt_template!='navsim_temporal_v1':
             raise ValueError('Unsupported NAVSIM processor/time policy')
+        self.history_times_s=times
+        self.image_frames=len(times)
         self.processor=AutoProcessor.from_pretrained(model_path,local_files_only=True)
         self.processor.tokenizer.padding_side='left'
         image_processor=self.processor.image_processor
@@ -38,13 +50,13 @@ class NavsimCollator:
         contents=[];images=[];audits=[]
         for sample in samples:
             frames=sample['images']
-            if len(frames)!=4:raise ValueError('Expected four source images')
+            if len(frames)!=self.image_frames:raise ValueError(f'Expected {self.image_frames} source images')
             if self.brightness:
                 factor=rng.uniform(1-self.brightness,1+self.brightness)
                 frames=[ImageEnhance.Brightness(image).enhance(factor) for image in frames]
             prepared=[prepare_original_image(image,self.pad_multiple,self.pad_fill) for image in frames]
             frames=[p[0] for p in prepared];audits.extend(p[1] for p in prepared)
-            contents.append(temporal_content(frames));images.extend(frames)
+            contents.append(temporal_content(frames,self.history_times_s));images.extend(frames)
         with self._processor_lock:
             prompts=[self.processor.apply_chat_template([{'role':'user','content':c}],tokenize=False,
                      add_generation_prompt=False) for c in contents]

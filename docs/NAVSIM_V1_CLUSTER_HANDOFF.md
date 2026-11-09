@@ -1,5 +1,7 @@
 # NAVSIM V1：2节点×8 H200训练交接
 
+此文档保留旧四帧 Fast＋四帧 Slow、冻结来源双臂配方。**当前默认是 [Fast 单帧／Slow 四帧三臂协议](NAVSIM_V1_SPLIT_HISTORY.md)**，两模型从原始预训练资产开始，不需要 `source_bundle.pt` 或旧 Mini 权重。独立的原始四帧 Fast-only 控制入口见[此页](NAVSIM_V1_ORIGINAL_BASELINE.md)。不要为启动新协议而复制旧来源参数。
+
 当前任务是正式训练工程与有界Smoke。训练入口是 `python -m fast_cluster.train`，配置为 `configs/navsim_v1_h200_2x8.yaml`。旧 `configs/navsim.yaml` 和各256/512窗口诊断脚本保持原实验身份，不作为本轮正式入口。
 
 ## 固定的训练协议
@@ -104,7 +106,7 @@ python -m torch.distributed.run --nnodes=2 --nproc-per-node=8 \
 目标预检通过后，两个节点分别设置NODE_RANK，再执行：
 
 ```bash
-bash scripts/train_navsim_v1_2x8.sh
+CLUSTER_CONFIG=configs/navsim_v1_h200_2x8.yaml bash scripts/train_navsim_v1_2x8.sh
 ```
 
 它依次运行两种子×两臂，每臂使用全部16卡。首次运行用新目录；中断后显式 `RESUME_MATRIX=1` 重启。单个臂也可按上述torchrun格式去掉预检上限，用 `--resume .../latest.pt` 恢复。默认保留最近2份完整checkpoint与best权重，optimizer完整状态较大，预留输出空间。

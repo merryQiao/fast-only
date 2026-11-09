@@ -1,11 +1,13 @@
-"""Prevent a frozen upstream task model's TRAIN logs from entering model selection.
+"""Require full official VAL for pretrained-only protocols and isolate legacy data.
 
 The old Mini split differs from official V1 roles. All new TRAIN remains in
-place; six official VAL logs from one already-seen recording group are retained
-for explicitly labelled reporting, excluded from checkpoint selection.
+place in legacy runs; six official VAL logs from one already-seen recording group
+are retained for reporting and excluded from legacy checkpoint selection. New
+pretrained split-history and original baseline runs use all official default VAL.
 """
 import json
 from pathlib import Path
+from .config import baseline_only, split_history
 
 
 def load_source_provenance():
@@ -21,6 +23,21 @@ def load_source_provenance():
 
 def validate_source_data(config, data):
     if config['execution']['mode'] == 'smoke':
+        return
+    if baseline_only(config) or split_history(config):
+        identity = data.identity
+        provenance = identity.get('provenance', {})
+        selected = identity.get('manifests', {}).get('val', {})
+        official = identity.get('artifacts', {}).get('val_official.jsonl', {})
+        if (identity.get('kind') != 'navsim_v1_full'
+                or config['data'].get('validation_policy') != 'official_default_train_val'
+                or provenance.get('validation_policy') != 'official_default_train_val'
+                or provenance.get('source_provenance') is not None
+                or official.get('purpose') != 'report_only'
+                or not selected.get('rows') or selected.get('rows') != official.get('rows')
+                or not selected.get('sha256') or selected.get('sha256') != official.get('sha256')):
+            raise ValueError('Pretrained-only protocols require complete official default VAL; '
+                             'prepare data with --official-default-val, without old source exclusions')
         return
     expected = load_source_provenance()
     provenance = data.identity.get('provenance', {})

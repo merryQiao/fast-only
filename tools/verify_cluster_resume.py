@@ -41,6 +41,8 @@ def verify(config_path, uninterrupted, resumed, output, device='cuda:0'):
     restored = torch.load(resumed, map_location='cpu', weights_only=False)
     fields = ('schema', 'identity', 'world_size', 'progress', 'model', 'fast_buffers',
               'optimizer', 'scheduler', 'rng_by_rank')
+    if 'source_tasks' in reference or 'source_tasks' in restored:
+        fields += ('source_tasks',)
     for field in fields:
         assert_same(reference[field], restored[field], field)
     identity = reference['identity']
@@ -53,6 +55,8 @@ def verify(config_path, uninterrupted, resumed, output, device='cuda:0'):
     with torch.no_grad():
         for saved in (reference, restored):
             backend.restore_fast_state(saved['model'])
+            if hasattr(backend,'restore_source_state'):
+                backend.restore_source_state(saved.get('source_tasks'))
             predictions.append(backend(batch).detach().cpu().clone())
     assert_same(*predictions, 'independent_reloaded_prediction')
     backend.check_frozen()

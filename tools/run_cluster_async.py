@@ -8,7 +8,7 @@ from fast_cluster.config import read_config
 
 def build_parser():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--config', default='configs/navsim_v1_smoke.yaml')
+    parser.add_argument('--config', default='configs/navsim_v1_split_history_smoke.yaml')
     parser.add_argument('--checkpoint', required=True)
     parser.add_argument('--fragment', default='outputs/slowfast_cluster/async_fragment/fragment.json')
     parser.add_argument('--output', required=True)

@@ -24,9 +24,12 @@ def assemble(planner,native,ego,command,suffix,position_offset=0):
         raise ValueError('Expected finite ego[B,4] and command[B]')
     if command.dtype!=torch.long or (command<0).any() or (command>=4).any():
         raise ValueError('Expected official NAVSIM integer command 0..3')
+    image_frames=getattr(planner,'image_frames',4)
+    if type(image_frames) is not int or image_frames not in (1,4):
+        raise ValueError('image_frames must be 1 or 4')
     grid=native.get('image_grid_thw')
-    if grid is None or len(grid)!=4*b:
-        raise ValueError('Exactly four chronological images are required')
+    if grid is None or len(grid)!=image_frames*b:
+        raise ValueError(f'Exactly {image_frames} chronological images per sample are required')
     backbone=planner.backbone
     embeds=backbone.get_input_embeddings()(ids)
     with torch.no_grad():
@@ -42,8 +45,11 @@ def assemble(planner,native,ego,command,suffix,position_offset=0):
 
 
 class FastWithSlowKV(NavsimPlanner):
-    def __init__(self,backbone,*,position_offset=4096,**kwargs):
+    def __init__(self,backbone,*,position_offset=4096,image_frames=4,**kwargs):
+        if type(image_frames) is not int or image_frames not in (1,4):
+            raise ValueError('image_frames must be 1 or 4')
         super().__init__(backbone,**kwargs)
+        self.image_frames=image_frames
         d=backbone.config.text_config.hidden_size
         self.metadata_encoder=nn.Sequential(nn.Linear(6,256),nn.GELU(),nn.Linear(256,d))
         self.no_cache=nn.Parameter(torch.randn(d)*.02)
@@ -75,7 +81,11 @@ class FastWithSlowKV(NavsimPlanner):
         with session:
             hidden=self.backbone.language_model(inputs_embeds=embeds,position_ids=positions,
                 attention_mask=mask,use_cache=False,return_dict=True).last_hidden_state
+        grid=native['image_grid_thw']
+        image_tokens=(grid.prod(-1)//self.backbone.visual.spatial_merge_size**2).tolist()
         self.last_layout={'sequence_length':embeds.shape[1],'trajectory_shape':[8,3],
+            'image_frames':self.image_frames,'image_grid_thw':grid.detach().cpu().tolist(),
+            'image_tokens_per_frame':image_tokens,'image_tokens_total':sum(image_tokens),
             'suffix_order':['ego','command','cache_metadata','planning_queries_x8'],
             'position_offset':self.position_offset,'query_indices':list(range(embeds.shape[1]-8,embeds.shape[1]))}
         return self.head(hidden[:,-8:].float())
@@ -91,6 +101,7 @@ class SlowPrefill(NavsimPlanner):
     """Full 2B prefill and numeric trajectory feedback; Future/motion heads deferred."""
     def __init__(self,backbone,*,position_offset=4096,**kwargs):
         super().__init__(backbone,**kwargs)
+        self.image_frames=4
         d=backbone.config.text_config.hidden_size
         self.feedback_encoder=nn.Sequential(nn.Linear(5,256),nn.GELU(),nn.Linear(256,d))
         self.feedback_type=nn.Parameter(torch.randn(d)*.02)

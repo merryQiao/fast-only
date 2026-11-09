@@ -14,6 +14,7 @@ from fast_only.common import fingerprint, to_device, write_json
 from slowfast_v11.adapter_data import recording_group
 from slowfast_v11.full_training import full_precision, restore_full_state
 from slowfast_v11.validation import state_digest
+from slowfast_v11.vision_protocol import restore_native_visual_rope, buffer_digest
 from tools.direct_full_common import direct_forward, equal_source_layout, snapshot
 from tools.trace_direct_kv import weights_digest, versions
 from tools.train_direct_full import setup, load_result_checkpoint
@@ -48,6 +49,7 @@ def read_config(path):
     c=yaml.safe_load(Path(path).read_text())
     expected=dict(schema='frozen_cross_inputs_v1',arms=list(ARMS),donor_recording_offsets=[1,4,7],
         donor_rule='sorted_recording_groups_cyclic_offset_same_manifest_index',cartesian_joint_inputs=True,
+        vision_precision_policy='native_fp32_visual_rope',
         val_windows=256,recording_groups=8,raw_replay_targets_per_recording=1,
         raw_replay_image_sources=list(OFFSETS),metadata=[0.,0.,0.,0.,1.,1.],moving_speed_mps=1.,
         high_speed_mps=10.,practical_ade_reference_m=.02,analysis_seed=20261109,
@@ -95,7 +97,8 @@ def prepare_protocol(config_path,output):
         D_independent='different donor sources, not independent random draws',
         scope='observed-VAL frozen input mechanism diagnostic; mismatches can be OOD; no new-log/closed-loop claims',
         source_code_sha256={p:fingerprint(p) for p in ['tools/diagnose_cross_inputs.py','slowfast_v11/cross_inputs.py',
-            'slowfast_v11/model.py','slowfast_v11/attention.py','tools/direct_full_common.py','slowfast_v11/full_training.py']})
+            'slowfast_v11/model.py','slowfast_v11/attention.py','tools/direct_full_common.py','slowfast_v11/full_training.py',
+            'slowfast_v11/vision_protocol.py']})
     path=out/'protocol.json'
     if path.exists():
         if json.loads(path.read_text())!=plan:raise ValueError('Existing immutable factorial protocol differs')
@@ -156,13 +159,14 @@ def run(config_path,output,arm):
     if state_digest(saved['model'])!=r['model_digest']:raise ValueError('Complete endpoint state differs')
     restore_full_state(model,saved['model']);del saved;gc.collect()
     model.eval().requires_grad_(False)
+    native_visual_rope=restore_native_visual_rope(model.backbone.visual)
     previous={z['token']:torch.tensor(z['prediction']) for z in json.loads((root/'final_predictions.json').read_text())}
     prior=json.loads((Path(c['run_root'])/'correct_checkpoint_diagnostics.json').read_text())
     prior_B4={z['token']:torch.tensor(z['prediction']) for z in prior['records'] if z['mode']=='shuffled'}
     direct=yaml.safe_load(Path(c['direct_config']).read_text())
     original=json.loads((Path(direct['source_run'])/'result.json').read_text())['config']
     collator=NavsimCollator(original['fast']['model_path'],**original['processor'])
-    out.mkdir();before=weights_digest(model);marks=versions(model)
+    out.mkdir();before=weights_digest(model);buffers_before=buffer_digest(model);marks=versions(model)
     by_token={z['token']:z for z in rows};records=[];raw=[];exact=0
     started=time.monotonic();torch.cuda.reset_peak_memory_stats()
     with full_precision(model):
@@ -199,12 +203,13 @@ def run(config_path,output,arm):
             if torch.cuda.max_memory_allocated()>c['max_allocated_gib']*2**30:raise MemoryError('Frozen inference exceeds32GiB cap')
             del packets,visual,target,sources,source
             if n==1 or n%16==0:print(f'{arm} cross {n}/256, records={len(records)}, exact={exact}, raw={len(raw)}, elapsed={time.monotonic()-started:.1f}s',flush=True)
-    count=validate_coverage(records,plan,arm);after=weights_digest(model)
-    if before!=after or marks!=versions(model) or len(raw)!=32 or exact!=plan['expected_saved_exact'][arm]:
+    count=validate_coverage(records,plan,arm);after=weights_digest(model);buffers_after=buffer_digest(model)
+    if before!=after or buffers_before!=buffers_after or marks!=versions(model) or len(raw)!=32 or exact!=plan['expected_saved_exact'][arm]:
         raise ValueError('Frozen factorial final acceptance failed')
     write_json(out/'result.json',dict(schema='frozen_cross_inputs_arm_v1',completed=True,arm=arm,
         records=count,exact_previous_forecasts=exact,raw_processor_replays_exact=len(raw),
         all_parameter_sha256_before=before,all_parameter_sha256_after=after,parameter_versions_unchanged=True,
+        all_buffer_sha256_before=buffers_before,all_buffer_sha256_after=buffers_after,native_visual_rope=native_visual_rope,
         inputs_and_sources_unchanged=True,checkpoint_sha256=c['checkpoint_sha256'][arm],
         predictions_sha256=fingerprint(out/'predictions.jsonl'),raw_replays_sha256=fingerprint(out/'raw_replays.json'),
         protocol_sha256=fingerprint(Path(output)/'protocol.json'),

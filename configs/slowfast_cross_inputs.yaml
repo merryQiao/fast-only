@@ -10,6 +10,7 @@ checkpoint_sha256:
 donor_recording_offsets: [1, 4, 7]
 donor_rule: sorted_recording_groups_cyclic_offset_same_manifest_index
 cartesian_joint_inputs: true
+vision_precision_policy: native_fp32_visual_rope
 val_windows: 256
 recording_groups: 8
 raw_replay_targets_per_recording: 1

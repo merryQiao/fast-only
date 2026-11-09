@@ -12,6 +12,8 @@ Fast-only 每窗口运行当前图像及三个 donor 四帧，共 1024 次。联
 
 ## 真实输入与不可变性验收
 
+原图严格核对在首次运行中发现：full-language setup 的 `visual.to(BF16)` 同时转低了不在权重文件中的原生 FP32 visual RoPE buffer。单样本 GPU 因果探针实测恢复原生构造值后，原图特征及预测均与冻结缓存逐位一致。保留失败的 `run_01`，新增显式 `native_fp32_visual_rope` 精度策略，仅恢复原生非持久频率 buffer，不改参数、结构、缓存或训练；后续以同样组合重新运行 `run_02`，并记录所有 buffer 的前后身份。旧 P0 锁定的全语言核心代码保持不变。
+
 每个 recording group 取 manifest 第一窗口为原图核对目标，共 8 个，不看 GT。两检查点各对当前与三个 donor 四帧执行原 Processor＋原生视觉塔＋语言完整前向，保留目标 Ego／导航；32 次/模型，共 64 次，预测必须与视觉缓存替换精确相同。原图不 resize／重压缩；读取本地既有图像不产生新增 HTTP 流量。
 
 Fast-only 当前图像 256 个预测、联合 A 的 256 个预测、B 的 offset4 共 256 个预测必须精确复现此前终点或来源诊断。完整参数 SHA／版本前后相同；输入、视觉特征和 KV 版本不变；全程 eval/no_grad/use_cache=False。联合全部格子均启用同样的六层融合与 metadata `[0,0,0,0,1,1]`，不通过 off/masked 方式代替错配。

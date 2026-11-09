@@ -1,0 +1,25 @@
+schema: frozen_cross_inputs_v1
+direct_config: configs/slowfast_direct_full.yaml
+cache: outputs/slowfast_direct_full/cache_01
+init: outputs/slowfast_direct_full/p0_01/shared_init.pt
+run_root: outputs/slowfast_direct_full/run_01
+arms: [full_fast_only, full_correct_kv]
+checkpoint_sha256:
+  full_fast_only: 3af11731a14c80b5d08f30c28c6c8cf75727657b83a13984db5b5fe920e41d89
+  full_correct_kv: 5f08df489c645487bf3183b8b0dfdc06ea691ba8a205ab2e9b131e662a8fd558
+donor_recording_offsets: [1, 4, 7]
+donor_rule: sorted_recording_groups_cyclic_offset_same_manifest_index
+cartesian_joint_inputs: true
+val_windows: 256
+recording_groups: 8
+raw_replay_targets_per_recording: 1
+raw_replay_image_sources: [0, 1, 4, 7]
+metadata: [0.0, 0.0, 0.0, 0.0, 1.0, 1.0]
+moving_speed_mps: 1.0
+high_speed_mps: 10.0
+practical_ade_reference_m: 0.02
+analysis_seed: 20261109
+bootstrap_replicates: 20000
+max_allocated_gib: 32
+new_training_updates: 0
+new_response_body_bytes: 0
